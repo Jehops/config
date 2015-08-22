@@ -33,12 +33,12 @@ define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
 define_key(content_buffer_normal_keymap, "C-g", "unfocus");
 define_key(text_keymap, "C-h", "cmd_deleteCharBackward");
 undefine_key(content_buffer_normal_keymap, "b");
-// in the minibuffer for isearch
-define_key(isearch_keymap, "C-a", "scroll-beginning-of-line");
-define_key(isearch_keymap, "C-b", "left");
-define_key(isearch_keymap, "C-e", "scroll-end-of-line");
-define_key(isearch_keymap, "C-f", "cmd_scrollRight");
-define_key(isearch_keymap, "C-k", "cmd_scrollRight");
+// in the minibuffer for isearch (did these ever work?)
+//define_key(isearch_keymap, "C-a", "scroll-beginning-of-line");
+//define_key(isearch_keymap, "C-b", "left");
+//define_key(isearch_keymap, "C-e", "scroll-end-of-line");
+//define_key(isearch_keymap, "C-f", "cmd_scrollRight");
+//define_key(isearch_keymap, "C-k", "cmd_scrollRight");
 
 // key-kill-mode // How Do I Miss Thee?
 // key_kill_mode.test.push(build_url_regexp($domain = "github"));
