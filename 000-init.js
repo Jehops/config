@@ -74,6 +74,7 @@ xkcd_add_title = true;
 // session / user preferences
 session_pref("browser.download.manager.closeWhenDone", true);
 session_pref("layout.spellcheckDefault", 1);
+session_pref("full-screen-api.enabled", true);
 session_pref("general.useragent.compatMode.firefox", true);
 session_pref("xpinstall.whitelist.required", false);
 user_pref("devtools.debugger.remote-enabled", true);
