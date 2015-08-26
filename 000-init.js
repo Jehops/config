@@ -78,7 +78,7 @@ session_pref("general.useragent.compatMode.firefox", true);
 session_pref("xpinstall.whitelist.required", false);
 user_pref("devtools.debugger.remote-enabled", true);
 
-// user agent (via escondida)
+// user agent (via escondida via retroj)
 var user_agents = {
     "conkeror": null,
     "linux-chromium": "Mozilla/5.0 (X11; U; Linux x86_64; en-US) " +
@@ -261,7 +261,7 @@ interactive(
     }
 );
 
-// user agent (via escondida)
+// user agent (via escondida via retroj)
 interactive("user-agent",
 	    "Pick a user agent from the list of presets",
 	    function (I) {
