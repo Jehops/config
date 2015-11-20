@@ -1,0 +1,161 @@
+;; -*-lisp-*-
+
+;;(require 'swank)
+;;(swank:create-server)
+
+(in-package :stumpwm)
+
+(setf *colors* (append *colors* (list "Orange2" "Gray52")))
+(setf *input-window-gravity* :bottom-right)
+(setf *message-window-gravity* :bottom-right)
+(setf *mode-line-background-color* "black")
+(setf *mode-line-border-width* 0)
+(setf *mode-line-position* :bottom)
+(setf *mode-line-timeout* 1)
+(setf *mouse-focus-policy* :click)
+(setf *startup-message* nil)
+(setf *window-border-style* :thick)
+(setf *window-format* "^[^8*%n^]^[^9*%s^]%30t")
+
+(update-color-map (current-screen))
+
+(set-focus-color "Orange2")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun list-windows-by-props (props &optional (fmt *window-format*))
+  "Select a window from the list of windows with the specificed properties and
+focus the selected window. For information of menu bindings @xref{Menus}. The
+optional argument @var{fmt} can be specified to override the default window
+formatting."
+  (let* ((group (current-group))
+         (matches (remove-if-not (lambda (w)
+                                   (apply 'window-matches-properties-p w props))
+				 (group-windows group))))
+    (if (null matches)
+	(message "No Managed Windows Found")
+	(let ((window (select-window-from-menu
+		       (sort (copy-list matches) #'< :key #'window-number) fmt)))
+	  (if window
+	      (group-focus-window group window)
+	    (throw 'error :abort))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; could use run-or-pull below
+(defcommand ec () ()
+  "Start Emacs or switch to it if it is already running."
+  (run-or-raise "emacsclient -nc" '(:class "Emacs")))
+
+(defcommand term () ()
+  "Start urxvt or switch to it if it is already running."
+  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session -d || tmux new-session\"" '(:class "URxvt")))
+
+;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
+;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
+
+(defcommand web-browser () ()
+  "Start Conkeror or switch to it if it is already running."
+  (run-or-raise "ck" '(:class "Conkeror")))
+
+(defcommand safequit () ()
+  "Checks if any windows are open before quitting."
+  (let ((win-count 0))
+
+    ;; Count the windows in each group
+    (dolist (group (screen-groups (current-screen)))
+      (setq win-count (+ (length (group-windows group)) win-count)))
+
+    ;; Display the number of open windows or quit
+    (if (= win-count 0)
+	(run-commands "quit")
+      (message (format nil "You have ~d ~a open" win-count
+		       (if (= win-count 1) "window" "windows"))))))
+
+(defcommand list-windows-by-class (class) (:string)
+  "Allow the user to select a window from the list of windows with the
+specificed class and focus the selected window."
+  (list-windows-by-props `(:class ,class)))
+
+;; Shift windows by the supplied number of pixels
+(defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
+	    "Shift current window by X and Y pixels."
+	    (float-window-move-resize
+	     (current-window)
+	     :x (+ (window-x (current-window)) x)
+	     :y (+ (window-y (current-window)) y)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;(undefine-key *root-map* (kbd "k"))
+(define-key *root-map* (kbd "M-r") "reload")
+(define-key *root-map* (kbd "M-x") "colon")
+
+(define-key *root-map* (kbd "e") "ec")
+(define-key *root-map* (kbd "C-e") "ec")
+(define-key *root-map* (kbd "n") "next")
+(define-key *root-map* (kbd "p") "prev")
+(define-key *root-map* (kbd "q") "only")
+(define-key *root-map* (kbd "o") "other-in-frame")
+(define-key *root-map* (kbd "C-t") "other")
+(define-key *root-map* (kbd "w") "web-browser")
+(define-key *root-map* (kbd "C-w") "web-browser")
+(define-key *root-map* (kbd "x") "term")
+(define-key *root-map* (kbd "C-x") "term")
+;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
+;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
+
+(define-key *root-map* (kbd "C-b") "windowlist")
+
+(define-key *root-map* (kbd "b") '*windows-map*)
+(defvar *windows-map*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "e") "list-windows-by-class Emacs")
+    (define-key m (kbd "p") "list-windows-by-class Xpdf")
+    (define-key m (kbd "w") "list-windows-by-class Conkeror")
+    (define-key m (kbd "x") "list-windows-by-class URxvt")
+    m))
+
+(define-key *root-map* (kbd "C-h") "move-focus left")
+(define-key *root-map* (kbd "C-j") "move-focus down")
+(define-key *root-map* (kbd "C-k") "move-focus up")
+(define-key *root-map* (kbd "C-l") "move-focus right")
+
+(define-key *root-map* (kbd "C-SPC") '*frame-map*)
+(defvar *frame-map*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "C-h") "move-window left")
+    (define-key m (kbd "C-j") "move-window down")
+    (define-key m (kbd "C-k") "move-window up")
+    (define-key m (kbd "C-l") "move-window right")
+    m))
+
+(define-key *root-map* (kbd "C-Left") "shift-window -100 0")
+(define-key *root-map* (kbd "C-Down") "shift-window 0 100")
+(define-key *root-map* (kbd "C-Up") "shift-window 0 -100")
+(define-key *root-map* (kbd "C-Right") "shift-window 100 0")
+
+(define-key *root-map* (kbd "Q") "safequit")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-load-path "~/scm/swm-freebsd-battery-modeline.git")
+(add-to-load-path "~/scm/swm-freebsd-cpu-modeline.git")
+(add-to-load-path "~/scm/swm-freebsd-mem-modeline.git")
+(add-to-load-path "~/scm/swm-freebsd-net-modeline.git")
+(add-to-load-path "~/scm/swm-freebsd-volume-modeline.git")
+(add-to-load-path "~/scm/nm/stumpwm-contrib.git/modeline/hostname")
+(add-to-load-path "~/scm/swm-maildir-modeline.git")
+(add-to-load-path "~/scm/swm-freebsd-zfs-modeline.git")
+
+(load-module "swm-freebsd-battery-modeline")
+(load-module "swm-freebsd-cpu-modeline")
+(load-module "swm-freebsd-mem-modeline")
+(load-module "swm-freebsd-net-modeline")
+(load-module "swm-freebsd-volume-modeline")
+(load-module "swm-freebsd-zfs-modeline")
+(load-module "hostname")
+(load-module "swm-maildir-modeline")
+
+(setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f^[^9*MHz^] %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*B^] %b ^[^8*V^] %v ^[^B^7*%d^] ^[^B^4*%m^]")
+(toggle-mode-line (current-screen) (current-head))
