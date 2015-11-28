@@ -2,22 +2,17 @@
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (load-file "~/.emacs.d/secret.el")
+(package-initialize)
 
-(require 'misc) ;; part of emacs for forward/backward-to-word
-
-;; variables that can't be customized
-(setq ring-bell-function 'ignore)
+;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
       scpaste-scp-destination "gly:/www/paste")
 (setq org-irc-link-to-logs t)
 
-;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
-(advice-add 'custom-save-all
-	    :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
-
-;; enable some functions that are disabled by default
+;; enable some functions that are disabled by default --------------------------
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
 ;; quick buffer switching by mode ----------------------------------------------
@@ -40,27 +35,25 @@
 
 (defun jrm-switch-scratch-buffer() (interactive) (switch-to-buffer   "*scratch*"))
 
+;; ace-link for various modes --------------------------------------------------
+(ace-link-setup-default (kbd "C-,"))
+(require 'ert)
+(define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
+(add-hook 'after-init-hook
+ 	  (lambda ()
+ 	    (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
+ 	    (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
+
 ;; appointments in the diary ---------------------------------------------------
+;; without after-init-hook, customized holiday-general-holidays is not respected
 (add-hook 'after-init-hook (lambda () (appt-activate 1)))
 
-;; auctex / latex --------------------------------------------------------------
-;;(add-hook 'after-init-hook (lambda () (use-package auctex-latexmk)))
-
 ;; auto-complete ---------------------------------------------------------------
-(add-hook 'after-init-hook (lambda ()
-			     (require 'auto-complete-config)
-			     (ac-config-default)
-			     (ac-flyspell-workaround)))
-;;(define-key ac-menu-map (kbd "C-n") 'ac-next)
-;;(define-key ac-menu-map (kbd "C-p") 'ac-previous)))
-
-;; bbdb ------------------------------------------------------------------------
-;; (add-hook 'after-init-hook (lambda ()
-;; 			     (bbdb-initialize 'gnus 'message)
-;; 			     (bbdb-mua-auto-update-init 'gnus 'message)))
+(ac-config-default)
+(ac-flyspell-workaround)
 
 ;; beacon ----------------------------------------------------------------------
-(add-hook 'after-init-hook (lambda () (beacon-mode 1)))
+(beacon-mode 1)
 
 ;; c/c++ -----------------------------------------------------------------------
 (defun knf ()  ;; knf is Kernel Normal Form.  See style(9)
@@ -80,22 +73,8 @@
   (define-key c-mode-map "\C-cc" 'compile))
 (add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
 
-;; calfw -----------------------------------------------------------------------
-(add-hook 'after-init-hook (lambda ()
-			     (require 'calfw-org)
-			     (require 'calfw-cal)))
-
-(defun calfw ()
-  (interactive)
-  (cfw:open-calendar-buffer
-   :contents-sources
-   (list (cfw:org-create-source "Green") (cfw:cal-create-source "Orange"))))
-
 ;; dired / dired+ --------------------------------------------------------------
-(add-hook 'after-init-hook (lambda () (toggle-diredp-find-file-reuse-dir 1)))
-
-;; doc-view --------------------------------------------------------------------
-;;(add-hook 'doc-view-mode-hook 'auto-revert-mode)
+(toggle-diredp-find-file-reuse-dir 1)
 
 ;; erc -------------------------------------------------------------------------
 (require 'erc-tex)
@@ -117,7 +96,6 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 	  (lambda () (setq erc-fill-column (- (window-width) 2))))
 
 ;; eshell completions ----------------------------------------------------------
-
 (defun eshell-prompt ()
   (concat
    (propertize (user-login-name) 'face '(:foreground "red"))
@@ -234,13 +212,13 @@ This function is a possible value for `erc-generate-log-file-name-function'."
           (lambda ()
 	    (define-key eshell-mode-map (kbd "C-c C-r") 'helm-eshell-history)))
 
+;; ess -------------------------------------------------------------------------
+(require 'ess-site)
+
 ;; flyspell --------------------------------------------------------------------
 ;; stop flyspell-auto-correct-word (which isn't affected by the customization
 ;; flyspell-auto-correct-binding) from hijacking C-.
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
-
-;; ess -------------------------------------------------------------------------
-(add-hook 'after-init-hook (lambda () (require 'ess-site)))
 
 ;; gnus ------------------------------------------------------------------------
 (defun jrm-gnus-enter-group ()
@@ -274,33 +252,22 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 	(message-remove-header "Gcc")
 	(message-add-header "Gcc: mail.misc")))))
 
-;; google
-(add-hook 'after-init-hook 'google-this-mode)
+;; google ----------------------------------------------------------------------
+(google-this-mode)
 
 ;; helm ------------------------------------------------------------------------
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (require 'helm-config)
-	    (helm-mode 1)
-	    (define-key global-map [remap find-file] 'helm-find-files)
-	    (define-key global-map [remap occur] 'helm-occur)
-	    (define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
-	    (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-	    (define-key global-map [remap yank-pop] 'helm-show-kill-ring)
-	    (global-set-key (kbd "M-x") 'helm-M-x)
-	    (unless (boundp 'completion-in-region-function)
-	      (define-key lisp-interaction-mode-map
-		[remap completion-at-point] 'helm-lisp-completion-at-point)
-	      (define-key emacs-lisp-mode-map
-		[remap completion-at-point] 'helm-lisp-completion-at-point))
-	    ;; open helm buffer inside current window
-	    (setq helm-split-window-in-side-p t
-		  helm-buffers-fuzzy-matching t
-		  ;; search for library in `require' and `declare-function' sexp.
-		  ;;helm-ff-search-library-in-sexp t
-		  ;; scroll 8 lines other window using M-<next>/M-<prior>
-		  ;;helm-scroll-amount 8
-		  helm-ff-file-name-history-use-recentf t)))
+(helm-mode 1)
+(define-key global-map [remap find-file] 'helm-find-files)
+(define-key global-map [remap occur] 'helm-occur)
+(define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
+(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+(define-key global-map [remap yank-pop] 'helm-show-kill-ring)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(unless (boundp 'completion-in-region-function)
+  (define-key lisp-interaction-mode-map
+    [remap completion-at-point] 'helm-lisp-completion-at-point)
+  (define-key emacs-lisp-mode-map
+    [remap completion-at-point] 'helm-lisp-completion-at-point))
 
 ;; keybindings ----------------------------------------------------------------
 
@@ -317,7 +284,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x C-b")   'ibuffer)
 (global-set-key (kbd "C-x K")     'kill-buffer-and-its-windows)
 (global-set-key (kbd "C-x o")     'ace-window)
-(global-set-key (kbd "C-c b c")   'calfw)
+(global-set-key (kbd "C-c b c")   'calendar)
 (global-set-key (kbd "C-c b d")   'jrm-switch-dired-buffer)
 (global-set-key (kbd "C-c b i")   'jrm-switch-erc-buffer)
 (global-set-key (kbd "C-c b e")   'jrm-switch-eshell-buffer)
@@ -351,28 +318,20 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 ;; the translation makes C-h work with M-x in the minibuffer
 (define-key key-translation-map (kbd "C-h") [?\C-?])
 
-;; ace-link for various modes
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (ace-link-setup-default (kbd "C-,"))
-	    (require 'ert)
-	    (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
-	    (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
-	    (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
-
 (defun cperl-mode-keybindings ()
   (local-set-key (kbd "C-c c") 'cperl-check-syntax)
   (local-set-key (kbd "M-n")   'next-error)
   (local-set-key (kbd "M-p")   'previous-error))
 
 ;; key chords ------------------------------------------------------------------
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (key-chord-mode 1)
-	    (key-chord-define-global "jf" 'forward-to-word)
-	    (key-chord-define-global "jb" 'backward-to-word)
-	    (key-chord-define-global "jg" 'ace-jump-line-mode)
-	    (key-chord-define-global "jx" 'multi-eshell)))
+(key-chord-mode 1)
+(key-chord-define-global "jf" 'forward-to-word)
+(key-chord-define-global "jb" 'backward-to-word)
+(key-chord-define-global "jg" 'ace-jump-line-mode)
+(key-chord-define-global "jx" 'multi-eshell)
+
+;; misc is part of emacs; for forward/backward-to-word -------------------------
+(require 'misc)
 
 ;; mozrepl ---------------------------------------------------------------------
 (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
@@ -399,11 +358,12 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 ;; 				  (setq fill-column 80))))
 
 ;; org-mode --------------------------------------------------------------------
-;;(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(add-hook 'after-init-hook 'org-clock-persistence-insinuate)
+(org-clock-persistence-insinuate)
 
-;; pdf-tools
-;;(add-hook 'after-init-hook 'pdf-tools-install)
+;; pdf-tools -------------------------------------------------------------------
+;; This causes all buttons to be text when starting the emacs daemon
+;; with emacsclient -nc -a ''
+;; (pdf-tools-install)
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
@@ -425,7 +385,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 ;; rainbow delimeters ----------------------------------------------------------
 ;;(global-rainbow-delimiters-mode)
 
-;; registers
+;; registers -------------------------------------------------------------------
 (set-register ?c '(file . "~/scm/org.git/capture.org"))
 (set-register ?d '(file . "~/.emacs.d/diary"))
 (set-register ?i '(file . "~/.emacs.d/init.el"))
@@ -435,8 +395,8 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (set-register ?s '(file . "~/scm/org.git/sites.org"))
 (set-register ?w '(file . "~/scm/org.git/work.org"))
 
-;; s.el
-(add-hook 'after-init-hook (lambda () (require 's)))
+;; s.el ------------------------------------------------------------------------
+(require 's)
 
 ;; slime/swank -----------------------------------------------------------------
 ;; only evaluate next two lines as needed
@@ -450,17 +410,20 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (require 'transpar)
 
 ;; twittering-mode -------------------------------------------------------------
-;;(add-hook 'twittering-edit-mode-hook
-;;	  (lambda () (ispell-minor-mode) (flyspell-mode)))
+(add-hook 'twittering-edit-mode-hook
+	  (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 ;; undo-tree -------------------------------------------------------------------
-(add-hook 'after-init-hook 'global-undo-tree-mode)
+(global-undo-tree-mode)
 
 ;; yasnippet -------------------------------------------------------------------
-;;(add-hook 'after-init-hook (lambda ()
-;;			     (yas-global-mode)))
+;; (yas-global-mode)
 
-;; -----------------------------------------------------------------------------
+;; custom set varaibles --------------------------------------------------------
+;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
+(advice-add 'custom-save-all
+	    :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -499,6 +462,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "bsd")))
  '(calendar-date-style 'iso)
  '(calendar-latitude 44.630294)
+ '(calendar-location-name "Halifax, NS")
  '(calendar-longitude -63.582304)
  '(calendar-mark-diary-entries-flag t)
  '(calendar-mark-holidays-flag t)
@@ -535,7 +499,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
  '(erc-modules
-   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling))
+   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring scrolltobottom stamp spelling track))
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
@@ -666,7 +630,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(google-translate-default-target-language "en")
  '(helm-boring-buffer-regexp-list
    '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
- '(helm-buffers-fuzzy-matching nil)
+ '(helm-buffers-fuzzy-matching t)
  '(helm-completion-in-region-fuzzy-match nil)
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
@@ -830,7 +794,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
      (css-mode "<style[^>]*>" "</style>")
      (cperl-mode "<script type=\"loncapa/perl\">" "</script>")))
  '(nnir-method-default-engines '((nnimap . imap) (nntp . gmane) (nnml . find-grep)))
- '(org-agenda-files `(,org-directory))
+ '(org-agenda-files '("~/scm/org.git"))
  '(org-agenda-include-diary t)
  '(org-agenda-use-time-grid nil)
  '(org-capture-templates
@@ -846,6 +810,15 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(org-directory "~/scm/org.git")
  '(org-export-html-postamble nil)
  '(org-mobile-directory "~/.org-mobile")
+ '(org-mode-hook
+   '(org-clock-load
+     #[nil "\300\301\302\303\304$\207"
+	   [org-add-hook change-major-mode-hook org-show-block-all append local]
+	   5]
+     #[nil "\300\301\302\303\304$\207"
+	   [org-add-hook change-major-mode-hook org-babel-show-result-all append local]
+	   5]
+     org-babel-result-hide-spec org-babel-hide-all-hashes org-bullets-mode))
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
  '(org-refile-targets '((org-agenda-files :tag . "")))
@@ -854,21 +827,25 @@ This function is a possible value for `erc-generate-log-file-name-function'."
    '((sequence "TODO(t!)" "|" "POSTPONED(p!)" "CANCELLED(c!)" "DONE(d!)")))
  '(org-use-fast-todo-selection t)
  '(package-archives
-   '(("melpa" . "https://melpa.org/packages/")
-     ("gnu" . "https://elpa.gnu.org/packages/")))
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/")))
+ '(package-selected-packages
+   '(org-bullets scpaste google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc flymake-shell flymake-php flymake-hlint flymake-haskell-multi fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode company buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-zap ace-jump-helm-line ace-flyspell ac-math ac-ispell ac-helm ac-c-headers))
  '(preview-scale-function 1.2)
  '(reb-re-syntax 'string)
  '(reftex-bibpath-environment-variables '("BIBINPUTS" "TEXBIB" "~/scm/references.git/refs.bib"))
  '(reftex-plug-into-AUCTeX t)
  '(require-final-newline nil)
+ '(ring-bell-function 'ignore)
  '(safe-local-variable-values
    '((whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
+ '(select-enable-clipboard t)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
- '(sort-fold-case nil)
+ '(sort-fold-case nil t)
  '(term-bind-key-alist nil)
  '(term-buffer-maximum-size 10000)
  '(term-scroll-show-maximum-output nil)
@@ -884,10 +861,11 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(twittering-use-master-password t)
  '(undo-tree-visualizer-timestamps t)
  '(uniquify-buffer-name-style 'forward nil (uniquify))
+ '(vc-follow-symlinks t)
  '(version-control t)
- '(web-mode-attr-indent-offset 2)
- '(x-select-enable-clipboard t))
+ '(web-mode-attr-indent-offset 2))
 
+;; custom set faces ------------------------------------------------------------
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
