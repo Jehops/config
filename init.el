@@ -256,6 +256,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (google-this-mode)
 
 ;; helm ------------------------------------------------------------------------
+(helm-flx-mode +1)
 (helm-mode 1)
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
@@ -398,6 +399,13 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 ;; s.el ------------------------------------------------------------------------
 (require 's)
 
+;; scratch buffer - bury it, never kill it -------------------------------------
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (let ((buffer-to-kill (ad-get-arg 0)))
+    (if (equal buffer-to-kill "*scratch*")
+        (bury-buffer)
+      ad-do-it)))
+
 ;; slime/swank -----------------------------------------------------------------
 ;; only evaluate next two lines as needed
 ;;(load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -502,10 +510,11 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
  '(erc-modules
-   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring scrolltobottom stamp spelling track))
+   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling track))
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
+ '(erc-track-mode t)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
  '(eshell-aliases-file "~/.emacs.d/eshell/alias")
