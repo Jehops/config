@@ -36,11 +36,12 @@
 (defun jrm-switch-scratch-buffer() (interactive) (switch-to-buffer   "*scratch*"))
 
 ;; ace-link for various modes --------------------------------------------------
-(ace-link-setup-default (kbd "C-,"))
-(require 'ert)
-(define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
+;; needs to be evaluated after init so gnus-*-mode-map are defined
 (add-hook 'after-init-hook
- 	  (lambda ()
+	  (lambda ()
+	    (require 'ert)
+	    (ace-link-setup-default (kbd "C-,"))
+	    (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
  	    (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
  	    (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
 
@@ -72,6 +73,9 @@
   (make-local-variable 'fill-column)
   (define-key c-mode-map "\C-cc" 'compile))
 (add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
+
+;; clipmon ---------------------------------------------------------------------
+(add-hook 'after-init-hook 'clipmon-persist)
 
 ;; dired / dired+ --------------------------------------------------------------
 (toggle-diredp-find-file-reuse-dir 1)
@@ -256,8 +260,8 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (google-this-mode)
 
 ;; helm ------------------------------------------------------------------------
-(helm-flx-mode +1)
 (helm-mode 1)
+(helm-flx-mode +1)
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
 (define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
@@ -415,6 +419,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 ;;(slime-setup '(slime-fancy))
 
 ;; smart mode line -------------------------------------------------------------
+;; without after-init-hook there is always a warning about loading a theme
 (add-hook 'after-init-hook 'sml/setup)
 
 ;; transpar (transpose-paragraph-as-table) -------------------------------------
@@ -468,6 +473,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(before-save-hook '(time-stamp))
  '(blink-cursor-mode nil)
  '(browse-url-browser-function 'browse-url-generic)
+ '(browse-url-conkeror-program "ck")
  '(browse-url-generic-program "~/local/bin/ck")
  '(browse-url-mailto-function 'browse-url-mail)
  '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "bsd")))
@@ -484,9 +490,13 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 	      (if time-zone ")")))
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
+ '(clipmon-mode t)
+ '(clipmon-transform-suffix "")
  '(column-number-mode t)
  '(compilation-window-height 6)
  '(custom-buffer-done-kill t)
+ '(custom-safe-themes
+   '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
  '(delete-old-versions t)
  '(diary-comment-end "*/")
  '(diary-comment-start "/*")
@@ -647,6 +657,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(helm-completion-in-region-fuzzy-match nil)
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
+ '(helm-show-kill-ring-yank nil)
  '(helm-split-window-in-side-p t)
  '(holiday-bahai-holidays nil)
  '(holiday-general-holidays
@@ -759,6 +770,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(ispell-help-in-bufferp 'electric)
+ '(kill-ring-max 100)
  '(kill-whole-line t)
  '(mail-sources '((maildir :path "/home/jrm/mail/")))
  '(mail-user-agent 'gnus-user-agent)
@@ -843,7 +855,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode company buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-zap ace-jump-helm-line ace-flyspell ac-math ac-ispell ac-helm ac-c-headers))
+   '(w3m polymode clipmon ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode company buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-zap ace-jump-helm-line ace-flyspell ac-math ac-ispell ac-helm ac-c-headers))
  '(preview-scale-function 1.2)
  '(reb-re-syntax 'string)
  '(reftex-bibpath-environment-variables '("BIBINPUTS" "TEXBIB" "~/scm/references.git/refs.bib"))
@@ -852,19 +864,21 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(ring-bell-function 'ignore)
  '(safe-local-variable-values
    '((whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
+ '(savehist-autosave-interval 60)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
  '(select-enable-clipboard t)
  '(send-mail-function 'mailclient-send-it)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
+ '(shr-external-browser 'browse-url-conkeror)
  '(sml/replacer-regexp-list
    '(("^~/scm/org\\.git" ":Org:")
      ("^~/\\.emacs\\.d/" ":ED:")
      ("^/sudo:.*:" ":SU:")
      ("^/usr/home/jrm" "~")))
  '(sml/theme 'dark)
- '(sort-fold-case nil t)
+ '(sort-fold-case nil)
  '(term-bind-key-alist nil)
  '(term-buffer-maximum-size 10000)
  '(term-scroll-show-maximum-output nil)
@@ -988,7 +1002,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(gnus-summary-normal-unread ((t (:foreground "white"))))
  '(gnus-summary-selected ((t (:background "DarkOrange3" :foreground "white"))))
  '(header-line ((default (:inherit (mode-line))) (((type tty)) (:underline (:color foreground-color :style line) :inverse-video nil)) (((class color grayscale) (background light)) (:box nil :foreground "grey20" :background "grey90")) (((class color grayscale) (background dark)) (:box nil :foreground "grey90" :background "grey20")) (((class mono) (background light)) (:underline (:color foreground-color :style line) :box nil :inverse-video nil :foreground "black" :background "white")) (((class mono) (background dark)) (:underline (:color foreground-color :style line) :box nil :inverse-video nil :foreground "white" :background "black"))))
- '(highlight ((t (:foreground "yellow" :background "gray18"))))
+ '(highlight ((t (:background "gray18" :foreground "orange"))))
  '(info-xref ((t (:foreground "#729fcf"))))
  '(info-xref-visited ((t (:foreground "#ad7fa8"))))
  '(isearch ((t (:foreground "#2e3436" :background "#f57900"))))
