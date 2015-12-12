@@ -657,7 +657,6 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(helm-completion-in-region-fuzzy-match nil)
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
- '(helm-show-kill-ring-yank nil)
  '(helm-split-window-in-side-p t)
  '(holiday-bahai-holidays nil)
  '(holiday-general-holidays
