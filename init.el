@@ -327,6 +327,15 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 ;; the translation makes C-h work with M-x in the minibuffer
 (define-key key-translation-map (kbd "C-h") [?\C-?])
 
+;; toggling
+(global-set-key (kbd "C-x t d") 'toggle-debug-on-error)
+(global-set-key (kbd "C-x t f") 'auto-fill-mode)
+(global-set-key (kbd "C-x t l") 'linum-mode)
+(global-set-key (kbd "C-x t r") 'dired-toggle-read-only)
+(global-set-key (kbd "C-x t t") 'toggle-truncate-lines)
+(global-set-key (kbd "C-x t v") 'visual-line-mode)
+(global-set-key (kbd "C-x t w") 'whitespace-mode)
+
 (defun cperl-mode-keybindings ()
   (local-set-key (kbd "C-c c") 'cperl-check-syntax)
   (local-set-key (kbd "M-n")   'next-error)
