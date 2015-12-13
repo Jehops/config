@@ -31,7 +31,7 @@
 	       (and (member major-mode mode-list) (buffer-name buf))))
 	   (buffer-list))) nil t nil)))
 
-;; I made an exceptional for these long lines to improve readability. Dwi.
+;; These long lines are an exception for improved readability. Deal with it.
 (defun jrm/switch-dired-buffer()  (interactive) (jrm/switch-by-mode "Dired: "       '(dired-mode)))
 (defun jrm/switch-erc-buffer()    (interactive) (jrm/switch-by-mode "Erc: "         '(erc-mode)))
 (defun jrm/switch-eshell-buffer() (interactive) (jrm/switch-by-mode "Eshell: "      '(eshell-mode)))
