@@ -16,7 +16,11 @@
 (put 'upcase-region 'disabled nil)
 
 ;; quick buffer switching by mode ----------------------------------------------
-(defun jrm-switch-by-mode(prompt mode-list)
+;;
+;; Below, I define keymappings for buffer switching by mode with the
+;; prefix C-c b <x>.  For example, to switch to a dired buffer I use
+;; C-c b d
+(defun jrm/switch-by-mode(prompt mode-list)
   (switch-to-buffer
    (completing-read prompt
 		    (delq nil (mapcar (lambda (buf)
@@ -25,15 +29,15 @@
 					       (buffer-name buf))))
 				      (buffer-list))) nil t nil)))
 
-(defun jrm-switch-dired-buffer()   (interactive) (jrm-switch-by-mode "Dired: "  '(dired-mode)))
-(defun jrm-switch-erc-buffer()     (interactive) (jrm-switch-by-mode "Erc: "    '(erc-mode)))
-(defun jrm-switch-eshell-buffer()  (interactive) (jrm-switch-by-mode "Eshell: " '(eshell-mode)))
-(defun jrm-switch-gnus-buffer()    (interactive) (jrm-switch-by-mode "Gnus: "   '(gnus-group-mode gnus-summary-mode gnus-article-mode message-mode)))
-(defun jrm-switch-r-buffer()       (interactive) (jrm-switch-by-mode "R: "      '(ess-mode inferior-ess-mode)))
-(defun jrm-switch-term-buffer()    (interactive) (jrm-switch-by-mode "Term: "   '(term-mode)))
-(defun jrm-switch-twit-buffer()    (interactive) (jrm-switch-by-mode "Twit: "   '(twittering-mode)))
+(defun jrm/switch-dired-buffer()   (interactive) (jrm/switch-by-mode "Dired: "   '(dired-mode)))
+(defun jrm/switch-erc-buffer()     (interactive) (jrm/switch-by-mode "Erc: "     '(erc-mode)))
+(defun jrm/switch-eshell-buffer()  (interactive) (jrm/switch-by-mode "Eshell: "  '(eshell-mode)))
+(defun jrm/switch-gnus-buffer()    (interactive) (jrm/switch-by-mode "Gnus: "    '(gnus-group-mode gnus-summary-mode gnus-article-mode message-mode)))
+(defun jrm/switch-r-buffer()       (interactive) (jrm/switch-by-mode "R/LaTeX: " '(ess-mode inferior-ess-mode latex-mode)))
+(defun jrm/switch-term-buffer()    (interactive) (jrm/switch-by-mode "Term: "    '(term-mode)))
+(defun jrm/switch-twit-buffer()    (interactive) (jrm/switch-by-mode "Twit: "    '(twittering-mode)))
 
-(defun jrm-switch-scratch-buffer() (interactive) (switch-to-buffer   "*scratch*"))
+(defun jrm/switch-scratch-buffer() (interactive) (switch-to-buffer   "*scratch*"))
 
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
@@ -71,7 +75,7 @@
   (c-set-offset 'label [0])
   ;; Fill column
   (make-local-variable 'fill-column)
-  (define-key c-mode-map "\C-cc" 'compile))
+  (define-key c-mode-map (kbd "C-c c") 'compile))
 (add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
 
 ;; clipmon ---------------------------------------------------------------------
@@ -83,7 +87,7 @@
 ;; erc -------------------------------------------------------------------------
 (require 'erc-tex)
 
-(defun jrm-erc-generate-log-file-name-network (buffer target nick server port)
+(defun jrm/erc-generate-log-file-name-network (buffer target nick server port)
   "Generates a log-file name using the network name rather than server name.
 This results in a file name of the form channel@network.txt.
 This function is a possible value for `erc-generate-log-file-name-function'."
@@ -225,14 +229,14 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
 
 ;; gnus ------------------------------------------------------------------------
-(defun jrm-gnus-enter-group ()
+(defun jrm/gnus-enter-group ()
   "Start Gnus if necessary and enter GROUP."
   (interactive)
   (unless (gnus-alive-p) (gnus))
   (let ((group (gnus-group-completing-read "Group: " gnus-active-hashtb t)))
     (gnus-group-read-group nil t group)))
 
-(defun jrm-toggle-personal-work-message-fields ()
+(defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."
   (interactive)
   (save-excursion
@@ -290,15 +294,15 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x K")     'kill-buffer-and-its-windows)
 (global-set-key (kbd "C-x o")     'ace-window)
 (global-set-key (kbd "C-c b c")   'calendar)
-(global-set-key (kbd "C-c b d")   'jrm-switch-dired-buffer)
-(global-set-key (kbd "C-c b i")   'jrm-switch-erc-buffer)
-(global-set-key (kbd "C-c b e")   'jrm-switch-eshell-buffer)
-(global-set-key (kbd "C-c b g")   'jrm-switch-gnus-buffer)
-(global-set-key (kbd "C-c b G")   'jrm-gnus-enter-group)
-(global-set-key (kbd "C-c b r")   'jrm-switch-r-buffer)
-(global-set-key (kbd "C-c b s")   'jrm-switch-scratch-buffer)
-(global-set-key (kbd "C-c b t")   'jrm-switch-term-buffer)
-(global-set-key (kbd "C-c b w")   'jrm-switch-twit-buffer)
+(global-set-key (kbd "C-c b d")   'jrm/switch-dired-buffer)
+(global-set-key (kbd "C-c b i")   'jrm/switch-erc-buffer)
+(global-set-key (kbd "C-c b e")   'jrm/switch-eshell-buffer)
+(global-set-key (kbd "C-c b g")   'jrm/switch-gnus-buffer)
+(global-set-key (kbd "C-c b G")   'jrm/gnus-enter-group)
+(global-set-key (kbd "C-c b r")   'jrm/switch-r-buffer)
+(global-set-key (kbd "C-c b s")   'jrm/switch-scratch-buffer)
+(global-set-key (kbd "C-c b t")   'jrm/switch-term-buffer)
+(global-set-key (kbd "C-c b w")   'jrm/switch-twit-buffer)
 (global-set-key (kbd "C-c g")     'magit-status)
 (global-set-key (kbd "C-c e c")   'multi-eshell)
 (global-set-key (kbd "C-c o a")   'org-agenda)
@@ -510,7 +514,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(erc-fill-column 144)
- '(erc-generate-log-file-name-function 'jrm-erc-generate-log-file-name-network)
+ '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
    '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face" "erc-current-nick-face" "erc-direct-msg-face"))
@@ -781,7 +785,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
    '((lambda nil
        (local-set-key
 	(kbd "C-c C-f o")
-	'jrm-toggle-personal-work-message-fields))
+	'jrm/toggle-personal-work-message-fields))
      flyspell-mode visual-line-mode))
  '(message-setup-hook '(bbdb-insinuate-message mml-secure-message-sign))
  '(mm-attachment-override-types
