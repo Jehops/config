@@ -400,6 +400,12 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (autoload 'php-mode "php-mode" "Mode for editing PHP source files")
 (add-to-list 'auto-mode-alist '("\\.\\(inc\\|php[s34]?\\)" . php-mode))
 
+;; polymode --------------------------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.md"  . poly-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+
 ;; rainbow delimeters ----------------------------------------------------------
 ;;(global-rainbow-delimiters-mode)
 
@@ -868,6 +874,8 @@ This function is a possible value for `erc-generate-log-file-name-function'."
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
    '(w3m polymode clipmon ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode company buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-zap ace-jump-helm-line ace-flyspell ac-math ac-ispell ac-helm ac-c-headers))
+ '(polymode-exporter-output-file-format "%s_exported")
+ '(polymode-weave-output-file-format "%s_woven")
  '(preview-scale-function 1.2)
  '(reb-re-syntax 'string)
  '(reftex-bibpath-environment-variables '("BIBINPUTS" "TEXBIB" "~/scm/references.git/refs.bib"))
