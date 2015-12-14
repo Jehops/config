@@ -353,11 +353,13 @@ possible value for `erc-generate-log-file-name-function'."
 (define-key key-translation-map (kbd "C-h") [?\C-?])
 
 ;; toggling
+(global-set-key (kbd "C-x t c") 'flycheck-mode)
 (global-set-key (kbd "C-x t d") 'toggle-debug-on-error)
 (global-set-key (kbd "C-x t f") 'auto-fill-mode)
 (global-set-key (kbd "C-x t l") 'linum-mode)
 (global-set-key (kbd "C-x t m") 'menu-bar-mode)
 (global-set-key (kbd "C-x t r") 'dired-toggle-read-only)
+(global-set-key (kbd "C-x t s") 'flyspell-mode)
 (global-set-key (kbd "C-x t t") 'toggle-truncate-lines)
 (global-set-key (kbd "C-x t v") 'visual-line-mode)
 (global-set-key (kbd "C-x t w") 'whitespace-mode)
