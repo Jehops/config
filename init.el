@@ -47,7 +47,7 @@
 (defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
 
 ;; via offby1
-(defun copy-buffer-file-name (use-backslashes)
+(defun buffer-fname-to-kill-ring (use-backslashes)
   "Add buffer's file name to the kill ring.
 When no file is being visit, add the associated directory to the
 kill ring.  With an argument, USE-BACKSLASHES instead of forward
@@ -342,6 +342,7 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-c p C-l") 'buf-move-right)
 (global-set-key (kbd "C-c p C-j") 'buf-move-down)
 (global-set-key (kbd "C-c p C-k") 'buf-move-up)
+(global-set-key (kbd "C-0")       'buffer-fname-to-kill-ring)
 
 ;; mark and point
 (global-set-key (kbd "C-.")       'avy-goto-word-or-subword-1)
