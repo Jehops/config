@@ -1,5 +1,3 @@
-;; -*-Emacs-Lisp-*-
-
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (load-file "~/.emacs.d/secret.el")
 (package-initialize)
@@ -21,6 +19,7 @@
 ;; prefix C-c b <x>.  For example, to switch to a dired buffer I use
 ;; C-c b d
 (defun jrm/sbm (prompt mode-list)
+  "PROMPT for buffers that have a major mode matching an element of MODE-LIST."
   (switch-to-buffer
    (completing-read
     prompt
@@ -47,6 +46,24 @@
 (defun jrm/sb-twit()     (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
 (defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
 
+;; via offby1
+(defun copy-buffer-file-name (use-backslashes)
+  "Put the buffer's file name (or directory if no file is being
+visited) onto the kill ring.
+With an argument, USE-BACKSLASHES instead of forward slashes."
+  (interactive "P")
+  (let ((fn (subst-char-in-string
+             ?/
+             (if use-backslashes ?\\ ?/)
+             (or
+              (buffer-file-name (current-buffer))
+              (expand-file-name default-directory)))))
+    (when (null fn)
+      (error "Buffer is not associated with any file or directory"))
+    (kill-new fn)
+    (message "%s" fn)
+  fn))
+
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
 (add-hook 'after-init-hook
@@ -65,7 +82,8 @@
 (beacon-mode 1)
 
 ;; c/c++ -----------------------------------------------------------------------
-(defun knf ()  ;; knf is Kernel Normal Form.  See style(9)
+(defun knf ()
+  "Set up kernel normal form.  See style(9) on FreeBSD."
   (interactive)
   ;; Basic indent is 4 spaces
   (make-local-variable 'c-basic-offset)
@@ -95,9 +113,10 @@
 (require 'erc-tex)
 
 (defun jrm/erc-generate-log-file-name-network (buffer target nick server port)
-  "Generates a log-file name using the network name rather than server name.
-This results in a file name of the form channel@network.txt.
-This function is a possible value for `erc-generate-log-file-name-function'."
+  "Generate erc BUFFER log file, TARGET for user NICK on SERVER:PORT.
+Using the network name rather than server name.  This results in
+a file name of the form channel@network.txt.  This function is a
+possible value for `erc-generate-log-file-name-function'."
   (require 'erc-networks)
   (let ((file
 	 (concat
@@ -112,6 +131,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 
 ;; eshell completions ----------------------------------------------------------
 (defun eshell-prompt ()
+  "Customize the eshell prompt."
   (concat
    (propertize (user-login-name) 'face '(:foreground "red"))
    "@"
@@ -132,7 +152,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
     "convert" "create" "delete" "fetch" "help" "info" "install" "lock" "plugins"
     "query" "register" "remove" "repo" "rquery" "search" "set" "ssh" "shell"
     "shlib" "stats" "unlock" "update" "updating" "upgrade" "version" "which")
-  "List of 'pkg' commands")
+  "List of 'pkg' commands.")
 
 (defconst pcmpl-pkg-cats
   '("accessibility" "arabic" "archivers" "astro" "audio" "benchmarks" "biology"
@@ -144,7 +164,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
     "print" "russian" "science" "security" "shells" "sysutils" "textproc"
     "ukrainian" "vietnamese" "www" "x11" "x11-clocks" "x11-drivers" "x11-fm"
     "x11-fonts" "x11-servers" "x11-themes" "x11-toolkits" "x11-wm")
-  "List of port categories")
+  "List of port categories.")
 
 (defun pcomplete/pkg ()
   "Completion for 'pkg'."
@@ -204,7 +224,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
     "diff" "get" "groupspace" "hold" "holds" "inherit" "jail" "list" "mount"
     "promote" "receive" "release" "rename" "rollback" "send" "set" "share"
     "snapshot" "unallow" "unjail" "unmount" "unshare" "upgrade" "userspace")
-  "List of 'zfs' commands")
+  "List of 'zfs' commands.")
 
 (defun pcomplete/service ()
   "Completion for 'service'."
