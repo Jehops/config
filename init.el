@@ -48,9 +48,10 @@
 
 ;; via offby1
 (defun copy-buffer-file-name (use-backslashes)
-  "Put the buffer's file name (or directory if no file is being
-visited) onto the kill ring.
-With an argument, USE-BACKSLASHES instead of forward slashes."
+  "Add buffer's file name to the kill ring.
+When no file is being visit, add the associated directory to the
+kill ring.  With an argument, USE-BACKSLASHES instead of forward
+slashes."
   (interactive "P")
   (let ((fn (subst-char-in-string
              ?/
@@ -362,6 +363,7 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x t w") 'whitespace-mode)
 
 (defun cperl-mode-keybindings ()
+  "Additional keybindings for 'cperl-mode'."
   (local-set-key (kbd "C-c c") 'cperl-check-syntax)
   (local-set-key (kbd "M-n")   'next-error)
   (local-set-key (kbd "M-p")   'previous-error))
