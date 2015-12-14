@@ -20,7 +20,7 @@
 ;; Below, I define keymappings for buffer switching by mode with the
 ;; prefix C-c b <x>.  For example, to switch to a dired buffer I use
 ;; C-c b d
-(defun jrm/switch-by-mode(prompt mode-list)
+(defun jrm/sbm (prompt mode-list)
   (switch-to-buffer
    (completing-read
     prompt
@@ -31,17 +31,21 @@
 	       (and (member major-mode mode-list) (buffer-name buf))))
 	   (buffer-list))) nil t nil)))
 
-;; These long lines are an exception for improved readability. Deal with it.
-(defun jrm/switch-dired-buffer()  (interactive) (jrm/switch-by-mode "Dired: "       '(dired-mode)))
-(defun jrm/switch-erc-buffer()    (interactive) (jrm/switch-by-mode "Erc: "         '(erc-mode)))
-(defun jrm/switch-eshell-buffer() (interactive) (jrm/switch-by-mode "Eshell: "      '(eshell-mode)))
-(defun jrm/switch-gnus-buffer()   (interactive) (jrm/switch-by-mode "Gnus: "        '(gnus-group-mode gnus-summary-mode gnus-article-mode message-mode)))
-(defun jrm/switch-magit-buffer()  (interactive) (jrm/switch-by-mode "Magit: "        '(magit-status-mode magit-diff-mode)))
-(defun jrm/switch-r-buffer()      (interactive) (jrm/switch-by-mode "R[nw]/LaTeX: " '(ess-mode inferior-ess-mode latex-mode)))
-(defun jrm/switch-term-buffer()   (interactive) (jrm/switch-by-mode "Term: "        '(term-mode)))
-(defun jrm/switch-twit-buffer()   (interactive) (jrm/switch-by-mode "Twit: "        '(twittering-mode)))
-
-(defun jrm/switch-scratch-buffer() (interactive) (switch-to-buffer   "*scratch*"))
+(defun jrm/sb-dired ()   (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
+(defun jrm/sb-erc ()     (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
+(defun jrm/sb-eshell ()  (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
+(defun jrm/sb-gnus ()    (interactive) (jrm/sbm "Gnus: "   '(gnus-group-mode
+							     gnus-summary-mode
+							     gnus-article-mode
+							     message-mode)))
+(defun jrm/sb-magit ()   (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
+							     magit-diff-mode)))
+(defun jrm/sb-rt()       (interactive) (jrm/sbm "R/TeX: "  '(ess-mode
+							     inferior-ess-mode
+							     latex-mode)))
+(defun jrm/sb-term ()    (interactive) (jrm/sbm "Term: "   '(term-mode)))
+(defun jrm/sb-twit()     (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
+(defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
 
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
@@ -294,15 +298,15 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x K")     'kill-buffer-and-its-windows)
 (global-set-key (kbd "C-x o")     'ace-window)
 (global-set-key (kbd "C-c b c")   'calendar)
-(global-set-key (kbd "C-c b d")   'jrm/switch-dired-buffer)
-(global-set-key (kbd "C-c b i")   'jrm/switch-erc-buffer)
-(global-set-key (kbd "C-c b e")   'jrm/switch-eshell-buffer)
-(global-set-key (kbd "C-c b g")   'jrm/switch-gnus-buffer)
+(global-set-key (kbd "C-c b d")   'jrm/sb-dired)
+(global-set-key (kbd "C-c b i")   'jrm/sb-erc)
+(global-set-key (kbd "C-c b e")   'jrm/sb-eshell)
+(global-set-key (kbd "C-c b g")   'jrm/sb-gnus)
 (global-set-key (kbd "C-c b G")   'jrm/gnus-enter-group)
-(global-set-key (kbd "C-c b r")   'jrm/switch-r-buffer)
-(global-set-key (kbd "C-c b s")   'jrm/switch-scratch-buffer)
-(global-set-key (kbd "C-c b t")   'jrm/switch-term-buffer)
-(global-set-key (kbd "C-c b w")   'jrm/switch-twit-buffer)
+(global-set-key (kbd "C-c b r")   'jrm/sb-rt)
+(global-set-key (kbd "C-c b s")   'jrm/sb-scratch)
+(global-set-key (kbd "C-c b t")   'jrm/sb-term)
+(global-set-key (kbd "C-c b w")   'jrm/sb-twit)
 (global-set-key (kbd "C-c g")     'magit-status)
 (global-set-key (kbd "C-c e c")   'multi-eshell)
 (global-set-key (kbd "C-c o a")   'org-agenda)
@@ -319,7 +323,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-c p C-k") 'buf-move-up)
 
 ;; mark and point
-(global-set-key (kbd "C-.")       'ace-jump-word-mode)
+(global-set-key (kbd "C-.")       'avy-goto-word-or-subword-1)
 (global-set-key (kbd "M-h")       'backward-kill-word)
 (global-set-key (kbd "M-?")       'mark-paragraph)
 (global-set-key (kbd "M-z")       'avy-zap-to-char-dwim)
@@ -346,7 +350,7 @@ This function is a possible value for `erc-generate-log-file-name-function'."
 (key-chord-mode 1)
 (key-chord-define-global "jf" 'forward-to-word)
 (key-chord-define-global "jb" 'backward-to-word)
-(key-chord-define-global "jg" 'ace-jump-line-mode)
+(key-chord-define-global "jg" 'avy-goto-line)
 (key-chord-define-global "jx" 'multi-eshell)
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
