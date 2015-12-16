@@ -324,6 +324,7 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-c b e")   'jrm/sb-eshell)
 (global-set-key (kbd "C-c b g")   'jrm/sb-gnus)
 (global-set-key (kbd "C-c b G")   'jrm/gnus-enter-group)
+(global-set-key (kbd "C-c b m")   'jrm/sb-magit)
 (global-set-key (kbd "C-c b r")   'jrm/sb-rt)
 (global-set-key (kbd "C-c b s")   'jrm/sb-scratch)
 (global-set-key (kbd "C-c b t")   'jrm/sb-term)
@@ -356,7 +357,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;; toggling
 (global-set-key (kbd "C-x t c") 'flycheck-mode)
 (global-set-key (kbd "C-x t d") 'toggle-debug-on-error)
+(global-set-key (kbd "C-x t e") 'erc-track-mode)
 (global-set-key (kbd "C-x t f") 'auto-fill-mode)
+(global-set-key (kbd "C-x t i") 'fci-mode)
 (global-set-key (kbd "C-x t l") 'linum-mode)
 (global-set-key (kbd "C-x t m") 'menu-bar-mode)
 (global-set-key (kbd "C-x t r") 'dired-toggle-read-only)
@@ -486,7 +489,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (yas-global-mode)
 
 ;; yes-or-no--------------------------------------------------------------------
-(defalias 'yes-or-no-p 'y-or-n-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; custom set varaibles --------------------------------------------------------
 ;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)

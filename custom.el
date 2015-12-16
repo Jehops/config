@@ -46,9 +46,9 @@
  '(calendar-mark-holidays-flag t)
  '(calendar-time-display-form
    '(24-hours ":" minutes
-	      (if time-zone " (")
-	      time-zone
-	      (if time-zone ")")))
+              (if time-zone " (")
+              time-zone
+              (if time-zone ")")))
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
  '(clipmon-mode t)
@@ -86,7 +86,7 @@
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
- '(erc-track-mode t)
+ '(erc-track-mode nil)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
  '(eshell-aliases-file "~/.emacs.d/eshell/alias")
@@ -159,9 +159,9 @@
    '(bbdb-mua-auto-update
      (lambda nil
        (gnus-article-fill-cited-article
-	(max 72
-	     (frame-width))
-	t))))
+        (max 72
+             (frame-width))
+        t))))
  '(gnus-article-sort-functions '(gnus-article-sort-by-date))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
@@ -174,23 +174,23 @@
    '((lambda
        (x)
        (cond
-	((message-news-p)
-	 nil)
-	((and
-	  (boundp 'group)
-	  (<
-	   (gnus-group-level group)
-	   4))
-	 group)
-	(t "mail.misc")))))
+        ((message-news-p)
+         nil)
+        ((and
+          (boundp 'group)
+          (<
+           (gnus-group-level group)
+           4))
+         group)
+        (t "mail.misc")))))
  '(gnus-message-archive-method '(nnml ""))
  '(gnus-message-setup-hook '(message-remove-blank-cited-lines mml-secure-message-sign))
  '(gnus-read-newsrc-file nil)
  '(gnus-save-newsrc-file nil)
  '(gnus-secondary-select-methods
    '((nntp "news.gmane.org"
-	   (nntp-port-number 563)
-	   (nntp-open-connection-function nntp-open-tls-stream))))
+           (nntp-port-number 563)
+           (nntp-open-connection-function nntp-open-tls-stream))))
  '(gnus-select-method '(nnml ""))
  '(gnus-startup-file "~/.emacs.d/newsrc")
  '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
@@ -250,9 +250,9 @@
      (lambda
        (buf)
        (and
-	(string-match "^ "
-		      (buffer-name buf))
-	(null buffer-file-name)))))
+        (string-match "^ "
+                      (buffer-name buf))
+        (null buffer-file-name)))))
  '(ibuffer-mode-hook
    '((lambda nil
        (ibuffer-switch-to-saved-filter-groups "default"))
@@ -263,62 +263,62 @@
        (mode . dired-mode))
       ("emacs"
        (or
-	(mode . Custom-mode)
-	(name . "^\\*scratch\\*$")
-	(name . "^\\*Messages\\*$")))
+        (mode . Custom-mode)
+        (name . "^\\*scratch\\*$")
+        (name . "^\\*Messages\\*$")))
       ("erc"
        (mode . erc-mode))
       ("eshell"
        (mode . eshell-mode))
       ("gnus"
        (or
-	(mode . message-mode)
-	(mode . bbdb-mode)
-	(mode . mail-mode)
-	(mode . gnus-group-mode)
-	(mode . gnus-summary-mode)
-	(mode . gnus-article-mode)
-	(name . "^\\.?bbdb$")
-	(name . "^\\.?newsrc-dribble")))
+        (mode . message-mode)
+        (mode . bbdb-mode)
+        (mode . mail-mode)
+        (mode . gnus-group-mode)
+        (mode . gnus-summary-mode)
+        (mode . gnus-article-mode)
+        (name . "^\\.?bbdb$")
+        (name . "^\\.?newsrc-dribble")))
       ("help"
        (mode . help-mode))
       ("LaTeX"
        (or
-	(mode . latex-mode)
-	(name . "^.*\\.Rnw")))
+        (mode . latex-mode)
+        (name . "^.*\\.Rnw")))
       ("magit"
        (or
-	(mode . magit-diff-mode)
-	(mode . magit-process-mode)
-	(mode . magit-status-mode)))
+        (mode . magit-diff-mode)
+        (mode . magit-process-mode)
+        (mode . magit-status-mode)))
       ("planning"
        (or
-	(name . "^\\*Calendar\\*$")
-	(name . "^diary$")
-	(name . ".*\\.org")
-	(mode . org-agenda-mode)
-	(name . "^\\*\\Holidays\\*$")
-	(mode . muse-mode)))
+        (name . "^\\*Calendar\\*$")
+        (name . "^diary$")
+        (name . ".*\\.org")
+        (mode . org-agenda-mode)
+        (name . "^\\*\\Holidays\\*$")
+        (mode . muse-mode)))
       ("programming"
        (or
-	(mode . emacs-lisp-mode)
-	(mode . cperl-mode)
-	(mode . c-mode)
-	(mode . java-mode)
-	(mode . idl-mode)
-	(mode . lisp-mode)))
+        (mode . emacs-lisp-mode)
+        (mode . cperl-mode)
+        (mode . c-mode)
+        (mode . java-mode)
+        (mode . idl-mode)
+        (mode . lisp-mode)))
       ("R"
        (or
-	(mode . ess-mode)
-	(mode . inferior-ess-mode))))))
+        (mode . ess-mode)
+        (mode . inferior-ess-mode))))))
  '(ibuffer-saved-filters
    '(("gnus"
       ((or
-	(mode . message-mode)
-	(mode . mail-mode)
-	(mode . gnus-group-mode)
-	(mode . gnus-summary-mode)
-	(mode . gnus-article-mode))))
+        (mode . message-mode)
+        (mode . mail-mode)
+        (mode . gnus-group-mode)
+        (mode . gnus-summary-mode)
+        (mode . gnus-article-mode))))
      ("programming"
       (or
        (mode . emacs-lisp-mode)
@@ -329,6 +329,7 @@
        (mode . lisp-mode)))))
  '(ido-default-buffer-method 'selected-window)
  '(ido-enable-flex-matching t)
+ '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(ispell-help-in-bufferp 'electric)
@@ -343,8 +344,8 @@
  '(message-mode-hook
    '((lambda nil
        (local-set-key
-	(kbd "C-c C-f o")
-	'jrm/toggle-personal-work-message-fields))
+        (kbd "C-c C-f o")
+        'jrm/toggle-personal-work-message-fields))
      flyspell-mode visual-line-mode))
  '(message-setup-hook '(bbdb-insinuate-message mml-secure-message-sign))
  '(mm-attachment-override-types
@@ -366,7 +367,7 @@
      (:eval
       (car
        (split-string system-name
-		     (rx "."))))
+                     (rx "."))))
      mode-line-end-spaces))
  '(mode-require-final-newline nil)
  '(multi-eshell-name "*eshell*")
@@ -400,11 +401,11 @@
  '(org-mode-hook
    '(org-clock-load
      #[nil "\300\301\302\303\304$\207"
-	   [org-add-hook change-major-mode-hook org-show-block-all append local]
-	   5]
+           [org-add-hook change-major-mode-hook org-show-block-all append local]
+           5]
      #[nil "\300\301\302\303\304$\207"
-	   [org-add-hook change-major-mode-hook org-babel-show-result-all append local]
-	   5]
+           [org-add-hook change-major-mode-hook org-babel-show-result-all append local]
+           5]
      org-babel-result-hide-spec org-babel-hide-all-hashes org-bullets-mode))
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
@@ -417,9 +418,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m polymode clipmon ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
- '(polymode-exporter-output-file-format "%s_exported")
- '(polymode-weave-output-file-format "%s_woven")
+   '(exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m polymode clipmon ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(preview-scale-function 1.2)
  '(reb-re-syntax 'string)
  '(reftex-bibpath-environment-variables '("BIBINPUTS" "TEXBIB" "~/scm/references.git/refs.bib"))
@@ -442,7 +441,7 @@
      ("^/sudo:.*:" ":SU:")
      ("^/usr/home/jrm" "~")))
  '(sml/theme 'dark)
- '(sort-fold-case nil t)
+ '(sort-fold-case nil)
  '(term-bind-key-alist nil)
  '(term-buffer-maximum-size 10000)
  '(term-scroll-show-maximum-output nil)
