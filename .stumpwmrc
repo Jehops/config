@@ -77,7 +77,6 @@ formatting."
 specificed class and focus the selected window."
   (list-windows-by-props `(:class ,class)))
 
-;; Shift windows by the supplied number of pixels
 (defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
 	    "Shift current window by X and Y pixels."
 	    (float-window-move-resize
@@ -85,12 +84,17 @@ specificed class and focus the selected window."
 	     :x (+ (window-x (current-window)) x)
 	     :y (+ (window-y (current-window)) y)))
 
+(defcommand eaacm () ()
+  "Emacs as a clipboard manager."
+  (run-shell-command "emacsclient -n -e '(helm-show-kill-ring)'")
+  (run-or-raise "emacsclient -n -e '(helm-show-kill-ring)'" '(:class "Emacs")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
 (define-key *root-map* (kbd "M-r") "reload")
 (define-key *root-map* (kbd "M-x") "colon")
 
+(define-key *root-map* (kbd "c") "eaacm")
 (define-key *root-map* (kbd "e") "ec")
 (define-key *root-map* (kbd "C-e") "ec")
 (define-key *root-map* (kbd "n") "next")
