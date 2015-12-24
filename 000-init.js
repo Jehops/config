@@ -14,31 +14,33 @@ url_completion_use_history = false;
 url_completion_use_bookmarks = true;
 
 // content handlers
-external_content_handlers.set("application/pdf", "pv");
-external_content_handlers.set("video/*", "mpv");
-external_content_handlers.set("text/*", "emacsclient");
+external_content_handlers.set("application/pdf","pv");
+external_content_handlers.set("video/*","mpv");
+external_content_handlers.set("text/*","emacsclient");
 
 // editing
 editor_shell_command = "emacsclient";
 view_source_use_external_editor = true;
 
 // protocol handlers
-set_protocol_handler("magnet", make_file("~/local/bin/magnet"));
-set_protocol_handler("mailto", make_file("~/local/bin/em"));
+set_protocol_handler("magnet",make_file("~/local/bin/magnet"));
+set_protocol_handler("mailto",make_file("~/local/bin/em"));
 
 // keybindings
-define_key(content_buffer_normal_keymap, "a", "mpv");
-define_key(content_buffer_normal_keymap, "h", "find-url-from-history-new-buffer");
-define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
-define_key(content_buffer_normal_keymap, "C-g", "unfocus");
-define_key(text_keymap, "C-h", "cmd_deleteCharBackward");
-undefine_key(content_buffer_normal_keymap, "b");
+define_key(content_buffer_normal_keymap,"a","mpv");
+define_key(content_buffer_normal_keymap,"h","find-url-from-history-new-buffer");
+define_key(content_buffer_normal_keymap,"H","find-url-from-history");
+define_key(content_buffer_normal_keymap,"C-g","unfocus");
+define_key(text_keymap,"C-h","cmd_deleteCharBackward");
+undefine_key(content_buffer_normal_keymap,"b");
+define_key(content_buffer_normal_keymap,"M-w","jrm_cmd_copy");
+define_key(text_keymap,"M-w","jrm_cmd_copy");
 // in the minibuffer for isearch (did these ever work?)
-//define_key(isearch_keymap, "C-a", "scroll-beginning-of-line");
-//define_key(isearch_keymap, "C-b", "left");
-//define_key(isearch_keymap, "C-e", "scroll-end-of-line");
-//define_key(isearch_keymap, "C-f", "cmd_scrollRight");
-//define_key(isearch_keymap, "C-k", "cmd_scrollRight");
+//define_key(isearch_keymap,"C-a","scroll-beginning-of-line");
+//define_key(isearch_keymap,"C-b","left");
+//define_key(isearch_keymap,"C-e","scroll-end-of-line");
+//define_key(isearch_keymap,"C-f","cmd_scrollRight");
+//define_key(isearch_keymap,"C-k","cmd_scrollRight");
 
 // key-kill-mode // How Do I Miss Thee?
 // key_kill_mode.test.push(build_url_regexp($domain = "github"));
@@ -49,7 +51,8 @@ undefine_key(content_buffer_normal_keymap, "b");
 // key_kill_mode.test.push(build_url_regexp($domain = "youtube"));
 
 // misc
-block_content_focus_change_duration = 40; // See http://conkeror.org/Focus
+// See http://conkeror.org/Focus
+block_content_focus_change_duration = 40;
 can_kill_last_buffer = true; // using daemon mode
 cwd = get_home_directory();
 cwd.append("dl");
@@ -58,26 +61,27 @@ hint_digits = "abcdefghijklmnopqrstuvwxyz";
 homepage = "about:blank";
 
 // mode-line
-add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
-add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
-//add_hook("mode_line_hook", mode_line_adder(downloads_status_widget));
+add_hook("mode_line_hook",mode_line_adder(buffer_count_widget),true);
+add_hook("mode_line_hook",mode_line_adder(buffer_icon_widget),true);
+//add_hook("mode_line_hook",mode_line_adder(downloads_status_widget));
 // ^ breaks all keybindings with Firefox 40+
-add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
-//add_hook("mode_line_hook", mode_line_adder(zoom_widget));
+add_hook("mode_line_hook",mode_line_adder(loading_count_widget),true);
+//add_hook("mode_line_hook",mode_line_adder(zoom_widget));
 // ^ doesn't seem to be working anymore
 read_buffer_show_icons = true;  // favicons
-remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+remove_hook("mode_line_hook",mode_line_adder(clock_widget));
 session_auto_save_auto_load = true;
 url_remoting_fn = load_url_in_new_buffer;
 xkcd_add_title = true;
 
 // session / user preferences
-session_pref("browser.download.manager.closeWhenDone", true);
-session_pref("layout.spellcheckDefault", 1);
-session_pref("full-screen-api.enabled", true);
-session_pref("general.useragent.compatMode.firefox", true);
-session_pref("xpinstall.whitelist.required", false);
-user_pref("devtools.debugger.remote-enabled", true);
+session_pref("browser.download.manager.closeWhenDone",true);
+session_pref("full-screen-api.enabled",true);
+session_pref("general.useragent.compatMode.firefox",true);
+session_pref("layout.spellcheckDefault",1);
+session_pref("spellchecker.dictionary","en-CA");
+session_pref("xpinstall.whitelist.required",false);
+user_pref("devtools.debugger.remote-enabled",true);
 
 // user agent (via escondida via retroj)
 var user_agents = {
@@ -116,8 +120,8 @@ define_webjump("n","http://awarnach.mathstat.dal.ca/nagios");
 define_webjump("p","http://pkg.awarnach.mathstat.dal.ca");
 define_webjump("pc","http://pcfinancial.ca");
 define_webjump("pw","https://picasaweb.google.com/lh/myphotos?noredirect=1");
-define_webjump("rfc", "http://www.ietf.org/rfc/rfc%s.txt", $alternative="http://www.ietf.org/rfc");
-define_webjump("so","http://stackoverflow.com/search?q=%s", $alternative="http://stackoverflow.com");
+define_webjump("rfc","http://www.ietf.org/rfc/rfc%s.txt",$alternative="http://www.ietf.org/rfc");
+define_webjump("so","http://stackoverflow.com/search?q=%s",$alternative="http://stackoverflow.com");
 define_webjump("ss","javascript:window.location.href='http://google.com/search?q=%s+site:'+window.location.host");
 define_webjump("t","http://www.thefreedictionary.com/%s#Thesaurus");
 define_webjump("tw","http://twitter.com");
@@ -126,10 +130,10 @@ define_webjump("znc","https://ftfl.ca:2222");
 
 // **************************** classes / functions ****************************
 
-// Override the function that names the file for the external editor (via
+// Override function that names the file for the external editor (via
 // escondida).  Original can be found in
 // "${conkeror_src}"/modules/content-buffer-input.js
-function external_editor_make_base_filename (elem, top_doc) {
+function external_editor_make_base_filename (elem,top_doc) {
     var name = "conkeror:"
         + top_doc.URL
         + "-"
@@ -138,22 +142,60 @@ function external_editor_make_base_filename (elem, top_doc) {
             || elem.tagName.toLowerCase() );
 
     // remove filesystem unfriendly chars
-    name = name.replace(top_doc.location.protocol, "")
-        .replace(/[^a-zA-Z0-9.:_]+/g, "-")
-        .replace(/(^-+|-+$)/g, "")
-        .replace(/%20/g, "_")
-        .replace(/:-/g, ":");
+    name = name.replace(top_doc.location.protocol,"")
+        .replace(/[^a-zA-Z0-9.:_]+/g,"-")
+        .replace(/(^-+|-+$)/g,"")
+        .replace(/%20/g,"_")
+        .replace(/:-/g,":");
 
     return name;
 }
 
+// Use org-protocol to store links and capture
+function org_store_link (url,title,window) {
+    var cmd_str = 'emacsclient \"org-protocol://store-link://'+url+'/'+title+'\"';
+    if (window != null) {
+        window.minibuffer.message('Issuing ' + cmd_str);
+    }
+    shell_command_blind(cmd_str);
+}
+
+interactive("org-store-link",
+            "Stores [[url][title]] as org link; copies url to emacs kill ring",
+            function (I) {
+                org_store_link(encodeURIComponent(I.buffer.display_uri_string),
+                               encodeURIComponent(I.buffer.document.title),
+                               I.window);
+            });
+
+function org_capture (url,title,selection,window) {
+    var cmd_str = 'emacsclient \"org-protocol://capture://'+url+'/'+title+'/'+selection+'\"';
+    if (window != null) {
+        window.minibuffer.message('Issuing ' + cmd_str);
+    }
+    shell_command_blind(cmd_str);
+}
+
+interactive("org-capture",
+            "Clip url,title,and selection to capture via org-protocol",
+            function (I) {
+                org_capture(encodeURIComponent(I.buffer.display_uri_string),
+                            encodeURIComponent(I.buffer.document.title),
+                            encodeURIComponent(I.buffer.top_frame.getSelection()),
+                            I.window);
+            });
+
+define_key(content_buffer_normal_keymap,"C-c o c","org-capture");
+define_key(content_buffer_normal_keymap,"C-c o l","org-store-link");
+
 // history
 define_browser_object_class(
-    "history-url", null, 
-    function (I, prompt) {
-        check_buffer (I.buffer, content_buffer);
+    "history-url",null,
+    function (I,prompt) {
+        check_buffer (I.buffer,content_buffer);
         var result = yield I.buffer.window.minibuffer.read_url(
-            $prompt = prompt,  $use_webjumps = false, $use_history = true, $use_bookmarks = false);
+            $prompt = prompt,$use_webjumps = false,$use_history = true,
+            $use_bookmarks = false);
         yield co_return (result);
     });
 
@@ -170,20 +212,22 @@ interactive("find-url-from-history-new-buffer",
 interactive("browse-buffer-history",
             "Browse the session history for the current buffer",
             function browse_buffer_history (I) {
-                var b = check_buffer(I.buffer, content_buffer);
+                var b = check_buffer(I.buffer,content_buffer);
                 var history = b.web_navigation.sessionHistory;
 
                 if (history.count > 1) {
                     var entries = [];
 
                     for(var i = 0 ; i < history.count ; i += 1) {
-                        entries[i] = history.getEntryAtIndex(i, false).URI.spec;
+                        entries[i] = history.getEntryAtIndex(i,false).URI.spec;
                     }
 
                     var url = yield I.minibuffer.read(
                         $prompt = "Go back or forward to:",
                         $completer = new all_word_completer($completions = entries),
-                        $default_completion = history.index > 0 ? entries[history.index - 1] : entries[history.index + 1],
+                        $default_completion = history.index > 0 ?
+                            entries[history.index - 1] :
+                            entries[history.index + 1],
                         $auto_complete = "url",
                         $auto_complete_initial = true,
                         $auto_complete_delay = 0,
@@ -197,14 +241,27 @@ interactive("browse-buffer-history",
 
 // Open the currently visited URL (or clipboard URL with a prefix) in Firefox
 interactive(
-    "ff", "Open URL in Firefox",
+    "ff","Open URL in Firefox",
     function (I) {
         var error = "";
-	var url;
-	if (I.prefix_argument) url = read_from_x_primary_selection();
-	else url = I.buffer.current_uri.spec;
-	shell_command_with_argument_blind("firefox", url);
-	if (error != "")
+        var url;
+        if (I.prefix_argument) url = read_from_x_primary_selection();
+        else url = I.buffer.current_uri.spec;
+        shell_command_with_argument_blind("firefox",url);
+        if (error != "")
+            throw new interactive_error("error:  " + error);
+    }
+);
+
+interactive(
+    "jrm_cmd_copy",
+    "Copy the selection to the clipboard and the Emacs kill ring",
+    function (I) {
+        var error = "";
+        cc = read_from_x_primary_selection();
+        I.local.cmd_copy;
+        shell_command_blind("emacsclient -e '(kill-new \"" + cc + "\")'");
+        if (error != "")
             throw new interactive_error("error:  " + error);
     }
 );
@@ -212,33 +269,33 @@ interactive(
 // MPV (via scottj)
 var mpv_default_command = "mpv";
 var mpv_last_command = mpv_last_command || mpv_default_command;
-interactive("mpv", "Play url in mpv",
-	    function (I) {
-		var cwd = I.local.cwd;
-		var element = yield read_browser_object(I);
-		var spec = load_spec(element);
-		var uri = load_spec_uri_string(spec);
+interactive("mpv","Play url in mpv",
+            function (I) {
+                var cwd = I.local.cwd;
+                var element = yield read_browser_object(I);
+                var spec = load_spec(element);
+                var uri = load_spec_uri_string(spec);
 
-		var panel = create_info_panel(
-		    I.window,
-		    "download-panel",
-		    [["downloading",
-		      element_get_operation_label(element, "Running on", "URI"),
-		      load_spec_uri_string(spec)],
-		     ["mime-type", "Mime type:", load_spec_mime_type(spec)]]);
+                var panel = create_info_panel(
+                    I.window,
+                    "download-panel",
+                    [["downloading",
+                      element_get_operation_label(element,"Running on","URI"),
+                      load_spec_uri_string(spec)],
+                     ["mime-type","Mime type:",load_spec_mime_type(spec)]]);
 
-		try {
-		    var cmd = yield I.minibuffer.read_shell_command(
-			$cwd = cwd,
-			$initial_value = mpv_last_command);
-		    mpv_last_command = cmd;
-		} finally {
-		    panel.destroy();
-		}
+                try {
+                    var cmd = yield I.minibuffer.read_shell_command(
+                        $cwd = cwd,
+                        $initial_value = mpv_last_command);
+                    mpv_last_command = cmd;
+                } finally {
+                    panel.destroy();
+                }
 
-		shell_command_with_argument_blind(cmd+" {}", uri, $cwd = cwd);
-	    },
-	    $browser_object = browser_object_links);
+                shell_command_with_argument_blind(cmd+" {}",uri,$cwd = cwd);
+            },
+            $browser_object = browser_object_links);
 
 // remote debugger
 function start_debugging_server () {
@@ -254,21 +311,70 @@ interactive("start-debugging-server",
             "Starts the debugging server that you can connect to with Firefox",
             start_debugging_server);
 
-// uBlock (via ebzzry)
-interactive(
-    "ublock", "Open uBlock dashboard in a new buffer",
-    function (I) {
-        load_url_in_new_buffer("chrome://ublock/content/dashboard.html");
+// revive buffer
+define_key(default_global_keymap,"C-T","revive-buffer");
+
+var kill_buffer_original = kill_buffer_original || kill_buffer;
+
+var killed_buffer_urls = [];
+var killed_buffer_histories = [];
+
+//  remember_killed_buffer
+kill_buffer = function (buffer,force) {
+    var hist = buffer.web_navigation.sessionHistory;
+
+    if (buffer.display_uri_string && hist) {
+        killed_buffer_histories.push(hist);
+        killed_buffer_urls.push(buffer.display_uri_string);
     }
-);
+
+    kill_buffer_original(buffer,force);
+};
+
+interactive("revive-buffer",
+            "Loads url from a previously killed buffer",
+            function restore_killed_buffer (I) {
+                if (killed_buffer_urls.length !== 0) {
+                    var url = yield I.minibuffer.read(
+                        $prompt = "Restore killed url:",
+                        $completer = new all_word_completer($completions = killed_buffer_urls),
+                        $default_completion = killed_buffer_urls[killed_buffer_urls.length - 1],
+                        $auto_complete = "url",
+                        $auto_complete_initial = true,
+                        $auto_complete_delay = 0,
+                        $require_match = true);
+
+                    var window = I.window;
+                    var creator = buffer_creator(content_buffer);
+                    var idx = killed_buffer_urls.indexOf(url);
+
+                    // Create the buffer
+                    var buf = creator(window,null);
+
+                    // Recover the history
+                    buf.web_navigation.sessionHistory = killed_buffer_histories[idx];
+
+                    // This line may seem redundant, but it's necessary.
+                    var original_index = buf.web_navigation.sessionHistory.index;
+                    buf.web_navigation.gotoIndex(original_index);
+
+                    // Focus the new tab
+                    window.buffers.current = buf;
+
+                    // Remove revived from cemitery
+                    killed_buffer_urls.splice(idx,1);
+                    killed_buffer_histories.splice(idx,1);
+                } else {
+                    I.window.minibuffer.message("No killed buffer urls");
+                }
+            });
 
 // user agent (via escondida via retroj)
 interactive("user-agent",
-	    "Pick a user agent from the list of presets",
-	    function (I) {
-		var ua = (yield I.window.minibuffer.read_object_property(
-		    $prompt = "Agent:",
-		    $object = user_agents));
-		set_user_agent(user_agents[ua]);
-	    });
-
+            "Pick a user agent from the list of presets",
+            function (I) {
+                var ua = (yield I.window.minibuffer.read_object_property(
+                    $prompt = "Agent:",
+                    $object = user_agents));
+                set_user_agent(user_agents[ua]);
+            });
