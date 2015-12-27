@@ -336,7 +336,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; switching buffers
 (global-set-key
  (kbd "C-c b")
- (defhydra hydra-buf ()
+ (defhydra hydra-buf (:color blue)
    "buf switch"
    ("c"                         calendar                    "cal")
    ("d"                         jrm/sb-dired                "dired")
@@ -349,8 +349,7 @@ possible value for `erc-generate-log-file-name-function'."
    ("r"                         jrm/sb-rt                   "R")
    ("s"                         jrm/sb-scratch              "scratch")
    ("t"                         jrm/sb-term                 "term")
-   ("w"                         jrm/sb-twit                 "twit")
-   ("q"                         nil                         "cancel")))
+   ("w"                         jrm/sb-twit                 "twit")))
 
 ;; moving resizing buffers and windows
 (global-set-key
