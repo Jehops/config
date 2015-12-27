@@ -1,1 +1,1 @@
-# emacs_conf
+# Configuration files
