@@ -1,0 +1,7 @@
+style "user-font"
+{
+    font_name = "Sans 9"
+}
+widget_class "*" style "user-font"
+
+gtk-font-name = "Sans 9"

@@ -1,0 +1,11 @@
+include "/home/jrm/.gtkrc.mine"
+
+# Sets the font used by gtk
+#gtk-font-name = "sans 10"
+#gtk-font-name = "Verdana 10"
+#gtk-font-name = "helvetica 10"
+#gtk-font-name="sans 10"
+
+# Emacs key bindings
+gtk-key-theme-name = "Emacs"
+

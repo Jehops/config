@@ -1,0 +1,68 @@
+## semi-colon
+<dead_horn> <space> : "; "
+<dead_horn> <Return> : ";\n"
+<dead_horn> <dead_horn> : ";"
+
+## apostrophe and quotes
+<dead_horn> <q> : "'"
+<dead_horn> <Q> : "\""
+
+## accents 
+
+# acute
+<dead_horn> <a> <e> : "é"
+<dead_horn> <a> <E> : "É"
+
+# cedilla
+<dead_horn> <d> : "ç"
+<dead_horn> <d> : "Ç"
+
+# circumflex
+<dead_horn> <c> <a> : "â"
+<dead_horn> <c> <A> : "Â"
+<dead_horn> <c> <e> : "ê"
+<dead_horn> <c> <E> : "Ê"
+<dead_horn> <c> <i> : "î"
+<dead_horn> <c> <I> : "Î"
+<dead_horn> <c> <o> : "ô"
+<dead_horn> <c> <O> : "Ô"
+<dead_horn> <c> <u> : "û"
+<dead_horn> <c> <U> : "Û"
+
+# grave
+<dead_horn> <g> <a> : "à"
+<dead_horn> <g> <A> : "À"
+<dead_horn> <g> <e> : "è"
+<dead_horn> <g> <E> : "È"
+<dead_horn> <g> <u> : "ù"
+<dead_horn> <g> <U> : "Ù"
+
+# 
+<dead_horn> <s> : "ß"
+
+# diaeresis (tréma, ümlaut)
+<dead_horn> <t> <a> : "ä"
+<dead_horn> <t> <A> : "Ä"
+<dead_horn> <t> <e> : "ë"
+<dead_horn> <t> <E> : "Ë"
+<dead_horn> <t> <i> : "ï"
+<dead_horn> <t> <I> : "Ï"
+<dead_horn> <t> <o> : "ö"
+<dead_horn> <t> <O> : "Ö"
+<dead_horn> <t> <u> : "ü"
+<dead_horn> <t> <U> : "Ü"
+
+# currency
+# <dead_horn> <u> <1> : "¢"
+# <dead_horn> <u> <2> : "€"
+# <dead_horn> <u> <3> : "£"
+# <dead_horn> <u> <4> : "¥"
+
+# math / science symbols
+<dead_horn> <minus> : "÷"
+<dead_horn> <equal> : "×"
+<dead_horn> <underscore> : "±"
+<dead_horn> <8> : "•"
+<dead_horn> <0> : "°"
+<dead_horn> <5> : "‰"
+<dead_horn> <p> : "¶"

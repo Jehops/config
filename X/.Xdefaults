@@ -1,0 +1,79 @@
+emacs.borderWidth: 0
+emacs.borderColor: Black
+emacs.fullscreen: maximized
+emacs.internalBorder: 0
+emacs.menuBar: off
+emacs.reverseVideo: On
+emacs.toolBar: 0
+emacs.verticalScrollBars: Off
+
+urxvt.background: black
+urxvt.borderColor: black
+urxvt.color0: black
+urxvt.color1: red3
+urxvt.color2: green3
+urxvt.color3: yellow3
+urxvt.color4: DodgerBlue1
+urxvt.color5: magenta3
+urxvt.color6: cyan3
+urxvt.color7: gray90
+urxvt.color8: gray50
+urxvt.color9: red
+urxvt.color10: green
+urxvt.color11: yellow
+urxvt.color12: blue
+urxvt.color13: magenta
+urxvt.color14: cyan
+urxvt.color15: white
+urxvt.colorUL: yellow
+urxvt.colorBD: white
+urxvt.cursorColor: white
+urxvt.font: xft:Monospace:pixelsize=14
+urxvt.foreground: gray90
+urxvt.lineSpace: 0
+urxvt.loginShell: false
+urxvt.matcher.button: 1
+urxvt.perl-ext-common: default,matcher
+urxvt.saveLines: 5000
+urxvt.scrollBar: false
+urxvt.scrollStyle: rxvt
+urxvt.sessionMgt: false
+urxvt.shading: 25
+urxvt.url-launcher: ck 
+urxvt.visualBell: true
+
+! Xft.antialias: true
+! Xft.hinting: true
+! Xft.hintstyle: full
+! Xft.dpi: 75
+! Xft.rgba: none
+
+XLock.background: Black
+XLock.foreground: White
+
+XTerm*metaSendsEscape: True
+XTerm*font: -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
+XTerm*foreground: gray90
+XTerm*background: black
+XTerm*cursorColor: white
+XTerm*borderColor: black
+XTerm*visualBell: true
+XTerm*sessionMgt: false
+XTerm*color0: black
+XTerm*color1: red3
+XTerm*color2: green3
+XTerm*color3: yellow3
+XTerm*color4: DodgerBlue1
+XTerm*color5: magenta3
+XTerm*color6: cyan3
+XTerm*color7: gray90
+XTerm*color8: gray50
+XTerm*color9: red
+XTerm*color10: green
+XTerm*color11: yellow
+XTerm*color12: blue
+XTerm*color13: magenta
+XTerm*color14: cyan
+XTerm*color15: white
+XTerm*colorUL: yellow
+XTerm*colorBD: white

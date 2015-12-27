@@ -1,0 +1,10 @@
+alias x exit
+alias s *sudo $*
+alias p less $*
+alias mo xautolock -disable
+alias la locate -d /usr/locate/db/locate.database.root $*
+alias ll ls -l $*
+alias l ls -ahl $*
+alias e find-file $1
+alias d dired $1
+alias svn svnlite $*

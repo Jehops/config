@@ -1,1 +1,1 @@
-# Configuration files
+# Configuration files under ~/
