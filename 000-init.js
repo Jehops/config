@@ -27,14 +27,21 @@ set_protocol_handler("magnet",make_file("~/local/bin/magnet"));
 set_protocol_handler("mailto",make_file("~/local/bin/em"));
 
 // keybindings
+undefine_key(content_buffer_normal_keymap,"b");
 define_key(content_buffer_normal_keymap,"a","mpv");
 define_key(content_buffer_normal_keymap,"h","find-url-from-history-new-buffer");
 define_key(content_buffer_normal_keymap,"H","find-url-from-history");
 define_key(content_buffer_normal_keymap,"C-g","unfocus");
 define_key(text_keymap,"C-h","cmd_deleteCharBackward");
-undefine_key(content_buffer_normal_keymap,"b");
-define_key(content_buffer_normal_keymap,"M-w","jrm_cmd_copy");
-define_key(text_keymap,"M-w","jrm_cmd_copy");
+undefine_key(caret_keymap,"M-w");
+define_key(caret_keymap,"M-w", "jrm_cmd_copy");
+undefine_key(content_buffer_normal_keymap,"M-w");
+define_key(content_buffer_normal_keymap,"M-w", "jrm_cmd_copy");
+undefine_key(special_buffer_keymap,"M-w");
+define_key(special_buffer_keymap,"M-w", "jrm_cmd_copy");
+undefine_key(text_keymap,"M-w");
+define_key(text_keymap,"M-w", "jrm_cmd_copy");
+
 // in the minibuffer for isearch (did these ever work?)
 //define_key(isearch_keymap,"C-a","scroll-beginning-of-line");
 //define_key(isearch_keymap,"C-b","left");
@@ -243,13 +250,10 @@ interactive("browse-buffer-history",
 interactive(
     "ff","Open URL in Firefox",
     function (I) {
-        var error = "";
         var url;
         if (I.prefix_argument) url = read_from_x_primary_selection();
         else url = I.buffer.current_uri.spec;
         shell_command_with_argument_blind("firefox",url);
-        if (error != "")
-            throw new interactive_error("error:  " + error);
     }
 );
 
@@ -257,12 +261,11 @@ interactive(
     "jrm_cmd_copy",
     "Copy the selection to the clipboard and the Emacs kill ring",
     function (I) {
-        var error = "";
-        cc = read_from_x_primary_selection();
-        I.local.cmd_copy;
-        shell_command_blind("emacsclient -e '(kill-new \"" + cc + "\")'");
-        if (error != "")
-            throw new interactive_error("error:  " + error);
+        var cc = read_from_x_primary_selection();
+        var ecc = "emacsclient -e \"(kill-new \\\"" + cc + "\\\")\" > /dev/null";
+        //call_builtin_command(I.window, "cmd_copy", true);
+        call_interactively(I, "cmd_copy")
+        shell_command_blind(ecc);
     }
 );
 
