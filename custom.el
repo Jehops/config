@@ -51,12 +51,9 @@
               (if time-zone ")")))
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
- '(clipmon-mode t)
- '(clipmon-transform-suffix "")
  '(column-number-mode t)
  '(compilation-window-height 6)
  '(custom-buffer-done-kill t)
- '(custom-file "~/.emacs.d/custom.el")
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
  '(delete-old-versions t)
@@ -82,11 +79,11 @@
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
  '(erc-modules
-   '(button completion fill irccontrols list match menu move-to-prompt networks noncommands readonly ring stamp spelling))
+   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling track))
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
- '(erc-track-mode nil)
+ '(erc-track-mode t)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
  '(eshell-aliases-file "~/.emacs.d/eshell/alias")
@@ -333,6 +330,7 @@
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(ispell-help-in-bufferp 'electric)
+ '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
  '(kill-whole-line t)
  '(mail-sources '((maildir :path "/home/jrm/mail/")))
@@ -418,7 +416,8 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m polymode clipmon ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+   '(hydra polymode swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+ '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(reb-re-syntax 'string)
  '(reftex-bibpath-environment-variables '("BIBINPUTS" "TEXBIB" "~/scm/references.git/refs.bib"))
@@ -466,7 +465,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "None" :family "DejaVu Sans Mono"))))
  '(anything-candidate-number ((t (:background "#f57900" :foreground "black"))))
  '(anything-header ((t (:bold t :background "grey15" :foreground "#edd400"))))
  '(button ((t (:inherit (link)))))
