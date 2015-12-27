@@ -4,8 +4,8 @@
 
 ;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
-      scpaste-scp-destination "gly:/www/paste")
-(setq org-irc-link-to-logs t)
+      scpaste-scp-destination  "gly:/www/paste"
+      org-irc-link-to-logs     t)
 
 ;; enable some functions that are disabled by default --------------------------
 (put 'downcase-region 'disabled nil)
@@ -14,10 +14,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; quick buffer switching by mode ----------------------------------------------
-;;
-;; Below, I define keymappings for buffer switching by mode with the
-;; prefix C-c b <x>.  For example, to switch to a dired buffer I use
-;; C-c b d
+;; See hydra-buf below.
 (defun jrm/sbm (prompt mode-list)
   "PROMPT for buffers that have a major mode matching an element of MODE-LIST."
   (switch-to-buffer
@@ -30,21 +27,34 @@
 	       (and (member major-mode mode-list) (buffer-name buf))))
 	   (buffer-list))) nil t nil)))
 
-(defun jrm/sb-dired ()   (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
-(defun jrm/sb-erc ()     (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
-(defun jrm/sb-eshell ()  (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
-(defun jrm/sb-gnus ()    (interactive) (jrm/sbm "Gnus: "   '(gnus-group-mode
+(defun jrm/sb-dired   () (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
+(defun jrm/sb-erc     () (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
+(defun jrm/sb-eshell  () (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
+(defun jrm/sb-gnus    () (interactive) (jrm/sbm "Gnus: "   '(gnus-group-mode
 							     gnus-summary-mode
 							     gnus-article-mode
 							     message-mode)))
-(defun jrm/sb-magit ()   (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
+(defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
 							     magit-diff-mode)))
-(defun jrm/sb-rt()       (interactive) (jrm/sbm "R/TeX: "  '(ess-mode
+(defun jrm/sb-pdf     () (interactive) (jrm/sbm "PDF: "    '(pdf-view-mode)))
+(defun jrm/sb-rt      () (interactive) (jrm/sbm "R/TeX: "  '(ess-mode
 							     inferior-ess-mode
 							     latex-mode)))
-(defun jrm/sb-term ()    (interactive) (jrm/sbm "Term: "   '(term-mode)))
-(defun jrm/sb-twit()     (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
+(defun jrm/sb-term    () (interactive) (jrm/sbm "Term: "   '(term-mode)))
+(defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
 (defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
+
+(defun split-win-right-focus ()
+  "Split window right and switch focus to it."
+  (interactive)
+  (split-window-right)
+  (windmove-right))
+
+(defun split-win-below-focus ()
+  "Split window below and switch focus to it."
+  (interactive)
+  (split-window-below)
+  (windmove-down))
 
 ;; via offby1
 (defun buffer-fname-to-kill-ring (use-backslashes)
@@ -100,9 +110,6 @@ slashes."
   (make-local-variable 'fill-column)
   (define-key c-mode-map (kbd "C-c c") 'compile))
 (add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
-
-;; clipmon ---------------------------------------------------------------------
-(add-hook 'after-init-hook 'clipmon-persist)
 
 ;; company ---------------------------------------------------------------------
 (add-hook 'after-init-hook 'global-company-mode)
@@ -257,7 +264,7 @@ possible value for `erc-generate-log-file-name-function'."
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
 
 ;; gnus ------------------------------------------------------------------------
-(defun jrm/gnus-enter-group ()
+(defun jrm/gnus-group ()
   "Start Gnus if necessary and enter GROUP."
   (interactive)
   (unless (gnus-alive-p) (gnus))
@@ -309,64 +316,94 @@ possible value for `erc-generate-log-file-name-function'."
 ;; keybindings -----------------------------------------------------------------
 
 ;; general stuff
-(global-set-key (kbd "M-<f4>")    'save-buffers-kill-emacs)
-(global-set-key (kbd "C-c i")     'helm-swoop)
-(global-set-key (kbd "C-x h")     'help-command)
-(global-set-key (kbd "<C-tab>")   'helm-dabbrev)
+(global-set-key (kbd "M-<f4>")  'save-buffers-kill-emacs)
+(global-set-key (kbd "C-c i")   'swiper-helm)
+(global-set-key (kbd "C-x h")   'help-command)
+(global-set-key (kbd "<C-tab>") 'helm-dabbrev)
 
 ;; buffers and windows
-(global-set-key (kbd "C-x C-b")   'ibuffer)
-(global-set-key (kbd "C-x K")     'kill-buffer-and-its-windows)
-(global-set-key (kbd "C-x o")     'ace-window)
-(global-set-key (kbd "C-c b c")   'calendar)
-(global-set-key (kbd "C-c b d")   'jrm/sb-dired)
-(global-set-key (kbd "C-c b i")   'jrm/sb-erc)
-(global-set-key (kbd "C-c b e")   'jrm/sb-eshell)
-(global-set-key (kbd "C-c b g")   'jrm/sb-gnus)
-(global-set-key (kbd "C-c b G")   'jrm/gnus-enter-group)
-(global-set-key (kbd "C-c b m")   'jrm/sb-magit)
-(global-set-key (kbd "C-c b r")   'jrm/sb-rt)
-(global-set-key (kbd "C-c b s")   'jrm/sb-scratch)
-(global-set-key (kbd "C-c b t")   'jrm/sb-term)
-(global-set-key (kbd "C-c b w")   'jrm/sb-twit)
-(global-set-key (kbd "C-c g")     'magit-status)
-(global-set-key (kbd "C-c e c")   'multi-eshell)
-(global-set-key (kbd "C-c o a")   'org-agenda)
-(global-set-key (kbd "C-c o b")   'org-iswitchb)
-(global-set-key (kbd "C-c o c")   'org-capture)
-(global-set-key (kbd "C-c o l")   'org-store-link)
-(global-set-key (kbd "C-c p h")   'windmove-left)
-(global-set-key (kbd "C-c p l")   'windmove-right)
-(global-set-key (kbd "C-c p j")   'windmove-down)
-(global-set-key (kbd "C-c p k")   'windmove-up)
-(global-set-key (kbd "C-c p C-h") 'buf-move-left)
-(global-set-key (kbd "C-c p C-l") 'buf-move-right)
-(global-set-key (kbd "C-c p C-j") 'buf-move-down)
-(global-set-key (kbd "C-c p C-k") 'buf-move-up)
-(global-set-key (kbd "C-0")       'buffer-fname-to-kill-ring)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x K")   'kill-buffer-and-its-windows)
+(global-set-key (kbd "C-x o")   'ace-window)
+(global-set-key (kbd "C-c g")   'magit-status)
+(global-set-key (kbd "C-c e c") 'multi-eshell)
+(global-set-key (kbd "C-c o a") 'org-agenda)
+(global-set-key (kbd "C-c o b") 'org-iswitchb)
+(global-set-key (kbd "C-c o c") 'org-capture)
+(global-set-key (kbd "C-c o l") 'org-store-link)
+(global-set-key (kbd "C-0")     'buffer-fname-to-kill-ring)
+
+;; switching buffers
+(global-set-key
+ (kbd "C-c b")
+ (defhydra hydra-buf ()
+   "buf switch"
+   ("c"                         calendar                    "cal")
+   ("d"                         jrm/sb-dired                "dired")
+   ("i"                         jrm/sb-erc                  "erc")
+   ("e"                         jrm/sb-eshell               "eshell")
+   ("g"                         jrm/sb-gnus                 "Gnus")
+   ("G"                         jrm/gnus-group              "Group")
+   ("m"                         jrm/sb-magit                "magit")
+   ("p"                         jrm/sb-pdf                  "pdf")
+   ("r"                         jrm/sb-rt                   "R")
+   ("s"                         jrm/sb-scratch              "scratch")
+   ("t"                         jrm/sb-term                 "term")
+   ("w"                         jrm/sb-twit                 "twit")
+   ("q"                         nil                         "cancel")))
+
+;; moving resizing buffers and windows
+(global-set-key
+ (kbd "C-c w")
+ (defhydra hydra-window ()
+   "buf/win"
+   ("h"                         windmove-left               "wleft")
+   ("l"                         windmove-right              "wright")
+   ("j"                         windmove-down               "wdown")
+   ("k"                         windmove-up                 "wup")
+   ("C-h"                       buf-move-left               "bleft")
+   ("C-l"                       buf-move-right              "bright")
+   ("C-j"                       buf-move-down               "bdown")
+   ("C-k"                       buf-move-up                 "bup")
+   ("}"                         enlarge-window-horizontally "henlarge")
+   ("{"                         shrink-window-horizontally  "hshrink")
+   ("^"                         enlarge-window              "venlarge")
+   ("s"                         shrink-window               "vshrink")
+   ("o"                         ace-maximize-window         "one"    :color blue)
+   ("w"                         ace-swap-window             "swap"   :color blue)
+   ("3"                         split-win-right-focus       "sright" :color blue)
+   ("2"                         split-win-below-focus       "sbelow" :color blue)
+   ("q"                         nil                         "cancel")))
 
 ;; mark and point
-(global-set-key (kbd "C-.")       'avy-goto-word-or-subword-1)
-(global-set-key (kbd "M-h")       'backward-kill-word)
-(global-set-key (kbd "M-?")       'mark-paragraph)
-(global-set-key (kbd "M-z")       'avy-zap-to-char-dwim)
-(global-set-key (kbd "M-Z")       'avy-zap-up-to-char-dwim)
+(global-set-key (kbd "C-.")     'avy-goto-word-or-subword-1)
+(global-set-key (kbd "M-h")     'backward-kill-word)
+(global-set-key (kbd "M-?")     'mark-paragraph)
+(global-set-key (kbd "M-z")     'avy-zap-to-char-dwim)
+(global-set-key (kbd "M-Z")     'avy-zap-up-to-char-dwim)
+
 ;; the translation makes C-h work with M-x in the minibuffer
 (define-key key-translation-map (kbd "C-h") [?\C-?])
 
 ;; toggling
-(global-set-key (kbd "C-x t c") 'flycheck-mode)
-(global-set-key (kbd "C-x t d") 'toggle-debug-on-error)
-(global-set-key (kbd "C-x t e") 'erc-track-mode)
-(global-set-key (kbd "C-x t f") 'auto-fill-mode)
-(global-set-key (kbd "C-x t i") 'fci-mode)
-(global-set-key (kbd "C-x t l") 'linum-mode)
-(global-set-key (kbd "C-x t m") 'menu-bar-mode)
-(global-set-key (kbd "C-x t r") 'dired-toggle-read-only)
-(global-set-key (kbd "C-x t s") 'flyspell-mode)
-(global-set-key (kbd "C-x t t") 'toggle-truncate-lines)
-(global-set-key (kbd "C-x t v") 'visual-line-mode)
-(global-set-key (kbd "C-x t w") 'whitespace-mode)
+(global-set-key
+ (kbd "C-x t")
+ (defhydra hydra-toggle (:color blue)
+   "toggle"
+   ("c"                         flycheck-mode               "flycheck")
+   ("d"                         toggle-debug-on-error       "debug-on-error")
+   ("e"                         erc-track-mode              "erc-track")
+   ("f"                         auto-fill-mode              "auto-file")
+   ("i"                         fci-mode                    "fci")
+   ("l"                         linum-mode                  "linum")
+   ("m"                         menu-bar-mode               "menu-bar")
+   ("p"                         paredit-mode                "paredit")
+   ("r"                         dired-toggle-read-only      "dired-read-only")
+   ("s"                         flyspell-mode               "flyspell")
+   ("t"                         toggle-truncate-lines       "truncate-lines")
+   ("v"                         visual-line-mode            "visual-line")
+   ("w"                         whitespace-mode             "whitespace")
+   ("q"                         nil                         "cancel")))
 
 (defun cperl-mode-keybindings ()
   "Additional keybindings for 'cperl-mode'."
@@ -414,7 +451,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; pdf-tools -------------------------------------------------------------------
 ;; This causes all buttons to be text when starting the emacs daemon
 ;; with emacsclient -nc -a ''
-;; (pdf-tools-install)
+(pdf-tools-install nil nil t)
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
@@ -434,10 +471,10 @@ possible value for `erc-generate-log-file-name-function'."
 (add-to-list 'auto-mode-alist '("\\.\\(inc\\|php[s34]?\\)" . php-mode))
 
 ;; polymode --------------------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.md"  . poly-markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+;;(add-to-list 'auto-mode-alist '("\\.md"  . poly-markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+;;(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+;;(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
 ;; rainbow delimeters ----------------------------------------------------------
 ;;(global-rainbow-delimiters-mode)
@@ -456,8 +493,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;; s.el ------------------------------------------------------------------------
 (require 's)
 
-;; scratch buffer - bury it, never kill it -------------------------------------
+;; -----------------------------------------------------------------------------
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
+  "Bury the scratch buffer, do not kill it."
   (let ((buffer-to-kill (ad-get-arg 0)))
     (if (equal buffer-to-kill "*scratch*")
         (bury-buffer)
