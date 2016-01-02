@@ -49,10 +49,13 @@ formatting."
 
 (defcommand term () ()
   "Start urxvt or switch to it if it is already running."
-  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session -d || tmux new-session\"" '(:class "URxvt")))
+  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session -d \
+|| tmux new-session\"" '(:class "URxvt")))
 
-;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
-;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
+;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session \
+;;&& exec tmux attach-session -d || exec tmux new-session\"")
+;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session \
+;;&& exec tmux attach-session -d || exec tmux new-session\"")
 
 (defcommand web-browser () ()
   "Start Conkeror or switch to it if it is already running."
@@ -107,8 +110,10 @@ specificed class and focus the selected window."
 (define-key *root-map* (kbd "C-w") "web-browser")
 (define-key *root-map* (kbd "x") "term")
 (define-key *root-map* (kbd "C-x") "term")
-;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
-;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session && exec tmux attach-session -d || exec tmux new-session\"")
+;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session \
+;;&& exec tmux attach-session -d || exec tmux new-session\"")
+;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session \
+;;&& exec tmux attach-session -d || exec tmux new-session\"")
 
 (define-key *root-map* (kbd "C-b") "windowlist")
 
