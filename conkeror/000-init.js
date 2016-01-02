@@ -33,6 +33,7 @@ define_key(content_buffer_normal_keymap,"h","find-url-from-history-new-buffer");
 define_key(content_buffer_normal_keymap,"H","find-url-from-history");
 define_key(content_buffer_normal_keymap,"C-g","unfocus");
 define_key(text_keymap,"C-h","cmd_deleteCharBackward");
+
 undefine_key(caret_keymap,"M-w");
 define_key(caret_keymap,"M-w", "jrm_cmd_copy");
 undefine_key(content_buffer_normal_keymap,"M-w");
@@ -41,6 +42,7 @@ undefine_key(special_buffer_keymap,"M-w");
 define_key(special_buffer_keymap,"M-w", "jrm_cmd_copy");
 undefine_key(text_keymap,"M-w");
 define_key(text_keymap,"M-w", "jrm_cmd_copy");
+
 
 // in the minibuffer for isearch (did these ever work?)
 //define_key(isearch_keymap,"C-a","scroll-beginning-of-line");
@@ -257,15 +259,21 @@ interactive(
     }
 );
 
+function ekr () {
+    var cc = read_from_clipboard();
+    cc = cc.replace(/([^\\]*)\\([^\\]*)/g, "$1\\\\$2");
+    cc = cc.replace('"', '\\"', "g");
+    cc = cc.replace("'", "'\\''", "g");
+    var ecc = "emacsclient -e '(kill-new \"" + cc + "\")' > /dev/null";
+    shell_command_blind(ecc);
+}
+
 interactive(
     "jrm_cmd_copy",
     "Copy the selection to the clipboard and the Emacs kill ring",
     function (I) {
-        var cc = read_from_x_primary_selection();
-        var ecc = "emacsclient -e \"(kill-new \\\"" + cc + "\\\")\" > /dev/null";
-        //call_builtin_command(I.window, "cmd_copy", true);
-        call_interactively(I, "cmd_copy")
-        shell_command_blind(ecc);
+        call_builtin_command(I.window, "cmd_copy", true);
+        ekr();
     }
 );
 
