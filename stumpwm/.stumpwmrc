@@ -86,8 +86,9 @@ specificed class and focus the selected window."
 
 (defcommand eaacm () ()
   "Emacs as a clipboard manager."
-  (run-shell-command "emacsclient -n -e '(helm-show-kill-ring)'")
-  (run-or-raise "emacsclient -n -e '(helm-show-kill-ring)'" '(:class "Emacs")))
+  (run-or-raise "emacsclient -nc" '(:class "Emacs"))
+  (run-shell-command "emacsclient -n -e '(save-window-excursion \
+(delete-other-windows) (helm-show-kill-ring))'"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
