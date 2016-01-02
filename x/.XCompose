@@ -15,7 +15,7 @@
 
 # cedilla
 <dead_horn> <d> : "ç"
-<dead_horn> <d> : "Ç"
+<dead_horn> <D> : "Ç"
 
 # circumflex
 <dead_horn> <c> <a> : "â"
