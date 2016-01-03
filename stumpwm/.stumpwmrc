@@ -76,7 +76,6 @@ specificed class and focus the selected window."
       (message (format nil "You have ~d ~a open" win-count
 		       (if (= win-count 1) "window" "windows"))))))
 
-
 (defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
   "Shift current window by X and Y pixels."
   (float-window-move-resize
