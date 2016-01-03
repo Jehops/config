@@ -42,24 +42,25 @@ formatting."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defcommand c2e () ()
+  "Copy the X clipboard contents to the Emacs kill ring."
+  (run-shell-command "c2e"))
+
+(defcommand eaacm () ()
+  "Emacs as a clipboard manager."
+  (run-or-raise "emacsclient -nc" '(:class "Emacs"))
+  (run-shell-command "emacsclient -n -e '(save-window-excursion \
+(delete-other-windows) (helm-show-kill-ring))'"))
+
 ;; could use run-or-pull below
 (defcommand ec () ()
   "Start Emacs or switch to it if it is already running."
   (run-or-raise "emacsclient -nc" '(:class "Emacs")))
 
-(defcommand term () ()
-  "Start urxvt or switch to it if it is already running."
-  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session -d \
-|| tmux new-session\"" '(:class "URxvt")))
-
-;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session \
-;;&& exec tmux attach-session -d || exec tmux new-session\"")
-;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session \
-;;&& exec tmux attach-session -d || exec tmux new-session\"")
-
-(defcommand web-browser () ()
-  "Start Conkeror or switch to it if it is already running."
-  (run-or-raise "ck" '(:class "Conkeror")))
+(defcommand list-windows-by-class (class) (:string)
+  "Allow the user to select a window from the list of windows with the
+specificed class and focus the selected window."
+  (list-windows-by-props `(:class ,class)))
 
 (defcommand safequit () ()
   "Checks if any windows are open before quitting."
@@ -75,47 +76,43 @@ formatting."
       (message (format nil "You have ~d ~a open" win-count
 		       (if (= win-count 1) "window" "windows"))))))
 
-(defcommand list-windows-by-class (class) (:string)
-  "Allow the user to select a window from the list of windows with the
-specificed class and focus the selected window."
-  (list-windows-by-props `(:class ,class)))
 
 (defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
-	    "Shift current window by X and Y pixels."
-	    (float-window-move-resize
-	     (current-window)
-	     :x (+ (window-x (current-window)) x)
-	     :y (+ (window-y (current-window)) y)))
+  "Shift current window by X and Y pixels."
+  (float-window-move-resize
+   (current-window)
+   :x (+ (window-x (current-window)) x)
+   :y (+ (window-y (current-window)) y)))
 
-(defcommand eaacm () ()
-  "Emacs as a clipboard manager."
-  (run-or-raise "emacsclient -nc" '(:class "Emacs"))
-  (run-shell-command "emacsclient -n -e '(save-window-excursion \
-(delete-other-windows) (helm-show-kill-ring))'"))
+(defcommand term () ()
+  "Start urxvt or switch to it if it is already running."
+  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session \\
+-d || tmux new-session\"" '(:class "URxvt")))
+
+(defcommand web-browser () ()
+  "Start Conkeror or switch to it if it is already running."
+  (run-or-raise "ck" '(:class "Conkeror")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
 (define-key *root-map* (kbd "M-r") "reload")
 (define-key *root-map* (kbd "M-x") "colon")
 
-(define-key *root-map* (kbd "c") "eaacm")
-(define-key *root-map* (kbd "e") "ec")
-(define-key *root-map* (kbd "C-e") "ec")
-(define-key *root-map* (kbd "n") "next")
-(define-key *root-map* (kbd "p") "prev")
-(define-key *root-map* (kbd "q") "only")
-(define-key *root-map* (kbd "o") "other-in-frame")
-(define-key *root-map* (kbd "C-t") "other")
-(define-key *root-map* (kbd "w") "web-browser")
-(define-key *root-map* (kbd "C-w") "web-browser")
-(define-key *root-map* (kbd "x") "term")
-(define-key *root-map* (kbd "C-x") "term")
-;;(define-key *root-map* (kbd "x") "exec urxvt -e sh -c \"tmux -q has-session \
-;;&& exec tmux attach-session -d || exec tmux new-session\"")
-;;(define-key *root-map* (kbd "C-x") "exec urxvt -e sh -c \"tmux -q has-session \
-;;&& exec tmux attach-session -d || exec tmux new-session\"")
-
 (define-key *root-map* (kbd "C-b") "windowlist")
+(define-key *root-map* (kbd "c")   "eaacm")
+(define-key *root-map* (kbd "C")   "c2e")
+(define-key *root-map* (kbd "e")   "ec")
+(define-key *root-map* (kbd "C-e") "ec")
+(define-key *root-map* (kbd "n")   "next")
+(define-key *root-map* (kbd "p")   "prev")
+(define-key *root-map* (kbd "q")   "only")
+(define-key *root-map* (kbd "o")   "other-in-frame")
+(define-key *root-map* (kbd "C-t") "other")
+(define-key *root-map* (kbd "w")   "web-browser")
+(define-key *root-map* (kbd "C-w") "web-browser")
+(define-key *root-map* (kbd "x")   "term")
+(define-key *root-map* (kbd "C-x") "term")
 
 (define-key *root-map* (kbd "b") '*windows-map*)
 (defvar *windows-map*
@@ -126,6 +123,7 @@ specificed class and focus the selected window."
     (define-key m (kbd "x") "list-windows-by-class URxvt")
     m))
 
+;; window movement
 (define-key *root-map* (kbd "C-h") "move-focus left")
 (define-key *root-map* (kbd "C-j") "move-focus down")
 (define-key *root-map* (kbd "C-k") "move-focus up")
@@ -140,9 +138,9 @@ specificed class and focus the selected window."
     (define-key m (kbd "C-l") "move-window right")
     m))
 
-(define-key *root-map* (kbd "C-Left") "shift-window -100 0")
-(define-key *root-map* (kbd "C-Down") "shift-window 0 100")
-(define-key *root-map* (kbd "C-Up") "shift-window 0 -100")
+(define-key *root-map* (kbd "C-Left")  "shift-window -100 0")
+(define-key *root-map* (kbd "C-Down")  "shift-window 0 100")
+(define-key *root-map* (kbd "C-Up")    "shift-window 0 -100")
 (define-key *root-map* (kbd "C-Right") "shift-window 100 0")
 
 (define-key *root-map* (kbd "Q") "safequit")
