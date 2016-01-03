@@ -120,6 +120,12 @@ slashes."
 ;; erc -------------------------------------------------------------------------
 (require 'erc-tex)
 
+(defun jrm/erc ()
+  "Connect to irc networks set up in my znc bouncer."
+  (interactive)
+  (znc-erc "network-slug-efnet")
+  (znc-erc "network-slug-freenode"))
+
 (defun jrm/erc-generate-log-file-name-network (buffer target nick server port)
   "Generate erc BUFFER log file, TARGET for user NICK on SERVER:PORT.
 Using the network name rather than server name.  This results in
@@ -325,13 +331,14 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x K")   'kill-buffer-and-its-windows)
 (global-set-key (kbd "C-x o")   'ace-window)
+(global-set-key (kbd "C-0")     'buffer-fname-to-kill-ring)
 (global-set-key (kbd "C-c g")   'magit-status)
 (global-set-key (kbd "C-c e c") 'multi-eshell)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o b") 'org-iswitchb)
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o l") 'org-store-link)
-(global-set-key (kbd "C-0")     'buffer-fname-to-kill-ring)
+(global-set-key (kbd "C-c z")   'jrm/erc)
 
 ;; switching buffers
 (global-set-key
@@ -486,6 +493,7 @@ possible value for `erc-generate-log-file-name-function'."
 (set-register ?p '(file . "~/scm/org.git/personal.org"))
 (set-register ?r '(file . "~/scm/org.git/research.org"))
 (set-register ?s '(file . "~/scm/org.git/sites.org"))
+(set-register ?S '(file . "~/.emacs.d/secret.el"))
 (set-register ?u '(file . "~/.emacs.d/custom.el"))
 (set-register ?w '(file . "~/scm/org.git/work.org"))
 
