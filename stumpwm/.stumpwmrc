@@ -4,6 +4,7 @@
 ;;(swank:create-server)
 
 (in-package :stumpwm)
+;;(in-package :stumpwm.floating-group)
 
 (setf *colors* (append *colors* (list "Orange2" "Gray52")))
 (setf *input-window-gravity* :bottom-right)
@@ -49,8 +50,8 @@ formatting."
 (defcommand eaacm () ()
   "Emacs as a clipboard manager."
   (run-or-raise "emacsclient -nc" '(:class "Emacs"))
-  (run-shell-command "emacsclient -n -e '(save-window-excursion \
-(delete-other-windows) (helm-show-kill-ring))'"))
+  (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
+      (save-window-excursion (delete-other-windows) (helm-show-kill-ring)))'"))
 
 ;; could use run-or-pull below
 (defcommand ec () ()
@@ -78,7 +79,7 @@ specificed class and focus the selected window."
 
 (defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
   "Shift current window by X and Y pixels."
-  (float-window-move-resize
+  (stumpwm.floating-group::float-window-move-resize
    (current-window)
    :x (+ (window-x (current-window)) x)
    :y (+ (window-y (current-window)) y)))
