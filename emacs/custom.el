@@ -56,7 +56,7 @@
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
- '(delete-old-versions t)
+ '(delete-old-versions 'other)
  '(diary-comment-end "*/")
  '(diary-comment-start "/*")
  '(diary-file "~/.emacs.d/diary")
@@ -86,6 +86,7 @@
  '(erc-track-mode t)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
+ '(erc-whowas-on-nosuchnick t)
  '(eshell-aliases-file "~/.emacs.d/eshell/alias")
  '(eshell-banner-load-hook nil)
  '(eshell-banner-message "")
@@ -419,7 +420,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(synosaurus define-word hydra polymode swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+   '(sunshine synosaurus define-word hydra polymode swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(reb-re-syntax 'string)
@@ -429,7 +430,10 @@
  '(ring-bell-function 'ignore)
  '(safe-local-variable-values
    '((whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
+ '(savehist-additional-variables
+   '(kill-ring regexp-search-ring search-ring tablist-named-filter))
  '(savehist-autosave-interval 60)
+ '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
  '(select-enable-clipboard t)
@@ -443,7 +447,8 @@
      ("^/sudo:.*:" ":SU:")
      ("^/usr/home/jrm" "~")))
  '(sml/theme 'dark)
- '(sort-fold-case nil t)
+ '(sunshine-show-icons t)
+ '(sunshine-units 'metric)
  '(term-bind-key-alist nil)
  '(term-buffer-maximum-size 10000)
  '(term-scroll-show-maximum-output nil)
@@ -460,6 +465,7 @@
  '(undo-tree-visualizer-timestamps t)
  '(uniquify-buffer-name-style 'forward nil (uniquify))
  '(vc-follow-symlinks t)
+ '(vc-make-backup-files t)
  '(version-control t)
  '(web-mode-attr-indent-offset 2))
 
