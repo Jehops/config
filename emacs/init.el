@@ -322,23 +322,25 @@ possible value for `erc-generate-log-file-name-function'."
 ;; keybindings -----------------------------------------------------------------
 
 ;; general stuff
-(global-set-key (kbd "M-<f4>")  'save-buffers-kill-emacs)
-(global-set-key (kbd "C-c i")   'swiper-helm)
-(global-set-key (kbd "C-x h")   'help-command)
-(global-set-key (kbd "<C-tab>") 'helm-dabbrev)
+(global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
+(global-set-key (kbd "C-c i")           'swiper-helm)
+(global-set-key (kbd "C-x h")           'help-command)
+(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
+(global-set-key (kbd "M-SPC")           'cycle-spacing)
 
 ;; buffers and windows
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x K")   'kill-buffer-and-its-windows)
-(global-set-key (kbd "C-x o")   'ace-window)
-(global-set-key (kbd "C-0")     'buffer-fname-to-kill-ring)
-(global-set-key (kbd "C-c g")   'magit-status)
-(global-set-key (kbd "C-c e c") 'multi-eshell)
-(global-set-key (kbd "C-c o a") 'org-agenda)
-(global-set-key (kbd "C-c o b") 'org-iswitchb)
-(global-set-key (kbd "C-c o c") 'org-capture)
-(global-set-key (kbd "C-c o l") 'org-store-link)
-(global-set-key (kbd "C-c z")   'jrm/erc)
+(global-set-key (kbd "C-x C-b")         'ibuffer)
+(global-set-key (kbd "C-x K")           'kill-buffer-and-its-windows)
+(global-set-key (kbd "C-x o")           'ace-window)
+(global-set-key (kbd "C-0")             'buffer-fname-to-kill-ring)
+(global-set-key (kbd "C-c g")           'magit-status)
+(global-set-key (kbd "C-c e c")         'multi-eshell)
+(global-set-key (kbd "C-c o a")         'org-agenda)
+(global-set-key (kbd "C-c o b")         'org-iswitchb)
+(global-set-key (kbd "C-c o c")         'org-capture)
+(global-set-key (kbd "C-c o l")         'org-store-link)
+(global-set-key (kbd "C-c s")           'sunshine-forecast)
+(global-set-key (kbd "C-c z")           'jrm/erc)
 
 ;; switching buffers
 (global-set-key
