@@ -90,11 +90,11 @@ setopt pushd_ignore_dups
 setopt share_history # reloads the history whenever you use it
 
 # make characters like '/', '-' and '_' be word boundaries
-autoload -U select-word-style
+autoload -Uz select-word-style
 select-word-style bash
 
 # completion stuff
-zstyle :compinstall filename '/home/jrm/.zshrc'
+#zstyle :compinstall filename '/home/jrm/.zshrc'
 autoload -Uz compinit
 compinit
 
