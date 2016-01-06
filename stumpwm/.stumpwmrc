@@ -63,6 +63,10 @@ formatting."
 specificed class and focus the selected window."
   (list-windows-by-props `(:class ,class)))
 
+(defcommand s2e () ()
+  "Copy the X selection contents to the Emacs kill ring."
+  (run-shell-command "c2e -s"))
+
 (defcommand safequit () ()
   "Checks if any windows are open before quitting."
   (let ((win-count 0))
@@ -96,54 +100,56 @@ specificed class and focus the selected window."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
-(define-key *root-map* (kbd "M-r") "reload")
-(define-key *root-map* (kbd "M-x") "colon")
-
-(define-key *root-map* (kbd "C-b") "windowlist")
-(define-key *root-map* (kbd "c")   "eaacm")
-(define-key *root-map* (kbd "C")   "c2e")
-(define-key *root-map* (kbd "e")   "ec")
-(define-key *root-map* (kbd "C-e") "ec")
-(define-key *root-map* (kbd "n")   "next")
-(define-key *root-map* (kbd "p")   "prev")
-(define-key *root-map* (kbd "q")   "only")
-(define-key *root-map* (kbd "o")   "other-in-frame")
-(define-key *root-map* (kbd "C-t") "other")
-(define-key *root-map* (kbd "w")   "web-browser")
-(define-key *root-map* (kbd "C-w") "web-browser")
-(define-key *root-map* (kbd "x")   "term")
-(define-key *root-map* (kbd "C-x") "term")
+(define-key *root-map* (kbd "M-r")      "reload")
+(define-key *root-map* (kbd "M-x")      "colon")
+(define-key *root-map* (kbd "2")        "hsplit")
+(define-key *root-map* (kbd "3")        "vsplit")
+(define-key *root-map* (kbd "C-b")      "windowlist")
+(define-key *root-map* (kbd "c")        "eaacm")
+(define-key *root-map* (kbd "C")        "c2e")
+(define-key *root-map* (kbd "e")        "ec")
+(define-key *root-map* (kbd "C-e")      "ec")
+(define-key *root-map* (kbd "n")        "next")
+(define-key *root-map* (kbd "o")        "other-in-frame")
+(define-key *root-map* (kbd "p")        "prev")
+(define-key *root-map* (kbd "q")        "only")
+(define-key *root-map* (kbd "s")        "s2e")
+(define-key *root-map* (kbd "C-t")      "other")
+(define-key *root-map* (kbd "w")        "web-browser")
+(define-key *root-map* (kbd "C-w")      "web-browser")
+(define-key *root-map* (kbd "x")        "term")
+(define-key *root-map* (kbd "C-x")      "term")
 
 (define-key *root-map* (kbd "b") '*windows-map*)
 (defvar *windows-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "e") "list-windows-by-class Emacs")
-    (define-key m (kbd "p") "list-windows-by-class Xpdf")
-    (define-key m (kbd "w") "list-windows-by-class Conkeror")
-    (define-key m (kbd "x") "list-windows-by-class URxvt")
+    (define-key m (kbd "e")             "list-windows-by-class Emacs")
+    (define-key m (kbd "p")             "list-windows-by-class Xpdf")
+    (define-key m (kbd "w")             "list-windows-by-class Conkeror")
+    (define-key m (kbd "x")             "list-windows-by-class URxvt")
     m))
 
 ;; window movement
-(define-key *root-map* (kbd "C-h") "move-focus left")
-(define-key *root-map* (kbd "C-j") "move-focus down")
-(define-key *root-map* (kbd "C-k") "move-focus up")
-(define-key *root-map* (kbd "C-l") "move-focus right")
+(define-key *root-map* (kbd "C-h")      "move-focus left")
+(define-key *root-map* (kbd "C-j")      "move-focus down")
+(define-key *root-map* (kbd "C-k")      "move-focus up")
+(define-key *root-map* (kbd "C-l")      "move-focus right")
 
 (define-key *root-map* (kbd "C-SPC") '*frame-map*)
 (defvar *frame-map*
   (let ((m (make-sparse-keymap)))
-    (define-key m (kbd "C-h") "move-window left")
-    (define-key m (kbd "C-j") "move-window down")
-    (define-key m (kbd "C-k") "move-window up")
-    (define-key m (kbd "C-l") "move-window right")
+    (define-key m (kbd "C-h")           "move-window left")
+    (define-key m (kbd "C-j")           "move-window down")
+    (define-key m (kbd "C-k")           "move-window up")
+    (define-key m (kbd "C-l")           "move-window right")
     m))
 
-(define-key *root-map* (kbd "C-Left")  "shift-window -100 0")
-(define-key *root-map* (kbd "C-Down")  "shift-window 0 100")
-(define-key *root-map* (kbd "C-Up")    "shift-window 0 -100")
-(define-key *root-map* (kbd "C-Right") "shift-window 100 0")
+(define-key *root-map* (kbd "C-Left")   "shift-window -100 0")
+(define-key *root-map* (kbd "C-Down")   "shift-window 0 100")
+(define-key *root-map* (kbd "C-Up")     "shift-window 0 -100")
+(define-key *root-map* (kbd "C-Right")  "shift-window 100 0")
 
-(define-key *root-map* (kbd "Q") "safequit")
+(define-key *root-map* (kbd "Q")        "safequit")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
