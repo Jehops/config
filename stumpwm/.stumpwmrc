@@ -8,15 +8,19 @@
 
 (setf *colors* (append *colors* (list "Orange2" "Gray52")))
 (setf *input-window-gravity* :bottom-right)
+(setf *maxsize-border-width* 5)
 (setf *message-window-gravity* :bottom-right)
 (setf *mode-line-background-color* "black")
 (setf *mode-line-border-width* 0)
 (setf *mode-line-position* :bottom)
 (setf *mode-line-timeout* 1)
 (setf *mouse-focus-policy* :click)
+(setf *normal-border-width* 5)
 (setf *startup-message* nil)
-(setf *window-border-style* :thick)
-(setf *window-format* "^[^8*%n^]^[^9*%s^]%30t")
+(setf *transient-border-width 5)
+(setf *window-border-style* :tight)
+(setf *window-border-width* 5)
+(setf *window-format* "^[^8*%n^]^[^9*%s^]%256t")
 
 (update-color-map (current-screen))
 
