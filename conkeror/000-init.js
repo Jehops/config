@@ -43,7 +43,6 @@ define_key(special_buffer_keymap,"M-w", "jrm_cmd_copy");
 undefine_key(text_keymap,"M-w");
 define_key(text_keymap,"M-w", "jrm_cmd_copy");
 
-
 // in the minibuffer for isearch (did these ever work?)
 //define_key(isearch_keymap,"C-a","scroll-beginning-of-line");
 //define_key(isearch_keymap,"C-b","left");
@@ -88,6 +87,11 @@ session_pref("browser.download.manager.closeWhenDone",true);
 session_pref("full-screen-api.enabled",true);
 session_pref("general.useragent.compatMode.firefox",true);
 session_pref("layout.spellcheckDefault",1);
+//session_pref("network.proxy.http","127.0.0.1");
+//session_pref("network.proxy.http_port",8118);
+//session_pref('network.proxy.ssl', "127.0.0.1");
+//session_pref('network.proxy.ssl_port',8118);
+//session_pref("network.proxy.type",1);
 session_pref("spellchecker.dictionary","en-CA");
 session_pref("xpinstall.whitelist.required",false);
 user_pref("devtools.debugger.remote-enabled",true);
@@ -259,12 +263,13 @@ interactive(
     }
 );
 
-function ekr () {
-    var cc = read_from_clipboard();
+function ekr (cc) {
+    if (typeof cc === 'undefined') { cc = read_from_clipboard(); }
     cc = cc.replace(/([^\\]*)\\([^\\]*)/g, "$1\\\\$2");
     cc = cc.replace('"', '\\"', "g");
     cc = cc.replace("'", "'\\''", "g");
     var ecc = "emacsclient -e '(kill-new \"" + cc + "\")' > /dev/null";
+    //dumpln(ecc);
     shell_command_blind(ecc);
 }
 
