@@ -79,11 +79,11 @@
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
  '(erc-modules
-   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling track))
+   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling))
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
- '(erc-track-mode t)
+ '(erc-track-mode nil)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
  '(erc-whowas-on-nosuchnick t)
@@ -130,6 +130,7 @@
  '(eshell-prompt-function 'eshell-prompt)
  '(eshell-prompt-regexp "^[^%#]*@[^%#]*[#%] ")
  '(eshell-pwd-convert-function 'expand-file-name)
+ '(eshell-review-quick-commands t)
  '(eshell-rm-interactive-query t)
  '(eshell-visual-commands
    '("less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw"))
@@ -141,6 +142,7 @@
  '(ess-swv-pdflatex-commands '("latexmk"))
  '(ess-swv-processor 'knitr)
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
+ '(eval-expression-print-length 500)
  '(explicit-shell-file-name "/usr/local/bin/zsh")
  '(fill-column 80)
  '(flymake-log-level 3)
@@ -219,6 +221,7 @@
  '(helm-completion-in-region-fuzzy-match nil)
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
+ '(helm-flx-mode t)
  '(helm-kill-ring-max-lines-number 25)
  '(helm-kill-ring-threshold 1)
  '(helm-split-window-in-side-p t)
@@ -337,6 +340,7 @@
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
  '(kill-whole-line t)
+ '(magit-delete-by-moving-to-trash nil)
  '(mail-sources '((maildir :path "/home/jrm/mail/")))
  '(mail-user-agent 'gnus-user-agent)
  '(menu-bar-mode nil)
@@ -356,12 +360,12 @@
  '(mm-encrypt-option 'guided)
  '(mm-inline-large-images 'resize)
  '(mm-verify-option 'known)
- '(mml-smime-encrypt-to-self t)
+ '(mml-secure-openpgp-encrypt-to-self t)
+ '(mml-secure-openpgp-signers '("B0D6EF9E"))
+ '(mml-secure-smime-encrypt-to-self t)
+ '(mml-secure-smime-signers '("B0D6EF9E"))
  '(mml-smime-passphrase-cache-expiry 604800)
- '(mml-smime-signers '("B0D6EF9E"))
- '(mml2015-encrypt-to-self t)
  '(mml2015-passphrase-cache-expiry 604800)
- '(mml2015-signers '("B0D6EF9E"))
  '(mode-line-format
    '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
      (vc-mode vc-mode)
@@ -387,6 +391,7 @@
  '(org-agenda-files '("~/scm/org.git"))
  '(org-agenda-include-diary t)
  '(org-agenda-use-time-grid nil)
+ '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
  '(org-capture-templates
    '(("t" "Todo" entry
       (file+headline "~/scm/org.git/capture.org" "Tasks")
@@ -414,22 +419,25 @@
  '(org-refile-targets '((org-agenda-files :tag . "")))
  '(org-refile-use-outline-path t)
  '(org-todo-keywords
-   '((sequence "TODO(t!)" "|" "POSTPONED(p!)" "CANCELLED(c!)" "DONE(d!)")))
+   '((sequence "🏳 TODO(t!)" "|" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
  '(org-use-fast-todo-selection t)
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(sunshine synosaurus define-word hydra polymode swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode web-mode undo-tree twittering-mode stumpwm-mode smart-tab shm pkg-info php-mode pdf-tools paredit org-ac org nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+   '(polymode pdf-tools org sauron git-gutter sunshine synosaurus define-word hydra swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
+ '(ps-lpr-command "psif")
+ '(ps-lpr-switches nil)
  '(reb-re-syntax 'string)
  '(reftex-bibpath-environment-variables '("BIBINPUTS" "TEXBIB" "~/scm/references.git/refs.bib"))
  '(reftex-plug-into-AUCTeX t)
  '(require-final-newline nil)
  '(ring-bell-function 'ignore)
  '(safe-local-variable-values
-   '((whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
+   '((eval hl-line-mode t)
+     (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
  '(savehist-additional-variables
    '(kill-ring regexp-search-ring search-ring tablist-named-filter))
  '(savehist-autosave-interval 60)
@@ -447,6 +455,7 @@
      ("^/sudo:.*:" ":SU:")
      ("^/usr/home/jrm" "~")))
  '(sml/theme 'dark)
+ '(sunshine-location "Halifax, CA")
  '(sunshine-show-icons t)
  '(sunshine-units 'metric)
  '(term-bind-key-alist nil)
@@ -468,6 +477,7 @@
  '(vc-make-backup-files t)
  '(version-control t)
  '(web-mode-attr-indent-offset 2))
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -572,7 +582,7 @@
  '(gnus-summary-normal-unread ((t (:foreground "white"))))
  '(gnus-summary-selected ((t (:background "DarkOrange3" :foreground "white"))))
  '(header-line ((default (:inherit (mode-line))) (((type tty)) (:underline (:color foreground-color :style line) :inverse-video nil)) (((class color grayscale) (background light)) (:box nil :foreground "grey20" :background "grey90")) (((class color grayscale) (background dark)) (:box nil :foreground "grey90" :background "grey20")) (((class mono) (background light)) (:underline (:color foreground-color :style line) :box nil :inverse-video nil :foreground "black" :background "white")) (((class mono) (background dark)) (:underline (:color foreground-color :style line) :box nil :inverse-video nil :foreground "white" :background "black"))))
- '(highlight ((t (:background "gray18" :foreground "orange"))))
+ '(highlight ((t (:background "gray19"))))
  '(info-xref ((t (:foreground "#729fcf"))))
  '(info-xref-visited ((t (:foreground "#ad7fa8"))))
  '(isearch ((t (:foreground "#2e3436" :background "#f57900"))))

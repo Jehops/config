@@ -25,7 +25,7 @@
 	   (lambda (buf)
 	     (with-current-buffer buf
 	       (and (member major-mode mode-list) (buffer-name buf))))
-	   (buffer-list))) nil t nil)))
+	   (buffer-list))) nil t)))
 
 (defun jrm/sb-dired   () (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
 (defun jrm/sb-erc     () (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
@@ -90,7 +90,7 @@ slashes."
 (add-hook 'after-init-hook (lambda () (appt-activate 1)))
 
 ;; beacon ----------------------------------------------------------------------
-(beacon-mode 1)
+;;(beacon-mode 1)
 
 ;; c/c++ -----------------------------------------------------------------------
 (defun knf ()
@@ -269,6 +269,17 @@ possible value for `erc-generate-log-file-name-function'."
 ;; flyspell-auto-correct-binding) from hijacking C-.
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
 
+
+;; garbage callection ----------------------------------------------------------
+;;(defun jrm/minibuffer-setup-hook ()
+;;  (setq gc-cons-threshold most-positive-fixnum))
+
+;;(defun jrm/minibuffer-exit-hook ()
+;;  (setq gc-cons-threshold 800000))
+
+;;(add-hook 'minibuffer-setup-hook #'jrm/minibuffer-setup-hook)
+;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
+
 ;; gnus ------------------------------------------------------------------------
 (defun jrm/gnus-group ()
   "Start Gnus if necessary and enter GROUP."
@@ -402,15 +413,30 @@ possible value for `erc-generate-log-file-name-function'."
    ("d"                         toggle-debug-on-error       "debug-on-error")
    ("e"                         erc-track-mode              "erc-track")
    ("f"                         auto-fill-mode              "auto-file")
+   ("g"                         git-gutter:toggle           "git-gutter")
    ("i"                         fci-mode                    "fci")
    ("l"                         linum-mode                  "linum")
    ("m"                         menu-bar-mode               "menu-bar")
    ("p"                         paredit-mode                "paredit")
    ("r"                         dired-toggle-read-only      "dired-read-only")
    ("s"                         flyspell-mode               "flyspell")
+   ("S"                         sauron-toggle-hide-show     "sauron")
    ("t"                         toggle-truncate-lines       "truncate-lines")
    ("v"                         visual-line-mode            "visual-line")
    ("w"                         whitespace-mode             "whitespace")
+   ("q"                         nil                         "cancel")))
+
+;; vcs
+(global-set-key
+ (kbd "C-c v")
+ (defhydra hydra-vcs (:color blue)
+   "vcs"
+   ("h"                         git-gutter:popup-hunk       "popup-hunk")
+   ("m"                         magit-status                "magit")
+   ("n"                         git-gutter:next-hunk        "next-hunk")
+   ("p"                         git-gutter:previous-hunk    "previous-hunk")
+   ("r"                         git-gutter:revert-hunk      "revert-hunk")
+   ("s"                         git-gutter:previous-hunk    "stage-hunk")
    ("q"                         nil                         "cancel")))
 
 (defun cperl-mode-keybindings ()
@@ -459,7 +485,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; pdf-tools -------------------------------------------------------------------
 ;; This causes all buttons to be text when starting the emacs daemon
 ;; with emacsclient -nc -a ''
-(pdf-tools-install nil nil t)
+(pdf-tools-install)
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
@@ -479,10 +505,10 @@ possible value for `erc-generate-log-file-name-function'."
 (add-to-list 'auto-mode-alist '("\\.\\(inc\\|php[s34]?\\)" . php-mode))
 
 ;; polymode --------------------------------------------------------------------
-;;(add-to-list 'auto-mode-alist '("\\.md"  . poly-markdown-mode))
-;;(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-;;(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-;;(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+(add-to-list 'auto-mode-alist '("\\.md"  . poly-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
 ;; rainbow delimeters ----------------------------------------------------------
 ;;(global-rainbow-delimiters-mode)
@@ -509,6 +535,26 @@ possible value for `erc-generate-log-file-name-function'."
     (if (equal buffer-to-kill "*scratch*")
         (bury-buffer)
       ad-do-it)))
+
+;; sauron
+(require 'sauron)
+
+;;(setq sauron-watch-nicks '("jrm"))
+(setq sauron-watch-patterns '("jrm"))
+(setq sauron-nick-insensitivity 60)
+(setq sauron-hide-mode-line t)
+(setq sauron-modules
+      '(sauron-erc sauron-org sauron-notifications sauron-twittering
+                   sauron-jabber sauron-identica sauron-elfeed))
+
+(defun jrm/saruon-speak-erc (origin prio msg &optional props)
+  (when (eq origin 'erc)
+    (call-process-shell-command
+     (concat "espeak " "\"ERC alert: "
+             (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
+
+(add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
+(sauron-start-hidden)
 
 ;; slime/swank -----------------------------------------------------------------
 ;; only evaluate next two lines as needed
