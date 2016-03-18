@@ -83,7 +83,7 @@
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
- '(erc-track-mode nil)
+ '(erc-track-mode t)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
  '(erc-whowas-on-nosuchnick t)
@@ -143,7 +143,7 @@
  '(ess-swv-processor 'knitr)
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
- '(explicit-shell-file-name "/usr/local/bin/zsh")
+ '(explicit-shell-file-name "/bin/sh")
  '(fill-column 80)
  '(flymake-log-level 3)
  '(gdb-many-windows t)
@@ -225,6 +225,7 @@
  '(helm-kill-ring-max-lines-number 25)
  '(helm-kill-ring-threshold 1)
  '(helm-split-window-in-side-p t)
+ '(help-char 67)
  '(holiday-bahai-holidays nil)
  '(holiday-general-holidays
    '((holiday-fixed 1 1 "New Year's Day")
@@ -336,6 +337,7 @@
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
+ '(initial-scratch-message (format ";; %s\n\n" (replace-regexp-in-string "\n" "\n;; " (replace-regexp-in-string "\n$" "" (shell-command-to-string "/usr/games/fortune")))))
  '(ispell-help-in-bufferp 'electric)
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
