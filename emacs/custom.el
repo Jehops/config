@@ -127,7 +127,7 @@
  '(eshell-mv-overwrite-files nil)
  '(eshell-output-filter-functions
    '(eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
- '(eshell-prompt-function 'eshell-prompt)
+ '(eshell-prompt-function 'jrm/eshell-prompt)
  '(eshell-prompt-regexp "^[^%#]*@[^%#]*[#%] ")
  '(eshell-pwd-convert-function 'expand-file-name)
  '(eshell-review-quick-commands t)

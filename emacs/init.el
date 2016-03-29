@@ -44,13 +44,13 @@
 (defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
 (defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
 
-(defun split-win-right-focus ()
+(defun jrm/split-win-right-focus ()
   "Split window right and switch focus to it."
   (interactive)
   (split-window-right)
   (windmove-right))
 
-(defun split-win-below-focus ()
+(defun jrm/split-win-below-focus ()
   "Split window below and switch focus to it."
   (interactive)
   (split-window-below)
@@ -73,7 +73,13 @@ slashes."
       (error "Buffer is not associated with any file or directory"))
     (kill-new fn)
     (message "%s" fn)
-  fn))
+    fn))
+
+(defun jrm/sort-lines-nocase ()
+  "Sort lines ignoring case."
+  (interactive)
+  (let ((sort-fold-case t))
+    (call-interactively 'sort-lines)))
 
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
@@ -144,7 +150,7 @@ possible value for `erc-generate-log-file-name-function'."
 	  (lambda () (setq erc-fill-column (- (window-width) 2))))
 
 ;; eshell completions ----------------------------------------------------------
-(defun eshell-prompt ()
+(defun jrm/eshell-prompt ()
   "Customize the eshell prompt."
   (concat
    (propertize (user-login-name) 'face '(:foreground "red"))
@@ -391,8 +397,8 @@ possible value for `erc-generate-log-file-name-function'."
    ("s"                         shrink-window               "vshrink")
    ("o"                         ace-maximize-window         "one"    :color blue)
    ("w"                         ace-swap-window             "swap"   :color blue)
-   ("3"                         split-win-right-focus       "sright" :color blue)
-   ("2"                         split-win-below-focus       "sbelow" :color blue)
+   ("3"                         jrm/split-win-right-focus   "sright" :color blue)
+   ("2"                         jrm/split-win-below-focus   "sbelow" :color blue)
    ("q"                         nil                         "cancel")))
 
 ;; mark and point
