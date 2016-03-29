@@ -335,7 +335,8 @@ possible value for `erc-generate-log-file-name-function'."
 ;; general stuff
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
 (global-set-key (kbd "C-c i")           'swiper-helm)
-(global-set-key (kbd "C-x h")           'help-command)
+(global-unset-key (kbd "C-h"))
+(global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
 (global-set-key (kbd "C-<tab>")         'helm-dabbrev)
 (global-set-key (kbd "M-SPC")           'cycle-spacing)
 
@@ -402,7 +403,7 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "M-Z")     'avy-zap-up-to-char-dwim)
 
 ;; the translation makes C-h work with M-x in the minibuffer
-(define-key key-translation-map (kbd "C-h") [?\C-?])
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; toggling
 (global-set-key
