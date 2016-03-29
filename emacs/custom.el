@@ -336,7 +336,16 @@
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
- '(initial-scratch-message (format ";; %s\n\n" (replace-regexp-in-string "\n" "\n;; " (replace-regexp-in-string "\n$" "" (shell-command-to-string "/usr/games/fortune")))))
+ '(initial-scratch-message
+   (format ";; %s
+
+"
+           (replace-regexp-in-string "
+" "
+;; "
+(replace-regexp-in-string "
+$" ""
+(shell-command-to-string "/usr/games/fortune freebsd-tips")))))
  '(ispell-help-in-bufferp 'electric)
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
@@ -348,15 +357,15 @@
  '(message-fill-column nil)
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
- '(message-mode-hook
-   '((lambda nil
-       (local-set-key
-        (kbd "C-c C-f o")
-        'jrm/toggle-personal-work-message-fields))
-     flyspell-mode visual-line-mode))
+'(message-mode-hook
+'((lambda nil
+    (local-set-key
+     (kbd "C-c C-f o")
+     'jrm/toggle-personal-work-message-fields))
+  flyspell-mode visual-line-mode))
  '(message-setup-hook '(bbdb-insinuate-message mml-secure-message-sign))
- '(mm-attachment-override-types
-   '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
+'(mm-attachment-override-types
+'("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
  '(mm-discouraged-alternatives '("text/html" "text/richtext"))
  '(mm-encrypt-option 'guided)
  '(mm-inline-large-images 'resize)
@@ -367,15 +376,15 @@
  '(mml-secure-smime-signers '("B0D6EF9E"))
  '(mml-smime-passphrase-cache-expiry 604800)
  '(mml2015-passphrase-cache-expiry 604800)
- '(mode-line-format
-   '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
-     (vc-mode vc-mode)
-     "  " mode-line-modes mode-line-misc-info
-     (:eval
-      (car
-       (split-string system-name
-                     (rx "."))))
-     mode-line-end-spaces))
+'(mode-line-format
+'("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
+  (vc-mode vc-mode)
+  "  " mode-line-modes mode-line-misc-info
+  (:eval
+   (car
+    (split-string system-name
+                  (rx "."))))
+  mode-line-end-spaces))
  '(mode-require-final-newline nil)
  '(multi-eshell-name "*eshell*")
  '(multi-eshell-shell-function '(eshell))
@@ -383,50 +392,50 @@
  '(multi-term-scroll-to-bottom-on-output t)
  '(mweb-default-major-mode 'nxml-mode)
  '(mweb-filename-extensions '("php" "htm" "html" "problem"))
- '(mweb-tags
-   '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-     (js-mode "<script>" "</script>")
-     (css-mode "<style[^>]*>" "</style>")
-     (cperl-mode "<script type=\"loncapa/perl\">" "</script>")))
+'(mweb-tags
+'((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+  (js-mode "<script>" "</script>")
+  (css-mode "<style[^>]*>" "</style>")
+  (cperl-mode "<script type=\"loncapa/perl\">" "</script>")))
  '(nnir-method-default-engines '((nnimap . imap) (nntp . gmane) (nnml . find-grep)))
  '(org-agenda-files '("~/scm/org.git"))
  '(org-agenda-include-diary t)
  '(org-agenda-use-time-grid nil)
  '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
- '(org-capture-templates
-   '(("t" "Todo" entry
-      (file+headline "~/scm/org.git/capture.org" "Tasks")
-      "** TODO %u %?")
-     ("w" "Web Link" item
-      (file+headline "~/scm/org.git/capture.org" "Web Links")
-      "- %u %c
+'(org-capture-templates
+'(("t" "Todo" entry
+   (file+headline "~/scm/org.git/capture.org" "Tasks")
+   "** TODO %u %?")
+  ("w" "Web Link" item
+   (file+headline "~/scm/org.git/capture.org" "Web Links")
+   "- %u %c
  \"%i\"")))
  '(org-clock-persist 'history)
  '(org-default-notes-file "~/scm/org.git/capture.org")
  '(org-directory "~/scm/org.git")
  '(org-export-html-postamble nil)
  '(org-mobile-directory "~/.org-mobile")
- '(org-mode-hook
-   '(org-clock-load
-     #[nil "\300\301\302\303\304$\207"
-           [org-add-hook change-major-mode-hook org-show-block-all append local]
-           5]
-     #[nil "\300\301\302\303\304$\207"
-           [org-add-hook change-major-mode-hook org-babel-show-result-all append local]
-           5]
-     org-babel-result-hide-spec org-babel-hide-all-hashes org-bullets-mode))
- '(org-modules
-   '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
+'(org-mode-hook
+'(org-clock-load
+  #[nil "\300\301\302\303\304$\207"
+        [org-add-hook change-major-mode-hook org-show-block-all append local]
+        5]
+  #[nil "\300\301\302\303\304$\207"
+        [org-add-hook change-major-mode-hook org-babel-show-result-all append local]
+        5]
+  org-babel-result-hide-spec org-babel-hide-all-hashes org-bullets-mode))
+'(org-modules
+'(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
  '(org-refile-targets '((org-agenda-files :tag . "")))
  '(org-refile-use-outline-path t)
- '(org-todo-keywords
-   '((sequence "🏳 TODO(t!)" "|" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
+'(org-todo-keywords
+'((sequence "🏳 TODO(t!)" "|" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
  '(org-use-fast-todo-selection t)
- '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")))
- '(package-selected-packages
-   '(polymode pdf-tools org sauron git-gutter sunshine synosaurus define-word hydra swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+'(package-archives
+'(("gnu" . "https://elpa.gnu.org/packages/")
+  ("melpa" . "https://melpa.org/packages/")))
+'(package-selected-packages
+'(wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(ps-lpr-command "psif")
@@ -436,11 +445,11 @@
  '(reftex-plug-into-AUCTeX t)
  '(require-final-newline nil)
  '(ring-bell-function 'ignore)
- '(safe-local-variable-values
-   '((eval hl-line-mode t)
-     (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
- '(savehist-additional-variables
-   '(kill-ring regexp-search-ring search-ring tablist-named-filter))
+'(safe-local-variable-values
+'((eval hl-line-mode t)
+  (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
+'(savehist-additional-variables
+'(kill-ring regexp-search-ring search-ring tablist-named-filter))
  '(savehist-autosave-interval 60)
  '(savehist-mode t)
  '(scroll-bar-mode nil)
@@ -450,11 +459,11 @@
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
  '(shr-external-browser 'browse-url-conkeror)
- '(sml/replacer-regexp-list
-   '(("^~/scm/org\\.git" ":Org:")
-     ("^~/\\.emacs\\.d/" ":ED:")
-     ("^/sudo:.*:" ":SU:")
-     ("^/usr/home/jrm" "~")))
+'(sml/replacer-regexp-list
+'(("^~/scm/org\\.git" ":Org:")
+  ("^~/\\.emacs\\.d/" ":ED:")
+  ("^/sudo:.*:" ":SU:")
+  ("^/usr/home/jrm" "~")))
  '(sml/theme 'dark)
  '(sunshine-location "Halifax, CA")
  '(sunshine-show-icons t)
@@ -464,9 +473,11 @@
  '(term-scroll-show-maximum-output nil)
  '(term-unbind-key-list '("C-c b" "C-c t" "C-x" "M-x"))
  '(tls-checktrust 'ask)
- '(tls-program
-   '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
+'(tls-program
+'(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
  '(tool-bar-mode nil)
+ '(tramp-default-method "ssh")
+ '(tramp-use-ssh-controlmaster-options nil)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(twittering-oauth-invoke-browser t)
@@ -477,7 +488,8 @@
  '(vc-follow-symlinks t)
  '(vc-make-backup-files t)
  '(version-control t)
- '(web-mode-attr-indent-offset 2))
+ '(web-mode-attr-indent-offset 2)
+ '(wttrin-default-cities '("Halifax")))
 
 
 (custom-set-faces
