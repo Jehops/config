@@ -351,7 +351,7 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-c o b")         'org-iswitchb)
 (global-set-key (kbd "C-c o c")         'org-capture)
 (global-set-key (kbd "C-c o l")         'org-store-link)
-(global-set-key (kbd "C-c s")           'sunshine-forecast)
+(global-set-key (kbd "C-c s")           'wttrin)
 (global-set-key (kbd "C-c z")           'jrm/erc)
 
 ;; switching buffers
