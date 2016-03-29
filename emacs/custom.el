@@ -147,7 +147,7 @@
  '(flymake-log-level 3)
  '(gdb-many-windows t)
  '(git-commit-setup-hook
-   '(magit-revert-buffers git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-turn-on-flyspell git-commit-propertize-diff with-editor-usage-message))
+   '(git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-turn-on-flyspell git-commit-propertize-diff with-editor-usage-message))
  '(global-auto-revert-mode t)
  '(global-hl-line-mode nil)
  '(gnus-activate-level 4)
