@@ -143,7 +143,6 @@
  '(ess-swv-processor 'knitr)
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
- '(explicit-shell-file-name "/bin/sh")
  '(fill-column 80)
  '(flymake-log-level 3)
  '(gdb-many-windows t)
