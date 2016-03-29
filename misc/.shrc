@@ -1,0 +1,49 @@
+# .shrc - bourne shell startup file
+#
+# This file will be used if the shell is invoked for interactive use and
+# the environment variable ENV is set to this file.
+#
+# see also sh(1), environ(7).
+
+# file permissions: rwxr-xr-x
+#
+# umask	022
+
+# Enable the builtin emacs(1) command line editor in sh(1),
+# e.g. C-a -> beginning-of-line.
+set -o emacs
+
+export ALTERNATE_EDITOR=""
+export BLOCKSIZE=K
+export BROWSER=ck
+export CLUSTER=$HOME/.clusters/compute_nodes
+export GTK_IM_MODULE=xim
+export LESS='-i -X -P%f (%lt-%lb/%L %pb\%)$ -x4'
+export PAGER=less
+export PS1="${USER}@\h \w \$ "
+export SBCL_HOME=~/local/lib/sbcl
+export TEXDOCVIEW_html="ck %s"
+export TEXDOCVIEW_pdf="xpdf %s"
+export TEXEDIT="emacsclient +%d %s"
+export VISUAL=$EDITOR
+
+# aliases
+alias cp='cp -ip'
+alias e='emacs '
+alias ec='emacsclient -a= -n'
+alias g='grep --color=auto '
+alias j=jobs
+if [ $(uname) = 'Linux' ]; then
+     alias l='ls -ahl --color=auto'
+ else
+    alias l='CLICOLOR_FORCE=1 ls -Fahl'
+fi
+alias ll='CLICOLOR_FORCE=1 ls -Fhl'
+alias mv='mv -i'
+alias p=$PAGER
+alias pc='less -ir'
+alias rm='rm -i'
+alias s='sudo '
+alias se='sudoedit '
+alias svn='svnlite '
+alias x='exit'
