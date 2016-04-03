@@ -20,5 +20,5 @@
   XF86AudioLowerVolume
 "/usr/sbin/mixer vol +5  pcm +5"
   XF86AudioRaiseVolume
-"/home/jrm/local/bin/prnt_scr"
+"/home/jrm/local/bin/ptsn"
   Print
