@@ -119,6 +119,7 @@ define_webjump("ca","capa.mathstat.dal.ca");
 define_webjump("cr","http://www.mathstat.dal.ca/~selinger/4116/");
 define_webjump("d","https://duckduckgo.com/?q=%s");
 define_webjump("f","http://forums.freebsd.org/find-new/posts");
+define_webjump("fb","http://bugs.freebsd.org");
 define_webjump("fh","http://freebsd.org/handbook");
 define_webjump("fp","http://freshports.org/search.php?query=%s&search=go&num=100&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive");
 define_webjump("gc","http://www.google.com/codesearch?q=%s");
