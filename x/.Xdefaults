@@ -39,7 +39,7 @@ urxvt.scrollBar: false
 urxvt.scrollStyle: rxvt
 urxvt.sessionMgt: false
 urxvt.shading: 25
-urxvt.url-launcher: ck 
+urxvt.url-launcher: ck
 urxvt.visualBell: true
 
 ! Xft.antialias: true
