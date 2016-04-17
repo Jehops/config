@@ -1,5 +1,8 @@
 ! see /usr/local/include/X11/keysymdef.h
+! use xmodmap -pk to list the current kay map table
 ! use xev to get keycodes
+! use setxkbdmap to got back to default and xmodmap -e "..." -e ".." or xmodmap
+!  ~/.Xmodmap to test changes
 ! use xmodmap without arguments to see modifiers
 ! modifiers are shift, control, lock, mod1, mod2, mod3, mod4, mod5
 ! mod1 - mod5 are for free use
@@ -12,7 +15,7 @@
 ! > ~/.XCompose
 
 ! format of keycode/keysym lines:
-! [keycode|keysym] [<keycode|keysym>] = <1> <2> <3> <4>
+! [keycode|keysym] [<keycode>|<keysym>] = <1> <2> <3> <4>
 ! where <1> <key>, <2> <shift-key>, <3> <Mode_switch-key>
 ! <4> <shift-Mode_switch-key>
 
@@ -26,6 +29,12 @@ remove Lock = Caps_Lock
 keysym Caps_Lock = Control_L
 add Control = Control_L
 
+! only do this on bravo, because there is no menu key
+! make right control Mod2
+!remove Control = Control_R
+!keysym Control_R = Hyper_R
+!add Mod2 = Hyper_R
+
 ! make apostrophe right control
 keysym apostrophe = Control_R
 add Control = Control_R
@@ -33,20 +42,14 @@ add Control = Control_R
 ! make the semicolon key a dead key so new keys can be "composed"
 keysym semicolon = dead_horn colon
 
-! Make the "Windows" Key (keycode 115 on x220) Mode_Switch
-! (for non-latin chars below) and Mod4
+! Make the "Windows" Key (keycode 115 on X220, T530, and USB) Mode_Switch
+! (for non-latin chars below)
 keycode 115 = Mode_switch
 
-! Give the the "Menu" Key (keycode 117 on x220) the keysym Hyper_L and set it
+! Give the the "Menu" Key (keycode 117 on X220 and USB) the keysym Hyper_R and set it
 ! to the Mod2 modifier (for xbinkey stuff in ~/.xbinkeysrc).
-! Some key that's not on the x220 is already set to Hyper_L.  I could leave
-! but I'll remove it.
-keycode 128 =
-keycode 117 = Hyper_L
-add Mod2 = Hyper_L
-
-! Make left Control key the super key
-keycode 37 = Super_L
+keycode 117 = Hyper_R
+add Mod2 = Hyper_R
 
 ! currency
 keysym 4 = 4 dollar EuroSign sterling
