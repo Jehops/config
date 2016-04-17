@@ -12,13 +12,9 @@
   Mod2+k
 "/usr/local/bin/xautolock -locknow"
   Mod2+l
-"/usr/local/bin/sudo /usr/sbin/service moused restart"
-  Mod2+m
-"/usr/bin/killall npviewer.bin"
-  Mod2+n
 "/usr/sbin/mixer vol -5  pcm -5"
   XF86AudioLowerVolume
 "/usr/sbin/mixer vol +5  pcm +5"
   XF86AudioRaiseVolume
-"/home/jrm/local/bin/ptsn"
+"~/local/bin/ptsn"
   Print
