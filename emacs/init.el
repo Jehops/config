@@ -340,7 +340,7 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; general stuff
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
-(global-set-key (kbd "C-c i")           'swiper-helm)
+(global-set-key (kbd "C-c i")           'swiper)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
 (global-set-key (kbd "C-<tab>")         'helm-dabbrev)
