@@ -17,9 +17,8 @@
 (setf *mouse-focus-policy* :click)
 (setf *normal-border-width* 5)
 (setf *startup-message* nil)
-(setf *transient-border-width 5)
+(setf *transient-border-width* 5)
 (setf *window-border-style* :tight)
-(setf *window-border-width* 5)
 (setf *window-format* "^[^8*%n^]^[^9*%s^]%256t")
 
 (update-color-map (current-screen))

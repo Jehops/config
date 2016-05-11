@@ -148,6 +148,7 @@
  '(gdb-many-windows t)
  '(git-commit-setup-hook
    '(git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-turn-on-flyspell git-commit-propertize-diff with-editor-usage-message))
+ '(git-gutter:modified-sign "*")
  '(global-auto-revert-mode t)
  '(global-hl-line-mode nil)
  '(gnus-activate-level 4)
@@ -435,7 +436,7 @@ $" ""
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper-helm swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+'(rebox2 boxquote wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(ps-lpr-command "psif")
