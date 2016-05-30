@@ -249,6 +249,8 @@
      (holiday-fixed 11 11 "Remeberance Day (CA) Veteran's Day (US)")
      (holiday-float 11 4 4 "Thanksgiving (US)")
      (holiday-fixed 12 26 "Boxing Day (CA)")))
+ '(holiday-hebrew-holidays nil)
+ '(holiday-islamic-holidays nil)
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
    '("^\\*ESS\\*" "^\\*Compile" "^\\*mairix output*\\*" "^\\*helm"
@@ -430,13 +432,13 @@ $" ""
  '(org-refile-targets '((org-agenda-files :tag . "")))
  '(org-refile-use-outline-path t)
 '(org-todo-keywords
-'((sequence "🏳 TODO(t!)" "|" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
+'((sequence "🏳 TODO(t!)" "|" "⌛ INPROGRESS(i!)" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
  '(org-use-fast-todo-selection t)
 '(package-archives
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(rebox2 boxquote wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+'(calfw bug-hunter google-translate rebox2 boxquote wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(ps-lpr-command "psif")
