@@ -3,7 +3,7 @@ require("block-content-focus-change.js");
 require("daemon");
 require("dom-inspector");
 require("favicon");
-//require("key-kill"); // key-kill-mode is broken in xul >= 25
+require("key-kill");
 require("session.js");
 require("user-agent-policy");
 
@@ -50,13 +50,16 @@ define_key(text_keymap,"M-w", "jrm_cmd_copy");
 //define_key(isearch_keymap,"C-f","cmd_scrollRight");
 //define_key(isearch_keymap,"C-k","cmd_scrollRight");
 
-// key-kill-mode // How Do I Miss Thee?
-// key_kill_mode.test.push(build_url_regexp($domain = "github"));
-// key_kill_mode.test.push(build_url_regexp($domain = "google"));
-// key_kill_mode.test.push(build_url_regexp($domain = "imgur"));
-// key_kill_mode.test.push(build_url_regexp($domain = "slashdot"));
-// key_kill_mode.test.push(build_url_regexp($domain = "twitter"));
-// key_kill_mode.test.push(build_url_regexp($domain = "youtube"));
+// key-kill-mode
+key_kill_input_fields=true;
+key_kill_mode.test.push(/\/\/.*github\.com\//i);
+key_kill_mode.test.push(/\/\/.*google\.(ca|com)\//i);
+key_kill_mode.test.push(/\/\/.*google\.com\//i);
+key_kill_mode.test.push(/\/\/.*imgur\.com\//i);
+key_kill_mode.test.push(/\/\/.*slashdot\.org\//i);
+key_kill_mode.test.push(/\/\/.*twitter\.com\//i);
+key_kill_mode.test.push(/\/\/.*youtube\.com\//i);
+key_kill_mode.test.push(/\/\/forums\.freebsd\.org\//i);
 
 // misc
 // See http://conkeror.org/Focus
