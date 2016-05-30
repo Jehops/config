@@ -117,6 +117,25 @@ slashes."
   (define-key c-mode-map (kbd "C-c c") 'compile))
 (add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
 
+;; calfw -----------------------------------------------------------------------
+;; Only load calfw after custom-set variables are loaded, otherwise unwated
+;; holidays will be shown in calfw and calendar.  This happends because calfw
+;; calls (require 'holiday), which sets calendar-holidays using values of,
+;; e.g. holiday-bahai-holidays, before they are set to nil.
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'calfw)
+            (require 'calfw-cal)
+            (require 'calfw-org)
+
+            (defun jrm/open-calendar ()
+              (interactive)
+              (cfw:open-calendar-buffer
+               :contents-sources
+               (list
+                (cfw:org-create-source "Green")
+                (cfw:cal-create-source "Orange"))))))
+
 ;; company ---------------------------------------------------------------------
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -365,6 +384,7 @@ possible value for `erc-generate-log-file-name-function'."
  (kbd "C-c b")
  (defhydra hydra-buf (:color blue)
    "buf switch"
+   ("C"                         jrm/open-calendar           "cfw")
    ("c"                         calendar                    "cal")
    ("d"                         jrm/sb-dired                "dired")
    ("i"                         jrm/sb-erc                  "erc")
