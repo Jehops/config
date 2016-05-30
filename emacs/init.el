@@ -21,25 +21,25 @@
    (completing-read
     prompt
     (delq nil
-	  (mapcar
-	   (lambda (buf)
-	     (with-current-buffer buf
-	       (and (member major-mode mode-list) (buffer-name buf))))
-	   (buffer-list))) nil t)))
+          (mapcar
+           (lambda (buf)
+             (with-current-buffer buf
+               (and (member major-mode mode-list) (buffer-name buf))))
+           (buffer-list))) nil t)))
 
 (defun jrm/sb-dired   () (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
 (defun jrm/sb-erc     () (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
 (defun jrm/sb-eshell  () (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
 (defun jrm/sb-gnus    () (interactive) (jrm/sbm "Gnus: "   '(gnus-group-mode
-							     gnus-summary-mode
-							     gnus-article-mode
-							     message-mode)))
+                                                             gnus-summary-mode
+                                                             gnus-article-mode
+                                                             message-mode)))
 (defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
-							     magit-diff-mode)))
+                                                             magit-diff-mode)))
 (defun jrm/sb-pdf     () (interactive) (jrm/sbm "PDF: "    '(pdf-view-mode)))
 (defun jrm/sb-rt      () (interactive) (jrm/sbm "R/TeX: "  '(ess-mode
-							     inferior-ess-mode
-							     latex-mode)))
+                                                             inferior-ess-mode
+                                                             latex-mode)))
 (defun jrm/sb-term    () (interactive) (jrm/sbm "Term: "   '(term-mode)))
 (defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
 (defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
@@ -84,12 +84,12 @@ slashes."
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
 (add-hook 'after-init-hook
-	  (lambda ()
-	    (require 'ert)
-	    (ace-link-setup-default (kbd "C-,"))
-	    (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
- 	    (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
- 	    (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
+          (lambda ()
+            (require 'ert)
+            (ace-link-setup-default (kbd "C-,"))
+            (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
+            (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
+            (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
 
 ;; appointments in the diary ---------------------------------------------------
 ;; without after-init-hook, customized holiday-general-holidays is not respected
@@ -158,15 +158,15 @@ a file name of the form channel@network.txt.  This function is a
 possible value for `erc-generate-log-file-name-function'."
   (require 'erc-networks)
   (let ((file
-	 (concat
-	  (if target (s-replace "#" "" target))
-	  "@"
-	  (or (with-current-buffer buffer (erc-network-name)) server) ".txt")))
+         (concat
+          (if target (s-replace "#" "" target))
+          "@"
+          (or (with-current-buffer buffer (erc-network-name)) server) ".txt")))
     ;; we need a make-safe-file-name function.
     (convert-standard-filename file)))
 
 (add-hook 'window-configuration-change-hook
-	  (lambda () (setq erc-fill-column (- (window-width) 2))))
+          (lambda () (setq erc-fill-column (- (window-width) 2))))
 
 ;; eshell completions ----------------------------------------------------------
 (defun jrm/eshell-prompt ()
@@ -248,7 +248,7 @@ possible value for `erc-generate-log-file-name-function'."
     "Completion for 'pkg delete'."
     (pcomplete-opt "DfginqRxya")
     (while (pcomplete-here*
-	    (split-string (shell-command-to-string "pkg info -q") "\n" t))))
+            (split-string (shell-command-to-string "pkg info -q") "\n" t))))
    ((pcomplete-match "install" 1)
     "Completion for 'pkg install'."
     (pcomplete-opt "AfIMnFqRUy")
@@ -256,7 +256,7 @@ possible value for `erc-generate-log-file-name-function'."
       ;;(pcomplete-here* (pcomplete-dirs))
       (pcomplete-here*
        (split-string
-	(shell-command-to-string "pkg rquery -a '%n-%v'") "\n" t))))))
+        (shell-command-to-string "pkg rquery -a '%n-%v'") "\n" t))))))
 
 (defconst pcmpl-zfs-commands
   '("allow" "bookmark" "clone" "create" "destroy"
@@ -279,12 +279,12 @@ possible value for `erc-generate-log-file-name-function'."
     (pcomplete-opt "ldug"))))
 
 (add-hook 'eshell-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "C-l") (lambda () (interactive) (recenter 0)))))
+          (lambda ()
+            (local-set-key (kbd "C-l") (lambda () (interactive) (recenter 0)))))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
-	    (define-key eshell-mode-map (kbd "C-c C-r") 'helm-eshell-history)))
+            (define-key eshell-mode-map (kbd "C-c C-r") 'helm-eshell-history)))
 
 ;; ess -------------------------------------------------------------------------
 (require 'ess-site)
@@ -318,24 +318,24 @@ possible value for `erc-generate-log-file-name-function'."
   (interactive)
   (save-excursion
     (if (string-match (concat user-full-name " <" user-mail-address ">")
-		      (message-field-value "From" t))
-	(progn
-	  (message-remove-header "From")
-	  (message-add-header (concat "From: " user-full-name
-				      " <" user-work-mail-address ">"))
-	  (message-add-header (concat "X-Message-SMTP-Method: smtp "
-				      work-smtp-server " 587"))
-	  (unless (string-match (message-field-value "Gcc" t)
-				user-work-mail-folder)
-	    (message-remove-header "Gcc")
-	    (message-add-header (concat "Gcc: " user-work-mail-folder))))
+                      (message-field-value "From" t))
+        (progn
+          (message-remove-header "From")
+          (message-add-header (concat "From: " user-full-name
+                                      " <" user-work-mail-address ">"))
+          (message-add-header (concat "X-Message-SMTP-Method: smtp "
+                                      work-smtp-server " 587"))
+          (unless (string-match (message-field-value "Gcc" t)
+                                user-work-mail-folder)
+            (message-remove-header "Gcc")
+            (message-add-header (concat "Gcc: " user-work-mail-folder))))
       (message-remove-header "From")
       (message-add-header (concat "From: " user-full-name
-				  " <" user-mail-address ">"))
+                                  " <" user-mail-address ">"))
       (message-remove-header "X-Message-SMTP-Method")
       (unless (string-match (message-field-value "Gcc" t) "mail.misc")
-	(message-remove-header "Gcc")
-	(message-add-header "Gcc: mail.misc")))))
+        (message-remove-header "Gcc")
+        (message-add-header "Gcc: mail.misc")))))
 
 ;; google ----------------------------------------------------------------------
 (google-this-mode)
@@ -494,17 +494,17 @@ possible value for `erc-generate-log-file-name-function'."
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
-;; multi-web-mode for lon-capa problems ----------------------------------------
+;;multi-web-mode for lon-capa problems ----------------------------------------
 ;;(add-hook 'after-init-hook (lambda ()
-;;			     (multi-web-global-mode 1)))
+;;                             (multi-web-global-mode 1)))
 
 ;; nnmairix --------------------------------------------------------------------
 (require 'nnmairix)
 
 ;; noweb -----------------------------------------------------------------------
-;; (add-hook 'LaTeX-mode-hook '(lambda ()
-;; 			      (if (string-match "\\.Rnw\\'" buffer-file-name)
-;; 				  (setq fill-column 80))))
+;;(add-hook 'LaTeX-mode-hook '(lambda ()
+;;                              (if (string-match "\\.Rnw\\'" buffer-file-name)
+;;                                  (setq fill-column 80))))
 
 ;; org-mode --------------------------------------------------------------------
 (org-clock-persistence-insinuate)
@@ -567,7 +567,7 @@ possible value for `erc-generate-log-file-name-function'."
 (require 'sauron)
 
 ;;(setq sauron-watch-nicks '("jrm"))
-(setq sauron-watch-patterns '("jrm"))
+(setq sauron-watch-patterns '("\\bjrm\\b"))
 (setq sauron-nick-insensitivity 60)
 (setq sauron-hide-mode-line t)
 (setq sauron-modules
@@ -584,9 +584,8 @@ possible value for `erc-generate-log-file-name-function'."
 (sauron-start-hidden)
 
 ;; slime/swank -----------------------------------------------------------------
-;; only evaluate next two lines as needed
-;;(load (expand-file-name "~/quicklisp/slime-helper.el"))
-;;(setq inferior-lisp-program "~/local/bin/sbcl")
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "~/local/bin/sbcl")
 
 ;;(require 'slime)
 ;;(slime-setup '(slime-fancy))
@@ -600,7 +599,7 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; twittering-mode -------------------------------------------------------------
 (add-hook 'twittering-edit-mode-hook
-	  (lambda () (ispell-minor-mode) (flyspell-mode)))
+          (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 ;; undo-tree -------------------------------------------------------------------
 (global-undo-tree-mode)
@@ -614,7 +613,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; custom set varaibles --------------------------------------------------------
 ;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
 (advice-add 'custom-save-all
-	    :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
+            :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
