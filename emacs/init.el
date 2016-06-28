@@ -2,6 +2,8 @@
 (load-file "~/.emacs.d/secret.el")
 (package-initialize)
 
+;; (load-file "~/.emacs.d/exwm.el")
+
 ;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
       scpaste-scp-destination  "gly:/www/paste"
@@ -133,8 +135,8 @@ slashes."
               (cfw:open-calendar-buffer
                :contents-sources
                (list
-                (cfw:org-create-source "Green")
-                (cfw:cal-create-source "Orange"))))))
+                (cfw:org-create-source "OliveDrab4")
+                (cfw:cal-create-source "DarkOrange3"))))))
 
 ;; company ---------------------------------------------------------------------
 (add-hook 'after-init-hook 'global-company-mode)
@@ -284,7 +286,8 @@ possible value for `erc-generate-log-file-name-function'."
 
 (add-hook 'eshell-mode-hook
           (lambda ()
-            (define-key eshell-mode-map (kbd "C-c C-r") 'helm-eshell-history)))
+            (define-key eshell-mode-map
+              (kbd "C-c C-r") 'jrm/counsel-esh-history)))
 
 ;; ess -------------------------------------------------------------------------
 (require 'ess-site)
@@ -355,11 +358,23 @@ possible value for `erc-generate-log-file-name-function'."
   (define-key emacs-lisp-mode-map
     [remap completion-at-point] 'helm-lisp-completion-at-point))
 
+;; ido ------------------------------------------------------------------------
+;; (ido-mode t)
+;; (ido-everywhere 1)
+;; (ido-ubiquitous-mode 1)
+;; (ido-vertical-mode 1)
+;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+;; (setq ido-vertical-show-count t)
+
+;; helm-bibtex -----------------------------------------------------------------
+(setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
+
 ;; keybindings -----------------------------------------------------------------
 
 ;; general stuff
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
-(global-set-key (kbd "C-c i")           'swiper)
+(global-set-key (kbd "C-c l")           'list-packages)
+(global-set-key (kbd "C-c s")           'helm-swoop)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
 (global-set-key (kbd "C-<tab>")         'helm-dabbrev)
@@ -370,13 +385,13 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x K")           'kill-buffer-and-its-windows)
 (global-set-key (kbd "C-x o")           'ace-window)
 (global-set-key (kbd "C-0")             'buffer-fname-to-kill-ring)
-(global-set-key (kbd "C-c g")           'magit-status)
+(global-set-key (kbd "C-c m")           'magit-status)
 (global-set-key (kbd "C-c e c")         'multi-eshell)
 (global-set-key (kbd "C-c o a")         'org-agenda)
 (global-set-key (kbd "C-c o b")         'org-iswitchb)
 (global-set-key (kbd "C-c o c")         'org-capture)
 (global-set-key (kbd "C-c o l")         'org-store-link)
-(global-set-key (kbd "C-c s")           'wttrin)
+(global-set-key (kbd "C-c W")           'wttrin)
 (global-set-key (kbd "C-c z")           'jrm/erc)
 
 ;; switching buffers
@@ -465,6 +480,31 @@ possible value for `erc-generate-log-file-name-function'."
    ("r"                         git-gutter:revert-hunk      "revert-hunk")
    ("s"                         git-gutter:previous-hunk    "stage-hunk")
    ("q"                         nil                         "cancel")))
+
+;; Google
+(global-set-key
+ (kbd "C-c g")
+ (defhydra hydra-google (:color blue)
+   "Google"
+   ("RET" google-this                      "prompt")
+   ("SPC" google-this-noconfirm            "noconfirm")
+   ("f"   google-this-forecast             "forecast")
+   ("i"   google-this-lucky-and-insert-url "lucky+intert")
+   ("w"   google-this-word                 "word")
+   ("s"   google-this-symbol               "symbol")
+   ("e"   google-this-error                "error")
+   ("l"   google-this-line                 "line")
+   ("r"   google-this-region               "region")
+   ("m"   google-maps                      "maps")
+   ("T"   google-translate-at-point        "t8 point")
+   ("t"   google-translate-query-translate "t8")
+   ("R"   google-this-cpp-reference        "cpp-ref")
+   ("L"   google-this-lucky-search         "lucky")
+   ("R"   google-this-ray                  "ray")
+   ("q"   nil                              "cancel")))
+
+;; webjump
+(global-set-key (kbd "C-c j") 'webjump)
 
 (defun cperl-mode-keybindings ()
   "Additional keybindings for 'cperl-mode'."
@@ -566,9 +606,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;; sauron
 (require 'sauron)
 
-;;(setq sauron-watch-nicks '("jrm"))
-(setq sauron-watch-patterns '("\\bjrm\\b"))
-(setq sauron-nick-insensitivity 60)
+;; This is redundant because sauron-erc watches the current nick
+;;(setq sauron-watch-patterns '("\\bjrm\\b"))
+(setq sauron-nick-insensitivity 5)
 (setq sauron-hide-mode-line t)
 (setq sauron-modules
       '(sauron-erc sauron-org sauron-notifications sauron-twittering
@@ -581,6 +621,13 @@ possible value for `erc-generate-log-file-name-function'."
              (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
 
 (add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
+(add-hook 'sauron-event-block-functions
+  (lambda (origin prio msg &optional props)
+    (or
+     (string-match "^jrm has joined" msg)
+     (string-match "[[:alnum:]]+jrm" msg)
+     (string-match "jrm[[:alnum:]]+" msg)
+     (string-match "[[:alnum:]]+jrm[[:alnum:]]+" msg))))
 (sauron-start-hidden)
 
 ;; slime/swank -----------------------------------------------------------------
@@ -603,6 +650,49 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; undo-tree -------------------------------------------------------------------
 (global-undo-tree-mode)
+
+;; webjumps --------------------------------------------------------------------
+(setq webjump-sites
+      '(("aw" . "awarnach.mathstat.dal.ca")
+        ("about:blank" . "about:blank")
+        ("Brightspace" . "dal.ca/brightspace")
+        ("Cambridge Dictionaries Online" . [simple-query "dictionary.cambridge.org" "dictionary.cambridge.org/cmd_search.asp?searchword=" ""])
+        ("Capa" . "capa.mathstat.dal.ca")
+        ("Coindesk" . "www.coindesk.com")
+        ("Dictionary.com" . [simple-query "www.dictionary.com" "www.dictionary.com/cgi-bin/dict.pl?term=" "&db=*"])
+        ("DuckDuckGo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
+        ("Electronic Frontier Foundation" . "www.eff.org")
+        ("Emacs" . "www.gnu.org/software/emacs/emacs.html")
+        ("Emacs Wiki" . [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
+        ("FreeBSD Bugs" . "bugs.freebsd.org")
+        ("FreeBSD Handbook" . "freebsd.org/handbook")
+        ("FreeBSD Poreters Handbook" . "www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/book.html")
+        ("Freshports" . [simple-query "freshports.org" "http://freshports.org/search.php?query=%s&search=go&num=100&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive" ""])
+        ("Github" . "github.com")
+        ("Google" . [simple-query "www.google.com" "www.google.com/search?q=" ""])
+        ("Google Drive" . "drive.google.com")
+        ("Google Images" . [simple-query "images.google.com" "images.google.com/images?q=" ""])
+        ("Google Maps" . [simple-query "maps.google.com" "maps.google.com/?force=tt&q=" ""])
+        ("Google Plus" . "plus.google.com")
+        ("Google Scholar" . [simple-query "scholar.google.com" "scholar.google.com/scholar?q=" ""])
+        ("Home" . "ftfl.ca")
+        ("Merriam-Webster Dictionary" . [simple-query "www.m-w.com/dictionary" "www.m-w.com/cgi-bin/netdict?va=" ""])
+        ("Nagio" . "awarnach.mathstat.dal.ca/nagios")
+        ("Packages" . "pkg.awarnach.mathstat.dal.ca")
+        ("PC Financial" . "pcfinancial.ca")
+        ("RFC" . "www.ietf.org/rfc/rfc")
+        ("Stackoverflow" . [simple-query "stackoverflow.com" "stackoverflow.com/search?q" ""])
+        ("PGP Key Server" . [simple-query "pgp.mit.edu" "pgp.mit.edu:11371/pks/lookup?op=index&search=" ""])
+        ("Project Gutenberg" . webjump-to-gutenberg)
+        ("RBC" . "https://www1.royalbank.com/cgi-bin/rbaccess/rbunxcgi%3FF6=1%26F7=IB%26F21=IB%26F22=IB%26REQUEST=ClientSignin%26LANGUAGE=ENGLISH?_ga=1.223022555.1525730850.1448687611")
+        ("Roget's Internet Thesaurus" . [simple-query "www.thesaurus.com" "www.thesaurus.com/cgi-bin/htsearch?config=roget&words=" ""])
+        ("Savannah Emacs" . "savannah.gnu.org/projects/emacs")
+        ("Slashdot" . [simple-query "slashdot.org" "slashdot.org/search.pl?query=" ""])
+        ("Twitter" . "twitter.com")
+        ("US Patents" . [simple-query "www.uspto.gov/patft/" ,(concat "appft1.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF" "&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=0&f=S&l=50" "&TERM1=") "&FIELD1=&co1=AND&TERM2=&FIELD2=&d=PG01"])
+        ("Wikipedia" . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
+        ("Youtube" . [simple-query "www.youtube.com" "www.youtube.com/results?search_query=" ""])
+        ("ZNC". "https://ftfl.ca:2222")))
 
 ;; yasnippet -------------------------------------------------------------------
 ;; (yas-global-mode)
