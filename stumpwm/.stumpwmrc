@@ -93,8 +93,8 @@ specificed class and focus the selected window."
 
 (defcommand term () ()
   "Start urxvt or switch to it if it is already running."
-  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session \\
--d || tmux new-session\"" '(:class "URxvt")))
+  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux -2 att -d || \\
+tmux -2 new-session\"" '(:class "URxvt")))
 
 (defcommand web-browser () ()
   "Start Conkeror or switch to it if it is already running."
