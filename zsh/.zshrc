@@ -82,16 +82,17 @@ setopt pushd_ignore_dups
 setopt share_history # reloads the history whenever you use it
 
 # make characters like '/', '-' and '_' be word boundaries
-#autoload -Uz select-word-style
-#select-word-style bash
+autoload -Uz select-word-style
+select-word-style bash
 
-# completion stuff
+# completion
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
 compinit
 
 # aliases
 alias cp="cp -i"
+alias d="doas "
 alias e="emacs"
 alias ec="emacsclient -a= -n"
 alias g="grep --color=auto"
@@ -107,9 +108,11 @@ alias p=$PAGER
 alias pc="less -ir"
 #alias rdl="rdesktop -k en-us -g 1600x1015 -a 16 -r sound 129.173.33.182"
 alias rm="rm -i"
-alias s="sudo"
+alias s="sudo "
 alias se="sudoedit"
 alias svn="svnlite"
+alias ta="tmux -2 att -d "
+alias t="tmux -2 "
 alias x="exit"
 
 # plugins
