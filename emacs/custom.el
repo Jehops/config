@@ -194,9 +194,6 @@
  '(gnus-secondary-select-methods
    '((nntp "news.gmane.org"
            (nntp-port-number 563)
-           (nntp-open-connection-function nntp-open-tls-stream))
-     (nntp "news.freelists.org"
-           (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
  '(gnus-select-method '(nnml ""))
  '(gnus-started-hook '((lambda nil (gnus-topic-jump-to-topic "mail"))))
@@ -498,7 +495,7 @@ $" ""
  '(twittering-request-confirmation-on-posting t)
  '(twittering-use-master-password t)
  '(undo-tree-visualizer-timestamps t)
- '(uniquify-buffer-name-style 'forward nil (uniquify))
+ '(uniquify-buffer-name-style nil nil (uniquify))
  '(vc-follow-symlinks t)
  '(vc-make-backup-files t)
  '(version-control t)
