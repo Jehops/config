@@ -375,6 +375,20 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 ;; (setq ido-vertical-show-count t)
 
+;; igor -----------------------------------------------------------------------
+(flycheck-define-checker igor
+  "FreeBSD Documentation Project sanity checker.
+
+See URLs http://www.freebsd.org/docproj/ and
+http://www.freshports.org/textproc/igor/."
+  :command ("igor" "-X" source-inplace)
+  :error-parser flycheck-parse-checkstyle
+  :modes (nxml-mode)
+  :standard-input t)
+
+;; register the igor checker for automatic syntax checking
+(add-to-list 'flycheck-checkers 'igor 'append)
+
 ;; helm-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
 
