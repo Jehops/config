@@ -15,6 +15,9 @@
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; make quiting Emacs less interactive -----------------------------------------
+(add-hook 'kill-emacs-hook 'gnus-group-exit)
+
 ;; quick buffer switching by mode ----------------------------------------------
 ;; See hydra-buf below.
 (defun jrm/sbm (prompt mode-list)
