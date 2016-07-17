@@ -35,10 +35,16 @@
 (defun jrm/sb-dired   () (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
 (defun jrm/sb-erc     () (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
 (defun jrm/sb-eshell  () (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
-(defun jrm/sb-gnus    () (interactive) (jrm/sbm "Gnus: "   '(gnus-group-mode
-                                                             gnus-summary-mode
-                                                             gnus-article-mode
-                                                             message-mode)))
+(defun jrm/sb-gnus    ()
+  "Start Gnus if necessary, otherwise call jrm/sbm for Gnus buffers."
+  (interactive)
+  (if
+      (null (gnus-alive-p))
+      (when (y-or-n-p "Gnus is not running.  Start it? ") (gnus))
+    (jrm/sbm "Gnus: "   '(gnus-group-mode
+                          gnus-summary-mode
+                          gnus-article-mode
+                          message-mode))))
 (defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
                                                              magit-diff-mode)))
 (defun jrm/sb-pdf     () (interactive) (jrm/sbm "PDF: "    '(pdf-view-mode)))
