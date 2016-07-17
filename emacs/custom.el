@@ -174,6 +174,7 @@
  '(gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-level))
  '(gnus-inhibit-mime-unbuttonizing t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
+ '(gnus-interactive-exit nil)
  '(gnus-message-archive-group
    '((lambda
        (x)
