@@ -92,7 +92,8 @@ url_remoting_fn = load_url_in_new_buffer;
 xkcd_add_title = true;
 
 // session / user preferences
-session_pref("browser.download.manager.closeWhenDone",true);
+// browser.download.manager.closeWhenDone applies to built-in d/l window
+//session_pref("browser.download.manager.closeWhenDone",true);
 session_pref("full-screen-api.enabled",true);
 session_pref("general.useragent.compatMode.firefox",true);
 session_pref("layout.spellcheckDefault",1);
