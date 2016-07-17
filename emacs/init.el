@@ -637,20 +637,24 @@ http://www.freshports.org/textproc/igor/."
       '(sauron-erc sauron-org sauron-notifications sauron-twittering
                    sauron-jabber sauron-identica sauron-elfeed))
 
-(defun jrm/saruon-speak-erc (origin prio msg &optional props)
+(defun jrm/saruon-speak-erc (origin prio msg props)
+  "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
   (when (eq origin 'erc)
     (call-process-shell-command
      (concat "espeak " "\"ERC alert: "
              (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
 
-(add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
-(add-hook 'sauron-event-block-functions
-  (lambda (origin prio msg &optional props)
+(defun jrm/sauron-erc-events-to-block (origin prio msg props)
+  "When ORIGIN is erc with priority PRIO, match MSG to block it, ignoring PROPS."
+  (when (eq origin 'erc)
     (or
      (string-match "^jrm has joined" msg)
      (string-match "[[:alnum:]]+jrm" msg)
      (string-match "jrm[[:alnum:]]+" msg)
      (string-match "[[:alnum:]]+jrm[[:alnum:]]+" msg))))
+
+(add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
+(add-hook 'sauron-event-block-functions 'jrm/sauron-erc-events-to-block)
 (sauron-start-hidden)
 
 ;; slime/swank -----------------------------------------------------------------
