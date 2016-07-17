@@ -18,6 +18,12 @@ external_content_handlers.set("application/pdf","pv");
 external_content_handlers.set("video/*","mpv");
 external_content_handlers.set("text/*","emacsclient");
 
+// downloading
+// show download in a new buffer
+// download_buffer_automatic_open_target = OPEN_NEW_BUFFER;
+// don't automatically open the download window, use M-x download-show
+remove_hook("download_added_hook", open_download_buffer_automatically);
+
 // editing
 editor_shell_command = "emacsclient";
 view_source_use_external_editor = true;
