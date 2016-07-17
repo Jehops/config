@@ -91,6 +91,7 @@ autoload -Uz compinit
 compinit
 
 # aliases
+alias aw="ssh awarnach"
 alias cp="cp -i"
 alias d="doas "
 alias e="emacs"
