@@ -136,6 +136,7 @@ define_webjump("gd","http://drive.google.com");
 define_webjump("gi","http://images.google.com/images?q=%s");
 define_webjump("gh","http://github.com");
 define_webjump("gm","http://maps.google.ca/?force=tt&q=%s");
+define_webjump("gp","http://photos.google.com");
 define_webjump("gs","http://scholar.google.com/scholar?q=%s");
 define_webjump("gt","http://translate.google.com");
 define_webjump("h","https://ftfl.ca/bm/");
