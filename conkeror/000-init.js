@@ -106,16 +106,17 @@ session_pref("spellchecker.dictionary","en-CA");
 session_pref("xpinstall.whitelist.required",false);
 user_pref("devtools.debugger.remote-enabled",true);
 
-// user agent (via escondida via retroj)
+// user agent
 var user_agents = {
     "conkeror": null,
-    "linux-chromium": "Mozilla/5.0 (X11; U; Linux x86_64; en-US) " +
-        "AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.63" +
-        " Safari/534.3",
-    "linux-firefox": user_agent_firefox(),
+    "ipad": "Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 " +
+        "(KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25",
     "iphone": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; " +
         "en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 " +
-        "Mobile/8A293 Safari/6531.22.7"
+        "Mobile/8A293 Safari/6531.22.7",
+    "linux-chromium": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36" +
+        "(KHTML, like Gecko) Chrome/41.0.2228.0 Safari/4E423F",
+    "linux-firefox": user_agent_firefox()
 };
 
 // look into user_agent_policy
