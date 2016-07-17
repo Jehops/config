@@ -19,7 +19,6 @@
 (add-hook 'kill-emacs-hook 'gnus-group-exit)
 
 ;; quick buffer switching by mode ----------------------------------------------
-;; See hydra-buf below.
 (defun jrm/sbm (prompt mode-list)
   "PROMPT for buffers that have a major mode matching an element of MODE-LIST."
   (switch-to-buffer
@@ -301,6 +300,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;; ess -------------------------------------------------------------------------
 (require 'ess-site)
 
+;; flycheck --------------------------------------------------------------------
+(require 'flycheck)
+
 ;; flyspell --------------------------------------------------------------------
 ;; stop flyspell-auto-correct-word (which isn't affected by the customization
 ;; flyspell-auto-correct-binding) from hijacking C-.
@@ -367,7 +369,7 @@ possible value for `erc-generate-log-file-name-function'."
   (define-key emacs-lisp-mode-map
     [remap completion-at-point] 'helm-lisp-completion-at-point))
 
-;; ido ------------------------------------------------------------------------
+;; ido -------------------------------------------------------------------------
 ;; (ido-mode t)
 ;; (ido-everywhere 1)
 ;; (ido-ubiquitous-mode 1)
@@ -626,7 +628,7 @@ http://www.freshports.org/textproc/igor/."
         (bury-buffer)
       ad-do-it)))
 
-;; sauron
+;; sauron ----------------------------------------------------------------------
 (require 'sauron)
 
 ;; This is redundant because sauron-erc watches the current nick
