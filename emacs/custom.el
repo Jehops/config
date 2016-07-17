@@ -194,8 +194,12 @@
  '(gnus-secondary-select-methods
    '((nntp "news.gmane.org"
            (nntp-port-number 563)
+           (nntp-open-connection-function nntp-open-tls-stream))
+     (nntp "news.freelists.org"
+           (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
  '(gnus-select-method '(nnml ""))
+ '(gnus-started-hook '((lambda nil (gnus-topic-jump-to-topic "mail"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
  '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
  '(gnus-sum-thread-tree-false-root "⚇")
