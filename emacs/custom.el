@@ -33,6 +33,8 @@
  '(bbdb-mua-pop-up nil)
  '(before-save-hook '(time-stamp))
  '(blink-cursor-mode nil)
+ '(browse-kill-ring-highlight-current-entry t)
+ '(browse-kill-ring-show-preview nil)
  '(browse-url-browser-function 'browse-url-generic)
  '(browse-url-conkeror-program "ck")
  '(browse-url-generic-program "~/local/bin/ck")
@@ -144,6 +146,7 @@
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
  '(fill-column 80)
+ '(flycheck-xml-xmlstarlet-executable "/usr/local/bin/xml")
  '(flymake-log-level 3)
  '(gdb-many-windows t)
  '(git-commit-setup-hook
@@ -171,6 +174,7 @@
  '(gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-level))
  '(gnus-inhibit-mime-unbuttonizing t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
+ '(gnus-interactive-exit nil)
  '(gnus-message-archive-group
    '((lambda
        (x)
@@ -191,8 +195,12 @@
  '(gnus-secondary-select-methods
    '((nntp "news.gmane.org"
            (nntp-port-number 563)
+           (nntp-open-connection-function nntp-open-tls-stream))
+     (nntp "news.freelists.org"
+           (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
  '(gnus-select-method '(nnml ""))
+ '(gnus-started-hook '((lambda nil (gnus-topic-jump-to-topic "mail"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
  '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
  '(gnus-sum-thread-tree-false-root "⚇")
@@ -236,9 +244,9 @@
      (holiday-fixed 3 17 "St. Patrick's Day")
      (holiday-fixed 4 1 "April Fools' Day")
      (holiday-float 5 0 2 "Mother's Day")
-     (holiday-float 5 1 -1 "Memorial Day")
+     (holiday-float 5 1 -1 "Memorial Day (US)")
      (holiday-float 5 1 -1 "Victoria Day (CA)" 24)
-     (holiday-fixed 6 14 "Flag Day")
+     (holiday-fixed 6 14 "Flag Day (US)")
      (holiday-float 6 0 3 "Father's Day")
      (holiday-fixed 7 1 "Canada Day")
      (holiday-fixed 7 4 "Independence Day (US)")
@@ -249,6 +257,9 @@
      (holiday-fixed 11 11 "Remeberance Day (CA) Veteran's Day (US)")
      (holiday-float 11 4 4 "Thanksgiving (US)")
      (holiday-fixed 12 26 "Boxing Day (CA)")))
+ '(holiday-hebrew-holidays nil)
+ '(holiday-islamic-holidays nil)
+ '(htmlize-ignore-face-size nil)
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
    '("^\\*ESS\\*" "^\\*Compile" "^\\*mairix output*\\*" "^\\*helm"
@@ -348,6 +359,7 @@
 $" ""
 (shell-command-to-string "/usr/games/fortune freebsd-tips")))))
  '(ispell-help-in-bufferp 'electric)
+ '(ivy-height 30)
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
  '(kill-whole-line t)
@@ -412,9 +424,11 @@ $" ""
    "- %u %c
  \"%i\"")))
  '(org-clock-persist 'history)
+ '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
  '(org-directory "~/scm/org.git")
  '(org-export-html-postamble nil)
+ '(org-latex-pdf-process '("latexmk -f -pdf %f"))
  '(org-mobile-directory "~/.org-mobile")
 '(org-mode-hook
 '(org-clock-load
@@ -430,13 +444,13 @@ $" ""
  '(org-refile-targets '((org-agenda-files :tag . "")))
  '(org-refile-use-outline-path t)
 '(org-todo-keywords
-'((sequence "🏳 TODO(t!)" "|" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
+'((sequence "🏳 TODO(t!)" "|" "⌛ INPROGRESS(i!)" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
  '(org-use-fast-todo-selection t)
 '(package-archives
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(rebox2 boxquote wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit org-ac nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize highlight helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtexkey helm-bibtex helm-R hackernews goto-last-change google-translate google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring beacon bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+'(genrnc rnc-mode counsel calfw bug-hunter google-translate rebox2 boxquote wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex helm-R hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(ps-lpr-command "psif")
@@ -485,7 +499,7 @@ $" ""
  '(twittering-request-confirmation-on-posting t)
  '(twittering-use-master-password t)
  '(undo-tree-visualizer-timestamps t)
- '(uniquify-buffer-name-style 'forward nil (uniquify))
+ '(uniquify-buffer-name-style nil nil (uniquify))
  '(vc-follow-symlinks t)
  '(vc-make-backup-files t)
  '(version-control t)
@@ -616,8 +630,8 @@ $" ""
  '(org-agenda-structure ((t (:weight bold :foreground "tomato"))))
  '(org-block ((t (:foreground "#bbbbbc"))))
  '(org-block-background ((t (:background "#262626"))))
- '(org-block-begin-line ((t (:foreground "#888a85" :background "#252b2b"))))
- '(org-block-end-line ((t (:foreground "#888a85" :background "#252b2b"))))
+ '(org-block-begin-line ((t (:background "blue4" :foreground "#888a85"))))
+ '(org-block-end-line ((t (:background "blue4" :foreground "#888a85"))))
  '(org-date ((t (:foreground "DarkOrange4" :underline t))))
  '(org-done ((t (:bold t :foreground "ForestGreen"))))
  '(org-footnote ((t (:foreground "gray44" :underline t))))

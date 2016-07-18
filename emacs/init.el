@@ -2,6 +2,8 @@
 (load-file "~/.emacs.d/secret.el")
 (package-initialize)
 
+;; (load-file "~/.emacs.d/exwm.el")
+
 ;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
       scpaste-scp-destination  "gly:/www/paste"
@@ -13,33 +15,41 @@
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; make quiting Emacs less interactive -----------------------------------------
+(add-hook 'kill-emacs-hook 'gnus-group-exit)
+
 ;; quick buffer switching by mode ----------------------------------------------
-;; See hydra-buf below.
 (defun jrm/sbm (prompt mode-list)
   "PROMPT for buffers that have a major mode matching an element of MODE-LIST."
   (switch-to-buffer
    (completing-read
     prompt
     (delq nil
-	  (mapcar
-	   (lambda (buf)
-	     (with-current-buffer buf
-	       (and (member major-mode mode-list) (buffer-name buf))))
-	   (buffer-list))) nil t)))
+          (mapcar
+           (lambda (buf)
+             (with-current-buffer buf
+               (and (member major-mode mode-list) (buffer-name buf))))
+           (buffer-list))) nil t)))
 
 (defun jrm/sb-dired   () (interactive) (jrm/sbm "Dired: "  '(dired-mode)))
 (defun jrm/sb-erc     () (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
 (defun jrm/sb-eshell  () (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
-(defun jrm/sb-gnus    () (interactive) (jrm/sbm "Gnus: "   '(gnus-group-mode
-							     gnus-summary-mode
-							     gnus-article-mode
-							     message-mode)))
+(defun jrm/sb-gnus    ()
+  "Start Gnus if necessary, otherwise call jrm/sbm for Gnus buffers."
+  (interactive)
+  (if
+      (null (gnus-alive-p))
+      (when (y-or-n-p "Gnus is not running.  Start it? ") (gnus))
+    (jrm/sbm "Gnus: "   '(gnus-group-mode
+                          gnus-summary-mode
+                          gnus-article-mode
+                          message-mode))))
 (defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
-							     magit-diff-mode)))
+                                                             magit-diff-mode)))
 (defun jrm/sb-pdf     () (interactive) (jrm/sbm "PDF: "    '(pdf-view-mode)))
 (defun jrm/sb-rt      () (interactive) (jrm/sbm "R/TeX: "  '(ess-mode
-							     inferior-ess-mode
-							     latex-mode)))
+                                                             inferior-ess-mode
+                                                             latex-mode)))
 (defun jrm/sb-term    () (interactive) (jrm/sbm "Term: "   '(term-mode)))
 (defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
 (defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
@@ -84,12 +94,12 @@ slashes."
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
 (add-hook 'after-init-hook
-	  (lambda ()
-	    (require 'ert)
-	    (ace-link-setup-default (kbd "C-,"))
-	    (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
- 	    (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
- 	    (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
+          (lambda ()
+            (require 'ert)
+            (ace-link-setup-default (kbd "C-,"))
+            (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
+            (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
+            (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
 
 ;; appointments in the diary ---------------------------------------------------
 ;; without after-init-hook, customized holiday-general-holidays is not respected
@@ -117,6 +127,25 @@ slashes."
   (define-key c-mode-map (kbd "C-c c") 'compile))
 (add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
 
+;; calfw -----------------------------------------------------------------------
+;; Only load calfw after custom-set variables are loaded, otherwise unwated
+;; holidays will be shown in calfw and calendar.  This happends because calfw
+;; calls (require 'holiday), which sets calendar-holidays using values of,
+;; e.g. holiday-bahai-holidays, before they are set to nil.
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'calfw)
+            (require 'calfw-cal)
+            (require 'calfw-org)
+
+            (defun jrm/open-calendar ()
+              (interactive)
+              (cfw:open-calendar-buffer
+               :contents-sources
+               (list
+                (cfw:org-create-source "OliveDrab4")
+                (cfw:cal-create-source "DarkOrange3"))))))
+
 ;; company ---------------------------------------------------------------------
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -139,15 +168,15 @@ a file name of the form channel@network.txt.  This function is a
 possible value for `erc-generate-log-file-name-function'."
   (require 'erc-networks)
   (let ((file
-	 (concat
-	  (if target (s-replace "#" "" target))
-	  "@"
-	  (or (with-current-buffer buffer (erc-network-name)) server) ".txt")))
+         (concat
+          (if target (s-replace "#" "" target))
+          "@"
+          (or (with-current-buffer buffer (erc-network-name)) server) ".txt")))
     ;; we need a make-safe-file-name function.
     (convert-standard-filename file)))
 
 (add-hook 'window-configuration-change-hook
-	  (lambda () (setq erc-fill-column (- (window-width) 2))))
+          (lambda () (setq erc-fill-column (- (window-width) 2))))
 
 ;; eshell completions ----------------------------------------------------------
 (defun jrm/eshell-prompt ()
@@ -229,7 +258,7 @@ possible value for `erc-generate-log-file-name-function'."
     "Completion for 'pkg delete'."
     (pcomplete-opt "DfginqRxya")
     (while (pcomplete-here*
-	    (split-string (shell-command-to-string "pkg info -q") "\n" t))))
+            (split-string (shell-command-to-string "pkg info -q") "\n" t))))
    ((pcomplete-match "install" 1)
     "Completion for 'pkg install'."
     (pcomplete-opt "AfIMnFqRUy")
@@ -237,7 +266,7 @@ possible value for `erc-generate-log-file-name-function'."
       ;;(pcomplete-here* (pcomplete-dirs))
       (pcomplete-here*
        (split-string
-	(shell-command-to-string "pkg rquery -a '%n-%v'") "\n" t))))))
+        (shell-command-to-string "pkg rquery -a '%n-%v'") "\n" t))))))
 
 (defconst pcmpl-zfs-commands
   '("allow" "bookmark" "clone" "create" "destroy"
@@ -260,15 +289,19 @@ possible value for `erc-generate-log-file-name-function'."
     (pcomplete-opt "ldug"))))
 
 (add-hook 'eshell-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "C-l") (lambda () (interactive) (recenter 0)))))
+          (lambda ()
+            (local-set-key (kbd "C-l") (lambda () (interactive) (recenter 0)))))
 
 (add-hook 'eshell-mode-hook
           (lambda ()
-	    (define-key eshell-mode-map (kbd "C-c C-r") 'helm-eshell-history)))
+            (define-key eshell-mode-map
+              (kbd "C-c C-r") 'jrm/counsel-esh-history)))
 
 ;; ess -------------------------------------------------------------------------
 (require 'ess-site)
+
+;; flycheck --------------------------------------------------------------------
+(require 'flycheck)
 
 ;; flyspell --------------------------------------------------------------------
 ;; stop flyspell-auto-correct-word (which isn't affected by the customization
@@ -299,24 +332,24 @@ possible value for `erc-generate-log-file-name-function'."
   (interactive)
   (save-excursion
     (if (string-match (concat user-full-name " <" user-mail-address ">")
-		      (message-field-value "From" t))
-	(progn
-	  (message-remove-header "From")
-	  (message-add-header (concat "From: " user-full-name
-				      " <" user-work-mail-address ">"))
-	  (message-add-header (concat "X-Message-SMTP-Method: smtp "
-				      work-smtp-server " 587"))
-	  (unless (string-match (message-field-value "Gcc" t)
-				user-work-mail-folder)
-	    (message-remove-header "Gcc")
-	    (message-add-header (concat "Gcc: " user-work-mail-folder))))
+                      (message-field-value "From" t))
+        (progn
+          (message-remove-header "From")
+          (message-add-header (concat "From: " user-full-name
+                                      " <" user-work-mail-address ">"))
+          (message-add-header (concat "X-Message-SMTP-Method: smtp "
+                                      work-smtp-server " 587"))
+          (unless (string-match (message-field-value "Gcc" t)
+                                user-work-mail-folder)
+            (message-remove-header "Gcc")
+            (message-add-header (concat "Gcc: " user-work-mail-folder))))
       (message-remove-header "From")
       (message-add-header (concat "From: " user-full-name
-				  " <" user-mail-address ">"))
+                                  " <" user-mail-address ">"))
       (message-remove-header "X-Message-SMTP-Method")
       (unless (string-match (message-field-value "Gcc" t) "mail.misc")
-	(message-remove-header "Gcc")
-	(message-add-header "Gcc: mail.misc")))))
+        (message-remove-header "Gcc")
+        (message-add-header "Gcc: mail.misc")))))
 
 ;; google ----------------------------------------------------------------------
 (google-this-mode)
@@ -336,11 +369,37 @@ possible value for `erc-generate-log-file-name-function'."
   (define-key emacs-lisp-mode-map
     [remap completion-at-point] 'helm-lisp-completion-at-point))
 
+;; ido -------------------------------------------------------------------------
+;; (ido-mode t)
+;; (ido-everywhere 1)
+;; (ido-ubiquitous-mode 1)
+;; (ido-vertical-mode 1)
+;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+;; (setq ido-vertical-show-count t)
+
+;; igor -----------------------------------------------------------------------
+(flycheck-define-checker igor
+  "FreeBSD Documentation Project sanity checker.
+
+See URLs http://www.freebsd.org/docproj/ and
+http://www.freshports.org/textproc/igor/."
+  :command ("igor" "-X" source-inplace)
+  :error-parser flycheck-parse-checkstyle
+  :modes (nxml-mode)
+  :standard-input t)
+
+;; register the igor checker for automatic syntax checking
+(add-to-list 'flycheck-checkers 'igor 'append)
+
+;; helm-bibtex -----------------------------------------------------------------
+(setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
+
 ;; keybindings -----------------------------------------------------------------
 
 ;; general stuff
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
-(global-set-key (kbd "C-c i")           'swiper)
+(global-set-key (kbd "C-c l")           'list-packages)
+(global-set-key (kbd "C-c s")           'helm-swoop)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
 (global-set-key (kbd "C-<tab>")         'helm-dabbrev)
@@ -351,13 +410,13 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x K")           'kill-buffer-and-its-windows)
 (global-set-key (kbd "C-x o")           'ace-window)
 (global-set-key (kbd "C-0")             'buffer-fname-to-kill-ring)
-(global-set-key (kbd "C-c g")           'magit-status)
+(global-set-key (kbd "C-c m")           'magit-status)
 (global-set-key (kbd "C-c e c")         'multi-eshell)
 (global-set-key (kbd "C-c o a")         'org-agenda)
 (global-set-key (kbd "C-c o b")         'org-iswitchb)
 (global-set-key (kbd "C-c o c")         'org-capture)
 (global-set-key (kbd "C-c o l")         'org-store-link)
-(global-set-key (kbd "C-c s")           'wttrin)
+(global-set-key (kbd "C-c W")           'wttrin)
 (global-set-key (kbd "C-c z")           'jrm/erc)
 
 ;; switching buffers
@@ -365,6 +424,7 @@ possible value for `erc-generate-log-file-name-function'."
  (kbd "C-c b")
  (defhydra hydra-buf (:color blue)
    "buf switch"
+   ("C"                         jrm/open-calendar           "cfw")
    ("c"                         calendar                    "cal")
    ("d"                         jrm/sb-dired                "dired")
    ("i"                         jrm/sb-erc                  "erc")
@@ -446,6 +506,31 @@ possible value for `erc-generate-log-file-name-function'."
    ("s"                         git-gutter:previous-hunk    "stage-hunk")
    ("q"                         nil                         "cancel")))
 
+;; Google
+(global-set-key
+ (kbd "C-c g")
+ (defhydra hydra-google (:color blue)
+   "Google"
+   ("RET" google-this                      "prompt")
+   ("SPC" google-this-noconfirm            "noconfirm")
+   ("f"   google-this-forecast             "forecast")
+   ("i"   google-this-lucky-and-insert-url "lucky+intert")
+   ("w"   google-this-word                 "word")
+   ("s"   google-this-symbol               "symbol")
+   ("e"   google-this-error                "error")
+   ("l"   google-this-line                 "line")
+   ("r"   google-this-region               "region")
+   ("m"   google-maps                      "maps")
+   ("T"   google-translate-at-point        "t8 point")
+   ("t"   google-translate-query-translate "t8")
+   ("R"   google-this-cpp-reference        "cpp-ref")
+   ("L"   google-this-lucky-search         "lucky")
+   ("R"   google-this-ray                  "ray")
+   ("q"   nil                              "cancel")))
+
+;; webjump
+(global-set-key (kbd "C-c j") 'webjump)
+
 (defun cperl-mode-keybindings ()
   "Additional keybindings for 'cperl-mode'."
   (local-set-key (kbd "C-c c") 'cperl-check-syntax)
@@ -474,17 +559,17 @@ possible value for `erc-generate-log-file-name-function'."
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
-;; multi-web-mode for lon-capa problems ----------------------------------------
+;;multi-web-mode for lon-capa problems ----------------------------------------
 ;;(add-hook 'after-init-hook (lambda ()
-;;			     (multi-web-global-mode 1)))
+;;                             (multi-web-global-mode 1)))
 
 ;; nnmairix --------------------------------------------------------------------
 (require 'nnmairix)
 
 ;; noweb -----------------------------------------------------------------------
-;; (add-hook 'LaTeX-mode-hook '(lambda ()
-;; 			      (if (string-match "\\.Rnw\\'" buffer-file-name)
-;; 				  (setq fill-column 80))))
+;;(add-hook 'LaTeX-mode-hook '(lambda ()
+;;                              (if (string-match "\\.Rnw\\'" buffer-file-name)
+;;                                  (setq fill-column 80))))
 
 ;; org-mode --------------------------------------------------------------------
 (org-clock-persistence-insinuate)
@@ -543,30 +628,40 @@ possible value for `erc-generate-log-file-name-function'."
         (bury-buffer)
       ad-do-it)))
 
-;; sauron
+;; sauron ----------------------------------------------------------------------
 (require 'sauron)
 
-;;(setq sauron-watch-nicks '("jrm"))
-(setq sauron-watch-patterns '("jrm"))
-(setq sauron-nick-insensitivity 60)
+;; This is redundant because sauron-erc watches the current nick
+;;(setq sauron-watch-patterns '("\\bjrm\\b"))
+(setq sauron-nick-insensitivity 5)
 (setq sauron-hide-mode-line t)
 (setq sauron-modules
       '(sauron-erc sauron-org sauron-notifications sauron-twittering
                    sauron-jabber sauron-identica sauron-elfeed))
 
-(defun jrm/saruon-speak-erc (origin prio msg &optional props)
+(defun jrm/saruon-speak-erc (origin prio msg props)
+  "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
   (when (eq origin 'erc)
     (call-process-shell-command
      (concat "espeak " "\"ERC alert: "
              (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
 
+(defun jrm/sauron-erc-events-to-block (origin prio msg props)
+  "When ORIGIN is erc with priority PRIO, match MSG to block it, ignoring PROPS."
+  (when (eq origin 'erc)
+    (or
+     (string-match "^jrm has joined" msg)
+     (string-match "[[:alnum:]]+jrm" msg)
+     (string-match "jrm[[:alnum:]]+" msg)
+     (string-match "[[:alnum:]]+jrm[[:alnum:]]+" msg))))
+
 (add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
+(add-hook 'sauron-event-block-functions 'jrm/sauron-erc-events-to-block)
 (sauron-start-hidden)
 
 ;; slime/swank -----------------------------------------------------------------
-;; only evaluate next two lines as needed
-;;(load (expand-file-name "~/quicklisp/slime-helper.el"))
-;;(setq inferior-lisp-program "~/local/bin/sbcl")
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "~/local/bin/sbcl")
 
 ;;(require 'slime)
 ;;(slime-setup '(slime-fancy))
@@ -580,10 +675,54 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; twittering-mode -------------------------------------------------------------
 (add-hook 'twittering-edit-mode-hook
-	  (lambda () (ispell-minor-mode) (flyspell-mode)))
+          (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 ;; undo-tree -------------------------------------------------------------------
 (global-undo-tree-mode)
+
+;; webjumps --------------------------------------------------------------------
+(setq webjump-sites
+      '(("aw" . "awarnach.mathstat.dal.ca")
+        ("about:blank" . "about:blank")
+        ("Brightspace" . "dal.ca/brightspace")
+        ("Cambridge Dictionaries Online" . [simple-query "dictionary.cambridge.org" "dictionary.cambridge.org/cmd_search.asp?searchword=" ""])
+        ("Capa" . "capa.mathstat.dal.ca")
+        ("Coindesk" . "www.coindesk.com")
+        ("Dictionary.com" . [simple-query "www.dictionary.com" "www.dictionary.com/cgi-bin/dict.pl?term=" "&db=*"])
+        ("DuckDuckGo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
+        ("Electronic Frontier Foundation" . "www.eff.org")
+        ("Emacs" . "www.gnu.org/software/emacs/emacs.html")
+        ("Emacs Wiki" . [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
+        ("FreeBSD Bugs" . "bugs.freebsd.org")
+        ("FreeBSD Forums" . "https://forums.freebsd.org/find-new/5741072/posts")
+        ("FreeBSD Handbook" . "freebsd.org/handbook")
+        ("FreeBSD Porters Handbook" . "www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/book.html")
+        ("Freshports" . [simple-query "freshports.org" "http://freshports.org/search.php?query=%s&search=go&num=100&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive" ""])
+        ("Github" . "github.com")
+        ("Google" . [simple-query "www.google.com" "www.google.com/search?q=" ""])
+        ("Google Drive" . "drive.google.com")
+        ("Google Images" . [simple-query "images.google.com" "images.google.com/images?q=" ""])
+        ("Google Maps" . [simple-query "maps.google.com" "maps.google.com/?force=tt&q=" ""])
+        ("Google Plus" . "plus.google.com")
+        ("Google Scholar" . [simple-query "scholar.google.com" "scholar.google.com/scholar?q=" ""])
+        ("Home" . "ftfl.ca")
+        ("Merriam-Webster Dictionary" . [simple-query "www.m-w.com/dictionary" "www.m-w.com/cgi-bin/netdict?va=" ""])
+        ("Nagio" . "awarnach.mathstat.dal.ca/nagios")
+        ("Packages" . "pkg.awarnach.mathstat.dal.ca")
+        ("PC Financial" . "pcfinancial.ca")
+        ("RFC" . "www.ietf.org/rfc/rfc")
+        ("Stackoverflow" . [simple-query "stackoverflow.com" "stackoverflow.com/search?q" ""])
+        ("PGP Key Server" . [simple-query "pgp.mit.edu" "pgp.mit.edu:11371/pks/lookup?op=index&search=" ""])
+        ("Project Gutenberg" . webjump-to-gutenberg)
+        ("RBC" . "https://www1.royalbank.com/cgi-bin/rbaccess/rbunxcgi%3FF6=1%26F7=IB%26F21=IB%26F22=IB%26REQUEST=ClientSignin%26LANGUAGE=ENGLISH?_ga=1.223022555.1525730850.1448687611")
+        ("Roget's Internet Thesaurus" . [simple-query "www.thesaurus.com" "www.thesaurus.com/cgi-bin/htsearch?config=roget&words=" ""])
+        ("Savannah Emacs" . "savannah.gnu.org/projects/emacs")
+        ("Slashdot" . [simple-query "slashdot.org" "slashdot.org/search.pl?query=" ""])
+        ("Twitter" . "twitter.com")
+        ("US Patents" . [simple-query "www.uspto.gov/patft/" ,(concat "appft1.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF" "&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=0&f=S&l=50" "&TERM1=") "&FIELD1=&co1=AND&TERM2=&FIELD2=&d=PG01"])
+        ("Wikipedia" . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
+        ("Youtube" . [simple-query "www.youtube.com" "www.youtube.com/results?search_query=" ""])
+        ("ZNC". "https://ftfl.ca:2222")))
 
 ;; yasnippet -------------------------------------------------------------------
 ;; (yas-global-mode)
@@ -594,7 +733,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; custom set varaibles --------------------------------------------------------
 ;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
 (advice-add 'custom-save-all
-	    :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
+            :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)

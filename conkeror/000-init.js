@@ -3,7 +3,7 @@ require("block-content-focus-change.js");
 require("daemon");
 require("dom-inspector");
 require("favicon");
-//require("key-kill"); // key-kill-mode is broken in xul >= 25
+require("key-kill");
 require("session.js");
 require("user-agent-policy");
 
@@ -17,6 +17,12 @@ url_completion_use_bookmarks = true;
 external_content_handlers.set("application/pdf","pv");
 external_content_handlers.set("video/*","mpv");
 external_content_handlers.set("text/*","emacsclient");
+
+// downloading
+// show download in a new buffer
+// download_buffer_automatic_open_target = OPEN_NEW_BUFFER;
+// don't automatically open the download window, use M-x download-show
+remove_hook("download_added_hook", open_download_buffer_automatically);
 
 // editing
 editor_shell_command = "emacsclient";
@@ -50,13 +56,16 @@ define_key(text_keymap,"M-w", "jrm_cmd_copy");
 //define_key(isearch_keymap,"C-f","cmd_scrollRight");
 //define_key(isearch_keymap,"C-k","cmd_scrollRight");
 
-// key-kill-mode // How Do I Miss Thee?
-// key_kill_mode.test.push(build_url_regexp($domain = "github"));
-// key_kill_mode.test.push(build_url_regexp($domain = "google"));
-// key_kill_mode.test.push(build_url_regexp($domain = "imgur"));
-// key_kill_mode.test.push(build_url_regexp($domain = "slashdot"));
-// key_kill_mode.test.push(build_url_regexp($domain = "twitter"));
-// key_kill_mode.test.push(build_url_regexp($domain = "youtube"));
+// key-kill-mode
+key_kill_input_fields=true;
+key_kill_mode.test.push(/\/\/.*github\.com\//i);
+key_kill_mode.test.push(/\/\/.*google\.(ca|com)\//i);
+key_kill_mode.test.push(/\/\/.*google\.com\//i);
+key_kill_mode.test.push(/\/\/.*imgur\.com\//i);
+key_kill_mode.test.push(/\/\/.*slashdot\.org\//i);
+key_kill_mode.test.push(/\/\/.*twitter\.com\//i);
+key_kill_mode.test.push(/\/\/.*youtube\.com\//i);
+key_kill_mode.test.push(/\/\/forums\.freebsd\.org\//i);
 
 // misc
 // See http://conkeror.org/Focus
@@ -83,7 +92,8 @@ url_remoting_fn = load_url_in_new_buffer;
 xkcd_add_title = true;
 
 // session / user preferences
-session_pref("browser.download.manager.closeWhenDone",true);
+// browser.download.manager.closeWhenDone applies to built-in d/l window
+//session_pref("browser.download.manager.closeWhenDone",true);
 session_pref("full-screen-api.enabled",true);
 session_pref("general.useragent.compatMode.firefox",true);
 session_pref("layout.spellcheckDefault",1);
@@ -96,16 +106,17 @@ session_pref("spellchecker.dictionary","en-CA");
 session_pref("xpinstall.whitelist.required",false);
 user_pref("devtools.debugger.remote-enabled",true);
 
-// user agent (via escondida via retroj)
+// user agent
 var user_agents = {
     "conkeror": null,
-    "linux-chromium": "Mozilla/5.0 (X11; U; Linux x86_64; en-US) " +
-        "AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.63" +
-        " Safari/534.3",
-    "linux-firefox": user_agent_firefox(),
+    "ipad": "Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 " +
+        "(KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25",
     "iphone": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; " +
         "en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 " +
-        "Mobile/8A293 Safari/6531.22.7"
+        "Mobile/8A293 Safari/6531.22.7",
+    "linux-chromium": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36" +
+        "(KHTML, like Gecko) Chrome/41.0.2228.0 Safari/4E423F",
+    "linux-firefox": user_agent_firefox()
 };
 
 // look into user_agent_policy
@@ -127,6 +138,7 @@ define_webjump("gd","http://drive.google.com");
 define_webjump("gi","http://images.google.com/images?q=%s");
 define_webjump("gh","http://github.com");
 define_webjump("gm","http://maps.google.ca/?force=tt&q=%s");
+define_webjump("gp","http://photos.google.com");
 define_webjump("gs","http://scholar.google.com/scholar?q=%s");
 define_webjump("gt","http://translate.google.com");
 define_webjump("h","https://ftfl.ca/bm/");

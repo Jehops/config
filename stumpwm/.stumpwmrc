@@ -1,10 +1,11 @@
 ;; -*-lisp-*-
 
-;;(require 'swank)
-;;(swank:create-server)
-
 (in-package :stumpwm)
 ;;(in-package :stumpwm.floating-group)
+
+;; Uncommenting these two lines causes StumpWM to crash
+;;(require 'swank)
+;;(swank:create-server)
 
 (setf *colors* (append *colors* (list "Orange2" "Gray52")))
 (setf *input-window-gravity* :bottom-right)
@@ -22,7 +23,6 @@
 (setf *window-format* "^[^8*%n^]^[^9*%s^]%256t")
 
 (update-color-map (current-screen))
-
 (set-focus-color "Orange2")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,8 +93,8 @@ specificed class and focus the selected window."
 
 (defcommand term () ()
   "Start urxvt or switch to it if it is already running."
-  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux attach-session \\
--d || tmux new-session\"" '(:class "URxvt")))
+  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux -2 att -d || \\
+tmux -2 new-session\"" '(:class "URxvt")))
 
 (defcommand web-browser () ()
   "Start Conkeror or switch to it if it is already running."
@@ -103,8 +103,10 @@ specificed class and focus the selected window."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
+(define-key *root-map* (kbd "SPC")      "fnext")
 (define-key *root-map* (kbd "M-r")      "reload")
 (define-key *root-map* (kbd "M-x")      "colon")
+(define-key *root-map* (kbd "0")        "remove-split")
 (define-key *root-map* (kbd "1")        "only")
 (define-key *root-map* (kbd "2")        "vsplit")
 (define-key *root-map* (kbd "3")        "hsplit")
