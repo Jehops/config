@@ -110,6 +110,8 @@ alias rm="rm -i"
 alias s="sudo"
 alias se="sudoedit"
 alias svn="svnlite"
+alias ta="tmux -2 att -d "
+alias t="tmux -2 "
 alias x="exit"
 
 # plugins
