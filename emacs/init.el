@@ -7,6 +7,7 @@
 ;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
       scpaste-scp-destination  "gly:/www/paste"
+      scpaste-user-name        "jrm"
       org-irc-link-to-logs     t)
 
 ;; enable some functions that are disabled by default --------------------------
@@ -355,8 +356,6 @@ possible value for `erc-generate-log-file-name-function'."
 (google-this-mode)
 
 ;; helm ------------------------------------------------------------------------
-(helm-mode 1)
-(helm-flx-mode +1)
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
 (define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
@@ -377,6 +376,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 ;; (setq ido-vertical-show-count t)
 
+;; helm-bibtex -----------------------------------------------------------------
+(setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
+
 ;; igor -----------------------------------------------------------------------
 (flycheck-define-checker igor
   "FreeBSD Documentation Project sanity checker.
@@ -390,9 +392,6 @@ http://www.freshports.org/textproc/igor/."
 
 ;; register the igor checker for automatic syntax checking
 (add-to-list 'flycheck-checkers 'igor 'append)
-
-;; helm-bibtex -----------------------------------------------------------------
-(setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
 
 ;; keybindings -----------------------------------------------------------------
 
@@ -631,13 +630,11 @@ http://www.freshports.org/textproc/igor/."
 ;; sauron ----------------------------------------------------------------------
 (require 'sauron)
 
-;; This is redundant because sauron-erc watches the current nick
-;;(setq sauron-watch-patterns '("\\bjrm\\b"))
 (setq sauron-nick-insensitivity 5)
 (setq sauron-hide-mode-line t)
 (setq sauron-modules
-      '(sauron-erc sauron-org sauron-notifications sauron-twittering
-                   sauron-jabber sauron-identica sauron-elfeed))
+     '(sauron-erc sauron-org sauron-notifications sauron-twittering
+                  sauron-jabber sauron-identica sauron-elfeed))
 
 (defun jrm/saruon-speak-erc (origin prio msg props)
   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
