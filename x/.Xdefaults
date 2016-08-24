@@ -48,8 +48,18 @@ urxvt.visualBell: true
 ! Xft.dpi: 75
 ! Xft.rgba: none
 
-XLock.background: Black
-XLock.foreground: White
+XLock.background: black
+XLock.description: off
+XLock.dpmsoff: 10
+XLock.echokey: *
+XLock.echokeys: on
+XLock.foreground: white
+XLock.info: 
+XLock.lockdelay: 60
+XLock.showdate: off
+XLock.timeout: 10
+XLock.usefirst: off
+XLock.mode: blank
 
 XTerm*metaSendsEscape: True
 XTerm*font: -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
