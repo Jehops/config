@@ -154,6 +154,7 @@
  '(git-gutter:modified-sign "*")
  '(global-auto-revert-mode t)
  '(global-hl-line-mode nil)
+ '(global-visible-mark-mode t)
  '(gnus-activate-level 4)
  '(gnus-after-getting-new-news-hook '(gnus-display-time-event-handler))
  '(gnus-agent nil)
@@ -450,7 +451,7 @@ $" ""
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(genrnc rnc-mode counsel calfw bug-hunter google-translate rebox2 boxquote wttrin polymode pdf-tools org sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m ess scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex helm-R hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+'(visible-mark ivy-hydra ess org beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin polymode pdf-tools sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds magit key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib dired+ conkeror-minor-mode buffer-move browse-kill-ring bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(ps-lpr-command "psif")
@@ -493,19 +494,19 @@ $" ""
  '(tool-bar-mode nil)
  '(tramp-default-method "ssh")
  '(tramp-use-ssh-controlmaster-options nil)
+ '(transient-mark-mode nil)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(twittering-oauth-invoke-browser t)
  '(twittering-request-confirmation-on-posting t)
  '(twittering-use-master-password t)
  '(undo-tree-visualizer-timestamps t)
- '(uniquify-buffer-name-style nil nil (uniquify))
+ '(uniquify-buffer-name-style 'forward nil (uniquify))
  '(vc-follow-symlinks t)
  '(vc-make-backup-files t)
  '(version-control t)
  '(web-mode-attr-indent-offset 2)
  '(wttrin-default-cities '("Halifax")))
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -667,6 +668,7 @@ $" ""
  '(term-color-blue ((t (:background "DodgerBlue1" :foreground "DodgerBlue1"))))
  '(tooltip ((t (:background "lightyellow" :foreground "black" :inherit 'variable-pitch))))
  '(trailing-whitespace ((((class color) (background light)) (:background "red1")) (((class color) (background dark)) (:background "red1")) (t (:inverse-video t))))
+ '(visible-mark-active ((t (:background "goldenrod" :foreground "black"))))
  '(which-func ((t (:inherit (font-lock-function-name-face) :weight normal))))
  '(widget-button ((t (:bold t))))
  '(widget-field ((t (:foreground "orange" :background "gray30"))))
