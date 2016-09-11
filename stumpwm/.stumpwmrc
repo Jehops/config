@@ -158,14 +158,15 @@ tmux -2 new-session\"" '(:class "URxvt")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-load-path "~/scm/swm-freebsd-battery-modeline.git")
-(add-to-load-path "~/scm/swm-freebsd-cpu-modeline.git")
-(add-to-load-path "~/scm/swm-freebsd-mem-modeline.git")
-(add-to-load-path "~/scm/swm-freebsd-net-modeline.git")
-(add-to-load-path "~/scm/swm-freebsd-volume-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-battery-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-cpu-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-mem-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-net-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-volume-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-zfs-modeline.git")
+(add-to-load-path "~/scm/swm/swm-maildir-modeline.git")
 (add-to-load-path "~/scm/nm/stumpwm-contrib.git/modeline/hostname")
-(add-to-load-path "~/scm/swm-maildir-modeline.git")
-(add-to-load-path "~/scm/swm-freebsd-zfs-modeline.git")
+
 
 (load-module "swm-freebsd-battery-modeline")
 (load-module "swm-freebsd-cpu-modeline")
@@ -173,8 +174,8 @@ tmux -2 new-session\"" '(:class "URxvt")))
 (load-module "swm-freebsd-net-modeline")
 (load-module "swm-freebsd-volume-modeline")
 (load-module "swm-freebsd-zfs-modeline")
-(load-module "hostname")
 (load-module "swm-maildir-modeline")
+(load-module "hostname")
 
 (let ((hostname (car (split-string (machine-instance) ". "))))
   (cond ((string= hostname "phe")
