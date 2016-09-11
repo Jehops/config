@@ -362,7 +362,7 @@
 ;; "
 (replace-regexp-in-string "
 $" ""
-(shell-command-to-string "/usr/games/fortune freebsd-tips")))))
+(shell-command-to-string "/usr/bin/fortune freebsd-tips")))))
  '(ispell-help-in-bufferp 'electric)
  '(ivy-mode nil)
  '(kill-do-not-save-duplicates t)
