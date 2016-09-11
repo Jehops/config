@@ -1,6 +1,7 @@
 ;; exwm stuff
 (setq display-time-default-load-average nil)
-(display-time-mode t)
+;;(setq display-time-mode t)
+(server-start)
 
 (require 'exwm)
 (require 'exwm-config)
@@ -14,7 +15,7 @@
             (exwm-workspace-rename-buffer exwm-class-name)))
 
 (exwm-input-set-key (kbd "C-t r") #'exwm-reset)
-(exwm-input-set-key (kbd "s-r") #'exwm-reset)
+(exwm-input-set-key (kbd "H-r")   #'exwm-reset)
 (exwm-input-set-key (kbd "C-t w") #'exwm-workspace-switch)
 
 (dotimes (i exwm-workspace-number)
