@@ -1,5 +1,5 @@
 ! see /usr/local/include/X11/keysymdef.h
-! use xmodmap -pk to list the current kay map table
+! use xmodmap -pk to list the current key map table
 ! use xev to get keycodes
 ! use setxkbdmap to go back to default and xmodmap -e "..." -e ".." or xmodmap
 !  ~/.Xmodmap to test changes
