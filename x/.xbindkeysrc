@@ -2,9 +2,9 @@
   Mod2+1
 "/usr/local/bin/xrandr --output VGA1 --auto --above LVDS1 --output LVDS1 --auto"
   Mod2+2
-"xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768"
+"/usr/local/bin/xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768"
   Mod2+3
-"/usr/local/bin/xautolock -disable; xset dpms 0 0 0"
+"/usr/local/bin/xautolock -disable"
   Mod2+d
 "/usr/local/bin/xautolock -enable"
   Mod2+e
