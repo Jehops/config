@@ -132,6 +132,7 @@ define_webjump("f","http://forums.freebsd.org/find-new/posts");
 define_webjump("fb","http://bugs.freebsd.org");
 define_webjump("fh","http://freebsd.org/handbook");
 define_webjump("fp","http://freshports.org/search.php?query=%s&search=go&num=100&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive");
+define_webjump("fs","http://svnweb.freebsd.org");
 define_webjump("gc","http://www.google.com/codesearch?q=%s");
 define_webjump("gd","http://drive.google.com");
 define_webjump("gi","http://images.google.com/images?q=%s");
