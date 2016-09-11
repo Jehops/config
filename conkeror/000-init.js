@@ -60,7 +60,6 @@ define_key(text_keymap,"M-w", "jrm_cmd_copy");
 key_kill_input_fields=true;
 key_kill_mode.test.push(/\/\/.*github\.com\//i);
 key_kill_mode.test.push(/\/\/.*google\.(ca|com)\//i);
-key_kill_mode.test.push(/\/\/.*google\.com\//i);
 key_kill_mode.test.push(/\/\/.*imgur\.com\//i);
 key_kill_mode.test.push(/\/\/.*slashdot\.org\//i);
 key_kill_mode.test.push(/\/\/.*twitter\.com\//i);
