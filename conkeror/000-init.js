@@ -1,5 +1,5 @@
 require("block-content-focus-change.js");
-// ^ stop focus stealing (still breaks Google docs and other sites?)
+// ^ stop focus stealing (still breaks Google docs and other sites)
 require("daemon");
 require("dom-inspector");
 require("favicon");
