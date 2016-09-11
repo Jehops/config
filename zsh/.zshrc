@@ -115,9 +115,9 @@ alias j=jobs
 if [ $(uname) = 'Linux' ]; then
     alias l="ls -ahl --color=auto"
 else
-    alias l="CLICOLOR_FORCE=1 ls -Fahl"
+    alias l="env CLICOLOR_FORCE=1 ls -Fahlo"
 fi
-alias ll="CLICOLOR_FORCE=1 ls -Fhl"
+alias ll="env CLICOLOR_FORCE=1 ls -Fhl"
 alias mv="mv -i"
 alias p=$PAGER
 alias pc="less -ir"
