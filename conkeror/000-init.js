@@ -67,8 +67,7 @@ key_kill_mode.test.push(/\/\/.*youtube\.com\//i);
 key_kill_mode.test.push(/\/\/forums\.freebsd\.org\//i);
 
 // misc
-// See http://conkeror.org/Focus
-block_content_focus_change_duration = 40;
+block_content_focus_change_duration = 40; // See conkeror.org/Focus
 can_kill_last_buffer = true; // using daemon mode
 cwd = get_home_directory();
 cwd.append("dl");
