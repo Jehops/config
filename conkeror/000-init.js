@@ -282,11 +282,12 @@ interactive(
 
 function ekr (cc) {
     if (typeof cc === 'undefined') { cc = read_from_clipboard(); }
+    // dumpln(cc);
     cc = cc.replace(/([^\\]*)\\([^\\]*)/g, "$1\\\\$2");
-    cc = cc.replace('"', '\\"', "g");
-    cc = cc.replace("'", "'\\''", "g");
+    cc = cc.replace(/"/g, '\\"');
+    cc = cc.replace(/'/g, "'\\''");
     var ecc = "emacsclient -e '(kill-new \"" + cc + "\")' > /dev/null";
-    //dumpln(ecc);
+    // dumpln(ecc);
     shell_command_blind(ecc);
 }
 
