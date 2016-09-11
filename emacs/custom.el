@@ -369,7 +369,9 @@ $" ""
  '(kill-ring-max 100)
  '(kill-whole-line t)
  '(magit-delete-by-moving-to-trash nil)
- '(mail-sources '((maildir :path "/home/jrm/mail/")))
+'(mail-sources
+'((maildir :path "/home/jrm/mail/")
+  (maildir :path "/home/jrm/mail/noalert/")))
  '(mail-user-agent 'gnus-user-agent)
  '(menu-bar-mode nil)
  '(message-fill-column nil)
