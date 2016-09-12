@@ -657,11 +657,11 @@ http://www.freshports.org/textproc/igor/."
 (sauron-start-hidden)
 
 ;; slime/swank -----------------------------------------------------------------
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "~/local/bin/sbcl")
 
 ;;(require 'slime)
-;;(slime-setup '(slime-fancy))
+(slime-setup '(slime-fancy))
 
 ;; smart mode line -------------------------------------------------------------
 ;; without after-init-hook there is always a warning about loading a theme
