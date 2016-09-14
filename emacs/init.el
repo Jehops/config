@@ -1,5 +1,5 @@
-(add-to-list 'load-path "~/.emacs.d/elisp/")
-(load-file "~/.emacs.d/secret.el")
+(setq gc-cons-threshold most-positive-fixnum)
+
 (package-initialize)
 
 ;; (load-file "~/.emacs.d/exwm.el")
@@ -734,3 +734,5 @@ http://www.freshports.org/textproc/igor/."
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+(setq gc-cons-threshold 800000)
