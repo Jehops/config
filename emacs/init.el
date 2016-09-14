@@ -17,7 +17,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; make quiting Emacs less interactive -----------------------------------------
-(add-hook 'kill-emacs-hook 'gnus-group-exit)
+(with-eval-after-load "gnus" (add-hook 'kill-emacs-hook 'gnus-group-exit))
 
 ;; quick buffer switching by mode ----------------------------------------------
 (defun jrm/sbm (prompt mode-list)
@@ -154,7 +154,7 @@ slashes."
 (toggle-diredp-find-file-reuse-dir 1)
 
 ;; erc -------------------------------------------------------------------------
-(require 'erc-tex)
+(with-eval-after-load "erc" (require 'erc-tex))
 
 (defun jrm/erc ()
   "Connect to irc networks set up in my znc bouncer."
@@ -299,7 +299,7 @@ possible value for `erc-generate-log-file-name-function'."
               (kbd "C-c C-r") 'jrm/counsel-esh-history)))
 
 ;; ess -------------------------------------------------------------------------
-(require 'ess-site)
+;;(require 'ess-site)
 
 ;; flycheck --------------------------------------------------------------------
 (require 'flycheck)
@@ -308,7 +308,6 @@ possible value for `erc-generate-log-file-name-function'."
 ;; stop flyspell-auto-correct-word (which isn't affected by the customization
 ;; flyspell-auto-correct-binding) from hijacking C-.
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
-
 
 ;; garbage callection ----------------------------------------------------------
 ;;(defun jrm/minibuffer-setup-hook ()
@@ -563,7 +562,7 @@ http://www.freshports.org/textproc/igor/."
 ;;                             (multi-web-global-mode 1)))
 
 ;; nnmairix --------------------------------------------------------------------
-(require 'nnmairix)
+(with-eval-after-load "gnus" (require 'nnmairix))
 
 ;; noweb -----------------------------------------------------------------------
 ;;(add-hook 'LaTeX-mode-hook '(lambda ()
