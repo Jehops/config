@@ -110,6 +110,7 @@ alias cp="cp -i"
 alias d="doas "
 alias e="emacs"
 alias ec="emacsclient -a= -n"
+alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
