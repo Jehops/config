@@ -112,6 +112,9 @@ alias e="emacs"
 alias ec="emacsclient -a= -n"
 alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
+alias gd="cd ~/scm/freebsd/freebsd-docs.svn/"
+alias gp="cd ~/scm/freebsd/freebsd-ports.svn/"
+alias gs="cd ~/scm/freebsd/freebsd-src.svn/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
     alias l="ls -ahl --color=auto"
