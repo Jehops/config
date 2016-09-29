@@ -157,7 +157,6 @@
  '(global-hl-line-mode nil)
  '(gnus-activate-level 4)
  '(gnus-after-getting-new-news-hook '(gnus-display-time-event-handler))
- '(gnus-agent nil)
  '(gnus-article-date-headers '(local))
  '(gnus-article-mode-hook visual-line-mode)
  '(gnus-article-prepare-hook
