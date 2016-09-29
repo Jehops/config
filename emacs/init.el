@@ -342,14 +342,27 @@ possible value for `erc-generate-log-file-name-function'."
           (unless (string-match (message-field-value "Gcc" t)
                                 user-work-mail-folder)
             (message-remove-header "Gcc")
-            (message-add-header (concat "Gcc: " user-work-mail-folder))))
-      (message-remove-header "From")
-      (message-add-header (concat "From: " user-full-name
-                                  " <" user-mail-address ">"))
-      (message-remove-header "X-Message-SMTP-Method")
-      (unless (string-match (message-field-value "Gcc" t) "mail.misc")
-        (message-remove-header "Gcc")
-        (message-add-header "Gcc: mail.misc")))))
+            (message-add-header (concat "Gcc: " user-work-mail-folder)))))
+
+          ((string-match (concat user-full-name " <" user-work-mail-address ">")
+                         (message-field-value "From" t))
+           (progn
+             (message-remove-header "From")
+             (message-add-header (concat "From: " user-full-name
+                                         " <" user-FreeBSD-mail-address ">"))
+             (message-remove-header "X-Message-SMTP-Method")
+             (unless (string-match (message-field-value "Gcc" t)
+                                   user-FreeBSD-mail-folder)
+               (message-remove-header "Gcc")
+               (message-add-header (concat "Gcc: " user-FreeBSD-mail-folder)))))
+          (t
+           (message-remove-header "From")
+           (message-add-header (concat "From: " user-full-name
+                                       " <" user-mail-address ">"))
+           (message-remove-header "X-Message-SMTP-Method")
+           (unless (string-match (message-field-value "Gcc" t) "mail.misc")
+             (message-remove-header "Gcc")
+             (message-add-header "Gcc: mail.misc"))))))
 
 ;; google ----------------------------------------------------------------------
 (google-this-mode)
