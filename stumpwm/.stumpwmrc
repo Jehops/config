@@ -4,8 +4,8 @@
 ;;(in-package :stumpwm.floating-group)
 
 ;; Uncommenting these two lines causes StumpWM to crash
-;;(require 'swank)
-;;(swank:create-server)
+(require 'swank)
+(swank:create-server)
 
 (setf *colors* (append *colors* (list "Orange2" "Gray52")))
 (setf *input-window-gravity* :bottom-right)
