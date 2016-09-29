@@ -2,6 +2,8 @@
 
 (package-initialize)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+(load-file "~/.emacs.d/secret.el")
 ;; (load-file "~/.emacs.d/exwm.el")
 
 ;; variables that can't be customized ------------------------------------------
@@ -179,7 +181,7 @@ possible value for `erc-generate-log-file-name-function'."
 (add-hook 'window-configuration-change-hook
           (lambda () (setq erc-fill-column (- (window-width) 2))))
 
-;; eshell completions ----------------------------------------------------------
+;; eshell ----------------------------------------------------------------------
 (defun jrm/eshell-prompt ()
   "Customize the eshell prompt."
   (concat
@@ -331,7 +333,7 @@ possible value for `erc-generate-log-file-name-function'."
   "Toggle message fields for personal and work messages."
   (interactive)
   (save-excursion
-    (if (string-match (concat user-full-name " <" user-mail-address ">")
+    (cond ((string-match (concat user-full-name " <" user-mail-address ">")
                       (message-field-value "From" t))
         (progn
           (message-remove-header "From")
@@ -645,8 +647,8 @@ http://www.freshports.org/textproc/igor/."
 (setq sauron-nick-insensitivity 5)
 (setq sauron-hide-mode-line t)
 (setq sauron-modules
-     '(sauron-erc sauron-org sauron-notifications sauron-twittering
-                  sauron-jabber sauron-identica sauron-elfeed))
+      '(sauron-erc sauron-org sauron-notifications sauron-twittering
+                   sauron-jabber sauron-identica sauron-elfeed))
 
 (defun jrm/saruon-speak-erc (origin prio msg props)
   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
