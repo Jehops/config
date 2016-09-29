@@ -68,6 +68,7 @@
  '(dired-listing-switches "-alh")
  '(dired-use-ls-dired nil)
  '(diredp-hide-details-initially-flag nil)
+ '(diredp-wrap-around-flag nil)
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(erc-fill-column 144)
