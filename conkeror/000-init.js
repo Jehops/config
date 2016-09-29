@@ -125,6 +125,7 @@ define_webjump("b","about:blank");
 define_webjump("bb","dalhousie.blackboard.com");
 define_webjump("c","http://calendar.google.com");
 define_webjump("ca","capa.mathstat.dal.ca");
+define_webjump("cg","https://www.freebsd.org/doc/en_US.ISO8859-1/articles/committers-guide/article.html");
 define_webjump("cr","http://www.mathstat.dal.ca/~selinger/4116/");
 define_webjump("d","https://duckduckgo.com/?q=%s");
 define_webjump("f","http://forums.freebsd.org/find-new/posts");
