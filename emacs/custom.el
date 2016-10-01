@@ -167,12 +167,10 @@
         (max 72
              (frame-width))
         t))))
- '(gnus-article-sort-functions '(gnus-article-sort-by-date))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode hl-line-mode nnmairix-group-mode-hook))
- '(gnus-group-sort-function '(gnus-group-sort-by-alphabet gnus-group-sort-by-level))
  '(gnus-inhibit-mime-unbuttonizing t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
  '(gnus-interactive-exit nil)
@@ -203,7 +201,7 @@
  '(gnus-select-method '(nnml ""))
  '(gnus-started-hook '((lambda nil (gnus-topic-jump-to-topic "mail"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
- '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number gnus-thread-sort-by-date))
+ '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number))
  '(gnus-sum-thread-tree-false-root "⚇")
  '(gnus-sum-thread-tree-indent "   ")
  '(gnus-sum-thread-tree-leaf-with-other "├――►")
@@ -216,8 +214,7 @@
 ")
  '(gnus-summary-mode-hook '(hl-line-mode nnmairix-summary-mode-hook))
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
- '(gnus-thread-sort-functions
-   '(gnus-thread-sort-by-number gnus-thread-sort-by-most-recent-date))
+ '(gnus-thread-sort-functions '((not gnus-thread-sort-by-number)))
  '(gnus-treat-fill-long-lines nil)
  '(gnutls-min-prime-bits 1024)
  '(gnutls-trustfiles
