@@ -415,6 +415,11 @@ $" ""
   (css-mode "<style[^>]*>" "</style>")
   (cperl-mode "<script type=\"loncapa/perl\">" "</script>")))
  '(nnir-method-default-engines '((nnimap . imap) (nntp . gmane) (nnml . find-grep)))
+'(notmuch-saved-searches
+'((:name "Dal" :query "folder:Dal" :key "d" :sort-order newest-first :search-type tree)
+  (:name "FreeBSD" :query "folder:FreeBSD" :key "f" :sort-order newest-first :search-type tree)
+  (:name "mail.misc" :query "folder:mail/misc" :key "m" :sort-order newest-first :search-type tree)
+  (:name "Month" :query "date:30days..today" :key "M" :sort-order newest-first :search-type tree)))
  '(nxml-attribute-indent 2)
  '(org-agenda-files '("~/scm/org.git"))
  '(org-agenda-include-diary t)
@@ -455,7 +460,7 @@ $" ""
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(pdf-tools dired+ magit visible-mark ivy-hydra ess org beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin polymode sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
+'(notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess org beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin polymode sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics ac-dabbrev w3m scpaste flycheck-package flycheck helm-flx smart-mode-line org-bullets google-maps znc yaml-mode undo-tree twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line ac-math ac-ispell ac-helm ac-c-headers))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(ps-lpr-command "psif")
