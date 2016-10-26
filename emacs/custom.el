@@ -434,13 +434,14 @@ $" ""
  '(org-agenda-use-time-grid nil)
  '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
 '(org-capture-templates
-'(("t" "Todo" entry
+'(("t" "TODO" plain
    (file+headline "~/scm/org.git/capture.org" "Tasks")
-   "** TODO %u %?")
+   "** 🏳 TODO %?
+- State \"🏳 TODO\"     from              %u
+%a" :table-line-pos t)
   ("w" "Web Link" item
    (file+headline "~/scm/org.git/capture.org" "Web Links")
-   "- %u %c
- \"%i\"")))
+   "- %u %c")))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
@@ -459,7 +460,7 @@ $" ""
   org-babel-result-hide-spec org-babel-hide-all-hashes org-bullets-mode))
 '(org-modules
 '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
- '(org-refile-targets '((org-agenda-files :tag . "")))
+ '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path t)
 '(org-todo-keywords
 '((sequence "🏳 TODO(t!)" "|" "⌛ INPROGRESS(i!)" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
