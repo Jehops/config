@@ -43,7 +43,7 @@ esac
 
 # set the prompt; for escape sequences see zshmisc(1)
 #PS1=$'%{\e[31m%}%n%{\e[0m%}@%{\e[32m%}%m%{\e[0m%}|%B%~%b%# '
-PS1='%F{red}%n%f@%F{green}%m%f %F{yellow}%B%~%b%f %# '
+PROMPT='%F{red}%n%f@%F{green}%m%f %F{yellow}%B%~%b%f $(git_super_status) %# '
 
 # environment variables; also see login.conf(5)
 export ALTERNATE_EDITOR=""
@@ -136,3 +136,4 @@ alias x="exit"
 
 # plugins
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/scm/nm/zsh-git-prompt.git/zshrc.sh
