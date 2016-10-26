@@ -19,7 +19,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; make quiting Emacs less interactive -----------------------------------------
-(with-eval-after-load "gnus" (add-hook 'kill-emacs-hook 'gnus-group-exit))
+(with-eval-after-load "gnus-group" (add-hook 'kill-emacs-hook 'gnus-group-exit))
 
 ;; quick buffer switching by mode ----------------------------------------------
 (defun jrm/sbm (prompt mode-list)
@@ -38,17 +38,29 @@
 (defun jrm/sb-erc     () (interactive) (jrm/sbm "Erc: "    '(erc-mode)))
 (defun jrm/sb-eshell  () (interactive) (jrm/sbm "Eshell: " '(eshell-mode)))
 (defun jrm/sb-gnus    ()
-  "Start Gnus if necessary, otherwise call jrm/sbm for Gnus buffers."
+  "Start Gnus if necessary, otherwise call jrm/sb for Gnus
+buffers."
   (interactive)
   (if
       (null (gnus-alive-p))
-      (when (y-or-n-p "Gnus is not running.  Start it? ") (gnus))
+      (when (y-or-n-p "Gnus is not running.  Start it? ") (gnus-unplugged))
     (jrm/sbm "Gnus: "   '(gnus-group-mode
                           gnus-summary-mode
                           gnus-article-mode
                           message-mode))))
 (defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
                                                              magit-diff-mode)))
+(defun jrm/sb-notmuch    ()
+  "Open a notmuch-hello buffer if necessary, otherwise call
+jrm/sb for Notmuch buffers."
+  (interactive)
+  (if
+      (null (get-buffer "*notmuch-hello*"))
+      (notmuch)
+    (jrm/sbm "Notmuch: " '(notmuch-hello-mode
+                           notmuch-search-mode
+                           notmuch-show-mode
+                           notmuch-tree-mode))))
 (defun jrm/sb-pdf     () (interactive) (jrm/sbm "PDF: "    '(pdf-view-mode)))
 (defun jrm/sb-rt      () (interactive) (jrm/sbm "R/TeX: "  '(ess-mode
                                                              inferior-ess-mode
@@ -334,17 +346,17 @@ possible value for `erc-generate-log-file-name-function'."
   (interactive)
   (save-excursion
     (cond ((string-match (concat user-full-name " <" user-mail-address ">")
-                      (message-field-value "From" t))
-        (progn
-          (message-remove-header "From")
-          (message-add-header (concat "From: " user-full-name
-                                      " <" user-work-mail-address ">"))
-          (message-add-header (concat "X-Message-SMTP-Method: smtp "
-                                      work-smtp-server " 587"))
-          (unless (string-match (message-field-value "Gcc" t)
-                                user-work-mail-folder)
-            (message-remove-header "Gcc")
-            (message-add-header (concat "Gcc: " user-work-mail-folder)))))
+                         (message-field-value "From" t))
+           (progn
+             (message-remove-header "From")
+             (message-add-header (concat "From: " user-full-name
+                                         " <" user-work-mail-address ">"))
+             (message-add-header (concat "X-Message-SMTP-Method: smtp "
+                                         work-smtp-server " 587"))
+             (unless (string-match (message-field-value "Gcc" t)
+                                   user-work-mail-folder)
+               (message-remove-header "Gcc")
+               (message-add-header (concat "Gcc: " user-work-mail-folder)))))
 
           ((string-match (concat user-full-name " <" user-work-mail-address ">")
                          (message-field-value "From" t))
@@ -445,6 +457,7 @@ http://www.freshports.org/textproc/igor/."
    ("g"                         jrm/sb-gnus                 "Gnus")
    ("G"                         jrm/gnus-group              "Group")
    ("m"                         jrm/sb-magit                "magit")
+   ("n"                         jrm/sb-notmuch              "notmuch")
    ("p"                         jrm/sb-pdf                  "pdf")
    ("r"                         jrm/sb-rt                   "R")
    ("s"                         jrm/sb-scratch              "scratch")
@@ -480,6 +493,13 @@ http://www.freshports.org/textproc/igor/."
 (global-set-key (kbd "M-?")     'mark-paragraph)
 (global-set-key (kbd "M-z")     'avy-zap-to-char-dwim)
 (global-set-key (kbd "M-Z")     'avy-zap-up-to-char-dwim)
+
+;; notmuch
+(with-eval-after-load "notmuch"
+  (define-key notmuch-show-mode-map
+    (kbd "C-c C-c") 'jrm/notmuch-message-to-gnus-article)
+  (define-key notmuch-tree-mode-map
+    (kbd "C-c C-c") 'jrm/notmuch-message-to-gnus-article))
 
 ;; the translation makes C-h work with M-x in the minibuffer
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
@@ -576,9 +596,6 @@ http://www.freshports.org/textproc/igor/."
 ;;(add-hook 'after-init-hook (lambda ()
 ;;                             (multi-web-global-mode 1)))
 
-;; nnmairix --------------------------------------------------------------------
-(with-eval-after-load "gnus" (require 'nnmairix))
-
 ;; noweb -----------------------------------------------------------------------
 ;;(add-hook 'LaTeX-mode-hook '(lambda ()
 ;;                              (if (string-match "\\.Rnw\\'" buffer-file-name)
@@ -586,6 +603,24 @@ http://www.freshports.org/textproc/igor/."
 
 ;; org-mode --------------------------------------------------------------------
 (org-clock-persistence-insinuate)
+
+;; notmuch ---------------------------------------------------------------------
+(defun jrm/notmuch-message-to-gnus-article ()
+  "Open a summary buffer containing the current notmuch article."
+  (interactive)
+  (let ((group
+         (replace-regexp-in-string
+          "/" "."
+          (replace-regexp-in-string
+           "Stashed: /home/jrm/Mail/\\(.*\\)/[[:digit:]]+" "\\1"
+           (notmuch-show-stash-filename))))
+        (article
+         (replace-regexp-in-string
+          "[^[:digit:]]*\\([[:digit:]]+\\)" "\\1"
+          (notmuch-show-stash-filename))))
+    (if (and group article)
+        (org-gnus-follow-link group article)
+      (message "Unable to switch to Gnus article."))))
 
 ;; pdf-tools -------------------------------------------------------------------
 ;; This causes all buttons to be text when starting the emacs daemon
