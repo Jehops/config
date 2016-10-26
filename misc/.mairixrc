@@ -1,6 +1,6 @@
 base=~/Mail
 database=~/.mairixdb
-mh=Acadia:Admin:BCC:CAPA:CCA:Dal:EAC:Financial:GCR:IC:ITI:Nevalon:Synetx:TriBUG:mail/misc
+mh=Acadia:Admin:BCC:CAPA:CCA:Dal:EAC:Financial:FreeBSD:GCR:IC:ITI:Nevalon:Synetx:TriBUG:mail/misc
 mfolder=search
 mformat=mh
 omit=zz_mairix-*
