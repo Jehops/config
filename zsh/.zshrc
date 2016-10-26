@@ -105,6 +105,9 @@ man() {
 }
 
 # aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../../"
 alias aw="ssh awarnach"
 alias cp="cp -i"
 alias d="doas "
@@ -114,7 +117,7 @@ alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
 alias gd="cd ~/scm/freebsd/freebsd-docs.svn/"
 alias gp="cd ~/scm/freebsd/freebsd-ports.svn/"
-alias gs="cd ~/scm/freebsd/freebsd-src.svn/"
+alias gos="cd ~/scm/freebsd/freebsd-src.svn/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
     alias l="ls -ahl --color=auto"
