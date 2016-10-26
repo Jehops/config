@@ -13,5 +13,7 @@ xset -b dpms 0 0 0 m 1/1 1 r rate 400 30 s s 0 0 s off&
 xsetroot -cursor_name left_ptr&
 xautolock -locker "xlock >> ~/local/var/log/xlock.log 2>&1" \
           -time 5 -noclose >> ~/local/var/log/xautolock.log 2>&1 &
-
-exec stumpwm
+#exec dwm
+#exec emacs
+exec ssh-agent stumpwm
+#exec ssh-agent twm
