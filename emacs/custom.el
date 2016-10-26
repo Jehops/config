@@ -82,11 +82,15 @@
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
  '(erc-modules
-   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling))
+   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling track))
  '(erc-timestamp-format "%c")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
+ '(erc-track-faces-priority-list
+   '(erc-error-face erc-current-nick-face erc-keyword-face erc-nick-msg-face erc-direct-msg-face erc-dangerous-host-face erc-notice-face erc-prompt-face))
+ '(erc-track-minor-mode t)
  '(erc-track-mode t)
+ '(erc-track-priority-faces-only 'all)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
  '(erc-whowas-on-nosuchnick t)
