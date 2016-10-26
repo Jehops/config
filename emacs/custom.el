@@ -161,7 +161,9 @@
  '(global-hl-line-mode nil)
  '(gnus-activate-level 4)
  '(gnus-after-getting-new-news-hook '(gnus-display-time-event-handler))
- '(gnus-agent nil)
+ '(gnus-agent-auto-agentize-methods nil)
+ '(gnus-agent-go-online t)
+ '(gnus-agent-queue-mail nil)
  '(gnus-article-date-headers '(local))
  '(gnus-article-mode-hook visual-line-mode)
  '(gnus-article-prepare-hook
@@ -172,9 +174,10 @@
              (frame-width))
         t))))
  '(gnus-auto-subscribed-groups "nil")
+ '(gnus-check-new-newsgroups nil)
  '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
- '(gnus-group-mode-hook '(gnus-topic-mode hl-line-mode nnmairix-group-mode-hook))
+ '(gnus-group-mode-hook '(gnus-topic-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
  '(gnus-interactive-exit nil)
@@ -194,6 +197,7 @@
  '(gnus-message-archive-method '(nnml ""))
  '(gnus-message-setup-hook '(message-remove-blank-cited-lines mml-secure-message-sign))
  '(gnus-read-newsrc-file nil)
+ '(gnus-refer-thread-limit 5000)
  '(gnus-save-newsrc-file nil)
  '(gnus-secondary-select-methods
    '((nntp "news.gmane.org"
@@ -203,7 +207,7 @@
            (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
  '(gnus-select-method '(nnml ""))
- '(gnus-started-hook '((lambda nil (gnus-topic-jump-to-topic "mail"))))
+ '(gnus-started-hook '((lambda nil (gnus-group-jump-to-group "FreeBSD"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
  '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number))
  '(gnus-sum-thread-tree-false-root "⚇")
@@ -216,9 +220,9 @@
  '(gnus-summary-line-format
    "%U%R %5N %6k %24&user-date; │ %~(max-right 75)~(pad-right 75)S │ %B %f
 ")
- '(gnus-summary-mode-hook '(hl-line-mode nnmairix-summary-mode-hook))
+ '(gnus-summary-mode-hook '(hl-line-mode))
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
- '(gnus-thread-sort-functions '((not gnus-thread-sort-by-number)))
+ '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
  '(gnus-treat-fill-long-lines nil)
  '(gnutls-min-prime-bits 1024)
  '(gnutls-trustfiles
@@ -268,7 +272,7 @@
  '(htmlize-ignore-face-size nil)
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
-   '("^\\*ESS\\*" "^\\*Compile" "^\\*mairix output*\\*" "^\\*helm"
+   '("^\\*ESS\\*" "^\\*Compile" "^\\*helm"
      (lambda
        (buf)
        (and
@@ -371,8 +375,8 @@ $" ""
  '(kill-whole-line t)
  '(magit-delete-by-moving-to-trash nil)
 '(mail-sources
-'((maildir :path "/home/jrm/mail/")
-  (maildir :path "/home/jrm/mail/noalert/")))
+'((maildir :path "/home/jrm/mail/" :plugged t)
+  (maildir :path "/home/jrm/mail/noalert/" :plugged t)))
  '(mail-user-agent 'gnus-user-agent)
  '(menu-bar-mode nil)
  '(message-fill-column nil)
