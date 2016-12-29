@@ -433,9 +433,24 @@ $" ""
   (:name "Month" :query "date:30days..today" :key "M" :sort-order newest-first :search-type tree)))
  '(nxml-attribute-indent 2)
  '(org-agenda-files '("~/scm/org.git"))
- '(org-agenda-include-diary t)
  '(org-agenda-use-time-grid nil)
  '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
+'(org-bbdb-anniversary-format-alist
+'(("birthday" lambda
+   (name years suffix)
+   (concat "Birthday: [[bbdb:" name "][" name " ("
+           (format "%s" years)
+           suffix ")]]"))
+  ("death" lambda
+   (name years suffix)
+   (concat "Death: [[bbdb:" name "][" name " ("
+           (format "%s" years)
+           ")]]"))
+  ("wedding" lambda
+   (name years suffix)
+   (concat "[[bbdb:" name "][" name "'s "
+           (format "%s" years)
+           suffix " wedding anniversary]]"))) nil (bbdb))
 '(org-capture-templates
 '(("t" "TODO" plain
    (file+headline "~/scm/org.git/capture.org" "Tasks")
