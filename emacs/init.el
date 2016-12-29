@@ -118,7 +118,8 @@ slashes."
 
 ;; appointments in the diary ---------------------------------------------------
 ;; without after-init-hook, customized holiday-general-holidays is not respected
-(add-hook 'after-init-hook (lambda () (appt-activate 1)))
+;; using org-mode exclusively now
+;; (add-hook 'after-init-hook (lambda () (appt-activate 1)))
 
 ;; beacon ----------------------------------------------------------------------
 ;;(beacon-mode 1)
