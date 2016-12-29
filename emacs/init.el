@@ -659,7 +659,7 @@ http://www.freshports.org/textproc/igor/."
 
 ;; registers -------------------------------------------------------------------
 (set-register ?c '(file . "~/scm/org.git/capture.org"))
-(set-register ?d '(file . "~/.emacs.d/diary"))
+(set-register ?d '(file . "~/scm/org.git/diary.org"))
 (set-register ?i '(file . "~/.emacs.d/init.el"))
 (set-register ?P '(file . "~/files/crypt/passwords.org.gpg"))
 (set-register ?p '(file . "~/scm/org.git/personal.org"))
