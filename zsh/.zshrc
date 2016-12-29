@@ -2,8 +2,8 @@
 case $TERM in
     dumb)
         unsetopt prompt_cr prompt_subst zle
-        unfunction precmd preexec
-        PS1='$ '
+        #unfunction precmd preexec
+        #PS1='$ '
         return
         ;;
     screen*|tmux*)
@@ -43,7 +43,8 @@ esac
 
 # set the prompt; for escape sequences see zshmisc(1)
 #PS1=$'%{\e[31m%}%n%{\e[0m%}@%{\e[32m%}%m%{\e[0m%}|%B%~%b%# '
-PROMPT='%F{red}%n%f@%F{green}%m%f %F{yellow}%B%~%b%f $(git_super_status) %# '
+GIT_PROMPT_EXECUTABLE='haskell'
+PROMPT='%F{red}%n%f@%F{green}%m%f %F{yellow}%B%~%b%f $(git_super_status)%# '
 
 # environment variables; also see login.conf(5)
 export ALTERNATE_EDITOR=""
