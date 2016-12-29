@@ -375,6 +375,7 @@ $" ""
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
  '(kill-whole-line t)
+ '(line-number-display-limit-width 10000)
  '(magit-delete-by-moving-to-trash nil)
 '(mail-sources
 '((maildir :path "/home/jrm/mail/" :plugged t)
