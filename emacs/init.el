@@ -430,7 +430,8 @@ http://www.freshports.org/textproc/igor/."
 (global-set-key (kbd "C-c s")           'helm-swoop)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
-(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
+;;(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
+(global-set-key (kbd "C-<tab>")         'company-complete)
 (global-set-key (kbd "M-SPC")           'cycle-spacing)
 
 ;; buffers and windows
