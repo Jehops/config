@@ -490,6 +490,7 @@ $" ""
 '(slime-company polymode org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck helm-flx smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
+ '(prog-mode-hook '(flyspell-prog-mode))
  '(ps-lpr-command "psif")
  '(ps-lpr-switches nil)
  '(reb-re-syntax 'string)
