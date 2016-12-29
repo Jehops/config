@@ -54,6 +54,7 @@
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
  '(column-number-mode t)
+ '(company-idle-delay nil)
  '(compilation-window-height 6)
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
@@ -71,6 +72,7 @@
  '(diredp-wrap-around-flag nil)
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
+ '(echo-keystrokes 0.5)
  '(erc-fill-column 144)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
