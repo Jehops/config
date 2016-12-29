@@ -145,6 +145,7 @@ define_webjump("h","https://ftfl.ca/bm/");
 define_webjump("hn","https://news.ycombinator.com/");
 define_webjump("m","http://mail.google.com");
 define_webjump("n","http://awarnach.mathstat.dal.ca/nagios");
+define_webjump("npb", "https://bugs.freebsd.org/bugzilla/buglist.cgi?bug_status=New&component=Individual%20Port%28s%29&email1=freebsd-ports-bugs%40FreeBSD.org&emailassigned_to1=1&emailtype1=substring&list_id=141853&product=Ports%20%26%20Packages&query_format=advanced");
 define_webjump("p","http://pkg.awarnach.mathstat.dal.ca");
 define_webjump("pc","http://pcfinancial.ca");
 define_webjump("ph","https://www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/book.html");
