@@ -380,7 +380,9 @@ possible value for `erc-generate-log-file-name-function'."
              (message-add-header "Gcc: mail.misc"))))))
 
 ;; google ----------------------------------------------------------------------
-(google-this-mode)
+;; Is this the only way to unset google-this-mode key binding?
+;; The default conflicts with org-sparse-tree and customizing it does not work.
+(setq google-this-keybind nil)
 
 ;; helm ------------------------------------------------------------------------
 (define-key global-map [remap find-file] 'helm-find-files)
