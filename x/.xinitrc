@@ -15,5 +15,6 @@ xautolock -locker "xlock >> ~/local/var/log/xlock.log 2>&1" \
           -time 5 -noclose >> ~/local/var/log/xautolock.log 2>&1 &
 #exec dwm
 #exec emacs
+#exec ssh-agent ratpoison
 exec ssh-agent stumpwm
 #exec ssh-agent twm
