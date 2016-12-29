@@ -714,7 +714,7 @@ http://www.freshports.org/textproc/igor/."
 (setq inferior-lisp-program "~/local/bin/sbcl")
 
 ;;(require 'slime)
-(slime-setup '(slime-fancy))
+(slime-setup '(slime-company slime-fancy))
 
 ;; smart mode line -------------------------------------------------------------
 ;; without after-init-hook there is always a warning about loading a theme
