@@ -454,8 +454,8 @@ $" ""
 '(org-capture-templates
 '(("t" "TODO" plain
    (file+headline "~/scm/org.git/capture.org" "Tasks")
-   "** 🏳 TODO %?
-- State \"🏳 TODO\"     from              %u
+   "** ⚐ TODO %?
+- State \"⚐ TODO\"     from              %u
 %a" :table-line-pos t)
   ("w" "Web Link" item
    (file+headline "~/scm/org.git/capture.org" "Web Links")
@@ -480,8 +480,9 @@ $" ""
 '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path t)
+ '(org-todo-keyword-faces '(("X CANCELLED" . "dim gray") ("~ WAIT" . "goldenrod")))
 '(org-todo-keywords
-'((sequence "🏳 TODO(t!)" "|" "⌛ INPROGRESS(i!)" "⌛ POSTPONED(p!)" "⌛ WAITING(w!)" "|" "🗙 CANCELLED(c!)" "✅ DONE(d!)")))
+'((sequence "⚐ TODO(t!)" "|" "~ WAIT(w!)" "|" "X CANCELLED(c!)" "✓ DONE(d!)")))
  '(org-use-fast-todo-selection t)
 '(package-archives
 '(("gnu" . "https://elpa.gnu.org/packages/")
