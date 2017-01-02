@@ -382,7 +382,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;; google ----------------------------------------------------------------------
 ;; Is this the only way to unset google-this-mode key binding?
 ;; The default conflicts with org-sparse-tree and customizing it does not work.
-(setq google-this-keybind nil)
+(setq google-this-keybind (kbd "C-<f12>"))
 
 ;; helm ------------------------------------------------------------------------
 (define-key global-map [remap find-file] 'helm-find-files)
