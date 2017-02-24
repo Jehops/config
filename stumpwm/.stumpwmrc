@@ -132,7 +132,7 @@ the one that is chosen."
 (define-key *root-map* (kbd "n")        "next")
 (define-key *root-map* (kbd "o")        "other-in-frame")
 (define-key *root-map* (kbd "p")        "prev")
-(define-key *root-map* (kbd "s")        "s2e")
+(define-key *root-map* (kbd "M-w")      "s2e")
 (define-key *root-map* (kbd "C-t")      "other")
 (define-key *root-map* (kbd "w")        "web-browser")
 (define-key *root-map* (kbd "C-w")      "web-browser")
