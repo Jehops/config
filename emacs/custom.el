@@ -231,6 +231,8 @@
    '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/news.gmane.org.crt.pem" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
+ '(haskell-mode-hook '(haskell-indent-mode interactive-haskell-mode intero-mode))
+ '(haskell-stylish-on-save t)
  '(helm-boring-buffer-regexp-list
    '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
  '(helm-buffer-details-flag nil)
