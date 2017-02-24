@@ -143,8 +143,8 @@ the one that is chosen."
 (defvar *windows-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "e")             "list-windows-by-class Emacs")
-    (define-key m (kbd "p")             "list-windows-by-class Xpdf")
     (define-key m (kbd "m")             "list-windows-by-class mpv")
+    (define-key m (kbd "p")             "list-windows-by-class MuPDF")
     (define-key m (kbd "w")             "list-windows-by-class Conkeror")
     (define-key m (kbd "x")             "list-windows-by-class URxvt")
     m))
