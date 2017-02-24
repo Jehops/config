@@ -172,6 +172,7 @@ the one that is chosen."
 (add-to-load-path "~/scm/swm/swm-freebsd-cpu-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-mem-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-net-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-openvpn-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-volume-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-zfs-modeline.git")
 (add-to-load-path "~/scm/swm/swm-maildir-modeline.git")
@@ -181,6 +182,7 @@ the one that is chosen."
 (load-module "swm-freebsd-cpu-modeline")
 (load-module "swm-freebsd-mem-modeline")
 (load-module "swm-freebsd-net-modeline")
+(load-module "swm-freebsd-openvpn-modeline")
 (load-module "swm-freebsd-volume-modeline")
 (load-module "swm-freebsd-zfs-modeline")
 (load-module "swm-maildir-modeline")
@@ -202,12 +204,13 @@ the one that is chosen."
 ;; %D d/l rate
 ;; %b battery state and percentage
 ;; %v speaker volume percentage
+;; %V OpenVPN status
 ;; %d date/time
 ;; %m new mail messages
 
 (let ((hostname (car (split-string (machine-instance) ". "))))
   (cond ((or (string= hostname "phe") (string= hostname "bravo"))
-         (setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f^[^9*MHz^] %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*B^] %b ^[^8*V^] %v ^[^B^7*%d^] ^[^B^4*%m^]"))
+         (setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f^[^9*MHz^] %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*B^] %b ^[^8*V^] %v ^[^B^1*%V^] ^[^B^7*%d^] ^[^B^4*%m^]"))
         ((string= hostname "gly")
          (setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*V^] %v ^[^B^7*%d^] ^[^B^4*%m^]"))))
 (toggle-mode-line (current-screen) (current-head))
