@@ -122,7 +122,7 @@ var user_agents = {
 // webjumps
 define_webjump("aw","awarnach.mathstat.dal.ca");
 define_webjump("b","about:blank");
-define_webjump("bb","dalhousie.blackboard.com");
+define_webjump("bs","dal.ca/brightspace");
 define_webjump("c","http://calendar.google.com");
 define_webjump("ca","capa.mathstat.dal.ca");
 define_webjump("cg","https://www.freebsd.org/doc/en_US.ISO8859-1/articles/committers-guide/article.html");
