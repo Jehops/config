@@ -389,6 +389,10 @@ possible value for `erc-generate-log-file-name-function'."
 ;; The default conflicts with org-sparse-tree and customizing it does not work.
 (setq google-this-keybind (kbd "C-<f12>"))
 
+;; haskell-mode workaround
+;; http://emacs.stackexchange.com/questions/28967/haskell-mode-hook-is-nil
+(setq haskell-mode-hook nil)
+
 ;; helm ------------------------------------------------------------------------
 (define-key global-map [remap find-file] 'helm-find-files)
 (define-key global-map [remap occur] 'helm-occur)
