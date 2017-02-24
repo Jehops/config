@@ -2,7 +2,7 @@
 
 (in-package :stumpwm)
 
-;; Uncommenting these two lines causes StumpWM to crash
+;; These two lines used to cause StumpWM to crash, but they seem OK now
 (require 'swank)
 (swank:create-server)
 
@@ -27,10 +27,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun list-windows-by-props (props &optional (fmt *window-format*))
-  "Select a window from the list of windows with the specificed properties and
-focus the selected window. For information of menu bindings @xref{Menus}. The
-optional argument @var{fmt} can be specified to override the default window
-formatting."
+  "Present a list of windows with the specified properties and focus the one
+chosen.  The optional argument @var{fmt} can be specified to override the
+default window formatting."
   (let* ((group (current-group))
          (matches (remove-if-not (lambda (w)
                                    (apply 'window-matches-properties-p w props))
@@ -41,47 +40,63 @@ formatting."
 		       (sort (copy-list matches) #'< :key #'window-number) fmt)))
 	  (if window
 	      (group-focus-window group window)
-	    (throw 'error :abort))))))
+              (throw 'error :abort))))))
+
+(defun show-window-with-pid (pid)
+  (act-on-matching-windows (w)
+                           (equal pid (car (window-property w :_NET_WM_PID)))
+                           (raise-window w)))
+
+(defun show-window-with-name (name)
+  "name is a regexp.
+I would prefer to use (raise-window w), so that the focus is
+not switched to 'w'.  The problem is that if 'w' was not the window already
+displayed in the frame, switching focus to that frame will cause 'w' to be
+hidden behind the previously displayed window."
+  (act-on-matching-windows (w)
+                           (title-re-p w name)
+                           (select-window-by-number (window-number w))))
+;;                          (raise-window w)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defcommand c2e () ()
-  "Copy the X clipboard contents to the Emacs kill ring."
-  (run-shell-command "c2e"))
+            "Copy the X clipboard contents to the Emacs kill ring."
+            (run-shell-command "c2e"))
 
 (defcommand eaacm () ()
-  "Emacs as a clipboard manager."
-  (run-or-raise "emacsclient -nc" '(:class "Emacs"))
-  (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
+            "Emacs as a clipboard manager."
+            (run-or-raise "emacsclient -nc" '(:class "Emacs"))
+            (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
       (save-window-excursion (delete-other-windows) (helm-show-kill-ring)))'"))
 
 ;; could use run-or-pull below
 (defcommand ec () ()
-  "Start Emacs or switch to it if it is already running."
-  (run-or-raise "emacsclient -nc" '(:class "Emacs")))
+            "Start Emacs or switch to it if it is already running."
+            (run-or-raise "emacsclient -nc" '(:class "Emacs")))
 
 (defcommand list-windows-by-class (class) (:string)
-  "Allow the user to select a window from the list of windows with the
-specificed class and focus the selected window."
-  (list-windows-by-props `(:class ,class)))
+            "Present a list of windows matching the specified class and focus
+the one that is chosen."
+            (list-windows-by-props `(:class ,class)))
 
 (defcommand s2e () ()
-  "Copy the X selection contents to the Emacs kill ring."
-  (run-shell-command "c2e -s"))
+            "Copy the X selection contents to the Emacs kill ring."
+            (run-shell-command "c2e -s"))
 
 (defcommand safequit () ()
-  "Checks if any windows are open before quitting."
-  (let ((win-count 0))
+            "Checks if any windows are open before quitting."
+            (let ((win-count 0))
 
-    ;; Count the windows in each group
-    (dolist (group (screen-groups (current-screen)))
-      (setq win-count (+ (length (group-windows group)) win-count)))
+              ;; Count the windows in each group
+              (dolist (group (screen-groups (current-screen)))
+                (setq win-count (+ (length (group-windows group)) win-count)))
 
-    ;; Display the number of open windows or quit
-    (if (= win-count 0)
-	(run-commands "quit")
-      (message (format nil "You have ~d ~a open" win-count
-		       (if (= win-count 1) "window" "windows"))))))
+              ;; Display the number of open windows or quit
+              (if (= win-count 0)
+                  (run-commands "quit")
+                  (message (format nil "You have ~d ~a open" win-count
+                                   (if (= win-count 1) "window" "windows"))))))
 
 (defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
             "Shift current window by X and Y pixels."
@@ -91,13 +106,13 @@ specificed class and focus the selected window."
              :y (+ (window-y (current-window)) y)))
 
 (defcommand term () ()
-  "Start urxvt or switch to it if it is already running."
-  (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux -2 att -d || \\
-tmux -2 new-session\"" '(:class "URxvt")))
+            "Start urxvt or switch to it if it is already running."
+            (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux -2 att \\
+-d || tmux -2 new-session\"" '(:class "URxvt")))
 
 (defcommand web-browser () ()
-  "Start Conkeror or switch to it if it is already running."
-  (run-or-raise "ck" '(:class "Conkeror")))
+            "Start Conkeror or switch to it if it is already running."
+            (run-or-raise "ck" '(:class "Conkeror")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -160,7 +175,6 @@ tmux -2 new-session\"" '(:class "URxvt")))
 (add-to-load-path "~/scm/swm/swm-freebsd-zfs-modeline.git")
 (add-to-load-path "~/scm/swm/swm-maildir-modeline.git")
 (add-to-load-path "~/scm/nm/stumpwm-contrib.git/modeline/hostname")
-
 
 (load-module "swm-freebsd-battery-modeline")
 (load-module "swm-freebsd-cpu-modeline")
