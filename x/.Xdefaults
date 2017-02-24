@@ -30,6 +30,7 @@ urxvt.colorBD: white
 urxvt.cursorColor: white
 urxvt.font: xft:Monospace:pixelsize=14
 urxvt.foreground: gray90
+URxvt.iso14755: false
 urxvt.lineSpace: 0
 urxvt.loginShell: false
 urxvt.matcher.button: 1
