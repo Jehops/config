@@ -100,6 +100,11 @@ slashes."
     (message "%s" fn)
     fn))
 
+(defun jrm/make ()
+  "Call make in the current directory."
+  (interactive)
+  (call-process-shell-command "make"))
+
 (defun jrm/sort-lines-nocase ()
   "Sort lines ignoring case."
   (interactive)
@@ -426,6 +431,7 @@ http://www.freshports.org/textproc/igor/."
 
 ;; general stuff
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
+(global-set-key (kbd "<f12>")           'jrm/make)
 (global-set-key (kbd "C-c l")           'list-packages)
 (global-set-key (kbd "C-c s")           'helm-swoop)
 (global-unset-key (kbd "C-h"))
