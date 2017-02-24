@@ -1,7 +1,6 @@
 ;; -*-lisp-*-
 
 (in-package :stumpwm)
-;;(in-package :stumpwm.floating-group)
 
 ;; Uncommenting these two lines causes StumpWM to crash
 (require 'swank)
@@ -85,11 +84,11 @@ specificed class and focus the selected window."
 		       (if (= win-count 1) "window" "windows"))))))
 
 (defcommand shift-window (x y) ((:number "+ X: ") (:number "+ Y: "))
-  "Shift current window by X and Y pixels."
-  (stumpwm.floating-group::float-window-move-resize
-   (current-window)
-   :x (+ (window-x (current-window)) x)
-   :y (+ (window-y (current-window)) y)))
+            "Shift current window by X and Y pixels."
+            (float-window-move-resize
+             (current-window)
+             :x (+ (window-x (current-window)) x)
+             :y (+ (window-y (current-window)) y)))
 
 (defcommand term () ()
   "Start urxvt or switch to it if it is already running."
