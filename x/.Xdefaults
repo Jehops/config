@@ -40,6 +40,7 @@ urxvt.scrollBar: false
 urxvt.scrollStyle: rxvt
 urxvt.sessionMgt: false
 urxvt.shading: 25
+urxvt.termName: rxvt-unicode-256color
 urxvt.url-launcher: ck
 urxvt.visualBell: true
 
