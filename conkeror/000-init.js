@@ -143,6 +143,7 @@ define_webjump("gs","http://scholar.google.com/scholar?q=%s");
 define_webjump("gt","http://translate.google.com");
 define_webjump("h","https://ftfl.ca/bm/");
 define_webjump("hn","https://news.ycombinator.com/");
+define_webjump("chip","https://check.ipredator.se/");
 define_webjump("m","http://mail.google.com");
 define_webjump("n","http://awarnach.mathstat.dal.ca/nagios");
 define_webjump("npb", "https://bugs.freebsd.org/bugzilla/buglist.cgi?bug_status=New&component=Individual%20Port%28s%29&email1=freebsd-ports-bugs%40FreeBSD.org&emailassigned_to1=1&emailtype1=substring&list_id=141853&product=Ports%20%26%20Packages&query_format=advanced");
