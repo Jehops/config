@@ -81,7 +81,8 @@ the one that is chosen."
             (list-windows-by-props `(:class ,class)))
 
 (defcommand s2e () ()
-            "Copy the X selection contents to the Emacs kill ring."
+            "Copy the X selection contents to the X clipboard and the Emacs kill
+ring if an Emacs daemon is running."
             (run-shell-command "c2e -s"))
 
 (defcommand safequit () ()
