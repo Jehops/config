@@ -70,6 +70,12 @@ hidden behind the previously displayed window."
             (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
       (save-window-excursion (delete-other-windows) (helm-show-kill-ring)))'"))
 
+;; (defcommand eaacm () ()
+;;             "Emacs as a clipboard manager."
+;;             (run-or-raise "emacsclient -nc" '(:class "Emacs"))
+;;             (run-shell-command "emacsclient -n -e '(save-window-excursion
+;; (delete-other-windows) (counsel-yank-pop))'"))
+
 ;; could use run-or-pull below
 (defcommand ec () ()
             "Start Emacs or switch to it if it is already running."

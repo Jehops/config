@@ -56,6 +56,7 @@
  '(column-number-mode t)
  '(company-idle-delay nil)
  '(compilation-window-height 6)
+ '(counsel-find-file-at-point t)
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
@@ -177,7 +178,7 @@
         t))))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
- '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
+ '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list) t)
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
@@ -231,7 +232,7 @@
    '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/news.gmane.org.crt.pem" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
- '(haskell-mode-hook '(haskell-indent-mode interactive-haskell-mode intero-mode))
+ '(haskell-mode-hook '(intero-mode) t)
  '(haskell-stylish-on-save t)
  '(helm-boring-buffer-regexp-list
    '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
@@ -373,7 +374,8 @@
 $" ""
 (shell-command-to-string "/usr/bin/fortune freebsd-tips")))))
  '(ispell-help-in-bufferp 'electric)
- '(ivy-mode nil)
+ '(ivy-count-format "")
+ '(ivy-use-virtual-buffers t)
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
  '(kill-whole-line t)
@@ -490,7 +492,7 @@ $" ""
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(slime-company polymode org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck helm-flx smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line))
+'(counsel intero polymode slime-company org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck helm-flx smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))

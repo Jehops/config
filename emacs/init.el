@@ -414,6 +414,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 ;; (setq ido-vertical-show-count t)
 
+;; ivy
+;; (define-key global-map [remap yank-pop] 'counsel-yank-pop)
+
 ;; helm-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
 
