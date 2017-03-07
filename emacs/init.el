@@ -415,21 +415,21 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (setq ido-vertical-show-count t)
 
 ;; ivy
-(define-key global-map [remap yank-pop] 'counsel-yank-pop)
-(define-key ivy-minibuffer-map (kbd "C-.") 'ivy-avy)
-
 (defun jrm/ff-as-root (x)
   ;; Check for remote host (must have sudo root access)
-  (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
-  (let ( (host (match-string 1 x))
-         (path (match-string 2 x)))
-    (if (= (length host) 0)
-        (find-file (concat "/sudo::" x))
-      (find-file (concat "/ssh:" host "|sudo:" host ":" path)))))
+  (if (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
+      (let ( (host (match-string 1 x))
+             (path (match-string 2 x)))
+        (find-file (concat "/ssh:" host "|sudo:" host ":" path)))
+    (find-file (concat "/sudo::" x))))
 
-(ivy-set-actions
- 'counsel-find-file
- '(("r" jrm/ff-as-root "root")))
+(with-eval-after-load "counsel"
+  (define-key ivy-minibuffer-map (kbd "C-.") 'ivy-avy)
+  (define-key global-map [remap yank-pop] 'counsel-yank-pop)
+
+  (ivy-set-actions
+   'counsel-find-file
+   '(("r" jrm/ff-as-root "root"))))
 
 ;; helm-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
