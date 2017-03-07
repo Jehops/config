@@ -429,11 +429,11 @@ possible value for `erc-generate-log-file-name-function'."
 
   (ivy-set-actions
    'counsel-find-file
-   '(("r" jrm/ff-as-root "root"))))
+   '(("r" jrm/ff-as-root "root")))
 
   (ivy-set-actions
    'counsel-yank-pop
-   '(("t" kill-new "top")))
+   '(("t" kill-new "top"))))
 
 ;; helm-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
