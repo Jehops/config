@@ -394,17 +394,17 @@ possible value for `erc-generate-log-file-name-function'."
 (setq haskell-mode-hook nil)
 
 ;; helm ------------------------------------------------------------------------
-(define-key global-map [remap find-file] 'helm-find-files)
-(define-key global-map [remap occur] 'helm-occur)
-(define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
-(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-(define-key global-map [remap yank-pop] 'helm-show-kill-ring)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(unless (boundp 'completion-in-region-function)
-  (define-key lisp-interaction-mode-map
-    [remap completion-at-point] 'helm-lisp-completion-at-point)
-  (define-key emacs-lisp-mode-map
-    [remap completion-at-point] 'helm-lisp-completion-at-point))
+;; (define-key global-map [remap find-file] 'helm-find-files)
+;; (define-key global-map [remap occur] 'helm-occur)
+;; (define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
+;; (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+;; (define-key global-map [remap yank-pop] 'helm-show-kill-ring)
+;; (global-set-key (kbd "M-x") 'helm-M-x)
+;; (unless (boundp 'completion-in-region-function)
+;;   (define-key lisp-interaction-mode-map
+;;     [remap completion-at-point] 'helm-lisp-completion-at-point)
+;;   (define-key emacs-lisp-mode-map
+;;     [remap completion-at-point] 'helm-lisp-completion-at-point))
 
 ;; ido -------------------------------------------------------------------------
 ;; (ido-mode t)
@@ -415,7 +415,21 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (setq ido-vertical-show-count t)
 
 ;; ivy
-;; (define-key global-map [remap yank-pop] 'counsel-yank-pop)
+(define-key global-map [remap yank-pop] 'counsel-yank-pop)
+(define-key ivy-minibuffer-map (kbd "C-.") 'ivy-avy)
+
+(defun jrm/ff-as-root (x)
+  ;; Check for remote host (must have sudo root access)
+  (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
+  (let ( (host (match-string 1 x))
+         (path (match-string 2 x)))
+    (if (= (length host) 0)
+        (find-file (concat "/sudo::" x))
+      (find-file (concat "/ssh:" host "|sudo:" host ":" path)))))
+
+(ivy-set-actions
+ 'counsel-find-file
+ '(("r" jrm/ff-as-root "root")))
 
 ;; helm-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
