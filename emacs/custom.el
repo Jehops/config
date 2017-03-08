@@ -58,6 +58,9 @@
  '(compilation-window-height 6)
  '(counsel-find-file-at-point t)
  '(counsel-mode t)
+ '(counsel-yank-pop-separator "
+---------------------------
+")
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
@@ -376,7 +379,7 @@ $" ""
 (shell-command-to-string "/usr/bin/fortune freebsd-tips")))))
  '(ispell-help-in-bufferp 'electric)
  '(ivy-count-format "")
- '(ivy-height 25)
+ '(ivy-height 20)
  '(ivy-mode t)
  '(ivy-use-virtual-buffers t)
  '(kill-do-not-save-duplicates t)
