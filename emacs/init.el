@@ -435,6 +435,11 @@ possible value for `erc-generate-log-file-name-function'."
    'counsel-yank-pop
    '(("t" kill-new "top"))))
 
+;; Does not work, ivy caches something about ivy-height
+;; (add-hook 'window-configuration-change-hook
+;;           (lambda () (set-variable 'ivy-height
+;;                                    (max (/ (window-total-height) 2) 10))))
+
 ;; helm-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
 
