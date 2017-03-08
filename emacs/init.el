@@ -458,7 +458,7 @@ http://www.freshports.org/textproc/igor/."
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
 (global-set-key (kbd "<f12>")           'jrm/make)
 (global-set-key (kbd "C-c l")           'list-packages)
-(global-set-key (kbd "C-c s")           'helm-swoop)
+(global-set-key (kbd "C-c s")           'swiper)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
 ;;(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
