@@ -64,17 +64,17 @@ hidden behind the previously displayed window."
             "Copy the X clipboard contents to the Emacs kill ring."
             (run-shell-command "c2e"))
 
-(defcommand eaacm () ()
-            "Emacs as a clipboard manager."
-            (run-or-raise "emacsclient -nc" '(:class "Emacs"))
-            (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
-      (save-window-excursion (delete-other-windows) (helm-show-kill-ring)))'"))
-
 ;; (defcommand eaacm () ()
 ;;             "Emacs as a clipboard manager."
 ;;             (run-or-raise "emacsclient -nc" '(:class "Emacs"))
-;;             (run-shell-command "emacsclient -n -e '(save-window-excursion
-;; (delete-other-windows) (counsel-yank-pop))'"))
+;;             (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
+;;       (save-window-excursion (delete-other-windows) (helm-show-kill-ring)))'"))
+
+(defcommand eaacm () ()
+            "Emacs as a clipboard manager."
+            (run-or-raise "emacsclient -nc" '(:class "Emacs"))
+            (run-shell-command "emacsclient -n -e '(save-window-excursion
+(delete-other-windows) (counsel-yank-pop))'"))
 
 ;; could use run-or-pull below
 (defcommand ec () ()
