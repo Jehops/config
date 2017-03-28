@@ -25,7 +25,7 @@
  '(auto-save-file-name-transforms '((".*/\\([^/]*\\)" "~/.emacs.d/.emacs_auto_saves/\\1" t)))
  '(avy-keys
    '(97 115 100 102 103 104 106 107 108 113 119 101 114 116 121 117 105 111 112 122 120 99 118 98 110 109 65 83 68 70 71 72 74 75 76 81 87 69 82 84 89 85 73 79 80 90 88 67 86 66 78 77))
- '(avy-style 'pre)
+ '(avy-style 'post)
  '(aw-keys '(97 115 100 102 103 104 106 107 108))
  '(aw-scope 'frame)
  '(backup-directory-alist '((".*" . "~/.emacs.d/.emacs_backups/")))
@@ -236,7 +236,7 @@
    '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/news.gmane.org.crt.pem" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
- '(haskell-mode-hook '(intero-mode) t)
+ '(haskell-mode-hook '(intero-mode))
  '(haskell-stylish-on-save t)
  '(helm-boring-buffer-regexp-list
    '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
@@ -382,7 +382,6 @@ $" ""
  '(ivy-fixed-height-minibuffer t)
  '(ivy-height 25)
  '(ivy-mode t)
- '(ivy-use-virtual-buffers t)
  '(kill-do-not-save-duplicates t)
  '(kill-ring-max 100)
  '(kill-whole-line t)
@@ -499,7 +498,7 @@ $" ""
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(counsel intero polymode slime-company org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck helm-flx smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-swoop helm-perldoc helm-package helm-google helm-fuzzier helm-flyspell helm-descbinds helm-c-yasnippet helm-c-moccur helm-bibtex hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link ace-jump-helm-line))
+'(ivy-bibtex counsel intero polymode slime-company org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-fuzzier hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))

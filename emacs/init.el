@@ -440,7 +440,7 @@ possible value for `erc-generate-log-file-name-function'."
 ;;           (lambda () (set-variable 'ivy-height
 ;;                                    (max (/ (window-total-height) 2) 10))))
 
-;; helm-bibtex -----------------------------------------------------------------
+;; ivy-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
 
 ;; igor -----------------------------------------------------------------------
