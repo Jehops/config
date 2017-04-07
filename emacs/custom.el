@@ -236,7 +236,7 @@
    '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/news.gmane.org.crt.pem" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
- '(haskell-mode-hook '(intero-mode))
+ '(haskell-mode-hook '(intero-mode) t)
  '(haskell-stylish-on-save t)
  '(helm-boring-buffer-regexp-list
    '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
@@ -498,7 +498,7 @@ $" ""
 '(("gnu" . "https://elpa.gnu.org/packages/")
   ("melpa" . "https://melpa.org/packages/")))
 '(package-selected-packages
-'(ivy-bibtex counsel intero polymode slime-company org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron git-gutter synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-fuzzier hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link))
+'(git-gutter-fringe ivy-bibtex counsel intero polymode slime-company org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-fuzzier hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))
