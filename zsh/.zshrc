@@ -86,6 +86,11 @@ setopt share_history # reloads the history whenever you use it
 autoload -Uz select-word-style
 select-word-style bash
 
+# Use C-x C-e to edit command line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 # completion
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
