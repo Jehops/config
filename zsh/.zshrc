@@ -117,7 +117,7 @@ alias ec="emacsclient -a= -n"
 alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
 alias gd="cd ~/scm/freebsd/freebsd-docs.svn/"
-alias gp="cd ~/scm/freebsd/freebsd-ports.svn/"
+alias gp='f() { cd "/home/jrm/scm/freebsd/freebsd-ports.svn/$1"}; f'
 alias gos="cd ~/scm/freebsd/freebsd-src.svn/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
