@@ -1,0 +1,14 @@
+[user]
+	email = jrm@ftfl.ca
+	name = Joseph Mingrone
+	signingkey = 55B093A726C388557122BAD536A40C83B0D6EF9E
+[push]
+	default = simple
+[core]
+	pager = less -ir
+[alias]
+        clog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[commit]
+        gpgSign = true
+[merge]
+        conflictstyle = diff3
