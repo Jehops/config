@@ -52,6 +52,7 @@ export BLOCKSIZE=K
 export BROWSER=ck
 export CLICOLOR=1
 export CLUSTER=$HOME/.clusters/compute_nodes
+export GPG_TTY=$(tty)
 export GTK_IM_MODULE=xim
 export LESS='-i -X -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
