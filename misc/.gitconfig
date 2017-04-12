@@ -12,3 +12,5 @@
         gpgSign = true
 [merge]
         conflictstyle = diff3
+[transfer]
+        fsckobjects = true
