@@ -427,7 +427,7 @@ possible value for `erc-generate-log-file-name-function'."
   (define-key ivy-minibuffer-map (kbd "C-.") 'ivy-avy)
   (define-key global-map [remap yank-pop] 'counsel-yank-pop)
 
-  (ivy-set-actions
+  (ivy-add-actions
    'counsel-find-file
    '(("r" jrm/ff-as-root "root")))
 
