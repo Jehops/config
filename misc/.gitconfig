@@ -4,6 +4,7 @@
 	signingkey = 55B093A726C388557122BAD536A40C83B0D6EF9E
 [push]
 	default = simple
+        followTags = true
 [core]
 	pager = less -ir
 [alias]
