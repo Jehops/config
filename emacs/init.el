@@ -100,6 +100,11 @@ slashes."
     (message "%s" fn)
     fn))
 
+(defun jrm/getmail ()
+  "Call make in the current directory."
+  (interactive)
+  (call-process-shell-command "getmail"))
+
 (defun jrm/make ()
   "Call make in the current directory."
   (interactive)
@@ -462,6 +467,7 @@ http://www.freshports.org/textproc/igor/."
 ;; general stuff
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
 (global-set-key (kbd "<f12>")           'jrm/make)
+(global-set-key (kbd "C-c g")           'jrm/getmail)
 (global-set-key (kbd "C-c l")           'list-packages)
 (global-set-key (kbd "C-c s")           'swiper)
 (global-unset-key (kbd "C-h"))
@@ -581,7 +587,7 @@ http://www.freshports.org/textproc/igor/."
 
 ;; Google
 (global-set-key
- (kbd "C-c g")
+ (kbd "C-c G")
  (defhydra hydra-google (:color blue)
    "Google"
    ("RET" google-this                      "prompt")
