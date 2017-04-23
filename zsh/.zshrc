@@ -52,6 +52,7 @@ export BLOCKSIZE=K
 export BROWSER=ck
 export CLICOLOR=1
 export CLUSTER=$HOME/.clusters/compute_nodes
+export GPG_TTY=$(tty)
 export GTK_IM_MODULE=xim
 export LESS='-i -X -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
@@ -86,6 +87,11 @@ setopt share_history # reloads the history whenever you use it
 autoload -Uz select-word-style
 select-word-style bash
 
+# Use C-x C-e to edit command line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 # completion
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
@@ -117,7 +123,7 @@ alias ec="emacsclient -a= -n"
 alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
 alias gd="cd ~/scm/freebsd/freebsd-docs.svn/"
-alias gp="cd ~/scm/freebsd/freebsd-ports.svn/"
+alias gp='f() { cd "/home/jrm/scm/freebsd/freebsd-ports.svn/$1"}; f'
 alias gos="cd ~/scm/freebsd/freebsd-src.svn/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
@@ -130,6 +136,7 @@ alias mv="mv -i"
 alias p=$PAGER
 alias pc="less -ir"
 #alias rdl="rdesktop -k en-us -g 1600x1015 -a 16 -r sound 129.173.33.182"
+alias pu="svn up /home/jrm/scm/freebsd/freebsd-ports.svn/"
 alias rm="rm -i"
 alias s="sudo "
 alias se="sudoedit"
