@@ -96,8 +96,19 @@ bindkey '^x^e' edit-command-line
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
 compinit
+# show completion menu when number of options is at least 2
+# Need an extra return
+zstyle ':completion:*' menu select=2
 
 # functions
+
+gp() {
+    if [ "$(hostname -s)" = 'storage2' ] ; then
+        cd "/poudriere/ports/default/$1"
+        else
+            cd "${HOME}/scm/freebsd/freebsd-ports.svn/$1"
+    fi
+};
 
 man() {
     env \
@@ -123,7 +134,6 @@ alias ec="emacsclient -a= -n"
 alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
 alias gd="cd ~/scm/freebsd/freebsd-docs.svn/"
-alias gp='f() { cd "/home/jrm/scm/freebsd/freebsd-ports.svn/$1"}; f'
 alias gos="cd ~/scm/freebsd/freebsd-src.svn/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then

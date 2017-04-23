@@ -1,0 +1,3 @@
+#compdef gp
+
+_path_files -W /home/jrm/scm/freebsd/freebsd-ports.svn/ -/
