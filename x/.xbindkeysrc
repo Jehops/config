@@ -1,9 +1,11 @@
-"/usr/local/bin/xrandr --output HDMI1 --off --output VGA1 --off --output LVDS1 --mode 1366x768"
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI1 --off --output VGA1 --off --output LVDS1 --mode 1600x900"
   Mod2+1
-"/usr/local/bin/xrandr --output VGA1 --auto --above LVDS1 --output LVDS1 --auto"
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output VGA1 --auto --above LVDS1 --output LVDS1 --auto"
   Mod2+2
-"/usr/local/bin/xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768"
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768"
   Mod2+3
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI1 --mode 1600x900 --above LVDS1"
+  Mod2+4
 "/usr/local/bin/xautolock -disable"
   Mod2+d
 "/usr/local/bin/xautolock -enable"
