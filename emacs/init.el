@@ -126,9 +126,8 @@ slashes."
             (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
             (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
 
-;; appointments in the diary ---------------------------------------------------
+;; appointments in the diary (commented b/c using org-mode exclusively now-----
 ;; without after-init-hook, customized holiday-general-holidays is not respected
-;; using org-mode exclusively now
 ;; (add-hook 'after-init-hook (lambda () (appt-activate 1)))
 
 ;; beacon ----------------------------------------------------------------------
@@ -330,8 +329,8 @@ possible value for `erc-generate-log-file-name-function'."
 (require 'flycheck)
 
 ;; flyspell --------------------------------------------------------------------
-;; stop flyspell-auto-correct-word (which isn't affected by the customization
-;; flyspell-auto-correct-binding) from hijacking C-.
+;; stop flyspell-auto-correct-word from hijacking C-.
+;; (customizing flyspell-auto-correct-binding doesn't help)
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
 
 ;; garbage callection ----------------------------------------------------------
