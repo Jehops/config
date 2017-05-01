@@ -126,7 +126,7 @@ slashes."
             (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
             (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
 
-;; appointments in the diary (commented b/c using org-mode exclusively now-----
+;; appointments in the diary (commented b/c using org-mode exclusively now -----
 ;; without after-init-hook, customized holiday-general-holidays is not respected
 ;; (add-hook 'after-init-hook (lambda () (appt-activate 1)))
 
