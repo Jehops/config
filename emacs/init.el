@@ -345,12 +345,32 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
 
 ;; gnus ------------------------------------------------------------------------
+(defun jrm/harden-newlines ()
+  "Use all hard newlines, so Gnus will use format=flowed.
+Add this to message-send-hook, so that it is called before each
+message is sent.  See
+https://www.emacswiki.org/emacs/GnusFormatFlowed for details."
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward "\n" nil t)
+      (put-text-property (1- (point)) (point) 'hard t))))
+
 (defun jrm/gnus-group ()
   "Start Gnus if necessary and enter GROUP."
   (interactive)
   (unless (gnus-alive-p) (gnus))
   (let ((group (gnus-group-completing-read "Group: " gnus-active-hashtb t)))
     (gnus-group-read-group nil t group)))
+
+(defun jrm/message-setup ()
+  "Compose messages in a way that is suitable for format=flowed.
+That is, compose messages that fill the screen and avoid using
+any hard newlines.  When the message is sent, all the newlines
+will be convert to hard newlines, so that format=flowed will be
+used."
+  (turn-off-auto-fill)
+  (use-hard-newlines t 'never)
+  (visual-line-mode))
 
 (defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."

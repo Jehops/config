@@ -158,6 +158,7 @@
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
  '(fill-column 80)
+ '(fill-flowed-display-column '(- (window-width) 5))
  '(flycheck-xml-xmlstarlet-executable "/usr/local/bin/xml")
  '(flymake-log-level 3)
  '(gdb-many-windows t)
@@ -382,7 +383,6 @@
      (maildir :path "/home/jrm/mail/noalert/" :plugged t)))
  '(mail-user-agent 'gnus-user-agent)
  '(menu-bar-mode nil)
- '(message-fill-column nil)
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
  '(message-mode-hook
@@ -391,7 +391,9 @@
         (kbd "C-c C-f o")
         'jrm/toggle-personal-work-message-fields))
      flyspell-mode visual-line-mode))
- '(message-setup-hook '(bbdb-insinuate-message mml-secure-message-sign))
+ '(message-send-hook '(jrm/harden-newlines))
+ '(message-setup-hook
+   '(message-check-recipients bbdb-insinuate-message mml-secure-message-sign jrm/message-setup))
  '(mm-attachment-override-types
    '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
  '(mm-discouraged-alternatives '("text/html" "text/richtext"))
