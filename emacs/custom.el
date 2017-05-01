@@ -68,8 +68,7 @@
  '(diary-comment-end "*/")
  '(diary-comment-start "/*")
  '(diary-file "~/.emacs.d/diary")
- '(diary-list-entries-hook
-   '(diary-include-other-diary-files diary-sort-entries bbdb-anniv-diary-entries))
+ '(diary-list-entries-hook '(diary-include-other-diary-files diary-sort-entries))
  '(dired-auto-revert-buffer 'dired-directory-changed-p)
  '(dired-listing-switches "-alh")
  '(dired-use-ls-dired nil)
