@@ -343,7 +343,10 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'minibuffer-setup-hook #'jrm/minibuffer-setup-hook)
 ;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
 
-;; gnus ------------------------------------------------------------------------
+;; gnus -----------------------------------------------------------------------
+;; I am not using this to coerce Gnus into sending format=flowed messages.
+;; While the concept sounds clever, having the client tinker with the message
+;; after it's composed is error-prone.
 (defun jrm/harden-newlines ()
   "Use all hard newlines, so Gnus will use format=flowed.
 Add this to message-send-hook, so that it is called before each
@@ -361,15 +364,16 @@ https://www.emacswiki.org/emacs/GnusFormatFlowed for details."
   (let ((group (gnus-group-completing-read "Group: " gnus-active-hashtb t)))
     (gnus-group-read-group nil t group)))
 
+;; I am not using this to coerce Gnus into sending format=flowed messages.
+;; While the concept sounds clever, having the client tinker with the message
+;; after it's composed is error-prone.
 (defun jrm/message-setup ()
   "Compose messages in a way that is suitable for format=flowed.
-That is, compose messages that fill the screen and avoid using
-any hard newlines.  When the message is sent, all the newlines
-will be convert to hard newlines, so that format=flowed will be
-used."
-  (turn-off-auto-fill)
-  (use-hard-newlines t 'never)
-  (visual-line-mode))
+That is, avoid using any hard newlines, but when the message is
+sent, all the newlines will be converted to hard newlines, so
+that format=flowed will be used.  I choose to wrap the message
+when composing, because I want to see what is sent."
+  (use-hard-newlines t 'never))
 
 (defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."
