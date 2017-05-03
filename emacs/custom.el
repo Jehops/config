@@ -389,7 +389,6 @@
         (kbd "C-c C-f o")
         'jrm/toggle-personal-work-message-fields))
      flyspell-mode visual-line-mode))
- '(message-send-hook '(notmuch-message-mark-replied notmuch-draft--mark-deleted))
  '(message-setup-hook
    '(message-check-recipients bbdb-insinuate-message mml-secure-message-sign))
  '(mm-attachment-override-types
@@ -489,7 +488,7 @@
      ("melpa" . "https://melpa.org/packages/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(git-gutter-fringe ivy-bibtex counsel intero polymode slime-company org-bullets org undo-tree notmuch pdf-tools dired+ magit visible-mark ivy-hydra ess beacon genrnc rnc-mode calfw bug-hunter google-translate rebox2 boxquote wttrin sauron synosaurus define-word hydra swiper exwm avy-zap company-auctex company-c-headers company-math company-quickhelp company-statistics w3m scpaste flycheck-package flycheck smart-mode-line google-maps znc yaml-mode twittering-mode stumpwm-mode smart-tab pkg-info php-mode paredit nginx-mode names multi-web-mode multi-term multi-eshell misc-cmds key-chord htmlize helm-fuzzier hackernews goto-last-change google-this ghci-completion ghc fill-column-indicator exec-path-from-shell esup es-lib erc-view-log ebib conkeror-minor-mode buffer-move browse-kill-ring bbdb auctex-latexmk aggressive-indent aggressive-fill-paragraph ace-window ace-popup-menu ace-link))
+   '(key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-auctex company-bibtex company-c-headers company-ghc company-ghci scpaste php-mode polymode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark w3m wttrin yaml-mode yasnippet znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode notmuch org org-bullets paredit htmlize hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph auctex-latexmk avy-zap bbdb boxquote buffer-move calfw conkeror-minor-mode counsel define-word dired+ ebib erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))
@@ -531,8 +530,8 @@
  '(tls-program
    '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
  '(tool-bar-mode nil)
- '(tramp-default-method "ssh" nil (tramp))
- '(tramp-use-ssh-controlmaster-options nil nil (tramp))
+ '(tramp-default-method "ssh")
+ '(tramp-use-ssh-controlmaster-options nil)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(twittering-oauth-invoke-browser t)
