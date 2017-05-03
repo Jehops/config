@@ -390,9 +390,9 @@
         (kbd "C-c C-f o")
         'jrm/toggle-personal-work-message-fields))
      flyspell-mode visual-line-mode))
- '(message-send-hook '(jrm/harden-newlines))
+ '(message-send-hook '(notmuch-message-mark-replied notmuch-draft--mark-deleted))
  '(message-setup-hook
-   '(message-check-recipients bbdb-insinuate-message mml-secure-message-sign jrm/message-setup))
+   '(message-check-recipients bbdb-insinuate-message mml-secure-message-sign))
  '(mm-attachment-override-types
    '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
  '(mm-discouraged-alternatives '("text/html" "text/richtext"))
