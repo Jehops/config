@@ -172,7 +172,6 @@
  '(gnus-agent-go-online t)
  '(gnus-agent-queue-mail nil)
  '(gnus-article-date-headers '(local))
- '(gnus-article-mode-hook visual-line-mode)
  '(gnus-article-prepare-hook
    '(bbdb-mua-auto-update
      (lambda nil
