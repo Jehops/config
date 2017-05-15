@@ -1,5 +1,9 @@
 (setq gc-cons-threshold most-positive-fixnum)
 
+;; (add-to-list 'load-path "/home/jrm/.emacs.d/elpa/benchmark-init-20150905.238/")
+;; (require 'benchmark-init)
+;; (benchmark-init/activate)
+
 (package-initialize)
 
 ;; custom set varaibles --------------------------------------------------------
