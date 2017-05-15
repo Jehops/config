@@ -2,6 +2,14 @@
 
 (package-initialize)
 
+;; custom set varaibles --------------------------------------------------------
+;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
+(advice-add 'custom-save-all
+            :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
+
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (load-file "~/.emacs.d/secret.el")
 
@@ -902,13 +910,5 @@ when composing, because I want to see what is sent."
 
 ;; yes-or-no--------------------------------------------------------------------
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;; custom set varaibles --------------------------------------------------------
-;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
-(advice-add 'custom-save-all
-            :around (lambda (orig) (let ((print-quoted t)) (funcall orig))))
-
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
 
 (setq gc-cons-threshold 800000)
