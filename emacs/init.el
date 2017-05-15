@@ -694,8 +694,7 @@ when composing, because I want to see what is sent."
 (with-eval-after-load 'magit
   (require 'magithub)
   (magithub-feature-autoinject t)
-  (setq ghub-username 'Jehops)
-  (setq ghub-token "6fea40845d4fb2ef2333653aa75fbf0ffe9a9072"))
+  (setq ghub-username 'Jehops))
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
