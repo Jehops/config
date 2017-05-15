@@ -136,13 +136,20 @@ slashes."
 
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
-(add-hook 'after-init-hook
-          (lambda ()
-            (require 'ert)
-            (ace-link-setup-default (kbd "C-,"))
-            (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
-            (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
-            (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (require 'ert)
+;;             (ace-link-setup-default (kbd "C-,"))
+;;             (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
+;;             (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
+;;             (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
+(ace-link-setup-default (kbd "C-,"))
+(with-eval-after-load 'ert
+  (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help))
+(with-eval-after-load 'gnus
+  (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus))
+(with-eval-after-load 'gnus-art
+  (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus))
 
 ;; appointments in the diary (commented b/c using org-mode exclusively now -----
 ;; without after-init-hook, customized holiday-general-holidays is not respected
@@ -175,19 +182,31 @@ slashes."
 ;; holidays will be shown in calfw and calendar.  This happends because calfw
 ;; calls (require 'holiday), which sets calendar-holidays using values of,
 ;; e.g. holiday-bahai-holidays, before they are set to nil.
-(add-hook 'after-init-hook
-          (lambda ()
-            (require 'calfw)
-            (require 'calfw-cal)
-            (require 'calfw-org)
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (require 'calfw)
+;;             (require 'calfw-cal)
+;;             (require 'calfw-org)
 
-            (defun jrm/open-calendar ()
-              (interactive)
-              (cfw:open-calendar-buffer
-               :contents-sources
-               (list
-                (cfw:org-create-source "OliveDrab4")
-                (cfw:cal-create-source "DarkOrange3"))))))
+;;             (defun jrm/open-calendar ()
+;;               (interactive)
+;;               (cfw:open-calendar-buffer
+;;                :contents-sources
+;;                (list
+;;                 (cfw:org-create-source "OliveDrab4")
+;;                 (cfw:cal-create-source "DarkOrange3"))))))
+
+(defun jrm/open-calendar ()
+  (require 'calfw)
+  (require 'calfw-cal)
+  (require 'calfw-org)
+
+  (interactive)
+  (cfw:open-calendar-buffer
+   :contents-sources
+   (list
+    (cfw:org-create-source "OliveDrab4")
+    (cfw:cal-create-source "DarkOrange3"))))
 
 ;; company ---------------------------------------------------------------------
 (add-hook 'after-init-hook 'global-company-mode)
@@ -196,7 +215,7 @@ slashes."
 (toggle-diredp-find-file-reuse-dir 1)
 
 ;; erc -------------------------------------------------------------------------
-(with-eval-after-load "erc" (require 'erc-tex))
+(with-eval-after-load 'erc (require 'erc-tex))
 
 (defun jrm/erc ()
   "Connect to irc networks set up in my znc bouncer."
@@ -342,9 +361,6 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; ess -------------------------------------------------------------------------
 ;;(require 'ess-site)
-
-;; flycheck --------------------------------------------------------------------
-(require 'flycheck)
 
 ;; flyspell --------------------------------------------------------------------
 ;; stop flyspell-auto-correct-word from hijacking C-.
@@ -499,18 +515,19 @@ when composing, because I want to see what is sent."
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
 
 ;; igor -----------------------------------------------------------------------
-(flycheck-define-checker igor
-  "FreeBSD Documentation Project sanity checker.
+(with-eval-after-load 'flycheck
+  (flycheck-define-checker igor
+    "FreeBSD Documentation Project sanity checker.
 
-See URLs http://www.freebsd.org/docproj/ and
-http://www.freshports.org/textproc/igor/."
-  :command ("igor" "-X" source-inplace)
-  :error-parser flycheck-parse-checkstyle
-  :modes (nxml-mode)
-  :standard-input t)
+  See URLs http://www.freebsd.org/docproj/ and
+  http://www.freshports.org/textproc/igor/."
+    :command ("igor" "-X" source-inplace)
+    :error-parser flycheck-parse-checkstyle
+    :modes (nxml-mode)
+    :standard-input t)
 
-;; register the igor checker for automatic syntax checking
-(add-to-list 'flycheck-checkers 'igor 'append)
+  ;; register the igor checker for automatic syntax checking
+  (add-to-list 'flycheck-checkers 'igor 'append))
 
 ;; keybindings -----------------------------------------------------------------
 
