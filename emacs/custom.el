@@ -183,7 +183,7 @@
  '(gnus-check-new-newsgroups nil)
  '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
- '(gnus-group-mode-hook '(gnus-topic-mode hl-line-mode))
+ '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
  '(gnus-interactive-exit nil)
@@ -488,7 +488,7 @@
      ("melpa" . "https://melpa.org/packages/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-auctex company-bibtex company-c-headers company-ghc company-ghci scpaste php-mode polymode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark w3m wttrin yaml-mode yasnippet znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode notmuch org org-bullets paredit htmlize hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph auctex-latexmk avy-zap bbdb boxquote buffer-move calfw conkeror-minor-mode counsel define-word dired+ ebib erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+   '(magithub key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-auctex company-bibtex company-c-headers company-ghc company-ghci scpaste php-mode polymode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark w3m wttrin yaml-mode yasnippet znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode notmuch org org-bullets paredit htmlize hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph auctex-latexmk avy-zap bbdb boxquote buffer-move calfw conkeror-minor-mode counsel define-word dired+ ebib erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))
