@@ -4,7 +4,28 @@
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (load-file "~/.emacs.d/secret.el")
-;; (load-file "~/.emacs.d/exwm.el")
+
+;; exwm
+;; (require 'exwm)
+;; (require 'exwm-randr)
+
+;; (exwm-input-set-key (kbd "C-t") #'exwm-reset)
+
+;; (add-hook 'exwm-update-class-hook
+;;           (lambda ()
+;;             (exwm-workspace-rename-buffer exwm-class-name)))
+
+;; (setq exwm-randr-workspace-output-plist '(0 "LVDS1" 1 "VGA1"))
+;; (add-hook 'exwm-randr-screen-change-hook
+;;           (lambda ()
+;;             (start-process-shell-command
+;;              "xrandr" nil "xrandr --output VGA1 --above LVDS1 --auto")))
+;; (exwm-randr-enable)
+
+;; (require 'exwm-systemtray)
+;; (exwm-systemtray-enable)
+
+;; (exwm-enable)
 
 ;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
