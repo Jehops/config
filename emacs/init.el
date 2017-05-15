@@ -690,6 +690,13 @@ when composing, because I want to see what is sent."
 (key-chord-define-global "jg" 'avy-goto-line)
 (key-chord-define-global "jx" 'multi-eshell)
 
+;; magithub --------------------------------------------------------------------
+(with-eval-after-load 'magit
+  (require 'magithub)
+  (magithub-feature-autoinject t)
+  (setq ghub-username 'Jehops)
+  (setq ghub-token "6fea40845d4fb2ef2333653aa75fbf0ffe9a9072"))
+
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
 
