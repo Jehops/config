@@ -93,6 +93,7 @@ xkcd_add_title = true;
 // browser.download.manager.closeWhenDone applies to built-in d/l window
 //session_pref("browser.download.manager.closeWhenDone",true);
 session_pref("full-screen-api.enabled",true);
+// line below causes YouTube audio to continue after leaving page
 session_pref("general.useragent.compatMode.firefox",true);
 session_pref("layout.spellcheckDefault",1);
 //session_pref("network.proxy.http","127.0.0.1");
