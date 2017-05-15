@@ -798,15 +798,10 @@ http://www.freshports.org/textproc/igor/."
 ;; scratch ---------------------------------------------------------------------
 ;; Do not put this in custom.el, because it screws up indentation
 (setq initial-scratch-message
-      (format ";; %s
-
-"
-              (replace-regexp-in-string "
-" "
-;; "
-(replace-regexp-in-string "
-$" ""
-(shell-command-to-string "/usr/bin/fortune freebsd-tips")))))
+      (format ";; %s\n\n"
+              (replace-regexp-in-string "\n" "\n;; "
+                                        (shell-command-to-string
+                                         "/usr/bin/fortune freebsd-tips"))))
 
 ;; slime/swank -----------------------------------------------------------------
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
