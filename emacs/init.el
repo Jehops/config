@@ -39,9 +39,6 @@
 (put 'set-goal-column 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-;; make quiting Emacs less interactive -----------------------------------------
-(with-eval-after-load "gnus-group" (add-hook 'kill-emacs-hook 'gnus-group-exit))
-
 ;; quick buffer switching by mode ----------------------------------------------
 (defun jrm/sbm (prompt mode-list)
   "PROMPT for buffers that have a major mode matching an element of MODE-LIST."
@@ -395,6 +392,15 @@ sent, all the newlines will be converted to hard newlines, so
 that format=flowed will be used.  I choose to wrap the message
 when composing, because I want to see what is sent."
   (use-hard-newlines t 'never))
+
+(with-eval-after-load 'gnus-group
+  ;; make quitting Emacs less interactive
+  (add-hook 'kill-emacs-hook 'gnus-group-exit)
+  (define-key gnus-group-mode-map (kbd "C-k") nil)
+  (define-key gnus-group-mode-map (kbd "C-w") nil))
+
+(with-eval-after-load 'gnus-topic
+  (define-key gnus-topic-mode-map (kbd "C-k") nil))
 
 (defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."
