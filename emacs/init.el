@@ -225,10 +225,13 @@ slashes."
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; dired / dired+ --------------------------------------------------------------
-(toggle-diredp-find-file-reuse-dir 1)
+(with-eval-after-load 'dired
+  (toggle-diredp-find-file-reuse-dir 1))
 
 ;; erc -------------------------------------------------------------------------
-(with-eval-after-load 'erc (require 'erc-tex))
+(with-eval-after-load 'erc
+  (require 'erc-tex)
+  (erc-track-minor-mode t)) ;; if customized, erc is loaded on startup
 
 (defun jrm/erc ()
   "Connect to irc networks set up in my znc bouncer."
@@ -421,6 +424,10 @@ sent, all the newlines will be converted to hard newlines, so
 that format=flowed will be used.  I choose to wrap the message
 when composing, because I want to see what is sent."
   (use-hard-newlines t 'never))
+
+;; Gnus gets loaded on startup if gnus-select-method is customized
+(with-eval-after-load 'gnus
+  (setq gnus-select-method '(nnml "")))
 
 (with-eval-after-load 'gnus-group
   ;; make quitting Emacs less interactive
@@ -734,7 +741,9 @@ when composing, because I want to see what is sent."
 ;;                                  (setq fill-column 80))))
 
 ;; org-mode --------------------------------------------------------------------
-(org-clock-persistence-insinuate)
+(with-eval-after-load 'org
+  (org-clock-persistence-insinuate)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; notmuch ---------------------------------------------------------------------
 (defun jrm/notmuch-message-to-gnus-article ()
@@ -755,9 +764,12 @@ when composing, because I want to see what is sent."
       (message "Unable to switch to Gnus article."))))
 
 ;; pdf-tools -------------------------------------------------------------------
-;; This causes all buttons to be text when starting the emacs daemon
-;; with emacsclient -nc -a ''
-(pdf-tools-install)
+;; This causes all buttons to be text when starting the emacs daemon with
+;; emacsclient -nc -a ''.  It also slows Emacs startup time by a second, so just
+;; evaluate it each time a new version of pdf-tools is installed.
+;;(pdf-tools-install)
+(autoload 'pdf-view-mode "pdf-tools")
+(add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]$" . pdf-view-mode))
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
@@ -809,13 +821,14 @@ when composing, because I want to see what is sent."
       ad-do-it)))
 
 ;; sauron ----------------------------------------------------------------------
-(require 'sauron)
+;;(require 'sauron)
 
 (setq sauron-nick-insensitivity 5)
 (setq sauron-hide-mode-line t)
-(setq sauron-modules
-      '(sauron-erc sauron-org sauron-notifications sauron-twittering
-                   sauron-jabber sauron-identica sauron-elfeed))
+(setq sauron-modules '(sauron-erc))
+;; ;; (setq sauron-modules
+;; ;;       '(sauron-erc sauron-org sauron-notifications sauron-twittering
+;; ;;                    sauron-jabber sauron-identica sauron-elfeed))
 
 (defun jrm/saruon-speak-erc (origin prio msg props)
   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
@@ -835,7 +848,9 @@ when composing, because I want to see what is sent."
 
 (add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
 (add-hook 'sauron-event-block-functions 'jrm/sauron-erc-events-to-block)
-(sauron-start-hidden)
+
+(with-eval-after-load 'erc
+  (sauron-start-hidden))
 
 ;; scratch ---------------------------------------------------------------------
 ;; Do not put this in custom.el, because it screws up indentation
@@ -846,18 +861,22 @@ when composing, because I want to see what is sent."
                                          "/usr/bin/fortune freebsd-tips"))))
 
 ;; slime/swank -----------------------------------------------------------------
-(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "~/local/bin/sbcl")
+;;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+;;(setq inferior-lisp-program "~/local/bin/sbcl")
 
 ;;(require 'slime)
-(slime-setup '(slime-company slime-fancy))
+(with-eval-after-load 'slime
+  (slime-setup '(slime-company slime-fancy)))
 
 ;; smart mode line -------------------------------------------------------------
 ;; without after-init-hook there is always a warning about loading a theme
-(add-hook 'after-init-hook 'sml/setup)
+;;(add-hook 'after-init-hook 'sml/setup)
+(sml/setup)
 
 ;; transpar (transpose-paragraph-as-table) -------------------------------------
-(require 'transpar)
+;;(require 'transpar)
+(autoload 'transpose-paragraph-as-table "transpar"
+  "Transpose paragraph as table." t)
 
 ;; twittering-mode -------------------------------------------------------------
 (add-hook 'twittering-edit-mode-hook
