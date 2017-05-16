@@ -15,7 +15,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/")
 (load-file "~/.emacs.d/secret.el")
 
 ;; exwm
