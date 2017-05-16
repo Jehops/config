@@ -94,8 +94,6 @@
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
  '(erc-track-faces-priority-list
    '(erc-error-face erc-current-nick-face erc-keyword-face erc-nick-msg-face erc-direct-msg-face erc-dangerous-host-face erc-notice-face erc-prompt-face))
- '(erc-track-minor-mode t)
- '(erc-track-mode t)
  '(erc-track-priority-faces-only 'all)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
