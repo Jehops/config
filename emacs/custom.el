@@ -212,7 +212,6 @@
      (nntp "news.freelists.org"
            (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
- '(gnus-select-method '(nnml ""))
  '(gnus-started-hook '((lambda nil (gnus-group-jump-to-group "FreeBSD"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
  '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number))
@@ -466,15 +465,6 @@
  '(org-export-html-postamble nil)
  '(org-latex-pdf-process '("latexmk -f -pdf %f"))
  '(org-mobile-directory "~/.org-mobile")
- '(org-mode-hook
-   '(org-clock-load
-     #[nil "\300\301\302\303\304$\207"
-           [org-add-hook change-major-mode-hook org-show-block-all append local]
-           5]
-     #[nil "\300\301\302\303\304$\207"
-           [org-add-hook change-major-mode-hook org-babel-show-result-all append local]
-           5]
-     org-babel-result-hide-spec org-babel-hide-all-hashes org-bullets-mode))
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
