@@ -277,6 +277,7 @@
  '(holiday-hebrew-holidays nil)
  '(holiday-islamic-holidays nil)
  '(htmlize-ignore-face-size nil)
+ '(ibuffer-always-compile-formats nil)
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
    '("^\\*ESS\\*" "^\\*Compile" "^\\*helm"
