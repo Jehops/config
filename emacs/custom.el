@@ -77,7 +77,7 @@
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(echo-keystrokes 0.5)
- '(erc-fill-column 144)
+ '(erc-fill-column 144 t)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
@@ -179,7 +179,7 @@
         t))))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
- '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
+ '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list) t)
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
