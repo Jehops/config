@@ -64,6 +64,7 @@
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
+ '(default-frame-alist '((reverse . t)))
  '(delete-old-versions 'other)
  '(diary-comment-end "*/")
  '(diary-comment-start "/*")
@@ -77,7 +78,7 @@
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(echo-keystrokes 0.5)
- '(erc-fill-column 144 t)
+ '(erc-fill-column 144)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
@@ -179,7 +180,7 @@
         t))))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
- '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list) t)
+ '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
@@ -478,7 +479,7 @@
      ("melpa" . "https://melpa.org/packages/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(magithub key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-auctex company-bibtex company-c-headers company-ghc company-ghci scpaste php-mode polymode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark w3m wttrin yaml-mode yasnippet znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode notmuch org org-bullets paredit htmlize hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph auctex-latexmk avy-zap bbdb boxquote buffer-move calfw conkeror-minor-mode counsel define-word dired+ ebib erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+   '(org ebib dired+ which-key magithub key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-auctex company-bibtex company-c-headers company-ghc company-ghci scpaste php-mode polymode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark w3m wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode notmuch org-bullets paredit htmlize hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph auctex-latexmk avy-zap bbdb boxquote buffer-move calfw conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
  '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))
