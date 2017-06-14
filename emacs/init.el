@@ -506,6 +506,8 @@ when composing, because I want to see what is sent."
 ;; (setq ido-vertical-show-count t)
 
 ;; ivy
+;; (run-with-idle-timer 1 nil (lambda () (ivy-mode) (counsel-mode)))
+
 (defun jrm/ff-as-root (x)
   ;; Check for remote host (must have sudo root access)
   (if (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
