@@ -225,7 +225,8 @@ slashes."
 
 ;; dired / dired+ --------------------------------------------------------------
 (with-eval-after-load 'dired
-  (toggle-diredp-find-file-reuse-dir 1))
+  (require 'dired+))
+;  (toggle-diredp-find-file-reuse-dir 1))
 
 ;; erc -------------------------------------------------------------------------
 (with-eval-after-load 'erc
