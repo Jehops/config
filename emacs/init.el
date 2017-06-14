@@ -756,6 +756,7 @@ when composing, because I want to see what is sent."
 (defun jrm/notmuch-message-to-gnus-article ()
   "Open a summary buffer containing the current notmuch article."
   (interactive)
+  (autoload 'org-gnus-follow-link "org-gnus")
   (let ((group
          (replace-regexp-in-string
           "/" "."
