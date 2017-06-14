@@ -523,7 +523,6 @@
    '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
  '(tool-bar-mode nil)
  '(tramp-default-method "ssh")
- '(tramp-use-ssh-controlmaster-options nil)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(twittering-oauth-invoke-browser t)
