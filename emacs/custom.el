@@ -70,7 +70,7 @@
  '(diary-file "~/.emacs.d/diary")
  '(diary-list-entries-hook '(diary-include-other-diary-files diary-sort-entries))
  '(dired-auto-revert-buffer 'dired-directory-changed-p)
- '(dired-listing-switches "-alh")
+ '(dired-listing-switches "-Falh")
  '(dired-use-ls-dired nil)
  '(diredp-hide-details-initially-flag nil)
  '(diredp-wrap-around-flag nil)
