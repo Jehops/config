@@ -183,6 +183,7 @@
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
+ '(gnus-inhibit-startup-message t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
  '(gnus-interactive-exit nil)
  '(gnus-message-archive-group
