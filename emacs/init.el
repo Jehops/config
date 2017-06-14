@@ -659,6 +659,11 @@ when composing, because I want to see what is sent."
    ("w"                         whitespace-mode             "whitespace")
    ("q"                         nil                         "cancel")))
 
+;; tramp
+(run-with-idle-timer 1 nil (lambda () (require 'tramp)))
+(with-eval-after-load 'tramp
+  (setq tramp-use-ssh-controlmaster-options nil))
+
 ;; vcs
 (global-set-key
  (kbd "C-c v")
