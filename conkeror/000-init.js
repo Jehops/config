@@ -37,6 +37,8 @@ undefine_key(content_buffer_normal_keymap,"b");
 define_key(content_buffer_normal_keymap,"a","mpv");
 define_key(content_buffer_normal_keymap,"h","find-url-from-history-new-buffer");
 define_key(content_buffer_normal_keymap,"H","find-url-from-history");
+undefine_key(content_buffer_normal_keymap,"u");
+define_key(content_buffer_normal_keymap,"U","up");
 define_key(content_buffer_normal_keymap,"C-g","unfocus");
 define_key(text_keymap,"C-h","cmd_deleteCharBackward");
 
