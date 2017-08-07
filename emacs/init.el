@@ -46,6 +46,7 @@
       org-irc-link-to-logs     t)
 
 ;; enable some functions that are disabled by default --------------------------
+(put 'dired-find-alternate-file 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
@@ -630,6 +631,7 @@ when composing, because I want to see what is sent."
 (global-set-key (kbd "M-Z")     'avy-zap-up-to-char-dwim)
 
 ;; notmuch
+(autoload 'notmuch "notmuch" "notmuch mail" t)
 (with-eval-after-load "notmuch"
   (define-key notmuch-show-mode-map
     (kbd "C-c C-c") 'jrm/notmuch-message-to-gnus-article)
@@ -718,10 +720,10 @@ when composing, because I want to see what is sent."
 (key-chord-define-global "jx" 'multi-eshell)
 
 ;; magithub --------------------------------------------------------------------
-(with-eval-after-load 'magit
-  (require 'magithub)
-  (magithub-feature-autoinject t)
-  (setq ghub-username 'Jehops))
+;; (with-eval-after-load 'magit
+;;   (require 'magithub)
+;;   (magithub-feature-autoinject t)
+;;   (setq ghub-username 'Jehops))
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
