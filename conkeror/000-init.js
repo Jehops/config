@@ -106,6 +106,7 @@ session_pref("layout.spellcheckDefault",1);
 session_pref("spellchecker.dictionary","en-CA");
 session_pref("xpinstall.whitelist.required",false);
 user_pref("devtools.debugger.remote-enabled",true);
+// user_pref("media.autoplay.enabled",false); // setting this breaks many videos
 
 // user agent
 var user_agents = {
