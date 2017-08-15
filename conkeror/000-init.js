@@ -193,9 +193,9 @@ function external_editor_make_base_filename (elem,top_doc) {
     return name;
 }
 
-// Use org-protocol to store links and capture
+// Use org-protocol to store a link
 function org_store_link (url,title,window) {
-    var cmd_str = 'emacsclient \"org-protocol://store-link://'+url+'/'+title+'\"';
+    var cmd_str = 'emacsclient \"org-protocol://store-link?url='+url+'&title='+title+'\"';
     if (window != null) {
         window.minibuffer.message('Issuing ' + cmd_str);
     }
@@ -210,11 +210,15 @@ interactive("org-store-link",
                                I.window);
             });
 
+define_key(content_buffer_normal_keymap,"C-c o c","org-capture");
+
+// Use org-protocol to capture a link
 function org_capture (url,title,selection,window) {
-    var cmd_str = 'emacsclient \"org-protocol://capture://'+url+'/'+title+'/'+selection+'\"';
+    var cmd_str = 'emacsclient \"org-protocol://capture?template=w&url='+url+'&title='+title+'&selection='+body+'\"';
     if (window != null) {
         window.minibuffer.message('Issuing ' + cmd_str);
     }
+    dumpln(cmd_str);
     shell_command_blind(cmd_str);
 }
 
@@ -227,7 +231,6 @@ interactive("org-capture",
                             I.window);
             });
 
-define_key(content_buffer_normal_keymap,"C-c o c","org-capture");
 define_key(content_buffer_normal_keymap,"C-c o l","org-store-link");
 
 // history

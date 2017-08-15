@@ -457,7 +457,8 @@
 %a" :table-line-pos t)
      ("w" "Web Link" item
       (file+headline "~/scm/org.git/capture.org" "Web Links")
-      "- %u %c")))
+      "- %u %a
+%i")))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
