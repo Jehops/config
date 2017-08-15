@@ -214,7 +214,7 @@ define_key(content_buffer_normal_keymap,"C-c o c","org-capture");
 
 // Use org-protocol to capture a link
 function org_capture (url,title,selection,window) {
-    var cmd_str = 'emacsclient \"org-protocol://capture?template=w&url='+url+'&title='+title+'&selection='+body+'\"';
+    var cmd_str = 'emacsclient \"org-protocol://capture?template=w&url='+url+'&title='+title+'&body='+selection+'\"';
     if (window != null) {
         window.minibuffer.message('Issuing ' + cmd_str);
     }
