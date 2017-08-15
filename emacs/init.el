@@ -920,6 +920,7 @@ when composing, because I want to see what is sent."
         ("Google Maps" . [simple-query "maps.google.com" "maps.google.com/?force=tt&q=" ""])
         ("Google Plus" . "plus.google.com")
         ("Google Scholar" . [simple-query "scholar.google.com" "scholar.google.com/scholar?q=" ""])
+        ("Hacker News" . "https://news.ycombinator.com")
         ("Home" . "ftfl.ca")
         ("Merriam-Webster Dictionary" . [simple-query "www.m-w.com/dictionary" "www.m-w.com/cgi-bin/netdict?va=" ""])
         ("Nagio" . "awarnach.mathstat.dal.ca/nagios")

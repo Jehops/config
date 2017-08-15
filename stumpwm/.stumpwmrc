@@ -3,8 +3,8 @@
 (in-package :stumpwm)
 
 ;; These two lines used to cause StumpWM to crash, but they seem OK now
-(require 'swank)
-(swank:create-server)
+;;(require 'swank)
+;;(swank:create-server)
 
 (setf *colors* (append *colors* (list "Orange2" "Gray52")))
 (setf *input-window-gravity* :bottom-right)
