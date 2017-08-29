@@ -509,8 +509,22 @@ when composing, because I want to see what is sent."
 ;; ivy
 ;; (run-with-idle-timer 1 nil (lambda () (ivy-mode) (counsel-mode)))
 
+(defun jrm/cf-as-root ()
+  "Visit the current file with root privileges."
+  (interactive)
+  ;; Check for remote host (must have sudo root access on remote host)
+  (let ((x (buffer-file-name)))
+    (cond
+     ((null x) (message "Not visiting a file."))
+     ((file-writable-p buffer-file-name) (message "The file is already writable."))
+     ((string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
+      (let ( (host (match-string 1 x))
+             (path (match-string 2 x)))
+        (find-alternate-file (concat "/ssh:" host "|sudo:" host ":" path))))
+     (t (find-alternate-file (concat "/sudo::" x))))))
+
 (defun jrm/ff-as-root (x)
-  ;; Check for remote host (must have sudo root access)
+  ;; Check for remote host (must have sudo root access on remote host)
   (if (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
       (let ( (host (match-string 1 x))
              (path (match-string 2 x)))
@@ -559,6 +573,7 @@ when composing, because I want to see what is sent."
 (global-set-key (kbd "<f12>")           'jrm/make)
 (global-set-key (kbd "C-c g")           'jrm/getmail)
 (global-set-key (kbd "C-c l")           'list-packages)
+(global-set-key (kbd "C-c r")           'jrm/cf-as-root)
 (global-set-key (kbd "C-c s")           'swiper)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
