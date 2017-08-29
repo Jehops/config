@@ -106,7 +106,7 @@ gp() {
     if [ "$(hostname -s)" = 'storage2' ] ; then
         cd "/poudriere/ports/default/$1"
         else
-            cd "${HOME}/scm/freebsd/freebsd-ports.svn/$1"
+            cd "${HOME}/scm/freebsd/ports/head/$1"
     fi
 };
 
@@ -146,7 +146,7 @@ alias mv="mv -i"
 alias p=$PAGER
 alias pc="less -ir"
 #alias rdl="rdesktop -k en-us -g 1600x1015 -a 16 -r sound 129.173.33.182"
-alias pu="svn up /home/jrm/scm/freebsd/freebsd-ports.svn/"
+alias pu="svn up /home/jrm/scm/freebsd/ports/"
 alias rm="rm -i"
 alias s="sudo "
 alias se="sudoedit"

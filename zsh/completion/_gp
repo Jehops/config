@@ -3,5 +3,5 @@
 if [ "$(hostname -s)" = 'storage2' ] ; then
    _path_files -W /poudriere/ports/default/ -/
 else
-   _path_files -W /home/jrm/scm/freebsd/freebsd-ports.svn/ -/
+   _path_files -W /home/jrm/scm/freebsd/ports/head/ -/
 fi
