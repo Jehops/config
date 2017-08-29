@@ -774,12 +774,9 @@ when composing, because I want to see what is sent."
       (message "Unable to switch to Gnus article."))))
 
 ;; pdf-tools -------------------------------------------------------------------
-;; This causes all buttons to be text when starting the emacs daemon with
-;; emacsclient -nc -a ''.  It also slows Emacs startup time by a second, so just
-;; evaluate it each time a new version of pdf-tools is installed.
-;;(pdf-tools-install)
 (autoload 'pdf-view-mode "pdf-tools")
-(add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]$" . pdf-view-mode))
+(add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
+(add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
