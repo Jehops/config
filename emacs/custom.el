@@ -380,6 +380,7 @@
    '((maildir :path "/home/jrm/mail/" :plugged t)
      (maildir :path "/home/jrm/mail/noalert/" :plugged t)))
  '(mail-user-agent 'gnus-user-agent)
+ '(major-mode 'text-mode)
  '(menu-bar-mode nil)
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
@@ -520,6 +521,7 @@
  '(term-buffer-maximum-size 10000)
  '(term-scroll-show-maximum-output nil)
  '(term-unbind-key-list '("C-c b" "C-c t" "C-x" "M-x"))
+ '(text-mode-hook '(turn-on-flyspell text-mode-hook-identify))
  '(tls-checktrust 'ask)
  '(tls-program
    '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
