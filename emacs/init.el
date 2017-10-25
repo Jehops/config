@@ -289,8 +289,6 @@ possible value for `erc-generate-log-file-name-function'."
     ;; we need a make-safe-file-name function.
     (convert-standard-filename file)))
 
-(add-hook 'window-configuration-change-hook
-          (lambda () (setq erc-fill-column (- (window-width) 2))))
 (defun jrm/erc-open-log-file ()
   "Open the log file for the IRC channel in the current buffer."
   (interactive)
@@ -298,6 +296,12 @@ possible value for `erc-generate-log-file-name-function'."
   (if (string= major-mode "erc-mode")
       (find-file (erc-current-logfile))
     (message "This is not an ERC channel buffer.")))
+
+;;(defun jrm/update-erc-fill-column ()
+;;  "Set erc-fill-column to a value just smaller than the window width."
+;;  (setq erc-fill-column (- (window-body-width) 2)))
+
+;;(add-hook 'window-configuration-change-hook 'jrm/update-erc-fill-column)
 
 ;; eshell ----------------------------------------------------------------------
 (defun jrm/eshell-prompt ()
