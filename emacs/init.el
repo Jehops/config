@@ -572,7 +572,8 @@ when composing, because I want to see what is sent."
   (let ((x (buffer-file-name)))
     (cond
      ((null x) (message "Not visiting a file."))
-     ((file-writable-p buffer-file-name) (message "The file is already writable."))
+     ((file-writable-p buffer-file-name)
+      (message "The file is already writable."))
      ((string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
       (let ( (host (match-string 1 x))
              (path (match-string 2 x)))
