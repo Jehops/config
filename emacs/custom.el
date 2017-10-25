@@ -88,13 +88,24 @@
  '(erc-log-channels-directory "~/.emacs.d/.erc/logs")
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
+ '(erc-mode-hook
+   '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
  '(erc-modules
-   '(button completion fill irccontrols list log match menu move-to-prompt networks noncommands readonly ring stamp spelling track))
- '(erc-timestamp-format "%Y-%m-%d %k:%M ")
+   '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track))
+ '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
  '(erc-track-faces-priority-list
-   '(erc-error-face erc-current-nick-face erc-keyword-face erc-nick-msg-face erc-direct-msg-face erc-dangerous-host-face erc-notice-face erc-prompt-face))
+   '(erc-error-face
+     (erc-nick-default-face erc-current-nick-face)
+     erc-current-nick-face erc-keyword-face
+     (erc-nick-default-face erc-pal-face)
+     erc-pal-face erc-nick-msg-face erc-direct-msg-face
+     (erc-nick-default-face erc-dangerous-host-face)
+     erc-dangerous-host-face
+     (erc-nick-default-face erc-fool-face)
+     erc-fool-face erc-notice-face erc-input-face erc-prompt-face))
+ '(erc-track-mode t)
  '(erc-track-priority-faces-only 'all)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
@@ -180,7 +191,7 @@
         t))))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
- '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
+ '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list) t)
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
@@ -201,7 +212,8 @@
          group)
         (t "mail.misc")))))
  '(gnus-message-archive-method '(nnml ""))
- '(gnus-message-setup-hook '(message-remove-blank-cited-lines mml-secure-message-sign))
+ '(gnus-message-setup-hook
+   '(message-remove-blank-cited-lines mml-secure-message-sign jrm/gnus-set-auto-fill))
  '(gnus-read-newsrc-file nil)
  '(gnus-refer-thread-limit 5000)
  '(gnus-save-newsrc-file nil)
@@ -481,7 +493,7 @@
      ("melpa" . "https://melpa.org/packages/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(calfw-cal calfw-org calfw org ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-auctex company-bibtex company-c-headers company-ghc company-ghci scpaste php-mode polymode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit htmlize hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph auctex-latexmk avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+   '(scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw org ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
  '(pdf-view-continuous nil)
  '(pdf-view-display-size 'fit-page)
  '(polymode-display-process-buffers nil)
