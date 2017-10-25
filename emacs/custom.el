@@ -464,8 +464,13 @@
               (format "%s" years)
               suffix " wedding anniversary]]"))) nil (bbdb))
  '(org-capture-templates
-   '(("t" "TODO" plain
-      (file+headline "~/scm/org.git/capture.org" "Tasks")
+   '(("e" "Event" entry
+      (file+headline "~/scm/org.git/capture.org" "Events")
+      "** %a
+   %^T
+   Location: %?" :time-prompt t)
+     ("t" "TODO" plain
+      (file+headline "~/scm/org.git/capture.org" "Todos")
       "** ⚐ TODO %?
 - State \"⚐ TODO\"     from              %u
 %a" :table-line-pos t)
