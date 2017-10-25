@@ -278,6 +278,13 @@ possible value for `erc-generate-log-file-name-function'."
 
 (add-hook 'window-configuration-change-hook
           (lambda () (setq erc-fill-column (- (window-width) 2))))
+(defun jrm/erc-open-log-file ()
+  "Open the log file for the IRC channel in the current buffer."
+  (interactive)
+  (require 'erc-networks)
+  (if (string= major-mode "erc-mode")
+      (find-file (erc-current-logfile))
+    (message "This is not an ERC channel buffer.")))
 
 ;; eshell ----------------------------------------------------------------------
 (defun jrm/eshell-prompt ()
