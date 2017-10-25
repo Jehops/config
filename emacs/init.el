@@ -710,7 +710,23 @@ when composing, because I want to see what is sent."
   (define-key notmuch-tree-mode-map
     (kbd "C-c C-c") 'jrm/notmuch-message-to-gnus-article))
 
-;; the translation makes C-h work with M-x in the minibuffer
+;; origami code folding
+(global-set-key
+ (kbd "C-c f")
+ (defhydra hydra-origami (:color teal :hint nil)
+   "
+_o_pen node, _c_lose node, _n_ext fold, _p_revious fold, toggle _f_orward, \
+toggle _a_ll _q_uit
+"
+   ("o" origami-open-node)
+   ("c" origami-close-node)
+   ("n" origami-next-fold)
+   ("p" origami-previous-fold)
+   ("f" origami-forward-toggle-node)
+   ("a" origami-toggle-all-nodes)
+   ("q" nil)))
+
+;; translation to make C-h work with M-x in the minibuffer
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; toggling
