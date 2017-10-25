@@ -732,24 +732,24 @@ toggle _a_ll _q_uit
 ;; toggling
 (global-set-key
  (kbd "C-x t")
- (defhydra hydra-toggle (:color blue)
-   "toggle"
-   ("c"                         flycheck-mode               "flycheck")
-   ("d"                         toggle-debug-on-error       "debug-on-error")
-   ("e"                         erc-track-mode              "erc-track")
-   ("f"                         auto-fill-mode              "auto-file")
-   ("g"                         git-gutter:toggle           "git-gutter")
-   ("i"                         fci-mode                    "fci")
-   ("l"                         linum-mode                  "linum")
-   ("m"                         menu-bar-mode               "menu-bar")
-   ("p"                         paredit-mode                "paredit")
-   ("r"                         dired-toggle-read-only      "dired-read-only")
-   ("s"                         flyspell-mode               "flyspell")
-   ("S"                         sauron-toggle-hide-show     "sauron")
-   ("t"                         toggle-truncate-lines       "truncate-lines")
-   ("v"                         visual-line-mode            "visual-line")
-   ("w"                         whitespace-mode             "whitespace")
-   ("q"                         nil                         "cancel")))
+ (defhydra hydra-toggle (:color blue :hint nil)
+   "
+fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
+   ("c"  flycheck-mode)
+   ("d"  toggle-debug-on-error)
+   ("e"  erc-track-mode)
+   ("f"  auto-fill-mode)
+   ("g"  git-gutter:toggle)
+   ("i"  fci-mode)
+   ("l"  linum-mode)
+   ("m"  menu-bar-mode)
+   ("p"  paredit-mode)
+   ("s"  flyspell-mode)
+   ("S"  sauron-toggle-hide-show)
+   ("t"  toggle-truncate-lines)
+   ("v"  visual-line-mode)
+   ("w"  whitespace-mode)
+   ("q"  nil)))
 
 ;; tramp
 (run-with-idle-timer 1 nil (lambda () (require 'tramp)))
