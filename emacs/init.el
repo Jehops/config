@@ -441,9 +441,9 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
 
 ;; gnus -----------------------------------------------------------------------
-;; I am not using this to coerce Gnus into sending format=flowed messages.
+;; I am NO LONGER using this to coerce Gnus into sending format=flowed messages.
 ;; While the concept sounds clever, having the client tinker with the message
-;; after it's composed is error-prone.
+;; after it is composed is error-prone.
 (defun jrm/harden-newlines ()
   "Use all hard newlines, so Gnus will use format=flowed.
 Add this to message-send-hook, so that it is called before each
