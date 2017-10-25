@@ -14,7 +14,7 @@ url_completion_use_history = false;
 url_completion_use_bookmarks = true;
 
 // content handlers
-external_content_handlers.set("application/pdf","pv");
+external_content_handlers.set("application/pdf","emacsclient");
 external_content_handlers.set("video/*","mpv");
 external_content_handlers.set("text/*","emacsclient");
 
