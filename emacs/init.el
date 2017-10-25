@@ -254,7 +254,20 @@ slashes."
 ;; erc -------------------------------------------------------------------------
 (with-eval-after-load 'erc
   (require 'erc-tex)
-  (erc-track-minor-mode t)) ;; if customized, erc is loaded on startup
+
+  ;(erc-track-minor-mode t) ;; if customized, erc is loaded on startup
+
+  ;; track query buffers as if everything contains current nick
+  (defadvice erc-track-find-face
+      (around erc-track-find-face-promote-query activate)
+    (if (erc-query-buffer-p)
+        (setq ad-return-value (intern "erc-current-nick-face"))
+      ad-do-it))
+  (defadvice erc-track-modified-channels
+      (around erc-track-modified-channels-promote-query activate)
+    (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'nil))
+    ad-do-it
+    (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'all))))
 
 (defun jrm/erc ()
   "Connect to irc networks set up in my znc bouncer."
