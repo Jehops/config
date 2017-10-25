@@ -15,6 +15,8 @@ xsetroot -cursor_name left_ptr
 xautolock -locker "xlock >> ~/local/var/log/xlock.log 2>&1" \
           -time 5 -noclose >> ~/local/var/log/xautolock.log 2>&1 &
 
+export $(dbus-launch --exit-with-session)
+
 #exec ssh-agent dwm
 #exec ssh-agent emacs
 #exec ssh-agent ratpoison
