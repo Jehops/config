@@ -500,7 +500,8 @@ when composing, because I want to see what is sent."
              (unless (string-match (message-field-value "Gcc" t)
                                    user-work-mail-folder)
                (message-remove-header "Gcc")
-               (message-add-header (concat "Gcc: " user-work-mail-folder)))))
+               (message-add-header (concat "Gcc: " user-work-mail-folder)))
+             (turn-off-auto-fill)))
 
           ((string-match (concat user-full-name " <" user-work-mail-address ">")
                          (message-field-value "From" t))
@@ -512,7 +513,8 @@ when composing, because I want to see what is sent."
              (unless (string-match (message-field-value "Gcc" t)
                                    user-FreeBSD-mail-folder)
                (message-remove-header "Gcc")
-               (message-add-header (concat "Gcc: " user-FreeBSD-mail-folder)))))
+               (message-add-header (concat "Gcc: " user-FreeBSD-mail-folder)))
+             (turn-on-auto-fill)))
           (t
            (message-remove-header "From")
            (message-add-header (concat "From: " user-full-name
@@ -520,7 +522,15 @@ when composing, because I want to see what is sent."
            (message-remove-header "X-Message-SMTP-Method")
            (unless (string-match (message-field-value "Gcc" t) "mail.misc")
              (message-remove-header "Gcc")
-             (message-add-header "Gcc: mail.misc"))))))
+             (message-add-header "Gcc: mail.misc"))
+           (turn-off-auto-fill)))))
+
+(defun jrm/gnus-set-auto-fill ()
+  (save-excursion
+    (cond ((string-match (concat user-full-name " <" user-FreeBSD-mail-address ">")
+                         (message-field-value "From" t))
+           (turn-on-auto-fill))
+          (t (turn-off-auto-fill)))))
 
 ;; google ----------------------------------------------------------------------
 ;; Is this the only way to unset google-this-mode key binding?
