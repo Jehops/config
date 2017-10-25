@@ -27,11 +27,18 @@
 ;;           (lambda ()
 ;;             (exwm-workspace-rename-buffer exwm-class-name)))
 
-;; (setq exwm-randr-workspace-output-plist '(0 "LVDS1" 1 "VGA1"))
+;; (setq exwm-randr-workspace-output-plist '(0 "LVDS1" 1 "VGA1")
+;;       exwm-workspace-show-all-buffers t
+;;       exwm-layout-show-all-buffers t
+;;       exwm-input-line-mode-passthrough t)
 ;; (add-hook 'exwm-randr-screen-change-hook
 ;;           (lambda ()
 ;;             (start-process-shell-command
 ;;              "xrandr" nil "xrandr --output VGA1 --above LVDS1 --auto")))
+;; (defun jrm/exwm-launch (command)
+;;   (interactive (list (read-shell-command "$ ")))
+;;   (start-process-shell-command command nil command))
+
 ;; (exwm-randr-enable)
 
 ;; (require 'exwm-systemtray)

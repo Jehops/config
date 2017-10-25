@@ -18,7 +18,7 @@ xautolock -locker "xlock >> ~/local/var/log/xlock.log 2>&1" \
 export $(dbus-launch --exit-with-session)
 
 #exec ssh-agent dwm
-#exec ssh-agent emacs
+#exec ssh-agent emacsclient -c
 #exec ssh-agent ratpoison
 exec ssh-agent stumpwm
 #exec ssh-agent twm
