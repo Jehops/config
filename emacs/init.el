@@ -801,11 +801,11 @@ fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu _p_
   (local-set-key (kbd "M-p")   'previous-error))
 
 ;; key chords ------------------------------------------------------------------
-(key-chord-mode 1)
-(key-chord-define-global "jf" 'forward-to-word)
-(key-chord-define-global "jb" 'backward-to-word)
-(key-chord-define-global "jg" 'avy-goto-line)
-(key-chord-define-global "jx" 'multi-eshell)
+;;(key-chord-mode 1)
+;;(key-chord-define-global "jf" 'forward-to-word)
+;;(key-chord-define-global "jb" 'backward-to-word)
+;;(key-chord-define-global "jg" 'avy-goto-line)
+;;(key-chord-define-global "jx" 'multi-eshell)
 
 ;; magithub --------------------------------------------------------------------
 ;; (with-eval-after-load 'magit
