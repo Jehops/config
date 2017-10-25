@@ -126,6 +126,7 @@ man() {
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
+alias 2080="cd ${HOME}/files/edu/classes/STAT2080/TA/"
 alias aw="ssh awarnach"
 alias cp="cp -i"
 alias d="doas "
