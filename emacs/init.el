@@ -896,8 +896,10 @@ fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu _p_
 ;;(global-rainbow-delimiters-mode)
 
 ;; registers -------------------------------------------------------------------
+(set-register ?2 '(file . "~/files/edu/classes/STAT2080/TA/"))
 (set-register ?c '(file . "~/scm/org.git/capture.org"))
 (set-register ?d '(file . "~/scm/org.git/diary.org"))
+(set-register ?g '(file . "~/scm/freebsd/ports/head"))
 (set-register ?i '(file . "~/.emacs.d/init.el"))
 (set-register ?P '(file . "~/files/crypt/passwords.org.gpg"))
 (set-register ?p '(file . "~/scm/org.git/personal.org"))
