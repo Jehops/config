@@ -861,6 +861,9 @@ fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu _p_
         (org-gnus-follow-link group article)
       (message "Unable to switch to Gnus article."))))
 
+;; nov.el
+(add-to-list 'auto-mode-alist '("\\.[eE][pP][uU][bB]\\'" . nov-mode))
+
 ;; pdf-tools -------------------------------------------------------------------
 (autoload 'pdf-view-mode "pdf-tools")
 (add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
