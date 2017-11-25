@@ -1,44 +1,48 @@
 # things to do depending on $TERM
 case $TERM in
-    dumb)
-        unsetopt prompt_cr prompt_subst zle
-        #unfunction precmd preexec
-        #PS1='$ '
-        return
-        ;;
-    screen*|tmux*)
-	precmd () {print -Pn "\033k%m\033\\"}
+  dumb)
+    unsetopt prompt_cr prompt_subst zle
+    #unfunction precmd preexec
+    #PS1='$ '
+    #if [ INSIDE_EMACS = 1 ]; then
+    #export TERM=dumb-emacs-ansi
+    #else
+    #  return
+    #fi
+    ;;
+  screen*|tmux*)
+    precmd () {print -Pn "\033k%m\033\\"}
+    ;;
+  # eterm*)
+  # precmd () {print -Pn "\e]0;%n@%m|%~\a"}
+  #### so ido knows pwd
+  # chpwd()
+  # {
+  #     print -P "\033AnSiTc %d"
+  # }
+  # print -P "\033AnSiTu %n"
+  # print -P "\033AnSiTc %d"
+  ####
+  # ;;
+  xterm*|rxvt*)
+    #precmd () {print -Pn "\e]0;%n@%m|%~\a"}
+    case $TERM in
+      rxvt*)
+	precmd () { print -Pn "\e]0;rxvt - %n@%m\a" }
 	;;
-    # eterm*)
-    # precmd () {print -Pn "\e]0;%n@%m|%~\a"}
-    #### so ido knows pwd
-    # chpwd()
-    # {
-    #     print -P "\033AnSiTc %d"
-    # }
-    # print -P "\033AnSiTu %n"
-    # print -P "\033AnSiTc %d"
-    ####
-    # ;;
-    xterm*|rxvt*)
-        #precmd () {print -Pn "\e]0;%n@%m|%~\a"}
-	case $TERM in
-	    rxvt*)
-		precmd () {print -Pn "\e]0;rxvt - %n@%m\a"}
-		;;
-	    *)
-		precmd () {print -Pn "\e]0;xterm - %n@%m\a"}
-		;;
-	esac
-        #bindkey '^[[3~' delete-char-or-list
-        #bindkey '^[OH' beginning-of-line;
-        #bindkey '^[OF' end-of-line;
+      *)
+	precmd () { print -Pn "\e]0;xterm - %n@%m\a" }
 	;;
-    *)
-	#bindkey '^?' delete-char-or-list
-	#bindkey '^[[H' beginning-of-line;
-	#bindkey '^[[F' end-of-line;
-	;;
+    esac
+    #bindkey '^[[3~' delete-char-or-list
+    #bindkey '^[OH' beginning-of-line;
+    #bindkey '^[OF' end-of-line;
+    ;;
+  *)
+    #bindkey '^?' delete-char-or-list
+    #bindkey '^[[H' beginning-of-line;
+    #bindkey '^[[F' end-of-line;
+    ;;
 esac
 
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
@@ -124,15 +128,15 @@ gp() {
 }
 
 man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
 }
 
 # aliases
@@ -150,9 +154,9 @@ alias gd="cd ~/scm/freebsd/doc/head/"
 alias gos="cd ~/scm/freebsd/base/head/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
-    alias l="ls -ahl --color=auto"
+  alias l="ls -ahl --color=auto"
 else
-    alias l="env CLICOLOR_FORCE=1 ls -Fahl"
+  alias l="env CLICOLOR_FORCE=1 ls -Fahl"
 fi
 alias ll="env CLICOLOR_FORCE=1 ls -Fhilo"
 alias mv="mv -i"
