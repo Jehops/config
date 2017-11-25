@@ -41,6 +41,8 @@ case $TERM in
 	;;
 esac
 
+zshexit () { pkill -t "${$(tty)##*/},-" xclip }
+
 # set the prompt; for escape sequences see zshmisc(1)
 #PS1=$'%{\e[31m%}%n%{\e[0m%}@%{\e[32m%}%m%{\e[0m%}|%B%~%b%# '
 GIT_PROMPT_EXECUTABLE='haskell'
