@@ -147,8 +147,8 @@ alias e="emacs"
 alias ec="emacsclient -a= -n"
 alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
-alias gd="cd ~/scm/freebsd/freebsd-docs.svn/"
-alias gos="cd ~/scm/freebsd/freebsd-src.svn/"
+alias gd="cd ~/scm/freebsd/doc/head/"
+alias gos="cd ~/scm/freebsd/base/head/"
 alias j=jobs
 if [ $(uname) = 'Linux' ]; then
     alias l="ls -ahl --color=auto"
