@@ -46,7 +46,8 @@ zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 # set the prompt; for escape sequences see zshmisc(1)
 #PS1=$'%{\e[31m%}%n%{\e[0m%}@%{\e[32m%}%m%{\e[0m%}|%B%~%b%# '
 GIT_PROMPT_EXECUTABLE='haskell'
-PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b $(git_super_status)%# '
+PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b$(git_super_status) %# '
+#PROMPT='%F{red}%n@%m%f %F{green}%~%f $(git_super_status)%# '
 
 # environment variables; also see login.conf(5)
 export ALTERNATE_EDITOR=""
