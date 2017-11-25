@@ -106,12 +106,22 @@ zstyle ':completion:*' menu select=2
 # functions
 
 gp() {
-    if [ "$(hostname -s)" = 'storage2' ] ; then
-        cd "/poudriere/ports/default/$1"
-        else
-            cd "${HOME}/scm/freebsd/ports/head/$1"
-    fi
-};
+  . "${HOME}/.ports.conf"
+  gpsvn=0
+  OPTIND=1
+  while getopts ":s" opt; do
+    case $opt in
+      s) gpsvn=1 ;;
+      \?) printf "Invalid option: -%s", "$OPTARG" ;;
+    esac
+  done
+  shift $((OPTIND-1))
+  if [ "$gpsvn" = "1" ]; then
+    cd "${HOME}/${svnd}/$1"
+  else
+    cd "${portsd}/$1"
+  fi
+}
 
 man() {
     env \
