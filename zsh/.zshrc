@@ -102,7 +102,7 @@ bindkey '^x^e' edit-command-line
 # completion
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
-compinit
+compinit -d $HOME/.zcompdump_$HOST
 # show completion menu when number of options is at least 2
 # Need an extra return
 zstyle ':completion:*' menu select=2
