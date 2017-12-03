@@ -127,6 +127,14 @@ gp() {
   fi
 }
 
+magit () {
+  if pgrep -u "$USER" -fq '^emacs --daemon'; then
+    emacsclient -e "(magit-status-internal \"$PWD\")"
+  else
+    printf "No Emacs daemon is running.\\n"
+  fi
+}
+
 man() {
   env \
     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
