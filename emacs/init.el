@@ -928,9 +928,7 @@ fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu _p_
 (add-to-list 'auto-mode-alist '("\\.[eE][pP][uU][bB]\\'" . nov-mode))
 
 ;; pdf-tools -------------------------------------------------------------------
-(autoload 'pdf-view-mode "pdf-tools")
-(add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
-(add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
+(load "pdf-tools-init.el")
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
