@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (setq gc-cons-threshold most-positive-fixnum)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
