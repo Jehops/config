@@ -516,7 +516,8 @@ when composing, because I want to see what is sent."
   ;; make quitting Emacs less interactive
   (add-hook 'kill-emacs-hook 'gnus-group-exit)
   (define-key gnus-group-mode-map (kbd "C-k") nil)
-  (define-key gnus-group-mode-map (kbd "C-w") nil))
+  (define-key gnus-group-mode-map (kbd "C-w") nil)
+  (define-key gnus-group-mode-map (kbd "u") nil))
 
 (with-eval-after-load 'gnus-topic
   (define-key gnus-topic-mode-map (kbd "C-k") nil))
