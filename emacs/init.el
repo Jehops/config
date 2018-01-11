@@ -706,7 +706,14 @@ when composing, because I want to see what is sent."
 (global-set-key (kbd "C-c o c")         'org-capture)
 (global-set-key (kbd "C-c o l")         'org-store-link)
 (global-set-key (kbd "C-c W")           'wttrin)
-(global-set-key (kbd "C-c z")           'jrm/erc)
+
+;; erc
+(global-set-key
+ (kbd "C-c i")
+ (defhydra hydra-erc (:color blue)
+   "erc"
+   ("c"                         jrm/erc                     "connect")
+   ("l"                         jrm/erc-open-log-file       "log")))
 
 ;; switching buffers
 (global-set-key
