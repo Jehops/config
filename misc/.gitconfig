@@ -6,7 +6,7 @@
         default = simple
         followTags = true
 [core]
-        pager = less -ir
+	pager = less -F -X
 [alias]
         clog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 [commit]
