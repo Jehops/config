@@ -101,8 +101,11 @@ buffers."
                           gnus-summary-mode
                           gnus-article-mode
                           message-mode))))
-(defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-status-mode
-                                                             magit-diff-mode)))
+(defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-diff-mode
+                                                             magit-log-mode
+                                                             magit-process-mode
+                                                             magit-revision-mode
+                                                             magit-status-mode)))
 (defun jrm/sb-notmuch    ()
   "Open a notmuch-hello buffer if necessary, otherwise call
 jrm/sb for Notmuch buffers."
