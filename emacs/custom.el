@@ -337,7 +337,9 @@
       ("magit"
        (or
         (mode . magit-diff-mode)
+        (mode . magit-log-mode)
         (mode . magit-process-mode)
+        (mode . magit-revision-mode)
         (mode . magit-status-mode)))
       ("planning"
        (or
