@@ -144,12 +144,13 @@
  '(eshell-highlight-prompt nil)
  '(eshell-hist-ignoredups t)
  '(eshell-history-file-name "~/.emacs.d/eshell/history")
- '(eshell-history-size 1024)
+ '(eshell-history-size 10000)
  '(eshell-last-dir-ring-file-name "~/.emacs.d/eshell/lastdir")
  '(eshell-modules-list
    '(eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-script eshell-term eshell-unix eshell-xtra))
  '(eshell-mv-interactive-query t)
  '(eshell-mv-overwrite-files nil)
+ '(eshell-named-command-hook '(jrm/eshell-visual-ports-make))
  '(eshell-output-filter-functions
    '(eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
  '(eshell-prompt-function 'jrm/eshell-prompt)
@@ -158,8 +159,9 @@
  '(eshell-review-quick-commands t)
  '(eshell-rm-interactive-query t)
  '(eshell-visual-commands
-   '("less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw"))
- '(eshell-visual-options '(("sudo" "make config") ("git" "diff" "log" "--help")))
+   '("htop" "cdiff" "less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw"))
+ '(eshell-visual-options nil)
+ '(eshell-visual-subcommands '(("git" "clog" "diff" "log" "show")))
  '(ess-ask-for-ess-directory nil)
  '(ess-eval-visibly nil)
  '(ess-history-directory "~/")

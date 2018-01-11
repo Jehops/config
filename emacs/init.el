@@ -307,19 +307,45 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'window-configuration-change-hook 'jrm/update-erc-fill-column)
 
 ;; eshell ----------------------------------------------------------------------
+;; Could not get this working as an alias
+(defun eshell/gp (&optional port)
+  (cd (concat "~/scm/freebsd/ports/head/" port))
+  nil)
+
+(defun jrm/eshell-visual-ports-make (command args)
+  "Run FreeBSD port make commands in a terminal"
+  (when (and (or (string-match "scm/freebsd/ports/head" default-directory)
+                 (string-match "/usr/ports" default-directory))
+             (or
+             (and (string-match "make" command)
+                  (or (null args)
+                      (string-match "config" (car args))))
+             (and (or (string-match "sudo" command) (string-match "s" command))
+                  (string-match "make" (car args))
+                  (or (null (cdr args))
+                      (string-match "config" (nth 1 args))))))
+    (throw 'eshell-replace-command
+           (eshell-parse-command "ls" args))))
+;;(apply (eshell-exec-visual (cons command args))))))
+
 (defun jrm/eshell-prompt ()
   "Customize the eshell prompt."
   (concat
-   (propertize (user-login-name) 'face '(:foreground "red"))
+   (propertize (user-login-name) 'face '(:foreground "gray"))
    "@"
    (propertize
-    (car (split-string (system-name) "[.]")) 'face '(:foreground "green"))
+    (car (split-string (system-name) "[.]")) 'face '(:foreground "gray"))
    " "
    (propertize
     (replace-regexp-in-string
      (concat "^\\(/usr\\)?/home/" (user-login-name)) "~" (eshell/pwd))
-    'face '(:foreground "yellow"))
+    'face '(:foreground "orange"))
    (if (= (user-uid) 0) " # " " % ")))
+
+(defun pcomplete/gp ()
+  "Completion for eshell/gp"
+  (cd "~/scm/freebsd/ports/head/")
+    (pcomplete-here (pcomplete-dirs)))
 
 (defalias 'pcomplete/sudo 'pcomplete/xargs)
 (defalias 'pcomplete/s 'pcomplete/xargs)
@@ -420,10 +446,17 @@ possible value for `erc-generate-log-file-name-function'."
           (lambda ()
             (local-set-key (kbd "C-l") (lambda () (interactive) (recenter 0)))))
 
+(defun jrm/eshell-complete-history ()
+  "Complete eshell history."
+  (interactive)
+  (insert (completing-read
+           "Eshell history: "
+           (delete-dups (ring-elements eshell-history-ring)))))
+
 (add-hook 'eshell-mode-hook
           (lambda ()
-            (define-key eshell-mode-map
-              (kbd "C-c C-r") 'jrm/counsel-esh-history)))
+            (local-set-key (kbd "C-c C-r") 'jrm/eshell-complete-history)))
+
 
 ;; ess -------------------------------------------------------------------------
 ;;(require 'ess-site)

@@ -1,10 +1,16 @@
+alias i n $*
+alias m n $*
 alias x exit
+alias vipw EDITOR=emacsclient sudo vipw
 alias s *sudo $*
+alias pu svnlite up /home/jrm/scm/freebsd/ports/
 alias p less $*
 alias mo xautolock -disable
-alias la locate -d /usr/locate/db/locate.database.root $*
 alias ll ls -l $*
+alias la locate -d /usr/locate/db/locate.database.root $*
 alias l ls -ahl $*
+alias g *grep --color=auto $*
+alias ec find-file $1
 alias e find-file $1
 alias d dired $1
-alias svn svnlite $*
+alias ... cd ../../
