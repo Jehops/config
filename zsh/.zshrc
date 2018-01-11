@@ -127,7 +127,7 @@ gp() {
   fi
 }
 
-magit () {
+magit() {
   if pgrep -u "$USER" -fq '^emacs --daemon'; then
     emacsclient -e "(magit-status-internal \"$PWD\")"
   else
