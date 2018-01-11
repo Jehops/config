@@ -567,6 +567,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "None" :family "DejaVu Sans Mono"))))
+ '(Man-overstrike ((t (:inherit bold :foreground "orange red" :weight bold))))
+ '(Man-underline ((t (:inherit underline :foreground "forest green" :underline t))))
  '(anything-candidate-number ((t (:background "#f57900" :foreground "black"))))
  '(anything-header ((t (:bold t :background "grey15" :foreground "#edd400"))))
  '(button ((t (:inherit (link)))))
