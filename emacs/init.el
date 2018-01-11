@@ -617,6 +617,19 @@ when composing, because I want to see what is sent."
         (find-alternate-file (concat "/ssh:" host "|sudo:" host ":" path))))
      (t (find-alternate-file (concat "/sudo::" x))))))
 
+(defun jrm/counsel-find-file-cd-bookmark-action (_)
+  "Reset `counsel-find-file' from selected directory."
+  (require 'bookmark)
+  (bookmark-maybe-load-default-file)
+  (ivy-read ": "
+       (delq nil (mapcar #'bookmark-get-filename (copy-sequence bookmark-alist)))
+       :action (lambda (x)
+                 (let ((default-directory (file-name-directory x)))
+                   (counsel-find-file)))))
+
+(defun jrm/confirm-delete-file (x)
+  (dired-delete-file x 'top))
+
 (defun jrm/ff-as-root (x)
   ;; Check for remote host (must have sudo root access on remote host)
   (if (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
@@ -631,7 +644,13 @@ when composing, because I want to see what is sent."
 
   (ivy-add-actions
    'counsel-find-file
-   '(("r" jrm/ff-as-root "root")))
+   `(("b" jrm/counsel-find-file-cd-bookmark-action "bookmark")
+     ("r" jrm/ff-as-root "root")
+     ("d" jrm/confirm-delete-file "delete")))
+
+  (ivy-add-actions
+   'counsel-notmuch
+   `(("g" jrm/notmuch-message-to-gnus-article "Gnus")))
 
   (ivy-set-actions
    'counsel-yank-pop
