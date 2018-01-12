@@ -104,6 +104,7 @@ buffers."
 (defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-diff-mode
                                                              magit-log-mode
                                                              magit-process-mode
+                                                             git-rebase-mode
                                                              magit-revision-mode
                                                              magit-status-mode)))
 (defun jrm/sb-notmuch    ()
