@@ -505,6 +505,8 @@
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
    '(scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw org ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime pdf-tools goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+ '(pdf-misc-print-programm "/usr/local/bin/lpr")
+ '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
  '(pdf-view-display-size 'fit-page)
  '(polymode-display-process-buffers nil)
