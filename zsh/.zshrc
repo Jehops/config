@@ -45,6 +45,12 @@ case $TERM in
     ;;
 esac
 
+preexec () {
+  if [ -n "$TMUX" ]; then
+    eval $(tmux switchc\; showenv -s)
+  fi
+}
+
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 
 # set the prompt; for escape sequences see zshmisc(1)
