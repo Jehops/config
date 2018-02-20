@@ -179,7 +179,11 @@ alias s="sudo "
 alias se="sudoedit"
 alias svn="svnlite"
 alias ta="tmux -2 att -d "
-alias t="tmux -2 "
+if [ "$HOST" = 'storage2.mathstat.dal.ca' ]; then
+  alias t="tmux -2 new -s build "
+else
+  alias t="tmux -2 "
+fi
 alias x="exit"
 
 # plugins
