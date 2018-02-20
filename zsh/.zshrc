@@ -161,7 +161,7 @@ alias g="grep --color=auto"
 alias gd="cd ~/scm/freebsd/doc/head/"
 alias gos="cd ~/scm/freebsd/base/head/"
 alias j=jobs
-if [ $(uname) = 'Linux' ]; then
+if [ "$(uname)" = 'Linux' ]; then
   alias l="ls -ahl --color=auto"
 else
   alias l="env CLICOLOR_FORCE=1 ls -Fahl"
