@@ -58,6 +58,8 @@ zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 GIT_PROMPT_EXECUTABLE='haskell'
 if [ "$(uname)" = 'FreeBSD' ]; then
   PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b$(git_super_status) %# '
+else
+  PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b %# '
 fi
 #PROMPT='%F{red}%n@%m%f %F{green}%~%f $(git_super_status)%# '
 
@@ -195,7 +197,9 @@ fi
 alias x="exit"
 
 # plugins
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [ "$(uname)" = 'FreeBSD' ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   source ~/scm/nm/zsh-git-prompt.git/zshrc.sh
+else
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
