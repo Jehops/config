@@ -94,7 +94,7 @@
  '(erc-mode-hook
    '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
  '(erc-modules
-   '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track))
+   '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
@@ -249,7 +249,7 @@
  '(gnus-treat-fill-long-lines nil)
  '(gnutls-min-prime-bits 1024)
  '(gnutls-trustfiles
-   '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/news.gmane.org.crt.pem" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
+   '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
  '(haskell-mode-hook '(intero-mode) t)
@@ -395,12 +395,14 @@
  '(kill-ring-max 100)
  '(kill-whole-line t)
  '(line-number-display-limit-width 10000)
- '(magit-delete-by-moving-to-trash nil)
+ '(magit-completing-read-function 'ivy-completing-read)
+ '(magit-repository-directories '(("/ssh:storage2:/usr/ports" . 0)))
  '(mail-sources
    '((maildir :path "/home/jrm/mail/" :plugged t)
      (maildir :path "/home/jrm/mail/noalert/" :plugged t)))
  '(mail-user-agent 'gnus-user-agent)
  '(major-mode 'text-mode)
+ '(mastodon-instance-url "https://bsd.network")
  '(menu-bar-mode nil)
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
@@ -503,10 +505,11 @@
  '(org-use-fast-todo-selection t)
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")))
+     ("melpa" . "https://melpa.org/packages/")
+     ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(counsel-notmuch w3m org eshell-git-prompt magit-svn scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this magit ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+   '(google-c-style dired-du mastodon magit-svn org-plus-contrib counsel-notmuch w3m eshell-git-prompt scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
  '(pdf-misc-print-programm "/usr/local/bin/lpr")
  '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
@@ -555,7 +558,7 @@
  '(tls-program
    '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
  '(tool-bar-mode nil)
- '(tramp-default-method "ssh")
+ '(tramp-default-method "ssh" nil (tramp))
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(twittering-oauth-invoke-browser t)
@@ -567,6 +570,8 @@
  '(vc-make-backup-files t)
  '(version-control t)
  '(web-mode-attr-indent-offset 2)
+ '(which-key-mode t)
+ '(wttrin-default-accept-language '("Accept-Language" . "en-US,en;q=0.8"))
  '(wttrin-default-cities '("Halifax")))
 
 (custom-set-faces
