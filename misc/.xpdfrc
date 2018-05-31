@@ -1,4 +1,3 @@
-#continuousView no
 initialSidebarState no
 #geometry "1325 1000"
 #initialZoom 'page'
@@ -14,4 +13,3 @@ bind alt-<  any gotoPage(1)
 bind ctrl-b any scrollLeft(10)
 bind ctrl-f any scrollRight(10)
 bind ctrl-s any find
-bind alt-f1 any toggleOutline
