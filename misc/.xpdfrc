@@ -1,4 +1,5 @@
 #continuousView no
+initialSidebarState no
 #geometry "1325 1000"
 #initialZoom 'page'
 #urlCommand "/home/jrm/bin/ck %s"
