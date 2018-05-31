@@ -1,7 +1,6 @@
 #continuousView no
 #geometry "1325 1000"
 #initialZoom 'page'
-psPaperSize 'letter'
 #urlCommand "/home/jrm/bin/ck %s"
 
 # key bindings
