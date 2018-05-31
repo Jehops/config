@@ -266,7 +266,7 @@ slashes."
 (with-eval-after-load 'erc
   (require 'erc-tex)
 
-  ;(erc-track-minor-mode t) ;; if customized, erc is loaded on startup
+  (erc-track-minor-mode) ;; this will turn on erc-track-mode
 
   ;; track query buffers as if everything contains current nick
   (defadvice erc-track-find-face
@@ -278,13 +278,7 @@ slashes."
       (around erc-track-modified-channels-promote-query activate)
     (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'nil))
     ad-do-it
-    (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'all))))
-
-(defun jrm/erc ()
-  "Connect to irc networks set up in my znc bouncer."
-  (interactive)
-  (znc-erc "network-slug-efnet")
-  (znc-erc "network-slug-freenode"))
+    (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'all)))
 
 (defun jrm/erc-generate-log-file-name-network (buffer target nick server port)
   "Generate erc BUFFER log file, TARGET for user NICK on SERVER:PORT.
@@ -306,11 +300,11 @@ possible value for `erc-generate-log-file-name-function'."
   (require 'erc-networks)
   (if (string= major-mode "erc-mode")
       (find-file (erc-current-logfile))
-    (message "This is not an ERC channel buffer.")))
+    (message "This is not an ERC channel buffer."))))
 
-;;(defun jrm/update-erc-fill-column ()
-;;  "Set erc-fill-column to a value just smaller than the window width."
-;;  (setq erc-fill-column (- (window-body-width) 2)))
+;; (defun jrm/update-erc-fill-column ()
+;;   "Set erc-fill-column to a value just smaller than the window width."
+;;   (setq erc-fill-column (- (window-body-width) 2)))
 
 ;;(add-hook 'window-configuration-change-hook 'jrm/update-erc-fill-column)
 
