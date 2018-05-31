@@ -127,6 +127,7 @@ var user_agents = {
 // webjumps
 define_webjump("aw","awarnach.mathstat.dal.ca");
 define_webjump("b","about:blank");
+define_webjump("bn","http://bsd.network");
 define_webjump("bs","dal.ca/brightspace");
 define_webjump("c","http://calendar.google.com");
 define_webjump("ca","capa.mathstat.dal.ca");
@@ -165,6 +166,7 @@ define_webjump("rfc","http://www.ietf.org/rfc/rfc%s.txt",$alternative="http://ww
 define_webjump("so","http://stackoverflow.com/search?q=%s",$alternative="http://stackoverflow.com");
 define_webjump("ss","javascript:window.location.href='http://google.com/search?q=%s+site:'+window.location.host");
 define_webjump("t","http://www.thefreedictionary.com/%s#Thesaurus");
+define_webjump("tilly","https://photos.google.com/share/AF1QipPF54v6sRJU2EpyvkvddDToiZKiqrQ5NqNbJebOeLyo2BhrOBhqoWjNWF7bO7a9fg?key=M09pWDBpczFaZmlzLWM3dmxpRXZmRjllZ3lSNjFB");
 define_webjump("tw","http://twitter.com");
 define_webjump("w","http://weather.gc.ca/city/pages/ns-40_metric_e.html");
 define_webjump("wn","http://www.theweathernetwork.com/ca/weather/nova-scotia/halifax");
