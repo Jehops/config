@@ -81,6 +81,7 @@
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(echo-keystrokes 0.5)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
+ '(epa-pinentry-mode 'loopback)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
    '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face" "erc-current-nick-face" "erc-direct-msg-face"))
@@ -159,7 +160,7 @@
  '(eshell-review-quick-commands t)
  '(eshell-rm-interactive-query t)
  '(eshell-visual-commands
-   '("htop" "cdiff" "less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw"))
+   '("htop" "cdiff" "less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw" "ncdu"))
  '(eshell-visual-options nil)
  '(eshell-visual-subcommands '(("git" "clog" "diff" "log" "show")))
  '(ess-ask-for-ess-directory nil)
