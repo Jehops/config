@@ -219,6 +219,9 @@ slashes."
   (define-key c-mode-map (kbd "C-c c") 'compile))
 ;;(add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
 
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+
 ;; calfw -----------------------------------------------------------------------
 ;; Only load calfw after custom-set variables are loaded, otherwise unwated
 ;; holidays will be shown in calfw and calendar.  This happends because calfw
