@@ -4,8 +4,8 @@
 #urlCommand "/home/jrm/bin/ck %s"
 
 # key bindings
-bind ctrl-v any nextPage
-bind alt-v  any prevPage
+bind n      any nextPage
+bind p      any prevPage
 bind ctrl-n any scrollDownNextPage(20)
 bind ctrl-p any scrollUpPrevPage(20)
 bind alt->  any gotoLastPage
