@@ -328,6 +328,8 @@ interactive("mpv","Play url in mpv",
                 var spec = load_spec(element);
                 var uri = load_spec_uri_string(spec);
 
+                uri = uri.replace('youtube.com','hooktube.com');
+
                 var panel = create_info_panel(
                     I.window,
                     "download-panel",
