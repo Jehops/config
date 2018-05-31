@@ -2,7 +2,6 @@
 #geometry "1325 1000"
 #initialZoom 'page'
 psPaperSize 'letter'
-psFile |/usr/local/bin/lpr
 #urlCommand "/home/jrm/bin/ck %s"
 
 # key bindings
