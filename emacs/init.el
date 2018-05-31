@@ -310,6 +310,13 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;;(add-hook 'window-configuration-change-hook 'jrm/update-erc-fill-column)
 
+(defun jrm/erc ()
+  "Connect to irc networks set up in my znc bouncer."
+  (interactive)
+  (znc-erc "network-slug-efnet")
+  (znc-erc "network-slug-freenode"))
+
+
 ;; eshell ----------------------------------------------------------------------
 ;; Could not get this working as an alias
 (defun eshell/gp (&optional port)
