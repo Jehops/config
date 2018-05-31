@@ -94,7 +94,7 @@ setopt hist_reduce_blanks
 setopt hist_verify # show ! history line for editing
 setopt ignore_eof # don't logout with ^D
 setopt inc_append_history # save history line by line
-setopt nobanghist
+#setopt nobanghist
 setopt nobeep
 setopt notify # asynchronous job control messages
 setopt pushd_ignore_dups
