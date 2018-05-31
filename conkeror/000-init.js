@@ -108,6 +108,9 @@ session_pref("spellchecker.dictionary","en-CA");
 session_pref("xpinstall.whitelist.required",false);
 user_pref("devtools.debugger.remote-enabled",true);
 // user_pref("media.autoplay.enabled",false); // setting this breaks many videos
+// set the default user agent, because Waterfox reports Firefox 1.0.4
+//set_user_agent("Mozilla/5.0 (X11; FreeBSD amd64; rv:58.0) Gecko/20100101 Firefox/56.0.4 Waterfox/56.0.4");
+//set_user_agent("Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0");
 
 // user agent
 var user_agents = {
