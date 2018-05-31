@@ -94,6 +94,7 @@
   "Start Gnus if necessary, otherwise call jrm/sb for Gnus
 buffers."
   (interactive)
+  (autoload 'gnus-alive-p "gnus-util")
   (if
       (null (gnus-alive-p))
       (when (y-or-n-p "Gnus is not running.  Start it? ") (gnus-unplugged))
