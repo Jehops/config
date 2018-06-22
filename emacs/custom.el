@@ -223,8 +223,6 @@
  '(gnus-save-newsrc-file nil)
  '(gnus-secondary-select-methods
    '((nntp "news.gmane.org"
-           ;;(nntp-port-number 563)
-           ;;(nntp-open-connection-function nntp-open-tls-stream))
            (nntp-open-connection-function nntp-open-plain-stream))
      (nntp "news.freelists.org"
            (nntp-port-number 563)
