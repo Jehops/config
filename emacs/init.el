@@ -573,8 +573,9 @@ when composing, because I want to see what is sent."
 
 (defun jrm/gnus-set-auto-fill ()
   (save-excursion
-    (cond ((string-match (concat user-full-name " <" user-FreeBSD-mail-address ">")
-                         (message-field-value "From" t))
+    (cond ((string-match
+            (concat user-full-name " <" user-FreeBSD-mail-address ">")
+            (message-field-value "From" t))
            (turn-on-auto-fill))
           (t (turn-off-auto-fill)))))
 
@@ -806,7 +807,8 @@ toggle _a_ll _q_uit
  (kbd "C-x t")
  (defhydra hydra-toggle (:color blue :hint nil)
    "
-fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
+fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter fc_i_ _l_inum _m_enu \
+_p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
    ("c"  flycheck-mode)
    ("d"  toggle-debug-on-error)
    ("e"  erc-track-mode)
