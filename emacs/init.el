@@ -939,7 +939,7 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
 (add-to-list 'auto-mode-alist '("\\.[eE][pP][uU][bB]\\'" . nov-mode))
 
 ;; pdf-tools -------------------------------------------------------------------
-;;(load "pdf-tools-init.el")
+(load "pdf-tools-init.el")
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
