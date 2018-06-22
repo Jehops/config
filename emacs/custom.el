@@ -65,7 +65,6 @@
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
- ;;'(default-frame-alist '((reverse . t))) ;; The causes grey b/g in terminal Emacs
  '(delete-old-versions 'other)
  '(diary-comment-end "*/")
  '(diary-comment-start "/*")
