@@ -1,11 +1,10 @@
 ;;; -*- lexical-binding: t -*-
 
 (setq gc-cons-threshold most-positive-fixnum)
-
 (add-to-list 'load-path "~/.emacs.d/elisp/")
-
-(require 'benchmark-init-modes)
+(require 'benchmark-init-loaddefs)
 (benchmark-init/activate)
+(add-hook 'after-init-hook 'benchmark-init/deactivate)
 
 (package-initialize)
 
