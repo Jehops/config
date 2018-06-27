@@ -55,7 +55,10 @@
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
  '(column-number-mode t)
- '(company-idle-delay nil)
+ '(company-backends
+   '(company-lsp company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+                 (company-dabbrev-code company-gtags company-etags company-keywords)
+                 company-oddmuse company-dabbrev))
  '(compilation-window-height 6)
  '(counsel-find-file-at-point t)
  '(counsel-mode t)
@@ -179,6 +182,7 @@
    '(git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-turn-on-flyspell git-commit-propertize-diff with-editor-usage-message))
  '(git-gutter:modified-sign "*")
  '(global-auto-revert-mode t)
+ '(global-company-mode t)
  '(global-hl-line-mode nil)
  '(gnus-activate-level 4)
  '(gnus-after-getting-new-news-hook '(gnus-display-time-event-handler))
@@ -506,7 +510,7 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(org-plus-contrib google-c-style dired-du mastodon magit-svn counsel-notmuch w3m eshell-git-prompt scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+   '(cquery lsp-ui company-lsp org-plus-contrib google-c-style dired-du mastodon magit-svn counsel-notmuch w3m eshell-git-prompt scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
  '(pdf-misc-print-programm "/usr/local/bin/lpr")
  '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)

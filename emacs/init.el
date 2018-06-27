@@ -222,6 +222,9 @@ slashes."
 
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+(add-hook 'c-mode-common-hook 'lsp-cquery-enable)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; calfw -----------------------------------------------------------------------
 ;; Only load calfw after custom-set variables are loaded, otherwise unwated
@@ -253,9 +256,6 @@ slashes."
    (list
     (cfw:org-create-source "OliveDrab4")
     (cfw:cal-create-source "DarkOrange3"))))
-
-;; company ---------------------------------------------------------------------
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; dired / dired+ --------------------------------------------------------------
 (with-eval-after-load 'dired
