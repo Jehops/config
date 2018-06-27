@@ -32,6 +32,7 @@
  '(tls-program
    '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
  '(tool-bar-mode nil)
+ '(truncate-lines t)
  '(vc-follow-symlinks t)
  '(vc-make-backup-files t)
  '(version-control t)
