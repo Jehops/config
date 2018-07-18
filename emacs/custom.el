@@ -175,6 +175,8 @@
  '(eval-expression-print-length 500)
  '(fill-column 80)
  '(fill-flowed-display-column '(- (window-width) 5))
+ '(flycheck-checkers
+   '(ada-gnat asciidoctor asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cwl d-dmd dockerfile-hadolint emacs-lisp emacs-lisp-checkdoc erlang-rebar3 erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-megacheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator vhdl-ghdl igor xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby))
  '(flycheck-xml-xmlstarlet-executable "/usr/local/bin/xml")
  '(flymake-log-level 3)
  '(gdb-many-windows nil)
@@ -396,6 +398,8 @@
  '(kill-ring-max 100)
  '(kill-whole-line t)
  '(line-number-display-limit-width 10000)
+ '(lsp-enable-eldoc nil)
+ '(lsp-ui-doc-enable nil)
  '(magit-completing-read-function 'ivy-completing-read)
  '(magit-repository-directories '(("/ssh:storage2:/usr/ports" . 0)))
  '(mail-sources

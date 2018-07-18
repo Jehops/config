@@ -223,7 +223,6 @@ slashes."
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
 (add-hook 'c-mode-common-hook 'lsp-cquery-enable)
 (add-hook 'c-mode-common-hook 'flycheck-mode)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; calfw -----------------------------------------------------------------------
 ;; Only load calfw after custom-set variables are loaded, otherwise unwated
@@ -683,10 +682,10 @@ when composing, because I want to see what is sent."
     :command ("igor" "-X" source-inplace)
     :error-parser flycheck-parse-checkstyle
     :modes (nxml-mode)
-    :standard-input t)
+    :standard-input t))
 
   ;; register the igor checker for automatic syntax checking
-  (add-to-list 'flycheck-checkers 'igor 'append))
+  ;;(add-to-list 'flycheck-checkers 'igor 'append))
 
 ;; keybindings -----------------------------------------------------------------
 
@@ -885,6 +884,21 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
 ;;   (require 'magithub)
 ;;   (magithub-feature-autoinject t)
 ;;   (setq ghub-username 'Jehops))
+
+;; lsp (language server protocol) ----------------------------------------------
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'lsp-mode-hook
+          (lambda ()
+            (local-set-key
+             (kbd "C-c l")
+             (defhydra hydra-lsp (:color blue :hint nil)
+   "
+_d_efinition _r_eferences _p_op _i_menu _q_uit"
+   ("d"  lsp-ui-peek-find-definitions)
+   ("r"  lsp-ui-peek-find-references)
+   ("p"  xref-pop-marker-stack)
+   ("i"  lsp-ui-imenu)
+   ("q"  nil)))))
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
