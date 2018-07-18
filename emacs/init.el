@@ -982,7 +982,9 @@ _d_efinition _r_eferences _p_op _i_menu _q_uit"
 
 ;; registers -------------------------------------------------------------------
 (set-register ?2 '(file . "~/files/edu/classes/STAT2080/TA/"))
-(set-register ?c '(file . "~/scm/org.git/capture.org"))
+(set-register ?a '(file . "~/scm/freebsd/core.git/svn/head/agenda/agenda.txt"))
+(set-register ?c '(file . "~/scm/org.git/core.org"))
+(set-register ?C '(file . "~/scm/org.git/capture.org"))
 (set-register ?d '(file . "~/scm/org.git/diary.org"))
 (set-register ?g '(file . "~/scm/freebsd/ports/head"))
 (set-register ?i '(file . "~/.emacs.d/init.el"))
