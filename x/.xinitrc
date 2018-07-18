@@ -15,7 +15,7 @@ xsetroot -cursor_name left_ptr
 ## xlock has resources set in ~/.Xdefaults
 xautolock -locker "xlock >> ~/local/var/log/xlock.log 2>&1" \
           -time 5 -noclose >> ~/local/var/log/xautolock.log 2>&1 &
-
+redshift -l 44.63:-63.58 -b 1.0:0.5 -t 6500:3600 -g 0.8 -m randr &
 export $(dbus-launch --exit-with-session)
 
 #exec ssh-agent dwm
