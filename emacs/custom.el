@@ -422,13 +422,12 @@
  '(mm-attachment-override-types
    '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
  '(mm-discouraged-alternatives '("text/html" "text/richtext"))
- '(mm-encrypt-option 'guided)
  '(mm-inline-large-images 'resize)
  '(mm-verify-option 'known)
  '(mml-secure-openpgp-encrypt-to-self t)
- '(mml-secure-openpgp-signers '("B0D6EF9E"))
+ '(mml-secure-openpgp-sign-with-sender t)
  '(mml-secure-smime-encrypt-to-self t)
- '(mml-secure-smime-signers '("B0D6EF9E"))
+ '(mml-secure-smime-sign-with-sender t)
  '(mml-smime-passphrase-cache-expiry 604800)
  '(mml2015-passphrase-cache-expiry 604800)
  '(mode-line-format
