@@ -693,11 +693,11 @@ when composing, because I want to see what is sent."
 (global-set-key (kbd "M-<f4>")          'save-buffers-kill-emacs)
 (global-set-key (kbd "<f12>")           'jrm/make)
 (global-set-key (kbd "C-c g")           'jrm/getmail)
-(global-set-key (kbd "C-c l")           'list-packages)
 (global-set-key (kbd "C-c r")           'jrm/cf-as-root)
 (global-set-key (kbd "C-c s")           'swiper)
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
+(global-set-key (kbd "C-x p")           'list-packages)
 ;;(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
 (global-set-key (kbd "C-<tab>")         'company-complete)
 (global-set-key (kbd "M-SPC")           'cycle-spacing)
