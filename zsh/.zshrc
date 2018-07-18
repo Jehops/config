@@ -168,6 +168,7 @@ alias e="emacs"
 alias ec="emacsclient -a= -n"
 #alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
+alias gc="cd ~/scm/freebsd/core.git/svn"
 alias gd="cd ~/scm/freebsd/doc/head/"
 alias gos="cd ~/scm/freebsd/base/head/"
 alias j=jobs
