@@ -1,12 +1,12 @@
 ;;; -*- lexical-binding: t -*-
-
+                              
 (setq gc-cons-threshold most-positive-fixnum)
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (require 'benchmark-init-loaddefs)
 (benchmark-init/activate)
 (add-hook 'after-init-hook 'benchmark-init/deactivate)
 
-(package-initialize)
+(unless package--initialized (package-initialize t))
 
 ;; custom set varaibles --------------------------------------------------------
 ;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
