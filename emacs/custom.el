@@ -62,6 +62,7 @@
  '(compilation-window-height 6)
  '(counsel-find-file-at-point t)
  '(counsel-mode t)
+ '(counsel-yank-pop-preselect-last t)
  '(counsel-yank-pop-separator "
 ---------------------------
 ")
