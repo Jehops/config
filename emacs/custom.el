@@ -401,7 +401,6 @@
  '(line-number-display-limit-width 10000)
  '(lsp-enable-eldoc nil)
  '(lsp-ui-doc-enable nil)
- '(magit-completing-read-function 'ivy-completing-read)
  '(magit-repository-directories '(("/ssh:storage2:/usr/ports" . 0)))
  '(mail-sources
    '((maildir :path "/home/jrm/mail/" :plugged t)
