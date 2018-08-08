@@ -258,20 +258,20 @@
  '(google-translate-default-target-language "en")
  '(haskell-mode-hook '(intero-mode) t)
  '(haskell-stylish-on-save t)
- '(helm-boring-buffer-regexp-list
-   '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
- '(helm-buffer-details-flag nil)
- '(helm-buffer-max-length 30)
- '(helm-buffers-fuzzy-matching t)
- '(helm-completion-in-region-fuzzy-match nil)
- '(helm-display-header-line nil)
- '(helm-ff-file-name-history-use-recentf t)
- '(helm-ff-search-library-in-sexp t)
- '(helm-flx-mode t)
- '(helm-kill-ring-max-lines-number 25)
- '(helm-kill-ring-threshold 1)
- '(helm-mode nil)
- '(helm-split-window-in-side-p t)
+ ;; '(helm-boring-buffer-regexp-list
+ ;;   '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
+ ;; '(helm-buffer-details-flag nil)
+ ;; '(helm-buffer-max-length 30)
+ ;; '(helm-buffers-fuzzy-matching t)
+ ;; '(helm-completion-in-region-fuzzy-match nil)
+ ;; '(helm-display-header-line nil)
+ ;; '(helm-ff-file-name-history-use-recentf t)
+ ;; '(helm-ff-search-library-in-sexp t)
+ ;; '(helm-flx-mode t)
+ ;; '(helm-kill-ring-max-lines-number 25)
+ ;; '(helm-kill-ring-threshold 1)
+ ;; '(helm-mode nil)
+ ;; '(helm-split-window-in-side-p t)
  '(help-char 67)
  '(holiday-bahai-holidays nil)
  '(holiday-general-holidays
@@ -302,7 +302,7 @@
  '(ibuffer-always-compile-formats nil)
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
-   '("^\\*ESS\\*" "^\\*Compile" "^\\*helm"
+   '("^\\*ESS\\*" "^\\*Compile"
      (lambda
        (buf)
        (and
