@@ -15,7 +15,7 @@
      ("emacs" "emacsclient -n %o")
      ("xpdf" "xpdf %o&")))
  '(TeX-view-program-selection
-   '((output-pdf "pv" "emacs" "xpdf")
+   '((output-pdf "PDF Tools" "emacs" "pv" "xpdf")
      ((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
@@ -60,8 +60,8 @@
                  (company-dabbrev-code company-gtags company-etags company-keywords)
                  company-oddmuse company-dabbrev))
  '(compilation-window-height 6)
- '(counsel-find-file-at-point t)
  '(counsel-mode t)
+ '(counsel-yank-pop-preselect-last t)
  '(counsel-yank-pop-separator "
 ---------------------------
 ")
@@ -82,7 +82,7 @@
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(echo-keystrokes 0.5)
- '(epa-pinentry-mode 'loopback)
+ '(epg-pinentry-mode 'loopback)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
@@ -168,7 +168,6 @@
  '(ess-ask-for-ess-directory nil)
  '(ess-eval-visibly nil)
  '(ess-history-directory "~/")
- '(ess-pdf-viewer-pref "pv")
  '(ess-swv-pdflatex-commands '("latexmk"))
  '(ess-swv-processor 'knitr)
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
@@ -179,13 +178,12 @@
    '(ada-gnat asciidoctor asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cwl d-dmd dockerfile-hadolint emacs-lisp emacs-lisp-checkdoc erlang-rebar3 erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-megacheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator vhdl-ghdl igor xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby))
  '(flycheck-xml-xmlstarlet-executable "/usr/local/bin/xml")
  '(flymake-log-level 3)
- '(gdb-many-windows nil)
+ '(gdb-many-windows t)
  '(git-commit-setup-hook
    '(git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-turn-on-flyspell git-commit-propertize-diff with-editor-usage-message))
  '(git-gutter:modified-sign "*")
  '(global-auto-revert-mode t)
  '(global-company-mode t)
- '(global-hl-line-mode nil)
  '(gnus-activate-level 4)
  '(gnus-after-getting-new-news-hook '(gnus-display-time-event-handler))
  '(gnus-agent-auto-agentize-methods nil)
@@ -201,7 +199,10 @@
         t))))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
- '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
+ '(gnus-cite-blank-line-after-header nil)
+ '(gnus-cite-face-list
+   '(gnus-cite-1 gnus-cite-2 gnus-cite-3 gnus-cite-4 gnus-cite-5 gnus-cite-6 gnus-cite-7 gnus-cite-8 gnus-cite-9 gnus-cite-10))
+ '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list) t)
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
@@ -249,6 +250,7 @@
  '(gnus-summary-mode-hook '(hl-line-mode))
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
  '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
+ '(gnus-treat-display-smileys nil)
  '(gnus-treat-fill-long-lines nil)
  '(gnutls-min-prime-bits 1024)
  '(gnutls-trustfiles
@@ -257,20 +259,6 @@
  '(google-translate-default-target-language "en")
  '(haskell-mode-hook '(intero-mode) t)
  '(haskell-stylish-on-save t)
- '(helm-boring-buffer-regexp-list
-   '("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*tramp" "diary" "\\*ESS\\*"))
- '(helm-buffer-details-flag nil)
- '(helm-buffer-max-length 30)
- '(helm-buffers-fuzzy-matching t)
- '(helm-completion-in-region-fuzzy-match nil)
- '(helm-display-header-line nil)
- '(helm-ff-file-name-history-use-recentf t)
- '(helm-ff-search-library-in-sexp t)
- '(helm-flx-mode t)
- '(helm-kill-ring-max-lines-number 25)
- '(helm-kill-ring-threshold 1)
- '(helm-mode nil)
- '(helm-split-window-in-side-p t)
  '(help-char 67)
  '(holiday-bahai-holidays nil)
  '(holiday-general-holidays
@@ -301,7 +289,7 @@
  '(ibuffer-always-compile-formats nil)
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
-   '("^\\*ESS\\*" "^\\*Compile" "^\\*helm"
+   '("^\\*ESS\\*" "^\\*Compile"
      (lambda
        (buf)
        (and
@@ -400,7 +388,7 @@
  '(line-number-display-limit-width 10000)
  '(lsp-enable-eldoc nil)
  '(lsp-ui-doc-enable nil)
- '(magit-completing-read-function 'ivy-completing-read)
+ '(lsp-ui-sideline-enable nil)
  '(magit-repository-directories '(("/ssh:storage2:/usr/ports" . 0)))
  '(mail-sources
    '((maildir :path "/home/jrm/mail/" :plugged t)
@@ -458,7 +446,8 @@
      (:name "mail.misc" :query "folder:mail/misc" :key "m" :sort-order newest-first :search-type tree)
      (:name "Month" :query "date:30days..today" :key "M" :sort-order newest-first :search-type tree)))
  '(nxml-attribute-indent 2)
- '(org-agenda-files '("~/scm/org.git"))
+ '(org-agenda-files
+   '("~/scm/org.git" "~/scm/freebsd/core.git/svn/head/agenda/agenda.txt"))
  '(org-agenda-use-time-grid nil)
  '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
  '(org-bbdb-anniversary-format-alist
@@ -482,16 +471,16 @@
       (file+headline "~/scm/org.git/capture.org" "Events")
       "** %a
    %^T
-   Location: %?" :time-prompt t)
-     ("t" "TODO" plain
+   Location: %?" :jump-to-captured t :time-prompt t)
+     ("t" "TODO" entry
       (file+headline "~/scm/org.git/capture.org" "Todos")
-      "** ⚐ TODO %?
-- State \"⚐ TODO\"     from              %u
-%a" :table-line-pos t)
+      "** TODO %?
+   - State \"TODO\"       from              %u
+   %a" :jump-to-captured t :empty-lines-after 1 :table-line-pos t)
      ("w" "Web Link" item
       (file+headline "~/scm/org.git/capture.org" "Web Links")
       "- %u %a
-%i")))
+%i" :jump-to-captured t)))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
@@ -505,7 +494,7 @@
  '(org-refile-use-outline-path t)
  '(org-todo-keyword-faces '(("X CANCELLED" . "dim gray") ("~ WAIT" . "goldenrod")))
  '(org-todo-keywords
-   '((sequence "⚐ TODO(t!)" "|" "~ WAIT(w!)" "|" "X CANCELLED(c!)" "✓ DONE(d!)")))
+   '((sequence "TODO(t!)" "|" "WAIT(w!)" "|" "CANCELLED(c!)" "DONE(d!)")))
  '(org-use-fast-todo-selection t)
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -513,12 +502,11 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(cquery lsp-ui company-lsp org-plus-contrib google-c-style dired-du mastodon magit-svn counsel-notmuch w3m eshell-git-prompt scpaste htmlize polymode auctex auctex-latexmk company-auctex yasnippet nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib ess esup fill-column-indicator ace-window aggressive-indent beacon bug-hunter exec-path-from-shell))
+   '(ess eyebrowse beacon magit-todos org-plus-contrib ace-window poly-R magit-svn poly-markdown poly-noweb poly-org cquery company-lsp lsp-mode lsp-ui magit google-c-style dired-du mastodon counsel-notmuch w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
  '(pdf-misc-print-programm "/usr/local/bin/lpr")
  '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
- '(pdf-view-continuous nil)
+ '(pdf-view-continuous t)
  '(pdf-view-display-size 'fit-page)
- '(polymode-display-process-buffers nil)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))
  '(ps-lpr-command "psif")
@@ -562,7 +550,7 @@
  '(tls-program
    '(("gnutls-cli --x509cafile /usr/local/share/certs/ca-root-nss.crt -p %p %h")))
  '(tool-bar-mode nil)
- '(tramp-default-method "ssh" nil (tramp))
+ '(tramp-default-method "ssh")
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(twittering-oauth-invoke-browser t)
@@ -716,6 +704,15 @@
  '(font-lock-type-face ((t (:weight bold :foreground "#8ae234"))))
  '(font-lock-variable-name-face ((t (:foreground "tomato"))))
  '(font-lock-warning-face ((t (:weight bold :foreground "#f57900"))))
+ '(gnus-cite-1 ((t (:foreground "deep sky blue"))))
+ '(gnus-cite-10 ((t (:foreground "OrangeRed4"))))
+ '(gnus-cite-2 ((t (:foreground "orange"))))
+ '(gnus-cite-3 ((t (:foreground "green"))))
+ '(gnus-cite-4 ((t (:foreground "yellow"))))
+ '(gnus-cite-5 ((t (:foreground "magenta"))))
+ '(gnus-cite-6 ((t (:foreground "red"))))
+ '(gnus-cite-7 ((t (:foreground "chocolate"))))
+ '(gnus-cite-8 ((t (:foreground "cyan"))))
  '(gnus-cite-face-1 ((t (:foreground "#ad7fa8"))) t)
  '(gnus-cite-face-2 ((t (:foreground "sienna4"))) t)
  '(gnus-cite-face-3 ((t (:foreground "khaki4"))) t)

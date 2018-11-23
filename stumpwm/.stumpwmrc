@@ -121,6 +121,10 @@ ring if an Emacs daemon is running."
             "Start Conkeror or switch to it if it is already running."
             (run-or-raise "ck" '(:class "Conkeror")))
 
+;; (defcommand web-browser () ()
+;;             "Start Firefox or switch to it if it is already running."
+;;             (run-or-raise "firefox" '(:class "Firefox")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
@@ -153,6 +157,7 @@ ring if an Emacs daemon is running."
     (define-key m (kbd "m")             "list-windows-by-class mpv")
     (define-key m (kbd "p")             "list-windows-by-class MuPDF")
     (define-key m (kbd "w")             "list-windows-by-class Conkeror")
+    ;;(define-key m (kbd "w")             "list-windows-by-class Firefox")
     (define-key m (kbd "x")             "list-windows-by-class URxvt")
     m))
 

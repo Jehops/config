@@ -1,12 +1,12 @@
 ;;; -*- lexical-binding: t -*-
-
+                              
 (setq gc-cons-threshold most-positive-fixnum)
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (require 'benchmark-init-loaddefs)
 (benchmark-init/activate)
 (add-hook 'after-init-hook 'benchmark-init/deactivate)
 
-(package-initialize)
+(unless package--initialized (package-initialize t))
 
 ;; custom set varaibles --------------------------------------------------------
 ;; tell customize to use ' instead of (quote ..) and #' instead of (function ..)
@@ -256,8 +256,8 @@ slashes."
     (cfw:cal-create-source "DarkOrange3"))))
 
 ;; dired / dired+ --------------------------------------------------------------
-(with-eval-after-load 'dired
-  (require 'dired+))
+;;(with-eval-after-load 'dired
+;;  (require 'dired+))
 ;  (toggle-diredp-find-file-reuse-dir 1))
 
 ;; erc -------------------------------------------------------------------------
@@ -761,7 +761,9 @@ when composing, because I want to see what is sent."
    ("<up>"                      enlarge-window              "venlarge")
    ("<down>"                    shrink-window               "vshrink")
    ("o"                         ace-maximize-window         "one"    :color blue)
+   ("r"                         winner-redo                 "wredo"  :color blue)
    ("s"                         ace-swap-window             "swap"   :color blue)
+   ("u"                         winner-undo                 "wundo"  :color blue)
    ("3"                         jrm/split-win-right-focus   "sright" :color blue)
    ("2"                         jrm/split-win-below-focus   "sbelow" :color blue)
    ("q"                         nil                         "cancel")))
@@ -879,12 +881,6 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
 ;;(key-chord-define-global "jg" 'avy-goto-line)
 ;;(key-chord-define-global "jx" 'multi-eshell)
 
-;; magithub --------------------------------------------------------------------
-;; (with-eval-after-load 'magit
-;;   (require 'magithub)
-;;   (magithub-feature-autoinject t)
-;;   (setq ghub-username 'Jehops))
-
 ;; lsp (language server protocol) ----------------------------------------------
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'lsp-mode-hook
@@ -893,12 +889,23 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
              (kbd "C-c l")
              (defhydra hydra-lsp (:color blue :hint nil)
    "
-_d_efinition _r_eferences _p_op _i_menu _q_uit"
+_d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
    ("d"  lsp-ui-peek-find-definitions)
-   ("r"  lsp-ui-peek-find-references)
-   ("p"  xref-pop-marker-stack)
    ("i"  lsp-ui-imenu)
+   ("p"  xref-pop-marker-stack)
+   ("r"  lsp-ui-peek-find-references)
+   ("s"  lsp-ui-sideline-mode)
    ("q"  nil)))))
+
+;; magithub --------------------------------------------------------------------
+;; (with-eval-after-load 'magit
+;;   (require 'magithub)
+;;   (magithub-feature-autoinject t)
+;;   (setq ghub-username 'Jehops))
+
+;; magit-todo --------------------------------------------------------------------
+;;(with-eval-after-load 'magit
+;;  (magit-todos-mode))
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
