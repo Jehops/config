@@ -881,12 +881,6 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
 ;;(key-chord-define-global "jg" 'avy-goto-line)
 ;;(key-chord-define-global "jx" 'multi-eshell)
 
-;; magithub --------------------------------------------------------------------
-;; (with-eval-after-load 'magit
-;;   (require 'magithub)
-;;   (magithub-feature-autoinject t)
-;;   (setq ghub-username 'Jehops))
-
 ;; lsp (language server protocol) ----------------------------------------------
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'lsp-mode-hook
@@ -901,6 +895,16 @@ _d_efinition _r_eferences _p_op _i_menu _q_uit"
    ("p"  xref-pop-marker-stack)
    ("i"  lsp-ui-imenu)
    ("q"  nil)))))
+
+;; magithub --------------------------------------------------------------------
+;; (with-eval-after-load 'magit
+;;   (require 'magithub)
+;;   (magithub-feature-autoinject t)
+;;   (setq ghub-username 'Jehops))
+
+;; magit-todo --------------------------------------------------------------------
+;;(with-eval-after-load 'magit
+;;  (magit-todos-mode))
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
