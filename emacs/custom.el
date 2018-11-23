@@ -505,7 +505,7 @@
    '(ess eyebrowse beacon magit-todos org-plus-contrib ace-window poly-R magit-svn poly-markdown poly-noweb poly-org cquery company-lsp lsp-mode lsp-ui magit google-c-style dired-du mastodon counsel-notmuch w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics sauron company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode znc ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode counsel define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
  '(pdf-misc-print-programm "/usr/local/bin/lpr")
  '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
- '(pdf-view-continuous nil)
+ '(pdf-view-continuous t)
  '(pdf-view-display-size 'fit-page)
  '(preview-scale-function 1.2)
  '(prog-mode-hook '(flyspell-prog-mode))
