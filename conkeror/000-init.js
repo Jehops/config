@@ -170,6 +170,7 @@ define_webjump("so","http://stackoverflow.com/search?q=%s",$alternative="http://
 define_webjump("ss","javascript:window.location.href='http://google.com/search?q=%s+site:'+window.location.host");
 define_webjump("t","http://www.thefreedictionary.com/%s#Thesaurus");
 define_webjump("tilly","https://photos.google.com/share/AF1QipPF54v6sRJU2EpyvkvddDToiZKiqrQ5NqNbJebOeLyo2BhrOBhqoWjNWF7bO7a9fg?key=M09pWDBpczFaZmlzLWM3dmxpRXZmRjllZ3lSNjFB");
+define_webjump("tpb","http://thepiratebay.org");
 define_webjump("tw","http://twitter.com");
 define_webjump("w","http://weather.gc.ca/city/pages/ns-40_metric_e.html");
 define_webjump("wn","http://www.theweathernetwork.com/ca/weather/nova-scotia/halifax");
