@@ -256,8 +256,8 @@ slashes."
     (cfw:cal-create-source "DarkOrange3"))))
 
 ;; dired / dired+ --------------------------------------------------------------
-(with-eval-after-load 'dired
-  (require 'dired+))
+;;(with-eval-after-load 'dired
+;;  (require 'dired+))
 ;  (toggle-diredp-find-file-reuse-dir 1))
 
 ;; erc -------------------------------------------------------------------------
