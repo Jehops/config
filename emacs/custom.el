@@ -470,8 +470,8 @@
       (file+headline "~/scm/org.git/capture.org" "Events")
       "** %a
    %^T
-   Location: %?" :time-prompt t)
-     ("t" "TODO" plain
+   Location: %?" :jump-to-captured t :time-prompt t)
+     ("t" "TODO" entry
       (file+headline "~/scm/org.git/capture.org" "Todos")
       "** ⚐ TODO %?
 - State \"⚐ TODO\"     from              %u
