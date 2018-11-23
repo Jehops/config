@@ -889,11 +889,12 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
              (kbd "C-c l")
              (defhydra hydra-lsp (:color blue :hint nil)
    "
-_d_efinition _r_eferences _p_op _i_menu _q_uit"
+_d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
    ("d"  lsp-ui-peek-find-definitions)
-   ("r"  lsp-ui-peek-find-references)
-   ("p"  xref-pop-marker-stack)
    ("i"  lsp-ui-imenu)
+   ("p"  xref-pop-marker-stack)
+   ("r"  lsp-ui-peek-find-references)
+   ("s"  lsp-ui-sideline-mode)
    ("q"  nil)))))
 
 ;; magithub --------------------------------------------------------------------
