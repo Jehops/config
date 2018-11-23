@@ -473,13 +473,13 @@
    Location: %?" :jump-to-captured t :time-prompt t)
      ("t" "TODO" entry
       (file+headline "~/scm/org.git/capture.org" "Todos")
-      "** ⚐ TODO %?
-- State \"⚐ TODO\"     from              %u
-%a" :table-line-pos t)
+      "** TODO %?
+   - State \"TODO\"       from              %u
+   %a" :jump-to-captured t :empty-lines-after 1 :table-line-pos t)
      ("w" "Web Link" item
       (file+headline "~/scm/org.git/capture.org" "Web Links")
       "- %u %a
-%i")))
+%i" :jump-to-captured t)))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
@@ -493,7 +493,7 @@
  '(org-refile-use-outline-path t)
  '(org-todo-keyword-faces '(("X CANCELLED" . "dim gray") ("~ WAIT" . "goldenrod")))
  '(org-todo-keywords
-   '((sequence "⚐ TODO(t!)" "|" "~ WAIT(w!)" "|" "X CANCELLED(c!)" "✓ DONE(d!)")))
+   '((sequence "TODO(t!)" "|" "WAIT(w!)" "|" "CANCELLED(c!)" "DONE(d!)")))
  '(org-use-fast-todo-selection t)
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
