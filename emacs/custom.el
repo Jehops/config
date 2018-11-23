@@ -15,7 +15,7 @@
      ("emacs" "emacsclient -n %o")
      ("xpdf" "xpdf %o&")))
  '(TeX-view-program-selection
-   '((output-pdf "pv" "emacs" "xpdf")
+   '((output-pdf "PDF Tools" "emacs" "pv" "xpdf")
      ((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
@@ -169,7 +169,6 @@
  '(ess-ask-for-ess-directory nil)
  '(ess-eval-visibly nil)
  '(ess-history-directory "~/")
- '(ess-pdf-viewer-pref "pv")
  '(ess-swv-pdflatex-commands '("latexmk"))
  '(ess-swv-processor 'knitr)
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
