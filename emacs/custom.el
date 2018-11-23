@@ -251,6 +251,7 @@
  '(gnus-summary-mode-hook '(hl-line-mode))
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
  '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
+ '(gnus-treat-display-smileys nil)
  '(gnus-treat-fill-long-lines nil)
  '(gnutls-min-prime-bits 1024)
  '(gnutls-trustfiles
