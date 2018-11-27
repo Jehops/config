@@ -122,7 +122,7 @@ jrm/sb for Notmuch buffers."
 (defun jrm/sb-rt ()
   (interactive)
   (unless (jrm/sbm "R/TeX: "  '(ess-mode
-                                inferior-ess-mode
+                                inferior-ess-r-mode
                                 latex-mode))
     (when (y-or-n-p "No R buffer.  Start R? ") (R))))
 (defun jrm/sb-term    () (interactive) (jrm/sbm "Term: "   '(term-mode)))
@@ -467,6 +467,9 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; ess -------------------------------------------------------------------------
 ;;(require 'ess-site)
+(with-eval-after-load 'ess-r-mode
+  (define-key ess-r-mode-map "_" #'ess-insert-assign)
+  (define-key inferior-ess-r-mode-map "_" #'ess-insert-assign))
 
 ;; flyspell --------------------------------------------------------------------
 ;; stop flyspell-auto-correct-word from hijacking C-.
