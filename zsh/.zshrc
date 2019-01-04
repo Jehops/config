@@ -188,13 +188,14 @@ alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf '\\n
 alias rm="rm -i"
 alias s="sudo "
 alias se="sudoedit"
-alias svn="svnlite"
+#alias svn="svnlite"
 alias ta="tmux -2 att -d "
 if [ "$HOST" = 'storage2.mathstat.dal.ca' ]; then
   alias t="tmux -2 new -s build "
 else
   alias t="tmux -2 "
 fi
+alias up="sudo pkg upgrade"
 alias x="exit"
 
 # plugins
