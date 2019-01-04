@@ -201,6 +201,15 @@ slashes."
 ;;(beacon-mode 1)
 
 ;; c/c++ -----------------------------------------------------------------------
+(with-eval-after-load 'cc-mode
+  (require 'cquery)
+  (push 'company-lsp company-backends))
+
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+(add-hook 'c-mode-common-hook 'lsp)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
+
 (defun knf ()
   "Set up kernel normal form.  See style(9) on FreeBSD."
   (interactive)
@@ -218,11 +227,6 @@ slashes."
   (make-local-variable 'fill-column)
   (define-key c-mode-map (kbd "C-c c") 'compile))
 ;;(add-hook 'c-mode-common-hook (lambda () (flyspell-prog-mode) (knf)))
-
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
-(add-hook 'c-mode-common-hook 'lsp-cquery-enable)
-(add-hook 'c-mode-common-hook 'flycheck-mode)
 
 ;; calfw -----------------------------------------------------------------------
 ;; Only load calfw after custom-set variables are loaded, otherwise unwated
@@ -885,9 +889,9 @@ _p_aredit fly_s_pell _S_auron _t_runcate-line _v_isual-line _w_hitspace _q_uit"
 ;;(key-chord-define-global "jx" 'multi-eshell)
 
 ;; lsp (language server protocol) ----------------------------------------------
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'lsp-mode-hook
           (lambda ()
+            (lsp-ui-mode)
             (local-set-key
              (kbd "C-c l")
              (defhydra hydra-lsp (:color blue :hint nil)

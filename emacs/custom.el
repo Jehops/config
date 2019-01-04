@@ -56,9 +56,9 @@
  '(calendar-week-start-day 1)
  '(column-number-mode t)
  '(company-backends
-   '(company-lsp company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-                 (company-dabbrev-code company-gtags company-etags company-keywords)
-                 company-oddmuse company-dabbrev))
+   '(company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-dabbrev))
  '(compilation-window-height 6)
  '(counsel-mode t)
  '(counsel-yank-pop-preselect-last t)
@@ -386,7 +386,9 @@
  '(kill-ring-max 100)
  '(kill-whole-line t)
  '(line-number-display-limit-width 10000)
+ '(lsp-clients-clangd-executable "/usr/local/bin/clangd60")
  '(lsp-enable-eldoc nil)
+ '(lsp-prefer-flymake nil)
  '(lsp-ui-doc-enable nil)
  '(lsp-ui-sideline-enable nil)
  '(magit-repository-directories '(("/ssh:storage2:/usr/ports" . 0)))
