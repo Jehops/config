@@ -247,7 +247,6 @@
  '(gnus-summary-line-format
    "%U%R %5N %6k %24&user-date; │ %~(max-right 75)~(pad-right 75)S │ %B %f
 ")
- '(gnus-summary-mode-hook '(hl-line-mode))
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
  '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
  '(gnus-treat-display-smileys nil)

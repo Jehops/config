@@ -536,6 +536,8 @@ when composing, because I want to see what is sent."
 (with-eval-after-load 'gnus-topic
   (define-key gnus-topic-mode-map (kbd "C-k") nil))
 
+(add-hook 'gnus-summary-mode-hook 'hl-line-mode)
+
 (defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."
   (interactive)
