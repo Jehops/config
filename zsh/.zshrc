@@ -169,6 +169,7 @@ if [ "$HOST" = 'storage2.mathstat.dal.ca' ]; then
 else
   alias t="tmux -2 "
 fi
+alias tb='nc termbin.com 9999'
 alias up="sudo pkg upgrade"
 alias x="exit"
 
