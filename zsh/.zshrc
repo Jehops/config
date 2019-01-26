@@ -2,30 +2,11 @@
 case $TERM in
   dumb)
     unsetopt prompt_cr prompt_subst zle
-    #unfunction precmd preexec
-    #PS1='$ '
-    #if [ INSIDE_EMACS = 1 ]; then
-    #export TERM=dumb-emacs-ansi
-    #else
-    #  return
-    #fi
     ;;
   screen*|tmux*)
     precmd () {print -Pn "\033k%m\033\\"}
     ;;
-  # eterm*)
-  # precmd () {print -Pn "\e]0;%n@%m|%~\a"}
-  #### so ido knows pwd
-  # chpwd()
-  # {
-  #     print -P "\033AnSiTc %d"
-  # }
-  # print -P "\033AnSiTu %n"
-  # print -P "\033AnSiTc %d"
-  ####
-  # ;;
   xterm*|rxvt*)
-    #precmd () {print -Pn "\e]0;%n@%m|%~\a"}
     case $TERM in
       rxvt*)
 	precmd () { print -Pn "\e]0;rxvt - %n@%m\a" }
@@ -34,34 +15,18 @@ case $TERM in
 	precmd () { print -Pn "\e]0;xterm - %n@%m\a" }
 	;;
     esac
-    #bindkey '^[[3~' delete-char-or-list
-    #bindkey '^[OH' beginning-of-line;
-    #bindkey '^[OF' end-of-line;
     ;;
   *)
-    #bindkey '^?' delete-char-or-list
-    #bindkey '^[[H' beginning-of-line;
-    #bindkey '^[[F' end-of-line;
     ;;
 esac
 
-preexec () {
-  if [ -n "$TMUX" ]; then
-    eval $(tmux switchc\; showenv -s)
-  fi
-}
-
-zshexit () { pkill -t "${$(tty)##*/},-" xclip }
-
 # set the prompt; for escape sequences see zshmisc(1)
-#PS1=$'%{\e[31m%}%n%{\e[0m%}@%{\e[32m%}%m%{\e[0m%}|%B%~%b%# '
 GIT_PROMPT_EXECUTABLE='haskell'
 if [ "$(uname)" = 'FreeBSD' ]; then
   PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b$(git_super_status) %# '
 else
   PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b %# '
 fi
-#PROMPT='%F{red}%n@%m%f %F{green}%~%f $(git_super_status)%# '
 
 # environment variables; also see login.conf(5)
 export ALTERNATE_EDITOR=""
@@ -73,7 +38,6 @@ export GPG_TTY=$(tty)
 export GTK_IM_MODULE=xim
 export LESS='-iFRSX --shift 1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
-#export SBCL_HOME=~/local/lib/sbcl
 export TEXDOCVIEW_html="ck %s"
 export TEXDOCVIEW_pdf="xpdf %s"
 export TEXEDIT="emacsclient +%d %s"
@@ -156,6 +120,14 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
+
+preexec () {
+  if [ -n "$TMUX" ]; then
+    eval $(tmux switchc\; showenv -s)
+  fi
+}
+
+zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 
 # aliases
 alias ..="cd .."
