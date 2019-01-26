@@ -23,7 +23,8 @@ esac
 # set the prompt; for escape sequences see zshmisc(1)
 GIT_PROMPT_EXECUTABLE='haskell'
 if [ "$(uname)" = 'FreeBSD' ]; then
-  PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b$(git_super_status) %# '
+  PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b\
+$(git_super_status) %# '
 else
   PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b %# '
 fi
@@ -155,7 +156,8 @@ alias p=$PAGER
 alias pc="less -ir"
 alias pp="pull && push"
 alias ppc="pull && push && printf '\\n' && check && printf '\\n'"
-alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf '\\n' && stage"
+alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf\
+'\\n' && stage"
 #alias rdl="rdesktop -k en-us -g 1600x1015 -a 16 -r sound 129.173.33.182"
 alias rm="rm -i"
 alias s="sudo "
