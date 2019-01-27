@@ -156,7 +156,7 @@ alias p=$PAGER
 alias pc="less -ir"
 alias pp="pull && push"
 alias ppc="pull && push && printf '\\n' && check && printf '\\n'"
-alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf\
+alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf \
 '\\n' && stage"
 #alias rdl="rdesktop -k en-us -g 1600x1015 -a 16 -r sound 129.173.33.182"
 alias rm="rm -i"
