@@ -125,6 +125,33 @@ ring if an Emacs daemon is running."
 ;;             "Start Firefox or switch to it if it is already running."
 ;;             (run-or-raise "firefox" '(:class "Firefox")))
 
+;; courtesy of Peter Seibel
+(defmacro with-gensyms ((&rest names) &body body)
+  `(let ,(loop for n in names collect `(,n (gensym)))
+     ,@body))
+
+(defmacro program-with-layout (name &key (command (string-downcase (string name)))
+                                      (props `'(:class ,(string-capitalize command))))
+  (with-gensyms (s w h files-path layout rules)
+    `(defcommand ,name () ()
+                 (let* ((,s (current-screen))
+                        (,w (prin1-to-string (screen-width ,s)))
+                        (,h (prin1-to-string (screen-height ,s)))
+                        (,files-path "/home/jrm/")
+                        (,layout (concat ,files-path ,"." ,command "-layout-" ,w "x" ,h))
+                        (,rules (concat ,files-path ,"." ,command "-rules")))
+                   (gnew ,command)
+                   (restore-from-file ,layout)
+                   (restore-window-placement-rules ,rules)
+                   (run-or-raise ,command ,props)
+                   (place-existing-windows))))) ; needed if command was already run
+
+(program-with-layout gimp)
+
+;; (defcommand gimp () ()
+;;             "Create a group for Gimp and start it."
+;;             (program-with-layout gimp))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(undefine-key *root-map* (kbd "k"))
