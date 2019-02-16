@@ -1034,12 +1034,29 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;; ;;       '(sauron-erc sauron-org sauron-notifications sauron-twittering
 ;; ;;                    sauron-jabber sauron-identica sauron-elfeed))
 
+;; old version with espeak
+;; (defun jrm/saruon-speak-erc (origin prio msg props)
+;;   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
+;;   (when (eq origin 'erc)
+;;     (call-process-shell-command
+;;      (concat "espeak " "\"ERC alert: "
+;;              (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
+
+;; new version with festival
+;; (defun jrm/saruon-speak-erc (origin prio msg props)
+;;   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
+;;   (when (eq origin 'erc)
+;;     (call-process-shell-command
+;;      (concat "echo " "\"IRC message: " msg "\" | festival --tts&") nil 0)))
+
+;; new version with flite
 (defun jrm/saruon-speak-erc (origin prio msg props)
   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
   (when (eq origin 'erc)
     (call-process-shell-command
-     (concat "espeak " "\"ERC alert: "
-             (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
+     (concat "flite -voice /home/" (user-login-name)
+             "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C message: "
+             msg "\"&") nil 0)))
 
 (defun jrm/sauron-erc-events-to-block (origin prio msg props)
   "When ORIGIN is erc with priority PRIO, match MSG to block it, ignoring PROPS."
