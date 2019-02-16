@@ -46,7 +46,7 @@ export TEXEDIT="emacsclient +%d %s"
 export VISUAL=$EDITOR
 
 # shell variables
-HISTFILE=~/.zshhistory
+HISTFILE=~/.zshhistory_$HOST
 HISTSIZE=6000
 SAVEHIST=5000
 
