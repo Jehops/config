@@ -3,7 +3,7 @@ emacs.borderColor: Black
 emacs.fullscreen: maximized
 emacs.internalBorder: 0
 emacs.menuBar: off
-emacs.reverseVideo: On
+!emacs.reverseVideo: On
 emacs.toolBar: 0
 emacs.verticalScrollBars: Off
 
