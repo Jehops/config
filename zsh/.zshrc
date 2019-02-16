@@ -39,6 +39,7 @@ export GPG_TTY=$(tty)
 export GTK_IM_MODULE=xim
 export LESS='-iFRSX --shift 1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
+export REPORTTIME=60
 export TEXDOCVIEW_html="ck %s"
 export TEXDOCVIEW_pdf="xpdf %s"
 export TEXEDIT="emacsclient +%d %s"
