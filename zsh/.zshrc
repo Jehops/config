@@ -177,8 +177,8 @@ alias x="exit"
 # plugins
 if [ "$(uname)" = 'FreeBSD' ]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   source ~/scm/nm/zsh-git-prompt.git/zshrc.sh
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
