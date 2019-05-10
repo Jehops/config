@@ -125,6 +125,14 @@ ring if an Emacs daemon is running."
 ;;             "Start Firefox or switch to it if it is already running."
 ;;             (run-or-raise "firefox" '(:class "Firefox")))
 
+(defcommand firefox () ()
+            "Start Firefox or switch to it if it is already running."
+            (run-or-raise "firefox" '(:class "Firefox")))
+
+(defcommand chromium () ()
+            "Start Chromium or switch to it if it is already running."
+            (run-or-raise "chrome" '(:class "Chromium")))
+
 ;; courtesy of Peter Seibel
 (defmacro with-gensyms ((&rest names) &body body)
   `(let ,(loop for n in names collect `(,n (gensym)))
@@ -172,8 +180,10 @@ ring if an Emacs daemon is running."
 (define-key *root-map* (kbd "p")        "prev")
 (define-key *root-map* (kbd "M-w")      "s2e")
 (define-key *root-map* (kbd "C-t")      "other")
-(define-key *root-map* (kbd "w")        "web-browser")
-(define-key *root-map* (kbd "C-w")      "web-browser")
+;;(define-key *root-map* (kbd "C-w")      "web-browser")
+;;(define-key *root-map* (kbd "w")        "firefox")
+(define-key *root-map* (kbd "C-w")      "chromium")
+(define-key *root-map* (kbd "w")        "chromium")
 (define-key *root-map* (kbd "x")        "term")
 (define-key *root-map* (kbd "C-x")      "term")
 
