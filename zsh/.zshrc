@@ -21,9 +21,10 @@ case $TERM in
 esac
 
 # set the prompt; for escape sequences see zshmisc(1)
-GIT_PROMPT_EXECUTABLE='haskell'
+#GIT_PROMPT_EXECUTABLE='haskell'
 if [ "$(uname)" = 'FreeBSD' ]; then
-  PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b$(git_super_status) %# '
+  #PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b$(git_super_status) %# '
+  PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b $(gitprompt)%# '
 else
   PROMPT='%B%F{244}%n%f%b%F{238}@%f%B%F{244}%m%f%b %B%F{172}%~%f%b %# '
 fi
@@ -176,7 +177,8 @@ alias x="exit"
 # plugins
 if [ "$(uname)" = 'FreeBSD' ]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source ~/scm/nm/zsh-git-prompt.git/zshrc.sh
+  #source ~/scm/nm/zsh-git-prompt.git/zshrc.sh
+  source /usr/local/share/git-prompt.zsh/git-prompt.zsh
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
