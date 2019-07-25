@@ -1050,7 +1050,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;      (concat "echo " "\"IRC message: " msg "\" | festival --tts&") nil 0)))
 
 ;; new version with flite
-(defun jrm/saruon-speak-erc (origin prio msg props)
+(defun jrm/sauron-speak-erc (origin prio msg props)
   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
   (when (eq origin 'erc)
     (call-process-shell-command
@@ -1067,7 +1067,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
      (string-match "jrm[[:alnum:]]+" msg)
      (string-match "[[:alnum:]]+jrm[[:alnum:]]+" msg))))
 
-(add-hook 'sauron-event-added-functions 'jrm/saruon-speak-erc)
+(add-hook 'sauron-event-added-functions 'jrm/sauron-speak-erc)
 (add-hook 'sauron-event-block-functions 'jrm/sauron-erc-events-to-block)
 
 (with-eval-after-load 'erc
