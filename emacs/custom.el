@@ -485,7 +485,6 @@
 %i" :jump-to-captured t)))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
- '(org-cycle-emulate-tab 'whitestart)
  '(org-default-notes-file "~/scm/org.git/capture.org")
  '(org-directory "~/scm/org.git")
  '(org-export-html-postamble nil)
