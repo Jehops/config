@@ -999,7 +999,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 
 ;; registers -------------------------------------------------------------------
 (set-register ?2 '(file . "~/files/edu/classes/STAT2080/TA/"))
-(set-register ?a '(file . "~/scm/freebsd/core.git/svn/head/agenda/agenda.txt"))
+(set-register ?a '(file . "~/scm/freebsd/core.git/agenda/agenda.txt"))
 (set-register ?c '(file . "~/scm/org.git/core.org"))
 (set-register ?C '(file . "~/scm/org.git/capture.org"))
 (set-register ?d '(file . "~/scm/org.git/diary.org"))
