@@ -310,6 +310,37 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;;(add-hook 'window-configuration-change-hook 'jrm/update-erc-fill-column)
 
+;; add to erc-text-matched-hook
+(defun jrm/erc-say-match-text (match-type nickuserhost msg)
+  (cond
+   ((eq match-type 'current-nick)
+    ;;(message msg)
+    (unless
+        (or
+         (string-match "^*** Users on" msg)
+         (string-match "ask jrm or retroj for write access" msg)
+         (string-match "topic set by jrm" msg)
+         (string-match "^<jrm> " msg))
+      (call-process-shell-command
+       (concat "flite -voice /home/" (user-login-name)
+               "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C matched text: "
+               ;;(replace-regexp-in-string "@?jrm:?,?" "" msg)
+               msg
+               "\"&") nil 0)))))
+
+(defun jrm/erc-say-privmsg-alert (proc parsed)
+    (let* ((tgt (car (erc-response.command-args parsed)))
+           (privp (erc-current-nick-p tgt)))
+      (and
+       privp
+       (call-process-shell-command
+        (concat "flite -voice /home/" (user-login-name)
+                "/local/share/data/flite/cmu_us_aew.flitevox \
+\"I-R-C private message received. " "\"&")
+        nil 0)
+       nil))) ; Must return nil. See help for `erc-server-PRIVMSG-functions'
+(add-hook 'erc-server-PRIVMSG-functions 'jrm/erc-say-privmsg-alert)
+
 (defun jrm/erc ()
   "Connect to irc networks set up in my znc bouncer."
   (interactive)
@@ -1070,8 +1101,8 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (add-hook 'sauron-event-added-functions 'jrm/sauron-speak-erc)
 (add-hook 'sauron-event-block-functions 'jrm/sauron-erc-events-to-block)
 
-(with-eval-after-load 'erc
-  (sauron-start-hidden))
+;;(with-eval-after-load 'erc
+;;  (sauron-start-hidden))
 
 ;; scratch ---------------------------------------------------------------------
 ;; Do not put this in custom.el, because it screws up indentation

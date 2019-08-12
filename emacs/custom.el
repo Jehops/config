@@ -89,15 +89,19 @@
  '(erc-hl-nicks-skip-faces
    '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face" "erc-current-nick-face" "erc-direct-msg-face"))
  '(erc-hl-nicks-skip-nicks nil)
+ '(erc-insert-post-hook
+   '(erc-make-read-only erc-save-buffer-in-logs erc-track-modified-channels))
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
  '(erc-join-buffer 'bury)
  '(erc-log-channels-directory "~/.emacs.d/.erc/logs")
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
+ '(erc-match-exclude-server-buffer t)
  '(erc-mode-hook
    '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
  '(erc-modules
    '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
+ '(erc-text-matched-hook '(erc-log-matches jrm/erc-say-match-text))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
  '(erc-track-exclude-types
    '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
