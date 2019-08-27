@@ -122,10 +122,15 @@ man() {
     man "$@"
 }
 
-preexec () {
-  if [ -n "$TMUX" ]; then
-    eval $(tmux switchc\; showenv -s)
-  fi
+# preexec () {
+#   if [ -n "$TMUX" ]; then
+#     eval $(tmux showenv -s)
+#   fi
+# }
+
+ta () {
+  tmux -2 att -d
+  eval $(tmux showenv -s)
 }
 
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
@@ -163,7 +168,7 @@ alias rm="rm -i"
 alias s="sudo "
 alias se="sudoedit"
 #alias svn="svnlite"
-alias ta="tmux -2 att -d "
+#alias ta="tmux -2 att -d "
 if [ "$HOST" = 'storage2.mathstat.dal.ca' ]; then
   alias t="tmux -2 new -s build "
 else
