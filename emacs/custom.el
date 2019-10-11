@@ -257,6 +257,7 @@
  '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
  '(gnus-treat-display-smileys nil)
  '(gnus-treat-fill-long-lines nil)
+ '(gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
  '(gnutls-min-prime-bits 1024)
  '(gnutls-trustfiles
    '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
