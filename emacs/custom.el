@@ -240,7 +240,7 @@
      (nntp "news.freelists.org"
            (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
- '(gnus-started-hook '((lambda nil (gnus-group-jump-to-group "FreeBSD"))))
+ '(gnus-started-hook '((lambda nil (gnus-group-jump-to-group "mail.misc"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
  '(gnus-subthread-sort-functions '(gnus-thread-sort-by-number))
  '(gnus-sum-thread-tree-false-root "⚇")
