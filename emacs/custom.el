@@ -230,8 +230,7 @@
          group)
         (t "mail.misc")))))
  '(gnus-message-archive-method '(nnml ""))
- '(gnus-message-setup-hook
-   '(message-remove-blank-cited-lines mml-secure-message-sign jrm/gnus-set-auto-fill))
+ '(gnus-message-setup-hook '(message-remove-blank-cited-lines turn-off-auto-fill))
  '(gnus-read-newsrc-file nil)
  '(gnus-refer-thread-limit 5000)
  '(gnus-save-newsrc-file nil)
@@ -413,15 +412,14 @@
         (kbd "C-c C-f o")
         'jrm/toggle-personal-work-message-fields))
      flyspell-mode visual-line-mode))
- '(message-setup-hook
-   '(message-check-recipients bbdb-insinuate-message mml-secure-message-sign))
+ '(message-setup-hook '(message-check-recipients bbdb-insinuate-message))
  '(mm-attachment-override-types
    '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
  '(mm-discouraged-alternatives '("text/html" "text/richtext"))
  '(mm-inline-large-images 'resize)
  '(mm-verify-option 'known)
  '(mml-secure-openpgp-encrypt-to-self t)
- '(mml-secure-openpgp-sign-with-sender t)
+ '(mml-secure-openpgp-sign-with-sender nil)
  '(mml-secure-smime-encrypt-to-self t)
  '(mml-secure-smime-sign-with-sender t)
  '(mml-smime-passphrase-cache-expiry 604800)
