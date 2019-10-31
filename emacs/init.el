@@ -523,6 +523,14 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
 
 ;; gnus -----------------------------------------------------------------------
+(defun jrm/gnus-article-turn-on-visual-line-mode ()
+  (interactive)
+  "Turn on visual-line-mode in the current article."
+  (with-current-buffer gnus-article-buffer
+    (let ((buffer-read-only nil)
+	  (inhibit-point-motion-hooks t))
+      (visual-line-mode 'toggle))))
+
 ;; I am NO LONGER using this to coerce Gnus into sending format=flowed messages.
 ;; While the concept sounds clever, having the client tinker with the message
 ;; after it is composed is error-prone.
@@ -554,9 +562,15 @@ that format=flowed will be used.  I choose to wrap the message
 when composing, because I want to see what is sent."
   (use-hard-newlines t 'never))
 
+(with-eval-after-load 'gnus-art
+  (define-key gnus-article-mode-map "v" 'visual-line-mode)
+  (define-key gnus-summary-mode-map "v"
+    'jrm/gnus-article-turn-on-visual-line-mode))
+
 ;; Gnus gets loaded on startup if gnus-select-method is customized
 (with-eval-after-load 'gnus
-  (setq gnus-select-method '(nnml "")))
+  (setq gnus-select-method '(nnml ""))
+  (add-hook 'gnus-summary-mode-hook 'hl-line-mode))
 
 (with-eval-after-load 'gnus-group
   ;; make quitting Emacs less interactive
@@ -567,8 +581,6 @@ when composing, because I want to see what is sent."
 
 (with-eval-after-load 'gnus-topic
   (define-key gnus-topic-mode-map (kbd "C-k") nil))
-
-(add-hook 'gnus-summary-mode-hook 'hl-line-mode)
 
 (defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."

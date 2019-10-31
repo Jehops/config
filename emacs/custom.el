@@ -198,12 +198,7 @@
  '(gnus-agent-queue-mail nil)
  '(gnus-article-date-headers '(local))
  '(gnus-article-prepare-hook
-   '(bbdb-mua-auto-update
-     (lambda nil
-       (gnus-article-fill-cited-article
-        (max 72
-             (frame-width))
-        t))))
+   '(bbdb-mua-auto-update))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
  '(gnus-cite-blank-line-after-header nil)
