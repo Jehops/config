@@ -3,9 +3,9 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
-(require 'benchmark-init-loaddefs)
-(benchmark-init/activate)
-(add-hook 'after-init-hook 'benchmark-init/deactivate)
+;;(require 'benchmark-init-loaddefs)
+;;(benchmark-init/activate)
+;;(add-hook 'after-init-hook 'benchmark-init/deactivate)
 
 (unless package--initialized (package-initialize t))
 
