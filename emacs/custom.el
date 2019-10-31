@@ -170,7 +170,7 @@
  '(eshell-visual-commands
    '("htop" "cdiff" "less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw" "ncdu"))
  '(eshell-visual-options nil)
- '(eshell-visual-subcommands '(("git" "clog" "diff" "log" "show")))
+ '(eshell-visual-subcommands '(("git" "clog" "diff" "log" "show") ("make") ("config")))
  '(ess-ask-for-ess-directory nil)
  '(ess-eval-visibly nil)
  '(ess-history-directory "~/")
