@@ -741,7 +741,6 @@
  '(gnus-header-name ((t (:bold t :foreground "#729fcf"))))
  '(gnus-header-newsgroups ((t (:italic t :bold t :foreground "LightSkyBlue3"))))
  '(gnus-header-subject ((t (:foreground "#edd400"))))
- '(gnus-signature ((t (:italic t :foreground "dark grey"))))
  '(gnus-summary-cancelled ((t (:background "black" :foreground "yellow"))))
  '(gnus-summary-high-ancient ((t (:bold t :foreground "gray50"))))
  '(gnus-summary-high-read ((t (:bold t :foreground "lime green"))))
