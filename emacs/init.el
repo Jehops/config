@@ -318,10 +318,11 @@ possible value for `erc-generate-log-file-name-function'."
     ;;(message msg)
     (unless
         (or
-         (string-match "^*** Users on" msg)
+         (string-match "^\\*\\*\\* Users on" msg)
          (string-match "ask jrm or retroj for write access" msg)
          (string-match "topic set by jrm" msg)
-         (string-match "^<jrm> " msg))
+         (string-match "^<jrm> " msg)
+         (string-match "^\\*\\*\\* jrm" msg))
       (call-process-shell-command
        (concat "flite -voice /home/" (user-login-name)
                "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C matched text: "
