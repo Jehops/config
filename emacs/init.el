@@ -595,7 +595,7 @@ when composing, because I want to see what is sent."
       (gnus-group-select-group 200))))
 
 (defun jrm/toggle-personal-work-message-fields ()
-  "Toggle message fields for personal and work messages."
+  "Toggle message header values such as From: for various roles."
   (interactive)
   (save-excursion
     (cond ((string-match (concat user-full-name " <" user-mail-address ">")
