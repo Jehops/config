@@ -224,7 +224,8 @@
          group)
         (t "mail.misc")))))
  '(gnus-message-archive-method '(nnml ""))
- '(gnus-message-setup-hook '(message-remove-blank-cited-lines turn-off-auto-fill))
+ '(gnus-message-setup-hook
+   '(message-remove-blank-cited-lines turn-off-auto-fill jrm/mml-secure-message-sign))
  '(gnus-read-newsrc-file nil)
  '(gnus-refer-thread-limit 5000)
  '(gnus-save-newsrc-file nil)

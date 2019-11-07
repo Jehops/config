@@ -623,6 +623,12 @@ when composing, because I want to see what is sent."
              (message-add-header "Gcc: mail.misc"))
            (turn-off-auto-fill)))))
 
+(defun jrm/mml-secure-message-sign ()
+  "Sign messages only when sending from certain groups."
+  (interactive)
+  (cond ((string-match "^FreeBSD" gnus-newsgroup-name)
+         (mml-secure-message-sign))))
+
 (defun jrm/gnus-set-auto-fill ()
   (save-excursion
     (cond ((string-match
