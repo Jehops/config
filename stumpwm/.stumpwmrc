@@ -23,6 +23,8 @@
 
 (update-color-map (current-screen))
 (set-focus-color "Orange2")
+;;(run-shell-command "xsetroot -solid '#000000'")
+(setf (xlib:window-background (screen-root (current-screen))) 0)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
