@@ -41,7 +41,11 @@ export REPORTTIME=60
 export TEXDOCVIEW_html="ck %s"
 export TEXDOCVIEW_pdf="xpdf %s"
 export TEXEDIT="emacsclient +%d %s"
-export VISUAL=$EDITOR
+if [ -z "$EDITOR" ]; then
+  export EDITOR=el
+  export VISUAL="$EDITOR"
+fi
+
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # shell variables
