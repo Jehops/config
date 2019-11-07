@@ -524,13 +524,21 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
 
 ;; gnus -----------------------------------------------------------------------
-(defun jrm/gnus-article-turn-on-visual-line-mode ()
+(defun jrm/gnus-article-toggle-visual-line-mode ()
   (interactive)
   "Turn on visual-line-mode in the current article."
   (with-current-buffer gnus-article-buffer
     (let ((buffer-read-only nil)
 	  (inhibit-point-motion-hooks t))
       (visual-line-mode 'toggle))))
+
+(defun jrm/gnus-article-enable-visual-line-mode ()
+  (interactive)
+  "Turn on visual-line-mode in the current article."
+  (with-current-buffer gnus-article-buffer
+    (let ((buffer-read-only nil)
+	  (inhibit-point-motion-hooks t))
+      (visual-line-mode))))
 
 ;; I am NO LONGER using this to coerce Gnus into sending format=flowed messages.
 ;; While the concept sounds clever, having the client tinker with the message
@@ -566,7 +574,7 @@ when composing, because I want to see what is sent."
 (with-eval-after-load 'gnus-art
   (define-key gnus-article-mode-map "v" 'visual-line-mode)
   (define-key gnus-summary-mode-map "v"
-    'jrm/gnus-article-turn-on-visual-line-mode))
+    'jrm/gnus-article-toggle-visual-line-mode))
 
 ;; Gnus gets loaded on startup if gnus-select-method is customized
 (with-eval-after-load 'gnus

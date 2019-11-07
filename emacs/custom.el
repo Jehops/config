@@ -197,7 +197,7 @@
  '(gnus-agent-queue-mail nil)
  '(gnus-article-date-headers '(local))
  '(gnus-article-prepare-hook
-   '(bbdb-mua-auto-update))
+   '(bbdb-mua-auto-update jrm/gnus-article-enable-visual-line-mode))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
  '(gnus-cite-blank-line-after-header nil)
