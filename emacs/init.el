@@ -589,7 +589,10 @@ when composing, because I want to see what is sent."
   (define-key gnus-group-mode-map (kbd "u") nil))
 
 (with-eval-after-load 'gnus-topic
-  (define-key gnus-topic-mode-map (kbd "C-k") nil))
+  (define-key gnus-topic-mode-map (kbd "C-k") nil)
+  (define-key gnus-topic-mode-map (kbd "RET")
+    (lambda () (interactive) ()
+      (gnus-group-select-group 200))))
 
 (defun jrm/toggle-personal-work-message-fields ()
   "Toggle message fields for personal and work messages."
