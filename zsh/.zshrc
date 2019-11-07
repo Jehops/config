@@ -28,13 +28,13 @@ else
 fi
 
 # environment variables; also see login.conf(5)
-export ALTERNATE_EDITOR=""
+#export ALTERNATE_EDITOR="" # set in ~/.xinitrc
 export BLOCKSIZE=K
-export BROWSER=ck
+#export BROWSER=chrome # set in ~/.xinitrc
 export CLICOLOR=1
 export CLUSTER=$HOME/.clusters/compute_nodes
 export GPG_TTY=$(tty)
-export GTK_IM_MODULE=xim
+#export GTK_IM_MODULE=xim  # set in ~/.xinitrc
 export LESS='-iFRSX --shift 1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
 export REPORTTIME=60
