@@ -43,8 +43,8 @@ export TEXDOCVIEW_pdf="xpdf %s"
 export TEXEDIT="emacsclient +%d %s"
 if [ -z "$EDITOR" ]; then
   export EDITOR=el
-  export VISUAL="$EDITOR"
 fi
+export VISUAL="$EDITOR"
 
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
