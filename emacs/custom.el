@@ -490,8 +490,6 @@
  '(org-export-html-postamble nil)
  '(org-latex-pdf-process '("latexmk -f -pdf %f"))
  '(org-mobile-directory "~/.org-mobile")
- '(org-modules
-   '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path t)
  '(org-todo-keyword-faces '(("X CANCELLED" . "dim gray") ("~ WAIT" . "goldenrod")))
@@ -504,7 +502,7 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(rust-mode org-plus-contrib counsel yasnippet poly-R poly-markdown poly-org poly-noweb polymode sauron magit magit-svn magit-todos znc fireplace company-lsp lsp-ui cquery ess eyebrowse beacon ace-window lsp-mode google-c-style dired-du mastodon counsel-notmuch w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
+   '(gh-md rust-mode org-plus-contrib counsel yasnippet poly-R poly-markdown poly-org poly-noweb polymode sauron magit magit-svn magit-todos znc fireplace company-lsp lsp-ui cquery ess eyebrowse beacon ace-window lsp-mode google-c-style dired-du mastodon counsel-notmuch w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
  '(pdf-misc-print-programm "/usr/local/bin/lpr")
  '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
