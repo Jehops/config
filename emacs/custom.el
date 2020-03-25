@@ -569,6 +569,8 @@
      ("Cambridge Dictionaries Online" .
       [simple-query "dictionary.cambridge.org" "dictionary.cambridge.org/cmd_search.asp?searchword=" ""])
      ("Capa" . "capa.mathstat.dal.ca")
+     ("cbc" . "cbc.ca/news")
+     ("cbc/ns" . "cbc.ca/ns")
      ("Coindesk" . "www.coindesk.com")
      ("Dictionary.com" .
       [simple-query "www.dictionary.com" "www.dictionary.com/browse/" ""])
@@ -607,6 +609,7 @@
       [simple-query "stackoverflow.com" "stackoverflow.com/search?q" ""])
      ("PGP Key Server" .
       [simple-query "pgp.mit.edu" "pgp.mit.edu:11371/pks/lookup?op=index&search=" ""])
+     ("Portscout" . "https://portscout.freebsd.org/")
      ("Project Gutenberg" . webjump-to-gutenberg)
      ("RBC" . "https://www1.royalbank.com/cgi-bin/rbaccess/rbunxcgi%3FF6=1%26F7=IB%26F21=IB%26F22=IB%26REQUEST=ClientSignin%26LANGUAGE=ENGLISH?_ga=1.223022555.1525730850.1448687611")
      ("Thesaurus.com" .
