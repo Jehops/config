@@ -230,7 +230,7 @@
  '(gnus-refer-thread-limit 5000)
  '(gnus-save-newsrc-file nil)
  '(gnus-secondary-select-methods
-   '((nntp "news.gmane.org"
+   '((nntp "news.gmane.io"
            (nntp-open-connection-function nntp-open-plain-stream))
      (nntp "news.freelists.org"
            (nntp-port-number 563)
