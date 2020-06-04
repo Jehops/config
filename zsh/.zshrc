@@ -50,8 +50,8 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # shell variables
 HISTFILE=~/.zshhistory_$HOST
-HISTSIZE=6000
-SAVEHIST=5000
+HISTSIZE=8000 # number commands loaded into memory
+SAVEHIST=8000 # number of commands
 
 # shell options
 setopt autopushd # push directories with each cd
@@ -59,15 +59,22 @@ setopt emacs # emacs key bindings
 setopt extended_glob
 setopt extended_history # add timestamps to history
 setopt hist_expire_dups_first
+setopt hist_find_no_dups
 setopt hist_reduce_blanks
 setopt hist_verify # show ! history line for editing
 setopt ignore_eof # don't logout with ^D
-setopt inc_append_history # save history line by line
+setopt inc_append_history # save history by line; exclusive to share_history
 #setopt nobanghist
 setopt nobeep
 setopt notify # asynchronous job control messages
 setopt pushd_ignore_dups
-setopt share_history # reloads the history whenever you use it
+#setopt share_history # reloads history on usage; exclusive to append_history
+
+# Using inc_append_history and turning off share_history.
+#
+# I will manually import history on demand with 'fc -RI'.  The -R means reads
+# from history files and -I along with -R means only those events that are not
+# already contained within the internal history list are added.
 
 # make characters like '/', '-' and '_' be word boundaries
 autoload -Uz select-word-style
