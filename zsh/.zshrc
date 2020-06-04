@@ -54,6 +54,7 @@ HISTSIZE=8000 # number commands loaded into memory
 SAVEHIST=8000 # number of commands
 
 # shell options
+setopt auto_cd # do not require typing cd
 setopt autopushd # push directories with each cd
 setopt emacs # emacs key bindings
 setopt extended_glob
