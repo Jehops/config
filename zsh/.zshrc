@@ -172,7 +172,7 @@ fi
 alias ll="env CLICOLOR_FORCE=1 ls -Fhilo"
 alias mv="mv -i"
 alias p=$PAGER
-alias pc="less -ir"
+alias pc="$PAGER -ir"
 alias pp="pull && push"
 alias ppc="pull && push && printf '\\n' && check && printf '\\n'"
 alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf \
