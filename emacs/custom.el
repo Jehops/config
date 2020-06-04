@@ -104,8 +104,9 @@
    '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
  '(erc-text-matched-hook '(erc-log-matches jrm/erc-say-match-text))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
+ '(erc-track-exclude '("<fbsdslack> <jrm>"))
  '(erc-track-exclude-types
-   '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
+   '("JOIN" "NICK" "PART" "QUIT" "MODE" "305" "306" "324" "329" "332" "333" "353" "477"))
  '(erc-track-faces-priority-list
    '(erc-error-face
      (erc-nick-default-face erc-current-nick-face)
