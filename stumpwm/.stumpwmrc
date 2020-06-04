@@ -182,10 +182,8 @@ ring if an Emacs daemon is running."
 (define-key *root-map* (kbd "p")        "prev")
 (define-key *root-map* (kbd "M-w")      "s2e")
 (define-key *root-map* (kbd "C-t")      "other")
-;;(define-key *root-map* (kbd "C-w")      "web-browser")
-;;(define-key *root-map* (kbd "w")        "firefox")
 (define-key *root-map* (kbd "C-w")      "chromium")
-(define-key *root-map* (kbd "w")        "chromium")
+(define-key *root-map* (kbd "w")        "firefox")
 (define-key *root-map* (kbd "x")        "term")
 (define-key *root-map* (kbd "C-x")      "term")
 
