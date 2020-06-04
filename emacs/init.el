@@ -1003,7 +1003,8 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
-;;multi-web-mode for lon-capa problems ----------------------------------------
+;; multi-web-mode for lon-capa problems ----------------------------------------
+(add-to-list 'auto-mode-alist '("\\.problem\\'" . multi-web-mode))
 ;;(add-hook 'after-init-hook (lambda ()
 ;;                             (multi-web-global-mode 1)))
 
