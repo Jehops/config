@@ -43,12 +43,16 @@ add Control = Control_R
 keysym semicolon = dead_horn colon
 
 ! Make the "Windows" Key (keycode 115 on X220, T530, and USB) Mode_Switch
-! (for non-latin chars below)
-keycode 115 = Mode_switch
+! (for non-latin characters listed below)
+! keycodes changed after upgrading to xorg-server-1.20.7,1
+!keycode 115 = Mode_switch
+keycode 133 = Mode_switch
 
 ! Give the the "Menu" Key (keycode 117 on X220 and USB) the keysym Hyper_R and set it
-! to the Mod2 modifier (for xbinkey stuff in ~/.xbinkeysrc).
-keycode 117 = Hyper_R
+! to the Mod2 modifier (for xbindkey stuff in ~/.xbinkeysrc).
+! keycodes changed after upgrading to xorg-server-1.20.7,1
+!keycode 117 = Hyper_R
+keycode 147 = Hyper_R
 add Mod2 = Hyper_R
 
 ! currency
