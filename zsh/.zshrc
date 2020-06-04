@@ -28,42 +28,54 @@ else
 fi
 
 # environment variables; also see login.conf(5)
-export ALTERNATE_EDITOR=""
+#export ALTERNATE_EDITOR="" # set in ~/.xinitrc
 export BLOCKSIZE=K
-export BROWSER=ck
+#export BROWSER=chrome # set in ~/.xinitrc
 export CLICOLOR=1
 export CLUSTER=$HOME/.clusters/compute_nodes
 export GPG_TTY=$(tty)
-export GTK_IM_MODULE=xim
-export LESS='-iFRSX --shift 1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
+#export GTK_IM_MODULE=xim  # set in ~/.xinitrc
+export LESS='-iFRSX -#1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
 export REPORTTIME=60
 export TEXDOCVIEW_html="ck %s"
 export TEXDOCVIEW_pdf="xpdf %s"
 export TEXEDIT="emacsclient +%d %s"
-export VISUAL=$EDITOR
+if [ -z "$EDITOR" ]; then
+  export EDITOR=el
+fi
+export VISUAL="$EDITOR"
+
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # shell variables
 HISTFILE=~/.zshhistory_$HOST
-HISTSIZE=6000
-SAVEHIST=5000
+HISTSIZE=8000 # number commands loaded into memory
+SAVEHIST=8000 # number of commands
 
 # shell options
+setopt auto_cd # do not require typing cd
 setopt autopushd # push directories with each cd
 setopt emacs # emacs key bindings
 setopt extended_glob
 setopt extended_history # add timestamps to history
 setopt hist_expire_dups_first
+setopt hist_find_no_dups
 setopt hist_reduce_blanks
 setopt hist_verify # show ! history line for editing
 setopt ignore_eof # don't logout with ^D
-setopt inc_append_history # save history line by line
+setopt inc_append_history # save history by line; exclusive to share_history
 #setopt nobanghist
 setopt nobeep
 setopt notify # asynchronous job control messages
 setopt pushd_ignore_dups
-setopt share_history # reloads the history whenever you use it
+#setopt share_history # reloads history on usage; exclusive to append_history
+
+# Using inc_append_history and turning off share_history.
+#
+# I will manually import history on demand with 'fc -RI'.  The -R means reads
+# from history files and -I along with -R means only those events that are not
+# already contained within the internal history list are added.
 
 # make characters like '/', '-' and '_' be word boundaries
 autoload -Uz select-word-style
@@ -135,20 +147,22 @@ preexec () {
 
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 
-# aliases
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../../"
-alias 2080="cd ${HOME}/files/edu/classes/STAT2080/TA/"
+# Directory shortcuts
+hash -d 2080=$HOME/files/edu/classes/STAT2080/TA/
+hash -d ...=../..
+hash -d ....=../../..
+hash -d core=$HOME/scm/freebsd/core.git/
+hash -d doc=$HOME/scm/freebsd/doc/head/
+hash -d ports=$HOME/scm/freebsd/ports/head/
+hash -d src=$HOME/scm/freebsd/src/head/
+
+#aliases
 alias aw="ssh awarnach"
 alias cp="cp -i"
 alias e="emacs"
 alias ec="emacsclient -a= -n"
 #alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
-alias gc="cd ~/scm/freebsd/core.git/"
-alias gd="cd ~/scm/freebsd/doc/head/"
-alias gos="cd ~/scm/freebsd/base/head/"
 alias j=jobs
 if [ "$(uname)" = 'Linux' ]; then
   alias l="ls -ahl --color=auto"
@@ -158,7 +172,7 @@ fi
 alias ll="env CLICOLOR_FORCE=1 ls -Fhilo"
 alias mv="mv -i"
 alias p=$PAGER
-alias pc="less -ir"
+alias pc="$PAGER -ir"
 alias pp="pull && push"
 alias ppc="pull && push && printf '\\n' && check && printf '\\n'"
 alias ppcs="pull && printf '\\n' && push && printf '\\n' && check && printf \

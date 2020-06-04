@@ -1,4 +1,4 @@
-"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI-1 --off --output VGA-1 --off --output LVDS1 --mode 1366x768"
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI-1 --off --output VGA-1 --off --output LVDS-1 --mode 1366x768"
   Mod2+1
 "/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI-1 --auto --above LVDS-1 --output LVDS-1 --auto"
   Mod2+2

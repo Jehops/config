@@ -42,7 +42,7 @@
  '(browse-url-conkeror-program "ck")
  '(browse-url-generic-program "~/local/bin/ck")
  '(browse-url-mailto-function 'browse-url-mail)
- '(browse-url-secondary-browser-function 'browse-url-conkeror)
+ '(browse-url-secondary-browser-function 'browse-url-chromium)
  '(calendar-date-style 'iso)
  '(calendar-latitude 44.630294)
  '(calendar-location-name "Halifax, NS")
@@ -104,8 +104,9 @@
    '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
  '(erc-text-matched-hook '(erc-log-matches jrm/erc-say-match-text))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
+ '(erc-track-exclude '("<fbsdslack> <jrm>"))
  '(erc-track-exclude-types
-   '("JOIN" "MODE" "NICK" "PART" "QUIT" "305" "306" "324" "329" "332" "333" "353" "477"))
+   '("JOIN" "NICK" "PART" "QUIT" "MODE" "305" "306" "324" "329" "332" "333" "353" "477"))
  '(erc-track-faces-priority-list
    '(erc-error-face
      (erc-nick-default-face erc-current-nick-face)
@@ -197,7 +198,7 @@
  '(gnus-agent-queue-mail nil)
  '(gnus-article-date-headers '(local))
  '(gnus-article-prepare-hook
-   '(bbdb-mua-auto-update))
+   '(bbdb-mua-auto-update jrm/gnus-article-enable-visual-line-mode))
  '(gnus-auto-subscribed-groups "nil")
  '(gnus-check-new-newsgroups nil)
  '(gnus-cite-blank-line-after-header nil)
@@ -224,12 +225,13 @@
          group)
         (t "mail.misc")))))
  '(gnus-message-archive-method '(nnml ""))
- '(gnus-message-setup-hook '(message-remove-blank-cited-lines turn-off-auto-fill))
+ '(gnus-message-setup-hook
+   '(message-remove-blank-cited-lines turn-off-auto-fill jrm/mml-secure-message-sign))
  '(gnus-read-newsrc-file nil)
  '(gnus-refer-thread-limit 5000)
  '(gnus-save-newsrc-file nil)
  '(gnus-secondary-select-methods
-   '((nntp "news.gmane.org"
+   '((nntp "news.gmane.io"
            (nntp-open-connection-function nntp-open-plain-stream))
      (nntp "news.freelists.org"
            (nntp-port-number 563)
@@ -489,8 +491,6 @@
  '(org-export-html-postamble nil)
  '(org-latex-pdf-process '("latexmk -f -pdf %f"))
  '(org-mobile-directory "~/.org-mobile")
- '(org-modules
-   '(org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-protocol org-w3m))
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path t)
  '(org-todo-keyword-faces '(("X CANCELLED" . "dim gray") ("~ WAIT" . "goldenrod")))
@@ -503,7 +503,7 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(rust-mode org-plus-contrib counsel yasnippet poly-R poly-markdown poly-org poly-noweb polymode sauron magit magit-svn magit-todos znc fireplace company-lsp lsp-ui cquery ess eyebrowse beacon ace-window lsp-mode google-c-style dired-du mastodon counsel-notmuch w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
+   '(gh-md rust-mode org-plus-contrib counsel yasnippet poly-R poly-markdown poly-org poly-noweb polymode sauron magit magit-svn magit-todos znc fireplace company-lsp lsp-ui cquery ess eyebrowse beacon ace-window lsp-mode google-c-style dired-du mastodon counsel-notmuch w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode ivy-bibtex misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra google-translate genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
  '(pdf-misc-print-programm "/usr/local/bin/lpr")
  '(pdf-misc-print-programm-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
@@ -570,6 +570,8 @@
      ("Cambridge Dictionaries Online" .
       [simple-query "dictionary.cambridge.org" "dictionary.cambridge.org/cmd_search.asp?searchword=" ""])
      ("Capa" . "capa.mathstat.dal.ca")
+     ("cbc" . "cbc.ca/news")
+     ("cbc/ns" . "cbc.ca/ns")
      ("Coindesk" . "www.coindesk.com")
      ("Dictionary.com" .
       [simple-query "www.dictionary.com" "www.dictionary.com/browse/" ""])
@@ -608,6 +610,7 @@
       [simple-query "stackoverflow.com" "stackoverflow.com/search?q" ""])
      ("PGP Key Server" .
       [simple-query "pgp.mit.edu" "pgp.mit.edu:11371/pks/lookup?op=index&search=" ""])
+     ("Portscout" . "https://portscout.freebsd.org/")
      ("Project Gutenberg" . webjump-to-gutenberg)
      ("RBC" . "https://www1.royalbank.com/cgi-bin/rbaccess/rbunxcgi%3FF6=1%26F7=IB%26F21=IB%26F22=IB%26REQUEST=ClientSignin%26LANGUAGE=ENGLISH?_ga=1.223022555.1525730850.1448687611")
      ("Thesaurus.com" .

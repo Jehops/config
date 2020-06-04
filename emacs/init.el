@@ -318,16 +318,17 @@ possible value for `erc-generate-log-file-name-function'."
     ;;(message msg)
     (unless
         (or
-         (string-match "^*** Users on" msg)
+         (string-match "^\\*\\*\\* Users on" msg)
          (string-match "ask jrm or retroj for write access" msg)
          (string-match "topic set by jrm" msg)
-         (string-match "^<jrm> " msg))
+         (string-match "^\\(<fbsdslack> \\[[0-9:]+\\] \\)?<jrm> " msg)
+         (string-match "^\\*\\*\\* jrm" msg))
       (call-process-shell-command
        (concat "flite -voice /home/" (user-login-name)
                "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C matched text: "
                ;;(replace-regexp-in-string "@?jrm:?,?" "" msg)
                msg
-               "\"&") nil 0)))))
+               "\"&") nil 0 nil)))))
 
 (defun jrm/erc-say-privmsg-alert (proc parsed)
     (let* ((tgt (car (erc-response.command-args parsed)))
@@ -523,13 +524,21 @@ possible value for `erc-generate-log-file-name-function'."
 ;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
 
 ;; gnus -----------------------------------------------------------------------
-(defun jrm/gnus-article-turn-on-visual-line-mode ()
+(defun jrm/gnus-article-toggle-visual-line-mode ()
   (interactive)
   "Turn on visual-line-mode in the current article."
   (with-current-buffer gnus-article-buffer
     (let ((buffer-read-only nil)
 	  (inhibit-point-motion-hooks t))
       (visual-line-mode 'toggle))))
+
+(defun jrm/gnus-article-enable-visual-line-mode ()
+  (interactive)
+  "Turn on visual-line-mode in the current article."
+  (with-current-buffer gnus-article-buffer
+    (let ((buffer-read-only nil)
+	  (inhibit-point-motion-hooks t))
+      (visual-line-mode))))
 
 ;; I am NO LONGER using this to coerce Gnus into sending format=flowed messages.
 ;; While the concept sounds clever, having the client tinker with the message
@@ -562,10 +571,10 @@ that format=flowed will be used.  I choose to wrap the message
 when composing, because I want to see what is sent."
   (use-hard-newlines t 'never))
 
-(with-eval-after-load 'gnus-art
-  (define-key gnus-article-mode-map "v" 'visual-line-mode)
-  (define-key gnus-summary-mode-map "v"
-    'jrm/gnus-article-turn-on-visual-line-mode))
+;; (with-eval-after-load 'gnus-art
+;;   (define-key gnus-article-mode-map "v" 'visual-line-mode)
+;;   (define-key gnus-summary-mode-map "v"
+;;     'jrm/gnus-article-toggle-visual-line-mode))
 
 ;; Gnus gets loaded on startup if gnus-select-method is customized
 (with-eval-after-load 'gnus
@@ -580,10 +589,13 @@ when composing, because I want to see what is sent."
   (define-key gnus-group-mode-map (kbd "u") nil))
 
 (with-eval-after-load 'gnus-topic
-  (define-key gnus-topic-mode-map (kbd "C-k") nil))
+  (define-key gnus-topic-mode-map (kbd "C-k") nil)
+  (define-key gnus-topic-mode-map (kbd "RET")
+    (lambda () (interactive) ()
+      (gnus-group-select-group 200))))
 
 (defun jrm/toggle-personal-work-message-fields ()
-  "Toggle message fields for personal and work messages."
+  "Toggle message header values such as From: for various roles."
   (interactive)
   (save-excursion
     (cond ((string-match (concat user-full-name " <" user-mail-address ">")
@@ -621,6 +633,12 @@ when composing, because I want to see what is sent."
              (message-remove-header "Gcc")
              (message-add-header "Gcc: mail.misc"))
            (turn-off-auto-fill)))))
+
+(defun jrm/mml-secure-message-sign ()
+  "Sign messages only when sending from certain groups."
+  (interactive)
+  (cond ((string-match "^FreeBSD" gnus-newsgroup-name)
+         (mml-secure-message-sign))))
 
 (defun jrm/gnus-set-auto-fill ()
   (save-excursion
@@ -961,6 +979,15 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;(with-eval-after-load 'magit
 ;;  (magit-todos-mode))
 
+;; Make (FreeBSD ports)
+(defun portfmt (&optional b e)
+  "Format FreeBSD port Makefile region with PORTFMT(1)"
+  (interactive "r")
+  (shell-command-on-region b e "portfmt " (current-buffer) t
+                           "*portfmt errors*" t))
+(with-eval-after-load 'make-mode
+  (define-key makefile-bsdmake-mode-map (kbd "C-c p") 'portfmt))
+
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
 
@@ -976,7 +1003,8 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
-;;multi-web-mode for lon-capa problems ----------------------------------------
+;; multi-web-mode for lon-capa problems ----------------------------------------
+(add-to-list 'auto-mode-alist '("\\.problem\\'" . multi-web-mode))
 ;;(add-hook 'after-init-hook (lambda ()
 ;;                             (multi-web-global-mode 1)))
 
