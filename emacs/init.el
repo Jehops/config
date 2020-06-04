@@ -979,6 +979,15 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;(with-eval-after-load 'magit
 ;;  (magit-todos-mode))
 
+;; Make (FreeBSD ports)
+(defun portfmt (&optional b e)
+  "Format FreeBSD port Makefile region with PORTFMT(1)"
+  (interactive "r")
+  (shell-command-on-region b e "portfmt " (current-buffer) t
+                           "*portfmt errors*" t))
+(with-eval-after-load 'make-mode
+  (define-key makefile-bsdmake-mode-map (kbd "C-c p") 'portfmt))
+
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
 
