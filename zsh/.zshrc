@@ -147,20 +147,22 @@ preexec () {
 
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 
-# aliases
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../../"
-alias 2080="cd ${HOME}/files/edu/classes/STAT2080/TA/"
+# Directory shortcuts
+hash -d 2080=$HOME/files/edu/classes/STAT2080/TA/
+hash -d ...=../..
+hash -d ....=../../..
+hash -d core=$HOME/scm/freebsd/core.git/
+hash -d doc=$HOME/scm/freebsd/doc/head/
+hash -d ports=$HOME/scm/freebsd/ports/head/
+hash -d src=$HOME/scm/freebsd/src/head/
+
+#aliases
 alias aw="ssh awarnach"
 alias cp="cp -i"
 alias e="emacs"
 alias ec="emacsclient -a= -n"
 #alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
-alias gc="cd ~/scm/freebsd/core.git/"
-alias gd="cd ~/scm/freebsd/doc/head/"
-alias gos="cd ~/scm/freebsd/base/head/"
 alias j=jobs
 if [ "$(uname)" = 'Linux' ]; then
   alias l="ls -ahl --color=auto"
