@@ -571,10 +571,10 @@ that format=flowed will be used.  I choose to wrap the message
 when composing, because I want to see what is sent."
   (use-hard-newlines t 'never))
 
-(with-eval-after-load 'gnus-art
-  (define-key gnus-article-mode-map "v" 'visual-line-mode)
-  (define-key gnus-summary-mode-map "v"
-    'jrm/gnus-article-toggle-visual-line-mode))
+;; (with-eval-after-load 'gnus-art
+;;   (define-key gnus-article-mode-map "v" 'visual-line-mode)
+;;   (define-key gnus-summary-mode-map "v"
+;;     'jrm/gnus-article-toggle-visual-line-mode))
 
 ;; Gnus gets loaded on startup if gnus-select-method is customized
 (with-eval-after-load 'gnus
