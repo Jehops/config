@@ -321,14 +321,14 @@ possible value for `erc-generate-log-file-name-function'."
          (string-match "^\\*\\*\\* Users on" msg)
          (string-match "ask jrm or retroj for write access" msg)
          (string-match "topic set by jrm" msg)
-         (string-match "^<jrm> " msg)
+         (string-match "^\\(<fbsdslack> \\[[0-9:]+\\] \\)?<jrm> " msg)
          (string-match "^\\*\\*\\* jrm" msg))
       (call-process-shell-command
        (concat "flite -voice /home/" (user-login-name)
                "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C matched text: "
                ;;(replace-regexp-in-string "@?jrm:?,?" "" msg)
                msg
-               "\"&") nil 0)))))
+               "\"&") nil 0 nil)))))
 
 (defun jrm/erc-say-privmsg-alert (proc parsed)
     (let* ((tgt (car (erc-response.command-args parsed)))
