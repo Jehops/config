@@ -175,6 +175,8 @@ else
   alias t="tmux -2 "
 fi
 alias tb='nc termbin.com 9999'
+alias ss='sudo sysctl hw.snd.default_unit=0'
+alias tvs='sudo sysctl hw.snd.default_unit=2'
 alias up="sudo pkg upgrade"
 alias x="exit"
 
