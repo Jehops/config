@@ -1042,6 +1042,18 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 
 ;; pdf-tools -------------------------------------------------------------------
 (load "pdf-tools-init.el")
+(with-eval-after-load 'pdf-tools
+  (define-key pdf-view-mode-map (kbd "p")
+    (lambda (&optional n)
+      (interactive "p")
+      (pdf-view-next-page (- (or n 1)))
+      (image-eob)))
+  (define-key pdf-view-mode-map (kbd "n")
+    (lambda (&optional n)
+      (interactive "p")
+      (pdf-view-goto-page (+ (pdf-view-current-page)
+                             (or n 1)))
+      (image-bob))))
 
 ;; perl ------------------------------------------------------------------------
 (defalias 'perl-mode 'cperl-mode)
