@@ -89,7 +89,7 @@
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
    '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face" "erc-current-nick-face" "erc-direct-msg-face"))
- '(erc-hl-nicks-skip-nicks nil)
+ '(erc-hl-nicks-skip-nicks '("fbsdslack"))
  '(erc-insert-post-hook
    '(erc-make-read-only erc-save-buffer-in-logs erc-track-modified-channels))
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
