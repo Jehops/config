@@ -1,0 +1,85 @@
+! see /usr/local/include/X11/keysymdef.h
+! use xmodmap -pk to list the current key map table
+! use xev to get keycodes
+! use setxkbdmap to go back to default and xmodmap -e "..." -e ".." or xmodmap
+!  ~/.Xmodmap to test changes
+! use xmodmap without arguments to see modifiers
+! modifiers are shift, control, lock, mod1, mod2, mod3, mod4, mod5
+! mod1 - mod5 are for free use
+! XCompose intercepts sequences of typed characters and replaces them with
+! other sequences; i.e., a dead key followed by another key produces a new
+! character
+! my ~/.XCompose is a modified version of
+! /usr/local/lib/X11/locale/en_US.UTF-8/Compose created with
+! grep -iv '<dead_horn>' /usr/local/lib/X11/locale/en_US.UTF-8/Compose \
+! > ~/.XCompose
+
+! format of keycode/keysym lines:
+! [keycode|keysym] [<keycode>|<keysym>] = <1> <2> <3> <4>
+! where <1> <key>, <2> <shift-key>, <3> <Mode_switch-key>
+! <4> <shift-Mode_switch-key>
+
+clear Mod2
+clear Mod3
+clear Mod4
+clear Mod5
+
+! make caps lock left control
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+
+! only do this on bravo, because there is no menu key
+! make right control Mod2
+remove Control = Control_R
+keysym Control_R = Hyper_R
+add Mod2 = Hyper_R
+
+! make apostrophe right control
+keysym apostrophe = Control_R
+add Control = Control_R
+
+! make the semicolon key a dead key so new keys can be "composed"
+keysym semicolon = dead_horn colon
+
+! Make the "Windows" Key (keycode 115 on X220, T530, and USB) Mode_Switch
+! (for non-latin characters listed below)
+! keycodes changed after upgrading to xorg-server-1.20.7,1
+!keycode 115 = Mode_switch
+keycode 133 = Mode_switch
+
+! Give the the "Menu" Key (keycode 117 on X220 and USB) the keysym Hyper_R and set it
+! to the Mod2 modifier (for xbindkey stuff in ~/.xbinkeysrc).
+! keycodes changed after upgrading to xorg-server-1.20.7,1
+!keycode 117 = Hyper_R
+keycode 147 = Hyper_R
+add Mod2 = Hyper_R
+
+! currency
+keysym 4 = 4 dollar EuroSign sterling
+
+! Greek characters
+keysym a = a A Greek_alpha Greek_ALPHA
+keysym b = b B Greek_beta Greek_BETA
+keysym g = g G Greek_gamma Greek_GAMMA
+keysym d = d D Greek_delta Greek_DELTA
+keysym e = e E Greek_epsilon Greek_EPSILON
+keysym z = z Z Greek_zeta Greek_ZETA
+keysym h = h H Greek_eta Greek_ETA
+keysym o = o O Greek_theta Greek_THETA
+keysym i = i I Greek_iota Greek_IOTA
+keysym k = k K Greek_kappa Greek_KAPPA
+keysym l = l L Greek_lamda Greek_LAMDA
+keysym m = m M Greek_mu Greek_MU
+keysym n = n N Greek_nu Greek_NU
+keysym f = f F Greek_xi Greek_XI
+keysym c = c C Greek_omicron Greek_OMICRON
+keysym p = p P Greek_pi Greek_PI
+keysym r = r R Greek_rho Greek_RHO
+keysym s = s S Greek_sigma Greek_SIGMA
+keysym t = t T Greek_tau Greek_TAU
+keysym u = u U Greek_upsilon Greek_UPSILON
+keysym v = v V Greek_phi Greek_PHI
+keysym x = x X Greek_chi Greek_CHI
+keysym y = y Y Greek_psi Greek_PSI
+keysym w = w W Greek_omega Greek_OMEGA

@@ -1,0 +1,24 @@
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI-1 --off --output VGA-1 --off --output LVDS-1 --mode 1600x900"
+  Mod2+1
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI-1 --auto --above LVDS-1 --output LVDS-1 --auto"
+  Mod2+2
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output LVDS-1 --mode 1024x768 --output VGA-1 --mode 1024x768"
+  Mod2+3
+"/usr/local/bin/xrandr > /dev/null; /usr/local/bin/xrandr --output HDMI-1 --mode 1600x900 --above LVDS-1"
+  Mod2+4
+"/usr/local/bin/xautolock -disable"
+  Mod2+d
+"/usr/local/bin/xautolock -enable"
+  Mod2+e
+"/usr/local/bin/xkill"
+  Mod2+k
+"/usr/local/bin/xautolock -enable && /usr/local/bin/xautolock -locknow"
+  Mod2+l
+"if service openvpn onestatus | grep -q 'openvpn is not running'; then sudo service openvpn onestart; else sudo service openvpn onestop; fi"
+  Mod2+v
+"/usr/sbin/mixer vol -2  pcm -2"
+  XF86AudioLowerVolume
+"/usr/sbin/mixer vol +2  pcm +2"
+  XF86AudioRaiseVolume
+"~/local/bin/ptsn"
+  Print
