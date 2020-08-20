@@ -9,6 +9,7 @@
 	pager = less -F -X
 [alias]
         clog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+        co = checkout
 [commit]
         gpgSign = true
 [merge]
