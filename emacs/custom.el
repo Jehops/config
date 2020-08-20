@@ -401,6 +401,9 @@
  '(major-mode 'text-mode)
  '(mastodon-instance-url "https://bsd.network")
  '(menu-bar-mode nil)
+ '(message-citation-line-format "On %a, %Y-%m-%d at %R, %f wrote:
+")
+ '(message-citation-line-function 'message-insert-formatted-citation-line)
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
  '(message-mode-hook
