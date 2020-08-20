@@ -73,7 +73,7 @@ setopt pushd_ignore_dups
 
 # Using inc_append_history and turning off share_history.
 #
-# I will manually import history on demand with 'fc -RI'.  The -R means reads
+# I will manually import history on demand with 'fc -RI'.  The -R means read
 # from history files and -I along with -R means only those events that are not
 # already contained within the internal history list are added.
 
