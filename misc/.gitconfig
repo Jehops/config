@@ -6,7 +6,7 @@
         default = simple
         followTags = true
 [core]
-	pager = less -F -X
+        pager = less -F -X
 [alias]
         clog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
         co = checkout
@@ -17,4 +17,4 @@
 [transfer]
         fsckobjects = true
 [pull]
-	rebase = true
+        rebase = true
