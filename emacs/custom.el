@@ -179,6 +179,10 @@
  '(ess-swv-processor 'knitr)
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
+ '(eyebrowse-close-window-config-prompt t)
+ '(eyebrowse-mode t)
+ '(eyebrowse-mode-line-separator " ")
+ '(eyebrowse-wrap-around t)
  '(fill-column 80)
  '(fill-flowed-display-column '(- (window-width) 5))
  '(flycheck-checkers
@@ -696,6 +700,7 @@
  '(ess-jb-h2-face ((t (:height 1.4 :foreground "#6ac214" :slant normal))))
  '(ess-jb-h3-face ((t (:height 1.2 :foreground "#edd400" :slant normal))))
  '(ess-jb-hide-face ((t (:background "#2e3436" :foreground "#243436"))))
+ '(eyebrowse-mode-line-active ((t (:inherit mode-line-emphasis :underline t))))
  '(font-lock-builtin-face ((t (:foreground "#729fcf"))))
  '(font-lock-comment-delimiter-face ((default (:inherit (font-lock-comment-face)))))
  '(font-lock-comment-face ((t (:foreground "#888a85"))))
