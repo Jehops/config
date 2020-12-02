@@ -140,11 +140,17 @@ ts() {
     "Usage: ts cmd [window #[ window #]...]"
     return
   elif [ $# -eq 1 ]; then
-    for i in $(seq 1 5); do tmux send -t ":$i" "$1" KPEnter; done
+    for i in $(seq 1 6); do
+      tmux send -t ":$i" -l "$1"
+      tmux send -t ":$i" KPEnter
+    done
   else
     cmd=$1
     shift
-    for i in "$@"; do tmux send -t ":$i" "$cmd" KPEnter; done
+    for i in "$@"; do
+      tmux send -t ":$i" -l "$cmd"
+      tmux send -t ":$i" "$cmd" KPEnter
+    done
   fi
 }
 
