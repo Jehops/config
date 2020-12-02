@@ -58,7 +58,7 @@
  '(calendar-week-start-day 1)
  '(column-number-mode t)
  '(company-backends
-   '(company-bbdb company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+   '(company-bbdb company-semantic company-clang company-cmake company-capf company-files
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-dabbrev))
  '(compilation-window-height 6)
