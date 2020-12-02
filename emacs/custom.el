@@ -85,6 +85,7 @@
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(echo-keystrokes 0.5)
  '(epg-pinentry-mode 'loopback)
+ '(erc-autojoin-domain-only nil)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
