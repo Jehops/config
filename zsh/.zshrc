@@ -116,7 +116,7 @@ gp() {
 
 magit() {
   if pgrep -u "$USER" -fq '^emacs --daemon'; then
-    emacsclient -e "(magit-status-internal \"$PWD\")"
+    emacsclient -e "(magit-status-setup-buffer \"$PWD\")"
   else
     printf "No Emacs daemon is running.\\n"
   fi
