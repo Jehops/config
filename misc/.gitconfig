@@ -18,3 +18,4 @@
         fsckobjects = true
 [pull]
         rebase = true
+	ff = only
