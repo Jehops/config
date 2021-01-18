@@ -162,7 +162,7 @@ slashes."
     fn))
 
 (defun jrm/getmail ()
-  "Call make in the current directory."
+  "Retrieve new mail with getmail."
   (interactive)
   (call-process-shell-command "getmail"))
 
