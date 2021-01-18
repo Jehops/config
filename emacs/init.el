@@ -1027,6 +1027,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;                                  (setq fill-column 80))))
 
 ;; org-mode --------------------------------------------------------------------
+(autoload 'org-agenda "org-agenda")
 (with-eval-after-load 'org
   (org-clock-persistence-insinuate)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
