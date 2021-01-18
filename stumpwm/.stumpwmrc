@@ -72,6 +72,10 @@ hidden behind the previously displayed window."
 ;;             (run-shell-command "emacsclient -n -e '(let ((helm-full-frame t)) \
 ;;       (save-window-excursion (delete-other-windows) (helm-show-kill-ring)))'"))
 
+(defcommand clipmenu () ()
+            "Run clipmenu and copy the X clipboard contents to the Emacs kill ring."
+            (run-shell-command "clipmenu && c2e"))
+
 (defcommand eaacm () ()
             "Emacs as a clipboard manager."
             (run-or-raise "emacsclient -nc" '(:class "Emacs"))
@@ -180,7 +184,7 @@ ring if an Emacs daemon is running."
 (define-key *root-map* (kbd "n")        "next")
 (define-key *root-map* (kbd "o")        "other-in-frame")
 (define-key *root-map* (kbd "p")        "prev")
-(define-key *root-map* (kbd "M-w")      "s2e")
+(define-key *root-map* (kbd "M-w")      "clipmenu")
 (define-key *root-map* (kbd "C-t")      "other")
 (define-key *root-map* (kbd "C-w")      "chromium")
 (define-key *root-map* (kbd "w")        "firefox")
