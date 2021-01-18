@@ -1,11 +1,11 @@
 ;;; -*- lexical-binding: t -*-
-                              
+
 (setq gc-cons-threshold most-positive-fixnum)
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
-;;(require 'benchmark-init-loaddefs)
-;;(benchmark-init/activate)
-;;(add-hook 'after-init-hook 'benchmark-init/deactivate)
+;; (require 'benchmark-init-loaddefs)
+;; (benchmark-init/activate)
+;; (add-hook 'after-init-hook 'benchmark-init/deactivate)
 
 (unless package--initialized (package-initialize t))
 
@@ -263,7 +263,7 @@ slashes."
 ;; dired / dired+ --------------------------------------------------------------
 ;;(with-eval-after-load 'dired
 ;;  (require 'dired+))
-;  (toggle-diredp-find-file-reuse-dir 1))
+;;  (toggle-diredp-find-file-reuse-dir 1))
 
 ;; erc -------------------------------------------------------------------------
 (with-eval-after-load 'erc
