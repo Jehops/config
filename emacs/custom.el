@@ -104,6 +104,7 @@
    '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
  '(erc-modules
    '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
+ '(erc-rename-buffers t)
  '(erc-text-matched-hook '(erc-log-matches jrm/erc-say-match-text))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
  '(erc-track-exclude '("<fbsdslack> <jrm>"))
