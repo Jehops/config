@@ -95,7 +95,7 @@ the one that is chosen."
 (defcommand s2e () ()
             "Copy the X selection contents to the X clipboard and the Emacs kill
 ring if an Emacs daemon is running."
-            (run-shell-command "c2e -s"))
+  (run-shell-command "c2e -s"))
 
 (defcommand safequit () ()
             "Checks if any windows are open before quitting."
@@ -179,8 +179,8 @@ ring if an Emacs daemon is running."
 (define-key *root-map* (kbd "p")        "prev")
 (define-key *root-map* (kbd "M-w")      "clipmenu")
 (define-key *root-map* (kbd "C-t")      "other")
-(define-key *root-map* (kbd "C-w")      "chromium")
 (define-key *root-map* (kbd "w")        "firefox")
+(define-key *root-map* (kbd "C-w")      "chromium")
 (define-key *root-map* (kbd "x")        "term")
 (define-key *root-map* (kbd "C-x")      "term")
 
