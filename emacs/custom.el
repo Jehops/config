@@ -84,6 +84,7 @@
  '(doc-view-continuous t)
  '(doc-view-pdftotext-program "/usr/local/libexec/xpdf/pdftotext")
  '(echo-keystrokes 0.5)
+ '(emoji-fontset-default-font-family "Apple Color Emoji")
  '(epg-pinentry-mode 'loopback)
  '(erc-autojoin-domain-only nil)
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
