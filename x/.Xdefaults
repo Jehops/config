@@ -28,9 +28,10 @@ urxvt.color15: white
 urxvt.colorUL: yellow
 urxvt.colorBD: white
 urxvt.cursorColor: white
-urxvt.font: xft:Monospace:pixelsize=14
+urxvt.font: xft:Monospace:pixelsize=14,xft:Symbola:minspace=false
 urxvt.foreground: gray90
-URxvt.iso14755: false
+urxvt.iso14755: false
+urxvt.letterspace: 0
 urxvt.lineSpace: 0
 urxvt.loginShell: false
 urxvt.matcher.button: 1
