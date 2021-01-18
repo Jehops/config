@@ -890,8 +890,9 @@ toggle _a_ll _q_uit
  (kbd "C-x t")
  (defhydra hydra-toggle (:color blue :hint nil)
    "
-fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter _h_l-line fc_i_ _l_inum \
-_m_enu _p_aredit fly_s_pell _S_auron _t_runcate _v_isual _w_hitspace _q_uit"
+fly_c_heck _d_ebug _e_rc-track auto-_f_ill _g_it-gutter _h_l-line fc_i_ \
+_l_ine-numbers _m_enu _p_aredit fly_s_pell _S_auron _t_runcate _v_isual \
+_w_hitspace _q_uit"
    ("c"  flycheck-mode)
    ("d"  toggle-debug-on-error)
    ("e"  erc-track-mode)
@@ -899,7 +900,7 @@ _m_enu _p_aredit fly_s_pell _S_auron _t_runcate _v_isual _w_hitspace _q_uit"
    ("g"  git-gutter:toggle)
    ("h"  hl-line-mode)
    ("i"  fci-mode)
-   ("l"  linum-mode)
+   ("l"  display-line-numbers-mode)
    ("m"  menu-bar-mode)
    ("p"  paredit-mode)
    ("s"  flyspell-mode)
