@@ -258,6 +258,8 @@ ring if an Emacs daemon is running."
 (let ((hostname (car (split-string (machine-instance) ". "))))
   (cond ((or (string= hostname "phe") (string= hostname "bravo"))
          (setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f^[^9*MHz^] %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*B^] %b ^[^8*V^] %v ^[^B^1*%V^] ^[^B^7*%d^] ^[^B^4*%m^]"))
+        ((string= hostname "ala")
+         (setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f^[^9*MHz^] %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*V^] %v ^[^B^1*%V^] ^[^B^7*%d^]"))
         ((string= hostname "gly")
          (setf *screen-mode-line-format* "^[^B^7*%h^] ^[^8*C^] %f %t^[^9*°C^] ^[^8*M^] %M^[^9*%%^] ^[^8*%P^] %O/%T^[^9*GiB^] %F^[^9*GiB^] %p^[^9*%%^] %R^[^9*MiB/s^] %W^[^9*MiB/s^] ^[^8*%I^] %U^[^9*KiB/s^] %D^[^9*KiB/s^] ^[^8*V^] %v ^[^B^7*%d^] ^[^B^4*%m^]"))))
 (toggle-mode-line (current-screen) (current-head))
