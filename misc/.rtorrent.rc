@@ -2,7 +2,7 @@
 throttle.max_uploads.set = 15
 
 # Default directory to save the downloaded torrents.
-directory.default.set = /torrent
+directory.default.set = ~/.rtorrent/downloads
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
