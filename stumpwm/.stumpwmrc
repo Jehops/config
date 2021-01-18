@@ -119,17 +119,10 @@ ring if an Emacs daemon is running."
              :y (+ (window-y (current-window)) y)))
 
 (defcommand term () ()
-            "Start urxvt or switch to it if it is already running."
-            (run-or-raise "urxvt -e sh -c \"tmux -q has-session && tmux -2 att \\
--d || tmux -2 new-session\"" '(:class "URxvt")))
-
-(defcommand web-browser () ()
-            "Start Conkeror or switch to it if it is already running."
-            (run-or-raise "ck" '(:class "Conkeror")))
-
-;; (defcommand web-browser () ()
-;;             "Start Firefox or switch to it if it is already running."
-;;             (run-or-raise "firefox" '(:class "Firefox")))
+            "Start alacritty or switch to it if it is already running."
+            (run-or-raise "WINIT_X11_SCALE_FACTOR=1 alacritty -e sh -c \"tmux \\
+-q has-session && tmux -2 att -d || tmux -2 new-session\""
+                          '(:class "Alacritty")))
 
 (defcommand firefox () ()
             "Start Firefox or switch to it if it is already running."
@@ -194,12 +187,13 @@ ring if an Emacs daemon is running."
 (define-key *root-map* (kbd "b") '*windows-map*)
 (defvar *windows-map*
   (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "a")             "list-windows-by-class Alacritty")
     (define-key m (kbd "e")             "list-windows-by-class Emacs")
     (define-key m (kbd "m")             "list-windows-by-class mpv")
     (define-key m (kbd "p")             "list-windows-by-class MuPDF")
     (define-key m (kbd "w")             "list-windows-by-class Conkeror")
     ;;(define-key m (kbd "w")             "list-windows-by-class Firefox")
-    (define-key m (kbd "x")             "list-windows-by-class URxvt")
+    (define-key m (kbd "x")             "list-windows-by-class Alacritty")
     m))
 
 ;; window movement
