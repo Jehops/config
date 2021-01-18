@@ -1,0 +1,20 @@
+# Colors
+colors:
+  # Default colors
+  primary:
+    background: '#000000'
+    foreground: '#ffffff'
+
+  # Normal colors
+  normal:
+    black:   '#000000'
+    red:     '#ff0000'
+    green:   '#00cd00'
+    yellow:  '#cdcd00'
+    blue:    '#1e90ff'
+    magenta: '#cd00cd'
+    cyan:    '#00cdcd'
+    white:   '#ffffff'
+
+# Live config reload (changes require restart)
+live_config_reload: false
