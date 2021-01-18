@@ -208,7 +208,6 @@ When the file ends with .Rnw, visit the generated .pdf file."
 
 ;; c/c++ -----------------------------------------------------------------------
 (with-eval-after-load 'cc-mode
-  (require 'cquery)
   (push 'company-lsp company-backends))
 
 (add-hook 'c-mode-common-hook 'google-set-c-style)
