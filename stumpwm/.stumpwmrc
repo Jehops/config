@@ -19,7 +19,7 @@
 (setf *startup-message* nil)
 (setf *transient-border-width* 4)
 (setf *window-border-style* :tight)
-(setf *window-format* "^[^8*%n^]^[^9*%s^]%256t")
+(setf *window-format* "^[^8*%n^]^[^9*%s^]%256c")
 
 (update-color-map (current-screen))
 (set-focus-color "Orange2")
