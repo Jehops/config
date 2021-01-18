@@ -270,6 +270,13 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;;  (require 'dired+))
 ;;  (toggle-diredp-find-file-reuse-dir 1))
 
+;; emoji -----------------------------------------------------------------------
+(add-hook 'server-after-make-frame-hook
+          (lambda ()
+            (set-fontset-font t 'symbol "Apple Color Emoji")
+            (set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+            (set-fontset-font t 'symbol "Symbola" nil 'append)))
+
 ;; erc -------------------------------------------------------------------------
 (with-eval-after-load 'erc
   (require 'erc-tex)
