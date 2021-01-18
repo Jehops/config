@@ -167,9 +167,14 @@ slashes."
   (call-process-shell-command "getmail"))
 
 (defun jrm/make ()
-  "Call make in the current directory."
+  "Call make in the current directory.
+
+When the file ends with .Rnw, visit the generated .pdf file."
   (interactive)
   (call-process-shell-command "make"))
+;;  (when (string-match ".Rnw$" (buffer-file-name))
+;;    (let ((outfile (replace-regexp-in-string ".Rnw$" ".pdf" (buffer-file-name))))
+;;          (find-file outfile))))
 
 (defun jrm/sort-lines-nocase ()
   "Sort lines ignoring case."
