@@ -188,6 +188,7 @@ ring if an Emacs daemon is running."
 (defvar *windows-map*
   (let ((m (make-sparse-keymap)))
     (define-key m (kbd "a")             "list-windows-by-class Alacritty")
+    (define-key m (kbd "c")             "list-windows-by-class Chromium")
     (define-key m (kbd "e")             "list-windows-by-class Emacs")
     (define-key m (kbd "m")             "list-windows-by-class mpv")
     (define-key m (kbd "p")             "list-windows-by-class MuPDF")
