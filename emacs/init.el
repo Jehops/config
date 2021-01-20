@@ -278,7 +278,7 @@ When the file ends with .Rnw, visit the generated .pdf file."
 
 ;; erc -------------------------------------------------------------------------
 (with-eval-after-load 'erc
-  (require 'erc-tex)
+  ;;(require 'erc-tex)
 
   (erc-track-minor-mode) ;; this will turn on erc-track-mode
 
@@ -314,7 +314,7 @@ possible value for `erc-generate-log-file-name-function'."
   (require 'erc-networks)
   (if (string= major-mode "erc-mode")
       (find-file (erc-current-logfile))
-    (message "This is not an ERC channel buffer."))))
+    (message "This is not an ERC channel buffer.")))
 
 ;; (defun jrm/update-erc-fill-column ()
 ;;   "Set erc-fill-column to a value just smaller than the window width."
@@ -354,12 +354,33 @@ possible value for `erc-generate-log-file-name-function'."
        nil))) ; Must return nil. See help for `erc-server-PRIVMSG-functions'
 (add-hook 'erc-server-PRIVMSG-functions 'jrm/erc-say-privmsg-alert)
 
-(defun jrm/erc ()
-  "Connect to irc networks set up in my znc bouncer."
-  (interactive)
-  (znc-erc "network-slug-efnet")
-  (znc-erc "network-slug-freenode"))
+;; (defun jrm/erc ()
+;;   "Connect to irc networks set up in my znc bouncer."
+;;   (interactive)
+;;   (znc-erc "network-slug-efnet")
+;;   (znc-erc "network-slug-freenode"))
 
+;; based on a function from bandali
+(defun jrm/erc-detach-or-kill-channel ()
+  (when (erc-server-process-alive)
+    (let ((tgt (erc-default-target)))
+      (erc-server-send (format "DETACH %s" tgt) nil tgt)))
+  (erc-kill-channel))
+(add-hook 'erc-kill-channel-hook #'jrm/erc-detach-or-kill-channel)
+(remove-hook 'erc-kill-channel-hook #'erc-kill-channel))
+
+(defun jrm/erc ()
+  (interactive)
+  (let* ((auth (auth-source-search :host "znc.ftfl.ca"))
+         (p (if (null auth)
+                (error "Couldn't find znc.ftfl.ca's authinfo")
+              (funcall (plist-get (car auth) :secret)))))
+    (erc-tls :server "ftfl.ca"
+             :port 2222
+             :password (concat "jrm/freenode:" p))
+    (erc-tls :server "ftfl.ca"
+             :port 2222
+             :password (concat "jrm/efnet:" p))))
 
 ;; eshell ----------------------------------------------------------------------
 ;; Could not get this working as an alias

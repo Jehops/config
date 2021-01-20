@@ -87,6 +87,7 @@
  '(emoji-fontset-default-font-family "Apple Color Emoji")
  '(epg-pinentry-mode 'loopback)
  '(erc-autojoin-domain-only nil)
+ '(erc-email-userid "jrm")
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
  '(erc-hl-nicks-mode t)
  '(erc-hl-nicks-skip-faces
@@ -104,7 +105,12 @@
    '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
  '(erc-modules
    '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
+ '(erc-nick "jrm")
+ '(erc-port 2222)
+ '(erc-prompt-for-password nil)
  '(erc-rename-buffers t)
+ '(erc-server-reconnect-attempts 5)
+ '(erc-server-reconnect-timeout 3)
  '(erc-text-matched-hook '(erc-log-matches jrm/erc-say-match-text))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
  '(erc-track-exclude '("<fbsdslack> <jrm>"))
