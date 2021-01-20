@@ -12,6 +12,8 @@
 # acute
 <dead_horn> <a> <e> : "é"
 <dead_horn> <a> <E> : "É"
+<dead_horn> <a> <c> : "ć"
+<dead_horn> <a> <c> : "Ć"
 
 # cedilla
 <dead_horn> <d> : "ç"
