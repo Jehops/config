@@ -135,26 +135,6 @@ man() {
     man "$@"
 }
 
-# tmux send to multiple windows
-ts() {
-  if [ $# -lt 1 ]; then
-    "Usage: ts cmd [window #[ window #]...]"
-    return
-  elif [ $# -eq 1 ]; then
-    for i in $(seq 1 6); do
-      tmux send -t ":$i" -l "$1"
-      tmux send -t ":$i" KPEnter
-    done
-  else
-    cmd=$1
-    shift
-    for i in "$@"; do
-      tmux send -t ":$i" -l "$cmd"
-      tmux send -t ":$i" "$cmd" KPEnter
-    done
-  fi
-}
-
 # When re-attaching to a tmux session, tmux knows the new, correct values to
 # environment variables like DISPLAY and SSH_AUTH_SOCK, but in existing tmux
 # windows, the shell has the old values from the last session. This function
