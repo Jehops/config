@@ -30,7 +30,7 @@
  '(avy-style 'post)
  '(aw-keys '(97 115 100 102 103 104 106 107 108))
  '(aw-scope 'frame)
- '(backup-directory-alist '((".*" . "~/.emacs.d/.emacs_backups/")))
+ '(backup-directory-alist '(("." . "~/.emacs.d/backups/")))
  '(bbdb-complete-mail-allow-cycling t)
  '(bbdb-mua-pop-up nil)
  '(before-save-hook '(time-stamp))
