@@ -69,6 +69,7 @@
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
  '(delete-old-versions 'other)
+ '(desktop-restore-forces-onscreen nil)
  '(diary-comment-end "*/")
  '(diary-comment-start "/*")
  '(diary-file "~/.emacs.d/diary")
