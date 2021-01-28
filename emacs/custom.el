@@ -24,7 +24,7 @@
  '(add-to-list 'default-frame-alist t)
  '(ansi-color-names-vector
    ["black" "red" "green" "yellow" "sky blue" "magenta" "cyan" "white"])
- '(auto-save-file-name-transforms '((".*/\\([^/]*\\)" "~/.emacs.d/.emacs_auto_saves/\\1" t)))
+ '(auto-save-file-name-transforms '((".*/\\([^/]*\\)" "~/.emacs.d/auto-saves/\\1" t)))
  '(avy-keys
    '(97 115 100 102 103 104 106 107 108 113 119 101 114 116 121 117 105 111 112 122 120 99 118 98 110 109 65 83 68 70 71 72 74 75 76 81 87 69 82 84 89 85 73 79 80 90 88 67 86 66 78 77))
  '(avy-style 'post)
