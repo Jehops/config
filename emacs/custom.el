@@ -225,19 +225,6 @@
  '(gnus-inhibit-startup-message t)
  '(gnus-init-file "~/.emacs.d/gnus.el")
  '(gnus-interactive-exit nil)
- '(gnus-message-archive-group
-   '((lambda
-       (x)
-       (cond
-        ((message-news-p)
-         nil)
-        ((and
-          (boundp 'group)
-          (<
-           (gnus-group-level group)
-           4))
-         group)
-        (t "mail.misc")))))
  '(gnus-message-archive-method '(nnml ""))
  '(gnus-message-setup-hook
    '(message-remove-blank-cited-lines turn-off-auto-fill jrm/mml-secure-message-sign))

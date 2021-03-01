@@ -610,7 +610,16 @@ when composing, because I want to see what is sent."
 
 ;; Gnus gets loaded on startup if gnus-select-method is customized
 (with-eval-after-load 'gnus
-  (setq gnus-select-method '(nnml ""))
+  (setq
+   gnus-message-archive-group
+   '((lambda (group)
+       (cond ((message-news-p) nil)
+             ((and
+               (boundp 'group)
+               (< (gnus-group-level group) 4))
+              group)
+             (t "mail.misc"))))
+   gnus-select-method '(nnml ""))
   (add-hook 'gnus-summary-mode-hook 'hl-line-mode))
 
 (with-eval-after-load 'gnus-group
