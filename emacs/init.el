@@ -3,9 +3,9 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
-;; (require 'benchmark-init-loaddefs)
-;; (benchmark-init/activate)
-;; (add-hook 'after-init-hook 'benchmark-init/deactivate)
+;;(require 'benchmark-init-loaddefs)
+;;(benchmark-init/activate)
+;;(add-hook 'after-init-hook 'benchmark-init/deactivate)
 
 (unless package--initialized (package-initialize t))
 
@@ -1212,7 +1212,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 
 ;; slime/swank -----------------------------------------------------------------
 ;;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-;;(setq inferior-lisp-program "~/local/bin/sbcl")
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 ;;(require 'slime)
 (with-eval-after-load 'slime
