@@ -774,6 +774,8 @@ when composing, because I want to see what is sent."
 
 ;; ivy-bibtex -----------------------------------------------------------------
 (setq bibtex-completion-bibliography '("~/scm/references.git/refs.bib"))
+(with-eval-after-load "ivy-bibtex"
+  (global-set-key (kbd "C-c I") 'ivy-bibtex))
 
 ;; igor -----------------------------------------------------------------------
 (with-eval-after-load 'flycheck
