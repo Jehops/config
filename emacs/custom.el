@@ -461,6 +461,7 @@
      (css-mode "<style[^>]*>" "</style>")
      (cperl-mode "<script type=\"loncapa/perl\">" "</script>")))
  '(nnir-method-default-engines '((nnimap . imap) (nntp . gmane) (nnml . notmuch)))
+ '(nnmail-split-header-length-limit 4096)
  '(notmuch-saved-searches
    '((:name "Dal" :query "folder:Dal" :key "d" :sort-order newest-first :search-type tree)
      (:name "FreeBSD" :query "folder:FreeBSD" :key "f" :sort-order newest-first :search-type tree)
