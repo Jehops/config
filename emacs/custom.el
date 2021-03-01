@@ -189,6 +189,7 @@
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
  '(eyebrowse-close-window-config-prompt t)
+ '(eyebrowse-keymap-prefix "^w")
  '(eyebrowse-mode t)
  '(eyebrowse-mode-line-separator " ")
  '(eyebrowse-wrap-around t)
