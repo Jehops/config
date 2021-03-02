@@ -455,8 +455,7 @@
      (:name "mail.misc" :query "folder:mail/misc" :key "m" :sort-order newest-first :search-type tree)
      (:name "Month" :query "date:30days..today" :key "M" :sort-order newest-first :search-type tree)))
  '(nxml-attribute-indent 2)
- '(org-agenda-files
-   '("~/scm/org.git" "~/scm/freebsd/core.git/agenda/agenda.txt"))
+ '(org-agenda-files '("~/scm/org.git"))
  '(org-agenda-use-time-grid nil)
  '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
  '(org-bbdb-anniversary-format-alist
