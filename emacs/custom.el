@@ -218,7 +218,7 @@
  '(gnus-cite-blank-line-after-header nil)
  '(gnus-cite-face-list
    '(gnus-cite-1 gnus-cite-2 gnus-cite-3 gnus-cite-4 gnus-cite-5 gnus-cite-6 gnus-cite-7 gnus-cite-8 gnus-cite-9 gnus-cite-10))
- '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list) t)
+ '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
  '(gnus-inhibit-mime-unbuttonizing t)
@@ -506,7 +506,7 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(ivy-bibtex vterm adoc-mode expand-region ripgrep rg org-plus-contrib ivy-emoji emoji-fontset notmuch eglot google-translate popup erc-hl-nicks gh-md rust-mode counsel yasnippet poly-R poly-markdown poly-org poly-noweb polymode sauron magit magit-svn magit-todos fireplace company-lsp lsp-ui ess eyebrowse beacon ace-window lsp-mode google-c-style dired-du mastodon w3m eshell-git-prompt scpaste htmlize auctex auctex-latexmk company-auctex nov calfw-cal calfw-org calfw ebib dired+ which-key key-chord flycheck smart-mode-line company-quickhelp flycheck-package company-math slime-company slime goto-last-change git-gutter-fringe exwm company-statistics company-bibtex company-c-headers company-ghc company-ghci php-mode rebox2 rnc-mode smart-tab stumpwm-mode synosaurus twittering-mode undo-tree visible-mark wttrin yaml-mode misc-cmds multi-eshell multi-term multi-web-mode names nginx-mode org-bullets paredit hydra intero ivy-hydra genrnc ghc ghci-completion google-maps google-this ace-link ace-popup-menu aggressive-fill-paragraph avy-zap bbdb boxquote buffer-move conkeror-minor-mode define-word erc-view-log es-lib esup fill-column-indicator aggressive-indent bug-hunter exec-path-from-shell))
+   '(buffer-move org-plus-contrib org-bullets smart-mode-line ace-link ace-window auctex auctex-latexmk avy-zap bbdb calfw calfw-cal calfw-org company company-auctex company-bibtex counsel erc-hl-nicks erc-view-log ess eyebrowse fill-column-indicator flycheck hydra ivy-bibtex ivy-emoji ivy-hydra magit nginx-mode nov poly-R poly-markdown poly-noweb poly-org polymode scpaste undo-tree which-key yaml-mode yasnippet exec-path-from-shell))
  '(pdf-misc-print-program "/usr/local/bin/lpr" t)
  '(pdf-misc-print-program-args '("-o media=Letter -o fitplot") t)
  '(pdf-view-continuous nil)
