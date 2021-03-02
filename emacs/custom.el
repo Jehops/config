@@ -257,8 +257,6 @@
  '(gnus-treat-fill-long-lines nil)
  '(gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
  '(gnutls-min-prime-bits 1024)
- '(gnutls-trustfiles
-   '("/usr/local/share/certs/ca-root-nss.crt" "/home/jrm/.emacs.d/wordnik.com.crt.pem"))
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
  '(haskell-mode-hook '(intero-mode) t)
