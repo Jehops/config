@@ -1035,6 +1035,10 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
 
+;; misc-cmd has some useful commands like kill-file-and-its-buffer
+;; https://github.com/emacsmirror/emacswiki.org/blob/master/misc-cmds.el
+(require 'misc-cmds)
+
 ;; mozrepl ---------------------------------------------------------------------
 (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
 
