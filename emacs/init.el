@@ -206,6 +206,12 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;; beacon ----------------------------------------------------------------------
 ;;(beacon-mode 1)
 
+;; X clipboard functions -------------------------------------------------------
+(defun jrm/x-clipboard-to-kill-ring()
+  (when (and (display-graphic-p) x-select-enable-clipboard)
+    (let ((interprogram-cut-function nil))
+      (kill-new (x-selection 'CLIPBOARD)))))
+
 ;; c/c++ -----------------------------------------------------------------------
 (with-eval-after-load 'cc-mode
   (push 'company-lsp company-backends))
