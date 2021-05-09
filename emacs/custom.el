@@ -56,10 +56,14 @@
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
  '(column-number-mode t)
+ '(company-abort-on-unique-match nil)
  '(company-backends
    '(company-bbdb company-semantic company-clang company-cmake company-capf company-files
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-dabbrev))
+ '(company-idle-delay 0)
+ '(company-minimum-prefix-length 1)
+ '(company-show-numbers ''t)
  '(compilation-window-height 6)
  '(counsel-mode t)
  '(counsel-yank-pop-preselect-last t)
