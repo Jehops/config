@@ -1138,8 +1138,6 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;(global-rainbow-delimiters-mode)
 
 ;; registers -------------------------------------------------------------------
-(set-register ?2 '(file . "~/files/edu/classes/STAT2080/TA/"))
-(set-register ?a '(file . "~/scm/bs.git/text/paper/bs.Rnw"))
 (set-register ?c '(file . "~/scm/org.git/core.org"))
 (set-register ?C '(file . "~/scm/org.git/capture.org"))
 (set-register ?d '(file . "~/scm/org.git/diary.org"))
@@ -1150,6 +1148,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (set-register ?r '(file . "~/scm/org.git/research.org"))
 (set-register ?s '(file . "~/scm/org.git/sites.org"))
 (set-register ?S '(file . "~/.emacs.d/secret.el"))
+(set-register ?t '(file . "~/scm/thesis.git/thesis.Rnw"))
 (set-register ?u '(file . "~/.emacs.d/custom.el"))
 (set-register ?w '(file . "~/scm/org.git/work.org"))
 
