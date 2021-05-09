@@ -74,7 +74,7 @@ hidden behind the previously displayed window."
 
 (defcommand clipmenu () ()
             "Run clipmenu and copy the X clipboard contents to the Emacs kill ring."
-            (run-shell-command "clipmenu && c2e"))
+            (run-shell-command "clipmenu"))
 
 (defcommand eaacm () ()
             "Emacs as a clipboard manager."
