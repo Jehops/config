@@ -39,9 +39,9 @@ export LESS='-iFRSX -#1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
 export PAGER=less
 export REPORTTIME=60
 export SQUEUE_FORMAT='%.18i %.9P %.15j %.8u %.2t %.10M %.6D %R'
-export TEXDOCVIEW_html="ck %s"
-export TEXDOCVIEW_pdf="xpdf %s"
-export TEXEDIT="emacsclient +%d %s"
+#export TEXDOCVIEW_html="ck %s"
+#export TEXDOCVIEW_pdf="xpdf %s"
+#export TEXEDIT="emacsclient +%d %s"
 if [ -z "$EDITOR" ]; then
   export EDITOR=el
 fi
