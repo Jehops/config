@@ -1128,12 +1128,6 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (autoload 'php-mode "php-mode" "Mode for editing PHP source files")
 (add-to-list 'auto-mode-alist '("\\.\\(inc\\|php[s34]?\\)" . php-mode))
 
-;; polymode --------------------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.md"  . poly-markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-
 ;; rainbow delimeters ----------------------------------------------------------
 ;;(global-rainbow-delimiters-mode)
 
