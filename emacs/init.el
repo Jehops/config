@@ -825,7 +825,7 @@ when composing, because I want to see what is sent."
 
 ;; buffers and windows
 (global-set-key (kbd "C-x C-b")         'ibuffer)
-(global-set-key (kbd "C-x K")           'kill-buffer-and-its-windows)
+(global-set-key (kbd "C-x K")           'kill-buffer-and-window)
 (global-set-key (kbd "C-x o")           'ace-window)
 (global-set-key (kbd "C-0")             'buffer-fname-to-kill-ring)
 (global-set-key (kbd "C-c m")           'magit-status)
@@ -1041,10 +1041,6 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 
 ;; misc is part of emacs; for forward/backward-to-word -------------------------
 (require 'misc)
-
-;; misc-cmd has some useful commands like kill-file-and-its-buffer
-;; https://github.com/emacsmirror/emacswiki.org/blob/master/misc-cmds.el
-(require 'misc-cmds)
 
 ;; mozrepl ---------------------------------------------------------------------
 (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
