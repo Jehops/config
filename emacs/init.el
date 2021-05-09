@@ -264,6 +264,13 @@ When the file ends with .Rnw, visit the generated .pdf file."
     (cfw:org-create-source "OliveDrab4")
     (cfw:cal-create-source "DarkOrange3"))))
 
+
+;; company ---------------------------------------------------------------------
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil)
+  (define-key company-active-map (kbd "C-<return>") #'company-complete-selection))
+
 ;; dired / dired+ --------------------------------------------------------------
 ;;(with-eval-after-load 'dired
 ;;  (require 'dired+))
