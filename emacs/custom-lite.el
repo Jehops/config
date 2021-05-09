@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms '((".*/\\([^/]*\\)" "~/.emacs.d/auto_saves/\\1" t)))
+ '(auto-save-file-name-transforms '((".*/\\([^/]*\\)" "~/.emacs.d/auto-saves/\\1" t)))
  '(backup-directory-alist '((".*" . "~/.emacs.d/.emacs_backups/")))
  '(before-save-hook '(time-stamp))
  '(blink-cursor-mode nil)
