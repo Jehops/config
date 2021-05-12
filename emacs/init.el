@@ -161,6 +161,17 @@ slashes."
     (message "%s" fn)
     fn))
 
+(defun jrm/rename-current-file ()
+  "Rename the file associated with the current buffer and visit it."
+  (interactive)
+  (let ((cn (buffer-file-name (current-buffer))))
+    (when (null cn) (user-error "Buffer is not associated with a file"))
+    (let ((nn (read-file-name (format "New name: "))))
+      (when (not (file-writable-p nn)) (user-error "%s is not writable " nn))
+      (rename-file cn nn 1)
+      (find-alternate-file nn)
+      nn)))
+
 (defun jrm/getmail ()
   "Retrieve new mail with getmail."
   (interactive)
@@ -819,6 +830,7 @@ when composing, because I want to see what is sent."
 (global-unset-key (kbd "C-h"))
 (global-set-key (kbd "C-x h")           'help-command) ; help-key should be set
 (global-set-key (kbd "C-x p")           'list-packages)
+(global-set-key (kbd "C-x R")           'jrm/rename-current-file)
 ;;(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
 (global-set-key (kbd "C-<tab>")         'company-complete)
 (global-set-key (kbd "M-SPC")           'cycle-spacing)
