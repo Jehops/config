@@ -1106,6 +1106,8 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 
 ;; pdf-tools -------------------------------------------------------------------
 (load "pdf-tools-init.el")
+;; `p' at the top of a page will show the bottom of the previous page
+;; `n' at the bottom of a page will show the top of the next page
 (with-eval-after-load 'pdf-tools
   (define-key pdf-view-mode-map (kbd "p")
     (lambda (&optional n)
