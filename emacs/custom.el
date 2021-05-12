@@ -42,6 +42,7 @@
  '(browse-url-conkeror-program "ck")
  '(browse-url-generic-program "~/local/bin/ck")
  '(browse-url-mailto-function 'browse-url-mail)
+ '(browse-url-secondary-browser-function 'browse-url-chrome)
  '(calendar-date-style 'iso)
  '(calendar-latitude 44.630294)
  '(calendar-location-name "Halifax, NS")
