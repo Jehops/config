@@ -3,6 +3,7 @@ export ALTERNATE_EDITOR=
 export EDITOR=emacsclient
 export FREETYPE_PROPERTIES=truetype:interpreter-version=35 # Verdana Bold in Ff
 #export GTK_IM_MODULE=xim
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgreprc
 export VISUAL=$EDITOR
 
 . $HOME/.zshenv
