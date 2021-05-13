@@ -54,12 +54,6 @@
 <dead_horn> <t> <u> : "ü"
 <dead_horn> <t> <U> : "Ü"
 
-# currency
-# <dead_horn> <u> <1> : "¢"
-# <dead_horn> <u> <2> : "€"
-# <dead_horn> <u> <3> : "£"
-# <dead_horn> <u> <4> : "¥"
-
 # math / science symbols
 <dead_horn> <minus> : "÷"
 <dead_horn> <equal> : "×"
