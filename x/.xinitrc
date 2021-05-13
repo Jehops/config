@@ -2,7 +2,7 @@ export ALTERNATE_EDITOR=
 #export BROWSER=firefox
 export EDITOR=emacsclient
 export FREETYPE_PROPERTIES=truetype:interpreter-version=35 # Verdana Bold in Ff
-export GTK_IM_MODULE=xim
+#export GTK_IM_MODULE=xim
 export VISUAL=$EDITOR
 
 . $HOME/.zshenv
