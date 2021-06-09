@@ -538,7 +538,6 @@
  '(scroll-conservatively 10000)
  '(select-enable-clipboard t)
  '(send-mail-function 'mailclient-send-it)
- '(sh-basic-offset 2)
  '(sh-indentation 2)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
