@@ -62,7 +62,7 @@
    '(company-bbdb company-semantic company-clang company-cmake company-capf company-files
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-dabbrev))
- '(company-idle-delay 0)
+ '(company-idle-delay nil)
  '(company-minimum-prefix-length 1)
  '(company-show-numbers ''t)
  '(compilation-window-height 6)
@@ -110,7 +110,7 @@
  '(erc-mode-hook
    '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
  '(erc-modules
-   '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling))
+   '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling hl-nicks image))
  '(erc-nick "jrm")
  '(erc-port 2222)
  '(erc-prompt-for-password nil)
@@ -512,9 +512,9 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(w3m poly-R poly-noweb polymode buffer-move ace-link auctex-latexmk avy-zap calfw calfw-cal calfw-org company-auctex company-bibtex erc-hl-nicks erc-view-log ess eyebrowse fill-column-indicator flycheck ivy-bibtex ivy-emoji ivy-hydra magit nginx-mode nov org-bullets scpaste smart-mode-line yaml-mode ace-window bbdb company counsel ivy which-key yasnippet org-plus-contrib auctex undo-tree poly-org exec-path-from-shell))
+   '(lsp-mode erc-image w3m poly-R poly-noweb polymode buffer-move ace-link auctex-latexmk avy-zap calfw calfw-cal calfw-org company-auctex company-bibtex erc-hl-nicks erc-view-log ess eyebrowse fill-column-indicator flycheck ivy-bibtex ivy-emoji ivy-hydra magit nginx-mode nov org-bullets scpaste smart-mode-line yaml-mode ace-window bbdb company counsel ivy which-key yasnippet org-plus-contrib auctex undo-tree poly-org exec-path-from-shell))
  '(pdf-misc-print-program "/usr/local/bin/lpr" t)
- '(pdf-misc-print-program-args '("-o media=Letter -o fitplot") t)
+ '(pdf-misc-print-program-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
  '(pdf-view-display-size 'fit-page)
  '(preview-scale-function 1.2)
