@@ -98,6 +98,7 @@
  '(erc-hl-nicks-skip-faces
    '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face" "erc-current-nick-face" "erc-direct-msg-face"))
  '(erc-hl-nicks-skip-nicks '("fbsdslack"))
+ '(erc-image-inline-rescale 200)
  '(erc-insert-post-hook
    '(erc-make-read-only erc-save-buffer-in-logs erc-track-modified-channels))
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
