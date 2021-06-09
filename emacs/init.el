@@ -392,12 +392,15 @@ possible value for `erc-generate-log-file-name-function'."
          (p (if (null auth)
                 (error "Couldn't find znc.ftfl.ca's authinfo")
               (funcall (plist-get (car auth) :secret)))))
-    (erc-tls :server "freenode.ftfl.ca"
-             :port 2222
-             :password (concat "jrm/freenode:" p))
+    ;; (erc-tls :server "freenode.ftfl.ca"
+    ;;          :port 2222
+    ;;          :password (concat "jrm/freenode:" p))
     (erc-tls :server "efnet.ftfl.ca"
              :port 2222
-             :password (concat "jrm/efnet:" p))))
+             :password (concat "jrm/efnet:" p))
+    (erc-tls :server "libera.ftfl.ca"
+             :port 2222
+             :password (concat "jrm/Libera:" p))))
 
 ;; eshell ----------------------------------------------------------------------
 ;; Could not get this working as an alias
