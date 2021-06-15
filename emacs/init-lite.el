@@ -1,5 +1,9 @@
 (setq gc-cons-threshold most-positive-fixnum)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+(require 'osc52e)
+(osc52-set-cut-function)
+
 ;; enable some functions that are disabled by default --------------------------
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)

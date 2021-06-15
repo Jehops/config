@@ -1078,6 +1078,10 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;                              (if (string-match "\\.Rnw\\'" buffer-file-name)
 ;;                                  (setq fill-column 80))))
 
+;; operating control sequence (ocs) 52 -----------------------------------------
+(require 'osc52e)
+(osc52-set-cut-function)
+
 ;; org-mode --------------------------------------------------------------------
 (autoload 'org-agenda "org-agenda")
 (with-eval-after-load 'org
