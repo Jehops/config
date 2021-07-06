@@ -99,20 +99,7 @@ zstyle ':completion:*' menu select=2
 
 gp() {
   . "${HOME}/.ports.conf"
-  gpsvn=0
-  OPTIND=1
-  while getopts ":s" opt; do
-    case $opt in
-      s) gpsvn=1 ;;
-      \?) printf "Invalid option: -%s", "$OPTARG" ;;
-    esac
-  done
-  shift $((OPTIND-1))
-  if [ "$gpsvn" = "1" ]; then
-    cd "${HOME}/${svnd}/$1"
-  else
-    cd "${portsd}/$1"
-  fi
+  cd "${portsd}/$1"
 }
 
 magit() {
