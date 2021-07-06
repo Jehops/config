@@ -1,0 +1,3 @@
+#compdef testport
+
+_path_files -W /usr/ports -/
