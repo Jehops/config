@@ -151,6 +151,7 @@ alias e="emacs"
 alias ec="emacsclient -a= -n"
 #alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
+alias gm="getmail"
 alias j=jobs
 if [ "$(uname)" = 'Linux' ]; then
   alias l="ls -ahl --color=auto"
