@@ -399,7 +399,7 @@
  '(lsp-prefer-flymake nil)
  '(lsp-ui-doc-enable nil)
  '(lsp-ui-sideline-enable nil)
- '(magit-repository-directories '(("/ssh:storage2:/usr/ports" . 0)))
+ '(magit-repository-directories '(("/ssh:ser:/usr/ports" . 0)))
  '(mail-sources
    '((maildir :path "/home/jrm/mail/" :plugged t)
      (maildir :path "/home/jrm/mail/noalert/" :plugged t)))
