@@ -64,7 +64,7 @@
                   company-oddmuse company-dabbrev))
  '(company-idle-delay nil)
  '(company-minimum-prefix-length 1)
- '(company-show-numbers ''t)
+ '(company-show-quick-access ''t)
  '(compilation-window-height 6)
  '(counsel-mode t)
  '(counsel-yank-pop-preselect-last t)
