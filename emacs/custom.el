@@ -512,7 +512,7 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(lsp-mode erc-image w3m poly-R poly-noweb polymode buffer-move ace-link auctex-latexmk avy-zap calfw calfw-cal calfw-org company-auctex company-bibtex erc-hl-nicks erc-view-log ess eyebrowse fill-column-indicator flycheck ivy-bibtex ivy-emoji ivy-hydra magit nginx-mode nov org-bullets scpaste smart-mode-line yaml-mode ace-window bbdb company counsel ivy which-key yasnippet org-plus-contrib auctex undo-tree poly-org exec-path-from-shell))
+   '(magit auctex undo-tree auctex-latexmk ivy-emoji ace-link ace-window adoc-mode avy-zap bbdb buffer-move calfw calfw-cal calfw-org company company-bibtex counsel erc-hl-nicks erc-image erc-view-log ess eyebrowse fill-column-indicator flycheck hydra ivy ivy-bibtex ivy-hydra nginx-mode notmuch nov org-bullets org-plus-contrib poly-R poly-noweb polymode scpaste smart-mode-line transient w3m which-key yaml-mode yasnippet))
  '(pdf-misc-print-program "/usr/local/bin/lpr" t)
  '(pdf-misc-print-program-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
