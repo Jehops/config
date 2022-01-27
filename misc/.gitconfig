@@ -8,7 +8,7 @@
 [core]
         pager = less -F -X
 [alias]
-        clog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd %C(bold blue)%an <%ae>%Creset %C(bold yellow)%cn <%ce>%Creset'
+        clog = log --pretty=format:'%C("#"858585)%h%Creset -%C(auto)%d%Creset %<|(98,trunc)%s %C("#"858585)%cd%Creset %C("#"CC5500)%an <%ae%m%Creset %C("#"858585)(%cl)%Creset'
         co = checkout
 [commit]
         gpgSign = true
@@ -18,3 +18,5 @@
         fsckobjects = true
 [pull]
 	ff = only
+[log]
+	date = format-local:%Y-%m-%d %H:%M
