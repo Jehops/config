@@ -18,5 +18,7 @@
         fsckobjects = true
 [pull]
 	ff = only
+[init]
+	defaultBranch = main
 [log]
 	date = format-local:%Y-%m-%d %H:%M
