@@ -68,9 +68,7 @@
  '(compilation-window-height 6)
  '(counsel-mode t)
  '(counsel-yank-pop-preselect-last t)
- '(counsel-yank-pop-separator "
----------------------------
-")
+ '(counsel-yank-pop-separator "\12---------------------------\12")
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
    '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
@@ -255,8 +253,7 @@
  '(gnus-sum-thread-tree-single-leaf "└――►")
  '(gnus-sum-thread-tree-vertical "│  ")
  '(gnus-summary-line-format
-   "%U%R %5N %6k %24&user-date; │ %~(max-right 75)~(pad-right 75)S │ %B %f
-")
+   "%U%R %5N %6k %24&user-date; │ %~(max-right 75)~(pad-right 75)S │ %B %f\12")
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
  '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
  '(gnus-treat-display-smileys nil)
@@ -407,8 +404,7 @@
  '(major-mode 'text-mode)
  '(mastodon-instance-url "https://bsd.network")
  '(menu-bar-mode nil)
- '(message-citation-line-format "On %a, %Y-%m-%d at %R, %f wrote:
-")
+ '(message-citation-line-format "On %a, %Y-%m-%d at %R, %f wrote:\12")
  '(message-citation-line-function 'message-insert-formatted-citation-line)
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
@@ -481,18 +477,13 @@
  '(org-capture-templates
    '(("e" "Event" entry
       (file+headline "~/scm/org.git/capture.org" "Events")
-      "** %a
-   %^T
-   Location: %?" :jump-to-captured t :time-prompt t)
+      "** %a\12   %^T\12   Location: %?" :jump-to-captured t :time-prompt t)
      ("t" "TODO" entry
       (file+headline "~/scm/org.git/capture.org" "Todos")
-      "** TODO %?
-   - State \"TODO\"       from              %u
-   %a" :jump-to-captured t :empty-lines-after 1 :table-line-pos t)
+      "** TODO %?\12   - State \"TODO\"       from              %u\12   %a" :jump-to-captured t :empty-lines-after 1 :table-line-pos t)
      ("w" "Web Link" item
       (file+headline "~/scm/org.git/capture.org" "Web Links")
-      "- %u %a
-%i" :jump-to-captured t)))
+      "- %u %a\12%i" :jump-to-captured t)))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
