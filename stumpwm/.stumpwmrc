@@ -209,8 +209,8 @@ the one that is chosen."
 (add-to-load-path "~/scm/swm/swm-freebsd-cpu-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-mem-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-net-modeline.git")
-(add-to-load-path "~/scm/swm/swm-freebsd-openvpn-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-volume-modeline.git")
+(add-to-load-path "~/scm/swm/swm-freebsd-wireguard-modeline.git")
 (add-to-load-path "~/scm/swm/swm-freebsd-zfs-modeline.git")
 (add-to-load-path "~/scm/swm/swm-maildir-modeline.git")
 (add-to-load-path "~/scm/nm/stumpwm-contrib.git/modeline/hostname")
@@ -219,8 +219,8 @@ the one that is chosen."
 (load-module "swm-freebsd-cpu-modeline")
 (load-module "swm-freebsd-mem-modeline")
 (load-module "swm-freebsd-net-modeline")
-(load-module "swm-freebsd-openvpn-modeline")
 (load-module "swm-freebsd-volume-modeline")
+(load-module "swm-freebsd-wireguard-modeline")
 (load-module "swm-freebsd-zfs-modeline")
 (load-module "swm-maildir-modeline")
 (load-module "hostname")
@@ -241,7 +241,7 @@ the one that is chosen."
 ;; %D d/l rate
 ;; %b battery state and percentage
 ;; %v speaker volume percentage
-;; %V OpenVPN status
+;; %V VPN status
 ;; %d date/time
 ;; %m new mail messages
 
