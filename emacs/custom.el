@@ -416,7 +416,7 @@
    '((lambda nil
        (local-set-key
         (kbd "C-c C-f o")
-        'jrm/toggle-personal-work-message-fields))
+        'jrm/toggle-message-fields))
      flyspell-mode visual-line-mode))
  '(message-setup-hook '(message-check-recipients bbdb-insinuate-message))
  '(mm-attachment-override-types

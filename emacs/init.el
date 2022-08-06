@@ -655,7 +655,7 @@ when composing, because I want to see what is sent."
     (lambda () (interactive) ()
       (gnus-group-select-group 200))))
 
-(defun jrm/toggle-personal-work-message-fields ()
+(defun jrm/toggle-message-fields ()
   "Toggle message header values such as From: for various roles."
   (interactive)
   (save-excursion
@@ -665,8 +665,10 @@ when composing, because I want to see what is sent."
              (message-remove-header "From")
              (message-add-header (concat "From: " user-full-name
                                          " <" user-work-mail-address ">"))
+             (message-remove-header "X-Message-SMTP-Method")
              (message-add-header (concat "X-Message-SMTP-Method: smtp "
-                                         work-smtp-server " 587"))
+                                         work-smtp-server " 587 "
+                                         user-work-mail-address))
              (unless (string-match (message-field-value "Gcc" t)
                                    user-work-mail-folder)
                (message-remove-header "Gcc")
@@ -689,7 +691,9 @@ when composing, because I want to see what is sent."
            (message-remove-header "From")
            (message-add-header (concat "From: " user-full-name
                                        " <" user-mail-address ">"))
-           (message-remove-header "X-Message-SMTP-Method")
+           (message-add-header (concat "X-Message-SMTP-Method: smtp "
+                                       smtpmail-smtp-server " 587 "
+                                       user-mail-address))
            (unless (string-match (message-field-value "Gcc" t) "mail.misc")
              (message-remove-header "Gcc")
              (message-add-header "Gcc: mail.misc"))
