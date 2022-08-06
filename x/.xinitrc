@@ -26,7 +26,8 @@ export $(dbus-launch --exit-with-session)
 
 #exec ssh-agent dwm
 #exec ssh-agent emacsclient -c
-#exec ssh-agent ratpoison
+#exec ssh-agent fluxbox
 #exec ssh-agent sdorfehs
+#exec ssh-agent ratpoison
 exec ssh-agent stumpwm
 #exec ssh-agent twm
