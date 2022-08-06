@@ -198,14 +198,13 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;;           (lambda ()
 ;;             (require 'ert)
 ;;             (ace-link-setup-default (kbd "C-,"))
-;;             (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)
-;;             (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
-;;             (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus)))
+;;             (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help)))
 (ace-link-setup-default (kbd "C-,"))
 (with-eval-after-load 'ert
   (define-key ert-results-mode-map  (kbd "C-,") 'ace-link-help))
 (with-eval-after-load 'gnus
-  (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus))
+  (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
+  (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus))
 (with-eval-after-load 'gnus-art
   (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus))
 
