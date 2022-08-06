@@ -567,6 +567,7 @@
  '(twittering-oauth-invoke-browser t)
  '(twittering-request-confirmation-on-posting t)
  '(twittering-use-master-password t)
+ '(undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
  '(undo-tree-visualizer-timestamps t)
  '(uniquify-buffer-name-style 'forward nil (uniquify))
  '(vc-follow-symlinks t)
