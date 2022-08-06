@@ -133,6 +133,10 @@ preexec () {
   fi
 }
 
+yt () {
+  yt-dlp --exec mpv -P "$HOME/tmp/" "$1"
+}
+
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 
 # Directory shortcuts
