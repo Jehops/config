@@ -394,7 +394,7 @@
  '(kill-ring-max 100)
  '(kill-whole-line t)
  '(line-number-display-limit-width 10000)
- '(lsp-clients-clangd-executable "/usr/local/bin/clangd12")
+ '(lsp-clients-clangd-executable "/usr/local/bin/clangd13")
  '(lsp-enable-eldoc nil)
  '(lsp-prefer-flymake nil)
  '(lsp-ui-doc-enable nil)
