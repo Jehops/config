@@ -14,7 +14,7 @@
   Mod2+k
 "/usr/local/bin/xautolock -enable && /usr/local/bin/xautolock -locknow"
   Mod2+l
-"if service openvpn onestatus | grep -q 'openvpn is not running'; then sudo service openvpn onestart; else sudo service openvpn onestop; fi"
+"if service wireguard onestatus 2>&1 | grep -q 'Unable to access interface: Device not configured'; then sudo service wireguard onestart; else sudo service wireguard onestop; fi"
   Mod2+v
 "/usr/sbin/mixer vol -5  pcm -5"
   XF86AudioLowerVolume
