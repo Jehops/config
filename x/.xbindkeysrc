@@ -16,9 +16,9 @@
   Mod2+l
 "if service wireguard onestatus 2>&1 | grep -q 'Unable to access interface: Device not configured'; then sudo service wireguard onestart; else sudo service wireguard onestop; fi"
   Mod2+v
-"/usr/sbin/mixer vol -5  pcm -5"
+"/usr/sbin/mixer vol.volume=-0.02:-0.02"
   XF86AudioLowerVolume
-"/usr/sbin/mixer vol +5  pcm +5"
+"/usr/sbin/mixer vol.volume=+0.02:+0.02"
   XF86AudioRaiseVolume
 "~/local/bin/ptsn"
   Print
