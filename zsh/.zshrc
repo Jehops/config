@@ -151,12 +151,13 @@ alias e="emacs"
 alias ec="emacsclient -a= -n"
 #alias el="emacs -nw -q -l ~/.emacs.d/init-lite.el"
 alias g="grep --color=auto"
-alias gm="getmail"
+alias gb="cd ~/scm/freebsd/src.git"
+alias gm="getmail --rcfile getmailrc --rcfile getmailrc.ff"
 alias j=jobs
 if [ "$(uname)" = 'Linux' ]; then
   alias l="ls -ahl --color=auto"
 else
-  alias l="env CLICOLOR_FORCE=1 ls -Fahl"
+  alias l="env CLICOLOR_FORCE=1 ls -Fahlo"
 fi
 alias ll="env CLICOLOR_FORCE=1 ls -Fhilo"
 alias mv="mv -i"
