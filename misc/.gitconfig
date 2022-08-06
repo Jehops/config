@@ -18,8 +18,8 @@
 [transfer]
         fsckobjects = true
 [pull]
-	ff = only
+        ff = only
 [init]
-	defaultBranch = main
+        defaultBranch = main
 [log]
-	date = format-local:%Y-%m-%d %H:%M
+        date = format-local:%Y-%m-%d %H:%M
