@@ -1152,7 +1152,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;(global-rainbow-delimiters-mode)
 
 ;; registers -------------------------------------------------------------------
-(set-register ?c '(file . "~/scm/org.git/core.org"))
+(set-register ?c '(file . "~/scm/org.git/capture.org"))
 (set-register ?C '(file . "~/scm/org.git/capture.org"))
 (set-register ?d '(file . "~/scm/org.git/diary.org"))
 (set-register ?f '(file . "~/scm/org.git/ff.org"))
