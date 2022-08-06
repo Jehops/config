@@ -116,7 +116,7 @@ the one that is chosen."
 
 (defcommand firefox () ()
             "Start Firefox or switch to it if it is already running."
-            (run-or-raise "firefox" '(:class "Firefox")))
+            (run-or-raise "firefox" '(:class "firefox")))
 
 (defcommand chromium () ()
             "Start Chromium or switch to it if it is already running."
