@@ -512,7 +512,8 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(magit auctex undo-tree auctex-latexmk ivy-emoji ace-link ace-window adoc-mode avy-zap bbdb buffer-move calfw calfw-cal calfw-org company company-bibtex counsel erc-hl-nicks erc-image erc-view-log ess eyebrowse fill-column-indicator flycheck hydra ivy ivy-bibtex ivy-hydra nginx-mode notmuch nov org-bullets org-plus-contrib poly-R poly-noweb polymode scpaste smart-mode-line transient w3m which-key yaml-mode yasnippet))
+   '(zop-to-char oauth2 esup magit lsp-ui parinfer-rust-mode company-auctex lsp-mode auctex undo-tree auctex-latexmk ivy-emoji ace-link ace-window adoc-mode avy-zap bbdb buffer-move calfw calfw-cal calfw-org company company-bibtex counsel erc-hl-nicks erc-image erc-view-log ess eyebrowse fill-column-indicator flycheck hydra ivy ivy-bibtex ivy-hydra nginx-mode notmuch nov org-bullets poly-R poly-noweb polymode scpaste smart-mode-line transient w3m which-key yaml-mode yasnippet))
+ '(parinfer-rust-library "/usr/local/lib/libparinfer_rust.so")
  '(pdf-misc-print-program "/usr/local/bin/lpr" t)
  '(pdf-misc-print-program-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
@@ -784,7 +785,7 @@
  '(link ((t (:foreground "dodger blue" :underline (:color foreground-color :style line)))))
  '(link-visited ((default (:inherit (link))) (((class color) (background light)) (:foreground "magenta4")) (((class color) (background dark)) (:foreground "violet"))))
  '(match ((t (:weight bold :foreground "#2e3436" :background "#e9b96e"))))
- '(message-cited-text ((t (:foreground "#edd400"))) t)
+ '(message-cited-text-1 ((t (:foreground "#edd400"))))
  '(minibuffer-prompt ((t (:foreground "#729fcf" :bold t))))
  '(mode-line ((t (:background "gray10" :foreground "white"))))
  '(mode-line-highlight ((t nil)))
