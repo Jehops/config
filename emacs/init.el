@@ -395,6 +395,9 @@ possible value for `erc-generate-log-file-name-function'."
     ;; (erc-tls :server "freenode.ftfl.ca"
     ;;          :port 2222
     ;;          :password (concat "jrm/freenode:" p))
+    (erc-tls :server "geekshed.ftfl.ca"
+             :port 2222
+             :password (concat "jrm/geekshed:" p))
     (erc-tls :server "efnet.ftfl.ca"
              :port 2222
              :password (concat "jrm/efnet:" p))
