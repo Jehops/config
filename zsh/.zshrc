@@ -140,13 +140,7 @@ yt () {
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
 
 # Directory shortcuts
-hash -d 2080=$HOME/files/edu/classes/STAT2080/TA/
-hash -d ...=../..
-hash -d ....=../../..
-hash -d core=$HOME/scm/freebsd/core.git/
-hash -d doc=$HOME/scm/freebsd/doc/head/
-hash -d ports=$HOME/scm/freebsd/ports/head/
-hash -d src=$HOME/scm/freebsd/src/head/
+#hash -d src=/usr/src
 
 #aliases
 alias aw="ssh awarnach"
