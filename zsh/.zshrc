@@ -190,5 +190,7 @@ if [ "$(uname)" = 'FreeBSD' ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   #source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
 else
-  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/share/zsh/scripts/git-prompt.zsh
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
