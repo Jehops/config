@@ -294,7 +294,7 @@ When the file ends with .Rnw, visit the generated .pdf file."
 
 ;; erc -------------------------------------------------------------------------
 (with-eval-after-load 'erc
-  ;;(require 'erc-tex)
+  (require 'erc-image)
 
   (erc-track-minor-mode) ;; this will turn on erc-track-mode
 
