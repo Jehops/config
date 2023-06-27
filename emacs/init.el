@@ -216,8 +216,8 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;;(beacon-mode 1)
 
 ;; c/c++ -----------------------------------------------------------------------
-(with-eval-after-load 'cc-mode
-  (push 'company-lsp company-backends))
+;;(with-eval-after-load 'cc-mode
+;;  (push 'company-lsp company-backends))
 
 ;;(add-hook 'c-mode-common-hook 'google-set-c-style)
 ;;(add-hook 'c-mode-common-hook 'google-make-newline-indent)
