@@ -219,10 +219,10 @@ When the file ends with .Rnw, visit the generated .pdf file."
 (with-eval-after-load 'cc-mode
   (push 'company-lsp company-backends))
 
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
-(add-hook 'c-mode-common-hook 'lsp)
-(add-hook 'c-mode-common-hook 'flycheck-mode)
+;;(add-hook 'c-mode-common-hook 'google-set-c-style)
+;;(add-hook 'c-mode-common-hook 'google-make-newline-indent)
+;;(add-hook 'c-mode-common-hook 'lsp)
+;;(add-hook 'c-mode-common-hook 'flycheck-mode)
 
 (defun knf ()
   "Set up kernel normal form.  See style(9) on FreeBSD."
