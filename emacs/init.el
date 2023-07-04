@@ -303,8 +303,6 @@ When the file ends with .Rnw, visit the generated .pdf file."
 (with-eval-after-load 'erc
   (require 'erc-image)
 
-  (erc-track-minor-mode) ;; this will turn on erc-track-mode
-
   ;; track query buffers as if everything contains current nick
   (defadvice erc-track-find-face
       (around erc-track-find-face-promote-query activate)
