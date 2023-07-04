@@ -50,10 +50,9 @@
 
 ;; variables that can't be customized ------------------------------------------
 (setq scpaste-http-destination "http://ftfl.ca/paste"
-      scpaste-scp-destination  "ser:/usr/local/www/ftfl.ca/paste"
+      scpaste-scp-destination  "ser.ftfl.ca:/usr/local/www/ftfl.ca/paste"
       scpaste-user-name        "jrm"
       org-irc-link-to-logs     t)
-(setq scpaste-make-name-function 'scpaste-make-name-from-buffer-name)
 
 ;; enable some functions that are disabled by default --------------------------
 (put 'dired-find-alternate-file 'disabled nil)
