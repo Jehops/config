@@ -75,21 +75,21 @@
       nil
       (switch-to-buffer (completing-read prompt blist nil t)))))
 
-(defun jrm/sb-dired   ()
+(defun jrm/sb-dired ()
   (interactive)
   (unless (jrm/sbm "Dired: "  '(dired-mode))
     (when (y-or-n-p "No dired buffer.  Open one? ")
       (dired (read-directory-name "Directory: ")))))
-(defun jrm/sb-erc     ()
+(defun jrm/sb-erc ()
   (interactive)
   (unless (jrm/sbm "Erc: "    '(erc-mode))
     (when (y-or-n-p "ERC is not running.  Start it? ") (jrm/erc))))
-(defun jrm/sb-eshell  ()
+(defun jrm/sb-eshell ()
   "Call multi-eshell if necessary, otherwise just call jrm/sb for eshell."
   (interactive)
   (unless (jrm/sbm "Eshell: " '(eshell-mode))
     (when (y-or-n-p "No eshell buffer.  Start one? ") (multi-eshell 1))))
-(defun jrm/sb-gnus    ()
+(defun jrm/sb-gnus ()
   "Start Gnus if necessary, otherwise call jrm/sb for Gnus
 buffers."
   (interactive)
@@ -101,33 +101,41 @@ buffers."
                           gnus-summary-mode
                           gnus-article-mode
                           message-mode))))
-(defun jrm/sb-magit   () (interactive) (jrm/sbm "Magit: "  '(magit-diff-mode
-                                                             magit-log-mode
-                                                             magit-process-mode
-                                                             git-rebase-mode
-                                                             magit-revision-mode
-                                                             magit-status-mode)))
-(defun jrm/sb-notmuch    ()
+(defun jrm/sb-magit ()
+  (interactive)
+  (jrm/sbm "Magit: "
+           '(magit-diff-mode
+             magit-log-mode
+             magit-process-mode
+             git-rebase-mode
+             magit-revision-mode
+             magit-status-mode)))
+(defun jrm/sb-notmuch ()
   "Open a notmuch-hello buffer if necessary, otherwise call
 jrm/sb for Notmuch buffers."
   (interactive)
   (if
       (null (get-buffer "*notmuch-hello*"))
       (notmuch)
-    (jrm/sbm "Notmuch: " '(notmuch-hello-mode
-                           notmuch-search-mode
-                           notmuch-show-mode
-                           notmuch-tree-mode))))
-(defun jrm/sb-pdf     () (interactive) (jrm/sbm "PDF: "    '(pdf-view-mode)))
+    (jrm/sbm "Notmuch: "
+             '(notmuch-hello-mode
+               notmuch-search-mode
+               notmuch-show-mode
+               notmuch-tree-mode))))
+(defun jrm/sb-pdf ()
+  (interactive)
+  (jrm/sbm "PDF: "
+           '(pdf-view-mode)))
 (defun jrm/sb-rt ()
   (interactive)
-  (unless (jrm/sbm "R/TeX: "  '(ess-mode
-                                inferior-ess-r-mode
-                                latex-mode))
+  (unless (jrm/sbm "R/TeX: "
+                   '(ess-mode
+                     inferior-ess-r-mode
+                     latex-mode))
     (when (y-or-n-p "No R buffer.  Start R? ") (R))))
-(defun jrm/sb-term    () (interactive) (jrm/sbm "Term: "   '(term-mode)))
-(defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: "   '(twittering-mode)))
-(defun jrm/sb-scratch () (interactive) (switch-to-buffer   "*scratch*"))
+(defun jrm/sb-term    () (interactive) (jrm/sbm "Term: " '(term-mode)))
+(defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: " '(twittering-mode)))
+(defun jrm/sb-scratch () (interactive) (switch-to-buffer "*scratch*"))
 
 (defun jrm/split-win-right-focus ()
   "Split window right and switch focus to it."
