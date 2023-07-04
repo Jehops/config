@@ -1259,8 +1259,8 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 ;;(require 'slime)
-(with-eval-after-load 'slime
-  (slime-setup '(slime-company slime-fancy)))
+;;(with-eval-after-load 'slime
+;;  (slime-setup '(slime-company slime-fancy)))
 
 ;; smart mode line -------------------------------------------------------------
 ;; without after-init-hook there is always a warning about loading a theme
