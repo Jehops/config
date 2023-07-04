@@ -1268,7 +1268,6 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (sml/setup)
 
 ;; transpar (transpose-paragraph-as-table) -------------------------------------
-;;(require 'transpar)
 (autoload 'transpose-paragraph-as-table "transpar"
   "Transpose paragraph as table." t)
 
