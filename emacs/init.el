@@ -656,7 +656,8 @@ when composing, because I want to see what is sent."
   (add-hook 'kill-emacs-hook 'gnus-group-exit)
   (define-key gnus-group-mode-map (kbd "C-k") nil)
   (define-key gnus-group-mode-map (kbd "C-w") nil)
-  (define-key gnus-group-mode-map (kbd "u") nil))
+  (define-key gnus-group-mode-map (kbd "u") nil)
+  (define-key gnus-group-mode-map (kbd "G n") 'jrm/gnus-notmuch-search))
 
 (with-eval-after-load 'gnus-topic
   (define-key gnus-topic-mode-map (kbd "C-k") nil)
@@ -721,6 +722,15 @@ when composing, because I want to see what is sent."
             (message-field-value "From" t))
            (turn-on-auto-fill))
           (t (turn-off-auto-fill)))))
+
+(defun jrm/gnus-notmuch-search ()
+  "Pre-populate a notmuch search with a Gnus Group."
+  (interactive)
+  (let ((group (gnus-group-group-name)))
+    (if (not (equal group nil))
+        ;;      (notmuch-search (concat "folder:" group))
+        (notmuch-search)
+      (notmuch-search))))
 
 ;; google ----------------------------------------------------------------------
 ;; Is this the only way to unset google-this-mode key binding?
