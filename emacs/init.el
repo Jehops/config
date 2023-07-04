@@ -410,6 +410,8 @@ possible value for `erc-generate-log-file-name-function'."
              :password (concat "jrm/Libera:" p))))
 
 ;; eshell ----------------------------------------------------------------------
+(require 'multi-eshell)
+
 ;; Could not get this working as an alias
 (defun eshell/gp (&optional port)
   (cd (concat "~/scm/freebsd/ports/head/" port))
