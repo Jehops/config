@@ -392,7 +392,10 @@ possible value for `erc-generate-log-file-name-function'."
              :password (concat "jrm/efnet:" p))
     (erc-tls :server "libera.ftfl.ca"
              :port 2222
-             :password (concat "jrm/Libera:" p))))
+             :password (concat "jrm/Libera:" p))
+    (erc-tls :server "oftc.ftfl.ca"
+             :port 2222
+             :password (concat "jrm/OFTC:" p))))
 
 ;; eshell ----------------------------------------------------------------------
 (require 'multi-eshell)
