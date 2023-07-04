@@ -337,12 +337,6 @@ possible value for `erc-generate-log-file-name-function'."
       (find-file (erc-current-logfile))
     (message "This is not an ERC channel buffer.")))
 
-;; (defun jrm/update-erc-fill-column ()
-;;   "Set erc-fill-column to a value just smaller than the window width."
-;;   (setq erc-fill-column (- (window-body-width) 2)))
-
-;;(add-hook 'window-configuration-change-hook 'jrm/update-erc-fill-column)
-
 ;; add to erc-text-matched-hook
 (defun jrm/erc-say-match-text (match-type nickuserhost msg)
   (cond
@@ -375,12 +369,6 @@ possible value for `erc-generate-log-file-name-function'."
        nil))) ; Must return nil. See help for `erc-server-PRIVMSG-functions'
 (add-hook 'erc-server-PRIVMSG-functions 'jrm/erc-say-privmsg-alert)
 
-;; (defun jrm/erc ()
-;;   "Connect to irc networks set up in my znc bouncer."
-;;   (interactive)
-;;   (znc-erc "network-slug-efnet")
-;;   (znc-erc "network-slug-freenode"))
-
 ;; based on a function from bandali
 (defun jrm/erc-detach-or-kill-channel ()
   (when (erc-server-process-alive)
@@ -396,9 +384,6 @@ possible value for `erc-generate-log-file-name-function'."
          (p (if (null auth)
                 (error "Couldn't find znc.ftfl.ca's authinfo")
               (funcall (plist-get (car auth) :secret)))))
-    ;; (erc-tls :server "freenode.ftfl.ca"
-    ;;          :port 2222
-    ;;          :password (concat "jrm/freenode:" p))
     (erc-tls :server "geekshed.ftfl.ca"
              :port 2222
              :password (concat "jrm/geekshed:" p))
@@ -574,16 +559,6 @@ possible value for `erc-generate-log-file-name-function'."
 ;; (customizing flyspell-auto-correct-binding doesn't help)
 (eval-after-load "flyspell" '(define-key flyspell-mode-map (kbd "C-.") nil))
 
-;; garbage callection ----------------------------------------------------------
-;;(defun jrm/minibuffer-setup-hook ()
-;;  (setq gc-cons-threshold most-positive-fixnum))
-
-;;(defun jrm/minibuffer-exit-hook ()
-;;  (setq gc-cons-threshold 800000))
-
-;;(add-hook 'minibuffer-setup-hook #'jrm/minibuffer-setup-hook)
-;;(add-hook 'minibuffer-exit-hook  #'jrm/minibuffer-exit-hook)
-
 ;; gnus -----------------------------------------------------------------------
 (defun jrm/gnus-article-toggle-visual-line-mode ()
   (interactive)
@@ -601,41 +576,12 @@ possible value for `erc-generate-log-file-name-function'."
 	  (inhibit-point-motion-hooks t))
       (visual-line-mode))))
 
-;; I am NO LONGER using this to coerce Gnus into sending format=flowed messages.
-;; While the concept sounds clever, having the client tinker with the message
-;; after it is composed is error-prone.
-(defun jrm/harden-newlines ()
-  "Use all hard newlines, so Gnus will use format=flowed.
-Add this to message-send-hook, so that it is called before each
-message is sent.  See
-https://www.emacswiki.org/emacs/GnusFormatFlowed for details."
-  (save-excursion
-    (goto-char (point-min))
-    (while (search-forward "\n" nil t)
-      (put-text-property (1- (point)) (point) 'hard t))))
-
 (defun jrm/gnus-group ()
   "Start Gnus if necessary and enter GROUP."
   (interactive)
   (unless (gnus-alive-p) (gnus))
   (let ((group (gnus-group-completing-read "Group: " gnus-active-hashtb t)))
     (gnus-group-read-group nil t group)))
-
-;; I am not using this to coerce Gnus into sending format=flowed messages.
-;; While the concept sounds clever, having the client tinker with the message
-;; after it's composed is error-prone.
-(defun jrm/message-setup ()
-  "Compose messages in a way that is suitable for format=flowed.
-That is, avoid using any hard newlines, but when the message is
-sent, all the newlines will be converted to hard newlines, so
-that format=flowed will be used.  I choose to wrap the message
-when composing, because I want to see what is sent."
-  (use-hard-newlines t 'never))
-
-;; (with-eval-after-load 'gnus-art
-;;   (define-key gnus-article-mode-map "v" 'visual-line-mode)
-;;   (define-key gnus-summary-mode-map "v"
-;;     'jrm/gnus-article-toggle-visual-line-mode))
 
 ;; Gnus gets loaded on startup if gnus-select-method is customized
 (with-eval-after-load 'gnus
@@ -740,30 +686,6 @@ when composing, because I want to see what is sent."
 ;; haskell-mode workaround
 ;; http://emacs.stackexchange.com/questions/28967/haskell-mode-hook-is-nil
 (setq haskell-mode-hook nil)
-
-;; helm ------------------------------------------------------------------------
-;; (define-key global-map [remap find-file] 'helm-find-files)
-;; (define-key global-map [remap occur] 'helm-occur)
-;; (define-key global-map [remap switch-to-buffer] 'helm-buffers-list)
-;; (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-;; (define-key global-map [remap yank-pop] 'helm-show-kill-ring)
-;; (global-set-key (kbd "M-x") 'helm-M-x)
-;; (unless (boundp 'completion-in-region-function)
-;;   (define-key lisp-interaction-mode-map
-;;     [remap completion-at-point] 'helm-lisp-completion-at-point)
-;;   (define-key emacs-lisp-mode-map
-;;     [remap completion-at-point] 'helm-lisp-completion-at-point))
-
-;; ido -------------------------------------------------------------------------
-;; (ido-mode t)
-;; (ido-everywhere 1)
-;; (ido-ubiquitous-mode 1)
-;; (ido-vertical-mode 1)
-;; (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-;; (setq ido-vertical-show-count t)
-
-;; ivy
-;; (run-with-idle-timer 1 nil (lambda () (ivy-mode) (counsel-mode)))
 
 (defun jrm/cf-as-root ()
   "Visit the current file with root privileges."
@@ -1197,31 +1119,6 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
         (bury-buffer)
       ad-do-it)))
 
-;; sauron ----------------------------------------------------------------------
-;;(require 'sauron)
-
-(setq sauron-nick-insensitivity 5)
-(setq sauron-hide-mode-line t)
-(setq sauron-modules '(sauron-erc))
-;; ;; (setq sauron-modules
-;; ;;       '(sauron-erc sauron-org sauron-notifications sauron-twittering
-;; ;;                    sauron-jabber sauron-identica sauron-elfeed))
-
-;; old version with espeak
-;; (defun jrm/saruon-speak-erc (origin prio msg props)
-;;   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
-;;   (when (eq origin 'erc)
-;;     (call-process-shell-command
-;;      (concat "espeak " "\"ERC alert: "
-;;              (replace-regexp-in-string "\\(jrm\\)?@jrm:" "" msg) "\"&") nil 0)))
-
-;; new version with festival
-;; (defun jrm/saruon-speak-erc (origin prio msg props)
-;;   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
-;;   (when (eq origin 'erc)
-;;     (call-process-shell-command
-;;      (concat "echo " "\"IRC message: " msg "\" | festival --tts&") nil 0)))
-
 ;; new version with flite
 (defun jrm/sauron-speak-erc (origin prio msg props)
   "When ORIGIN is erc with priority at least PRIO, say MSG ignoring PROPS."
@@ -1243,9 +1140,6 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (add-hook 'sauron-event-added-functions 'jrm/sauron-speak-erc)
 (add-hook 'sauron-event-block-functions 'jrm/sauron-erc-events-to-block)
 
-;;(with-eval-after-load 'erc
-;;  (sauron-start-hidden))
-
 ;; scratch ---------------------------------------------------------------------
 ;; Do not put this in custom.el, because it screws up indentation
 (setq initial-scratch-message
@@ -1263,17 +1157,11 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 ;;  (slime-setup '(slime-company slime-fancy)))
 
 ;; smart mode line -------------------------------------------------------------
-;; without after-init-hook there is always a warning about loading a theme
-;;(add-hook 'after-init-hook 'sml/setup)
 (sml/setup)
 
 ;; transpar (transpose-paragraph-as-table) -------------------------------------
 (autoload 'transpose-paragraph-as-table "transpar"
   "Transpose paragraph as table." t)
-
-;; twittering-mode -------------------------------------------------------------
-(add-hook 'twittering-edit-mode-hook
-          (lambda () (ispell-minor-mode) (flyspell-mode)))
 
 ;; undo-tree -------------------------------------------------------------------
 (global-undo-tree-mode)
