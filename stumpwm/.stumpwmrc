@@ -108,12 +108,6 @@ the one that is chosen."
              :x (+ (window-x (current-window)) x)
              :y (+ (window-y (current-window)) y)))
 
-(defcommand term () ()
-            "Start alacritty or switch to it if it is already running."
-            (run-or-raise "WINIT_X11_SCALE_FACTOR=1 alacritty -e sh -c \"tmux \\
--q has-session && tmux -2 att -d || tmux -2 new-session\""
-                          '(:class "Alacritty")))
-
 (defcommand firefox () ()
             "Start Firefox or switch to it if it is already running."
             (run-or-raise "firefox" '(:class "firefox")))
@@ -121,6 +115,16 @@ the one that is chosen."
 (defcommand chromium () ()
             "Start Chromium or switch to it if it is already running."
             (run-or-raise "chrome" '(:class "Chromium")))
+
+(defcommand signal-desktop () ()
+            "Start Signal or switch to it if it is already running."
+            (run-or-raise "signal-desktop --disable-gpu" '(:class "Signal")))
+
+(defcommand term () ()
+            "Start alacritty or switch to it if it is already running."
+            (run-or-raise "WINIT_X11_SCALE_FACTOR=1 alacritty -e sh -c \"tmux \\
+-q has-session && tmux -2 att -d || tmux -2 new-session\""
+                          '(:class "Alacritty")))
 
 ;; courtesy of Peter Seibel
 ;; (defmacro with-gensyms ((&rest names) &body body)
@@ -167,6 +171,7 @@ the one that is chosen."
 (define-key *root-map* (kbd "o")        "other-in-frame")
 (define-key *root-map* (kbd "p")        "prev")
 ;;(define-key *root-map* (kbd "M-w")      "clipmenu")
+(define-key *root-map* (kbd "C-s")      "signal-desktop")
 (define-key *root-map* (kbd "C-t")      "other")
 (define-key *root-map* (kbd "w")        "chromium")
 (define-key *root-map* (kbd "C-w")      "firefox")
