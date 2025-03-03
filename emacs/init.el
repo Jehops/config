@@ -1,4 +1,9 @@
-;;; -*- lexical-binding: t -*-
+;;; init.el --- My Emacs configuration -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; This is my Emacs configuration.  Flycheck expects this section to exist.
+
+;;; Code:
 
 (setq gc-cons-threshold most-positive-fixnum)
 (add-to-list 'load-path "~/.emacs.d/elisp/")
@@ -76,11 +81,14 @@
       (switch-to-buffer (completing-read prompt blist nil t)))))
 
 (defun jrm/sb-dired ()
+  "Switch to Dired buffer."
   (interactive)
   (unless (jrm/sbm "Dired: "  '(dired-mode))
-    (when (y-or-n-p "No dired buffer.  Open one? ")
+    (when (y-or-n-p "No Dired buffer.  Open one? ")
       (dired (read-directory-name "Directory: ")))))
+
 (defun jrm/sb-erc ()
+  "Switch to ERC buffer."
   (interactive)
   (unless (jrm/sbm "Erc: "    '(erc-mode))
     (when (y-or-n-p "ERC is not running.  Start it? ") (jrm/erc))))
@@ -90,8 +98,7 @@
   (unless (jrm/sbm "Eshell: " '(eshell-mode))
     (when (y-or-n-p "No eshell buffer.  Start one? ") (multi-eshell 1))))
 (defun jrm/sb-gnus ()
-  "Start Gnus if necessary, otherwise call jrm/sb for Gnus
-buffers."
+  "Start Gnus if necessary, otherwise call jrm/sb for Gnus buffers."
   (interactive)
   (autoload 'gnus-alive-p "gnus-util")
   (if
@@ -102,6 +109,7 @@ buffers."
                           gnus-article-mode
                           message-mode))))
 (defun jrm/sb-magit ()
+  "Switch to a magit buffer."
   (interactive)
   (jrm/sbm "Magit: "
            '(magit-diff-mode
@@ -111,8 +119,7 @@ buffers."
              magit-revision-mode
              magit-status-mode)))
 (defun jrm/sb-notmuch ()
-  "Open a notmuch-hello buffer if necessary, otherwise call
-jrm/sb for Notmuch buffers."
+  "Switch to a notmuch-hello buffer."
   (interactive)
   (if
       (null (get-buffer "*notmuch-hello*"))
@@ -123,19 +130,29 @@ jrm/sb for Notmuch buffers."
                notmuch-show-mode
                notmuch-tree-mode))))
 (defun jrm/sb-pdf ()
+  "Switch to a PDF buffer."
   (interactive)
   (jrm/sbm "PDF: "
            '(pdf-view-mode)))
+
 (defun jrm/sb-rt ()
+  "Switch to an R or Tex buffer."
   (interactive)
   (unless (jrm/sbm "R/TeX: "
                    '(ess-mode
                      inferior-ess-r-mode
                      latex-mode))
     (when (y-or-n-p "No R buffer.  Start R? ") (R))))
-(defun jrm/sb-term    () (interactive) (jrm/sbm "Term: " '(term-mode)))
-(defun jrm/sb-twit    () (interactive) (jrm/sbm "Twit: " '(twittering-mode)))
-(defun jrm/sb-scratch () (interactive) (switch-to-buffer "*scratch*"))
+
+(defun jrm/sb-term ()
+  "Switch to term buffer."
+  (interactive)
+  (jrm/sbm "Term: " '(term-mode)))
+
+(defun jrm/sb-scratch ()
+  "Switch to scratch buffer."
+  (interactive)
+  (switch-to-buffer "*scratch*"))
 
 (defun jrm/split-win-right-focus ()
   "Split window right and switch focus to it."
@@ -193,11 +210,17 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;;    (let ((outfile (replace-regexp-in-string ".Rnw$" ".pdf" (buffer-file-name))))
 ;;          (find-file outfile))))
 
+;; (defun jrm/sort-lines-nocase ()
+;;   "Sort lines ignoring case."
+;;   (interactive)
+;;   (let ((sort-fold-case t))
+;;     (call-interactively 'sort-lines)))
+
 (defun jrm/sort-lines-nocase ()
-  "Sort lines ignoring case."
+  "Sort lines in the region, ignoring case."
   (interactive)
   (let ((sort-fold-case t))
-    (call-interactively 'sort-lines)))
+    (sort-lines nil (region-beginning) (region-end))))
 
 ;; ace-link for various modes --------------------------------------------------
 ;; needs to be evaluated after init so gnus-*-mode-map are defined
@@ -213,6 +236,7 @@ When the file ends with .Rnw, visit the generated .pdf file."
   (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus)
   (define-key gnus-article-mode-map (kbd "C-,") 'ace-link-gnus))
 (with-eval-after-load 'gnus-art
+  (defvar gnus-summary-mode-map) ;; Suppress Flycheck warning
   (define-key gnus-summary-mode-map (kbd "C-,") 'ace-link-gnus))
 
 ;; appointments in the diary (commented b/c using org-mode exclusively now -----
@@ -269,11 +293,13 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;;                 (cfw:cal-create-source "DarkOrange3"))))))
 
 (defun jrm/open-calendar ()
+  "Open calendar."
+  (interactive)
+
   (require 'calfw)
   (require 'calfw-cal)
   (require 'calfw-org)
 
-  (interactive)
   (cfw:open-calendar-buffer
    :contents-sources
    (list
@@ -304,59 +330,76 @@ When the file ends with .Rnw, visit the generated .pdf file."
   (require 'erc-image)
 
   ;; track query buffers as if everything contains current nick
-  (defadvice erc-track-find-face
-      (around erc-track-find-face-promote-query activate)
-    (if (erc-query-buffer-p)
-        (setq ad-return-value (intern "erc-current-nick-face"))
-      ad-do-it))
+  ;; (defadvice erc-track-find-face
+  ;;     (around erc-track-find-face-promote-query activate)
+  ;;   (if (erc-query-buffer-p)
+  ;;       (setq ad-return-value (intern "erc-current-nick-face"))
+  ;;     ad-do-it))
+
+  (advice-add 'erc-track-find-face :around
+              (lambda (orig-fun &rest args)
+                (if (erc-query-buffer-p)
+                    (intern "erc-current-nick-face")
+                  (apply orig-fun args))))
+
   (defadvice erc-track-modified-channels
       (around erc-track-modified-channels-promote-query activate)
     (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'nil))
     ad-do-it
     (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'all)))
 
-(defun jrm/erc-generate-log-file-name-network (buffer target nick server port)
-  "Generate erc BUFFER log file, TARGET for user NICK on SERVER:PORT.
+  (advice-add 'erc-track-modified-channels :around
+              (lambda (orig-fun &rest args)
+                (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'nil))
+                (apply orig-fun args)
+                (if (erc-query-buffer-p) (setq erc-track-priority-faces-only 'all))))
+
+  (defun jrm/erc-generate-log-file-name-network (buffer target nick server port)
+    "Generate ERC BUFFER log file, TARGET for user NICK on SERVER:PORT.
+
 Using the network name rather than server name.  This results in
 a file name of the form channel@network.txt.  This function is a
 possible value for `erc-generate-log-file-name-function'."
-  (require 'erc-networks)
-  (let ((file
-         (concat
-          (if target (s-replace "#" "" target))
-          "@"
-          (or (with-current-buffer buffer (erc-network-name)) server) ".txt")))
-    ;; we need a make-safe-file-name function.
-    (convert-standard-filename file)))
+    (require 'erc-networks)
+    (let ((file
+           (concat
+            (if target (s-replace "#" "" target))
+            "@"
+            (or (with-current-buffer buffer (erc-network-name)) server) ".txt")))
+      ;; we need a make-safe-file-name function.
+      (convert-standard-filename file)))
 
-(defun jrm/erc-open-log-file ()
-  "Open the log file for the IRC channel in the current buffer."
-  (interactive)
-  (require 'erc-networks)
-  (if (string= major-mode "erc-mode")
-      (find-file (erc-current-logfile))
-    (message "This is not an ERC channel buffer.")))
+  (defun jrm/erc-open-log-file ()
+    "Open the log file for the IRC channel in the current buffer."
+    (interactive)
+    (require 'erc-networks)
+    (if (string= major-mode "erc-mode")
+        (find-file (erc-current-logfile))
+      (message "This is not an ERC channel buffer.")))
 
-;; add to erc-text-matched-hook
-(defun jrm/erc-say-match-text (match-type nickuserhost msg)
-  (cond
-   ((eq match-type 'current-nick)
-    ;;(message msg)
-    (unless
-        (or
-         (string-match "^\\*\\*\\* Users on" msg)
-         (string-match "ask jrm or retroj for write access" msg)
-         (string-match "topic set by jrm" msg)
-         (string-match "^\\(<fbsdslack> \\[[0-9:]+\\] \\)?<jrm> " msg)
-         (string-match "^\\*\\*\\* jrm" msg))
-      (call-process-shell-command
-       (concat "flite -voice /home/" (user-login-name)
-               "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C matched text: "
-               ;;(replace-regexp-in-string "@?jrm:?,?" "" msg)
-               msg
-               "\"&") nil 0 nil)))))
+  ;; add to erc-text-matched-hook
+  (defun jrm/erc-say-match-text (match-type nickuserhost msg)
+    (cond
+     ((eq match-type 'current-nick)
+      ;;(message msg)
+      (unless
+          (or
+           (string-match "^\\*\\*\\* Users on" msg)
+           (string-match "ask jrm or retroj for write access" msg)
+           (string-match "topic set by jrm" msg)
+           (string-match "^\\(<fbsdslack> \\[[0-9:]+\\] \\)?<jrm> " msg)
+           (string-match "^\\*\\*\\* jrm" msg))
+        (call-process-shell-command
+         (concat "flite -voice /home/" (user-login-name)
+                 "/local/share/data/flite/cmu_us_aew.flitevox \"I-R-C matched text: "
+                 ;;(replace-regexp-in-string "@?jrm:?,?" "" msg)
+                 msg
+                 "\"&") nil 0 nil)))))
 
-(defun jrm/erc-say-privmsg-alert (proc parsed)
+  ;; to turn off jrm/erc-say-match-text
+  ;; (defun jrm/erc-say-match-text ())
+
+  (defun jrm/erc-say-privmsg-alert (proc parsed)
     (let* ((tgt (car (erc-response.command-args parsed)))
            (privp (erc-current-nick-p tgt)))
       (and
@@ -367,26 +410,27 @@ possible value for `erc-generate-log-file-name-function'."
 \"I-R-C private message received. " "\"&")
         nil 0)
        nil))) ; Must return nil. See help for `erc-server-PRIVMSG-functions'
-(add-hook 'erc-server-PRIVMSG-functions 'jrm/erc-say-privmsg-alert)
+  (add-hook 'erc-server-PRIVMSG-functions 'jrm/erc-say-privmsg-alert)
 
-;; based on a function from bandali
-(defun jrm/erc-detach-or-kill-channel ()
-  (when (erc-server-process-alive)
-    (let ((tgt (erc-default-target)))
-      (erc-server-send (format "DETACH %s" tgt) nil tgt)))
-  (erc-kill-channel))
-(add-hook 'erc-kill-channel-hook #'jrm/erc-detach-or-kill-channel)
-(remove-hook 'erc-kill-channel-hook #'erc-kill-channel))
+  ;; based on a function from bandali
+  (defun jrm/erc-detach-or-kill-channel ()
+    (when (erc-server-process-alive)
+      (let ((tgt (erc-default-target)))
+        (erc-server-send (format "DETACH %s" tgt) nil tgt)))
+    (erc-kill-channel))
+  (add-hook 'erc-kill-channel-hook #'jrm/erc-detach-or-kill-channel)
+  (remove-hook 'erc-kill-channel-hook #'erc-kill-channel))
 
 (defun jrm/erc ()
+  "Connect to IRC."
   (interactive)
   (let* ((auth (auth-source-search :host "znc.ftfl.ca"))
          (p (if (null auth)
                 (error "Couldn't find znc.ftfl.ca's authinfo")
               (funcall (plist-get (car auth) :secret)))))
-    (erc-tls :server "geekshed.ftfl.ca"
-             :port 2222
-             :password (concat "jrm/geekshed:" p))
+    ;; (erc-tls :server "geekshed.ftfl.ca"
+    ;;          :port 2222
+    ;;          :password (concat "jrm/geekshed:" p))
     (erc-tls :server "efnet.ftfl.ca"
              :port 2222
              :password (concat "jrm/efnet:" p))
@@ -402,11 +446,12 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; Could not get this working as an alias
 (defun eshell/gp (&optional port)
-  (cd (concat "~/scm/freebsd/ports/head/" port))
+  "Go to PORT."
+  (cd (concat "/usr/ports/" port))
   nil)
 
 (defun jrm/eshell-visual-ports-make (command args)
-  "Run FreeBSD port make commands in a terminal"
+  "Run FreeBSD port make commands in a terminal."
   (when (and (or (string-match "scm/freebsd/ports/head" default-directory)
                  (string-match "/usr/ports" default-directory))
              (or
@@ -436,8 +481,8 @@ possible value for `erc-generate-log-file-name-function'."
    (if (= (user-uid) 0) " # " " % ")))
 
 (defun pcomplete/gp ()
-  "Completion for eshell/gp"
-  (cd "~/scm/freebsd/ports/head/")
+  "Completion for eshell/gp."
+  (cd "/usr/ports/")
     (pcomplete-here (pcomplete-dirs)))
 
 (defalias 'pcomplete/sudo 'pcomplete/xargs)
@@ -564,16 +609,16 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; gnus -----------------------------------------------------------------------
 (defun jrm/gnus-article-toggle-visual-line-mode ()
+  "Turn on `visual-line-mode' in the current article."
   (interactive)
-  "Turn on visual-line-mode in the current article."
   (with-current-buffer gnus-article-buffer
     (let ((buffer-read-only nil)
 	  (inhibit-point-motion-hooks t))
       (visual-line-mode 'toggle))))
 
 (defun jrm/gnus-article-enable-visual-line-mode ()
+  "Turn on `visual-line-mode' in the current article."
   (interactive)
-  "Turn on visual-line-mode in the current article."
   (with-current-buffer gnus-article-buffer
     (let ((buffer-read-only nil)
 	  (inhibit-point-motion-hooks t))
@@ -665,6 +710,7 @@ possible value for `erc-generate-log-file-name-function'."
          (mml-secure-message-sign))))
 
 (defun jrm/gnus-set-auto-fill ()
+  "Turn on auto-fill."
   (save-excursion
     (cond ((string-match
             (concat user-full-name " <" user-FreeBSD-mail-address ">")
@@ -688,7 +734,7 @@ possible value for `erc-generate-log-file-name-function'."
 
 ;; haskell-mode workaround
 ;; http://emacs.stackexchange.com/questions/28967/haskell-mode-hook-is-nil
-(setq haskell-mode-hook nil)
+;; (setq haskell-mode-hook nil)
 
 (defun jrm/cf-as-root ()
   "Visit the current file with root privileges."
@@ -716,10 +762,12 @@ possible value for `erc-generate-log-file-name-function'."
                    (counsel-find-file)))))
 
 (defun jrm/confirm-delete-file (x)
+  "Confirm when deleting file X."
   (dired-delete-file x 'top))
 
 (defun jrm/ff-as-root (x)
-  ;; Check for remote host (must have sudo root access on remote host)
+  "Find file X as root."
+;; Check for remote host (must have sudo root access on remote host)
   (if (string-match "^/ssh:\\(.*\\):\\(.*\\)" x)
       (let ( (host (match-string 1 x))
              (path (match-string 2 x)))
@@ -755,19 +803,19 @@ possible value for `erc-generate-log-file-name-function'."
   (global-set-key (kbd "C-c I") 'ivy-bibtex))
 
 ;; igor -----------------------------------------------------------------------
-(with-eval-after-load 'flycheck
-  (flycheck-define-checker igor
-    "FreeBSD Documentation Project sanity checker.
+;; (with-eval-after-load 'flycheck
+;;   (flycheck-define-checker igor
+;;     "FreeBSD Documentation Project sanity checker.
 
-  See URLs http://www.freebsd.org/docproj/ and
-  http://www.freshports.org/textproc/igor/."
-    :command ("igor" "-X" source-inplace)
-    :error-parser flycheck-parse-checkstyle
-    :modes (nxml-mode)
-    :standard-input t))
+;;   See URLs http://www.freebsd.org/docproj/ and
+;;   http://www.freshports.org/textproc/igor/."
+;;     :command ("igor" "-X" source-inplace)
+;;     :error-parser flycheck-parse-checkstyle
+;;     :modes (nxml-mode)
+;;     :standard-input t))
 
-  ;; register the igor checker for automatic syntax checking
-  ;;(add-to-list 'flycheck-checkers 'igor 'append))
+;;   ;; register the igor checker for automatic syntax checking
+;;   ;;(add-to-list 'flycheck-checkers 'igor 'append))
 
 ;; keybindings -----------------------------------------------------------------
 
@@ -994,7 +1042,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 
 ;; Make (FreeBSD ports)
 (defun portfmt (&optional b e)
-  "Format FreeBSD port Makefile region with PORTFMT(1)"
+  "Format FreeBSD port Makefile region (B to E) with PORTFMT(1)."
   (interactive "r")
   (shell-command-on-region b e "portfmt " (current-buffer) t
                            "*portfmt errors*" t))
@@ -1176,3 +1224,5 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq gc-cons-threshold 800000)
+
+;;; init.el ends here
