@@ -247,6 +247,23 @@ When the file ends with .Rnw, visit the generated .pdf file."
 ;;(beacon-mode 1)
 
 ;; c/c++ -----------------------------------------------------------------------
+;; (add-to-list 'auto-mode-alist '("\\.ii\\'" . c++-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.i\\'" . c-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.lex\\'" . c-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.y\\(acc\\)?\\'" . c-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c-or-c++-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.\\(CC?\\|HH?\\)\\'" . c++-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[ch]\\(pp\\|xx\\|\\+\\+\\)\\'" . c++-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.\\(cc\\|hh\\)\\'" . c++-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.xs\\'" . c-ts-mode))
+
+(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+
+;;(load-file "/usr/src/tools/tools/editing/freebsd.el")
+
 ;;(with-eval-after-load 'cc-mode
 ;;  (push 'company-lsp company-backends))
 
