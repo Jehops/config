@@ -21,7 +21,7 @@
 
 (setf *colors* (append *colors* (list "Orange2" "Gray52")))
 (setf *input-window-gravity* :bottom-right)
-;;(setf *maxsize-border-width* 4)
+(setf *maxsize-border-width* 4)
 (setf *message-window-gravity* :bottom-right)
 (setf *mode-line-background-color* "black")
 (setf *mode-line-border-width* 0)
