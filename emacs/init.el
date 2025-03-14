@@ -325,10 +325,10 @@ When the file ends with .Rnw, visit the generated .pdf file."
 
 
 ;; company ---------------------------------------------------------------------
-;; (with-eval-after-load 'company
-;;   (define-key company-active-map (kbd "RET") nil)
-;;   (define-key company-active-map (kbd "<return>") nil)
-;;   (define-key company-active-map (kbd "C-<space>") #'company-complete-selection))
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil)
+  (define-key company-active-map (kbd "C-<tab>") #'company-complete-selection))
 
 ;; dired / dired+ --------------------------------------------------------------
 ;;(with-eval-after-load 'dired
@@ -847,7 +847,7 @@ possible value for `erc-generate-log-file-name-function'."
 (global-set-key (kbd "C-x p")           'list-packages)
 (global-set-key (kbd "C-x R")           'jrm/rename-current-file)
 ;;(global-set-key (kbd "C-<tab>")         'helm-dabbrev)
-(global-set-key (kbd "C-<tab>")         'company-complete)
+;;(global-set-key (kbd "C-<tab>")         'company-complete)
 (global-set-key (kbd "M-SPC")           'cycle-spacing)
 
 ;; buffers and windows
