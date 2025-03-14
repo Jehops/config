@@ -976,9 +976,9 @@ _w_hitspace _q_uit"
    ("q"  nil)))
 
 ;; tramp
-(run-with-idle-timer 1 nil (lambda () (require 'tramp)))
-(with-eval-after-load 'tramp
-  (setq tramp-use-ssh-controlmaster-options nil))
+;;(run-with-idle-timer 1 nil (lambda () (require 'tramp)))
+;;(with-eval-after-load 'tramp
+;;  (setq tramp-use-ssh-controlmaster-options nil))
 
 ;; vcs
 (global-set-key
