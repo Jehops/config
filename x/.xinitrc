@@ -24,6 +24,8 @@ xautolock -locker "xlock >> ~/local/var/log/xlock.log 2>&1" \
 #redshift -l 44.63:-63.58 -b 1.0:0.5 -t 6500:3600 -g 0.8 -m randr &
 #redshift -l 44.42:26.10 -b 1.0:0.5 -t 6500:3600 -g 0.8 -m randr &
 #redshift -l 44.63:-63.58 -b 1.0:0.6 &
+redshift -l 44.67:-63.54 -b 1.0:0.4 -t 5700:3600 -g 0.8 -m randr -v -r &
+
 #clipmenud&
 unclutter&
 c2e&
