@@ -8,9 +8,8 @@
 [core]
         pager = less -F -X
 [alias]
-        clog = log --pretty=format:'%C("#"858585)%h%Creset -%C(auto)%d%Creset %<|(98,trunc)%s %C("#"858585)%cd%Creset %C("#"CC5500)%an <%ae%m%Creset %C("#"858585)(%cl)%Creset'
+        clog = log --pretty=tformat:'%C("#"858585)%h%Creset -%C(auto)%d%Creset %<|(98,trunc)%s %C("#"858585)%cd%Creset %C("#"CC5500)%an <%ae%m%Creset %C("#"858585)(%cl)%Creset'
         co = checkout
-        praise = blame
 [commit]
         gpgSign = true
 [merge]
@@ -23,3 +22,7 @@
         defaultBranch = main
 [log]
         date = format-local:%Y-%m-%d %H:%M
+[credential]
+	helper = cache
+[format]
+	pretty = fuller
