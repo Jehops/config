@@ -11,14 +11,10 @@
  '(TeX-parse-self t)
  '(TeX-source-correlate-mode t)
  '(TeX-view-program-list
-   '(("pv" "pv %o&")
-     ("emacs" "emacsclient -n %o")
-     ("xpdf" "xpdf %o&")))
+   '(("pv" "pv %o&") ("emacs" "emacsclient -n %o") ("xpdf" "xpdf %o&")))
  '(TeX-view-program-selection
    '((output-pdf "PDF Tools" "emacs" "pv" "xpdf")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
+     ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi")
      (output-html "xdg-open")))
  '(ac-dictionary-files '("~/.emacs/ac-dict"))
  '(add-to-list 'default-frame-alist t)
@@ -26,7 +22,9 @@
    ["black" "red" "green" "yellow" "sky blue" "magenta" "cyan" "white"])
  '(auto-save-file-name-transforms '((".*/\\([^/]*\\)" "~/.emacs.d/auto-saves/\\1" t)))
  '(avy-keys
-   '(97 115 100 102 103 104 106 107 108 113 119 101 114 116 121 117 105 111 112 122 120 99 118 98 110 109 65 83 68 70 71 72 74 75 76 81 87 69 82 84 89 85 73 79 80 90 88 67 86 66 78 77))
+   '(97 115 100 102 103 104 106 107 108 113 119 101 114 116 121 117 105 111 112 122
+        120 99 118 98 110 109 65 83 68 70 71 72 74 75 76 81 87 69 82 84 89 85 73
+        79 80 90 88 67 86 66 78 77))
  '(avy-style 'post)
  '(aw-keys '(97 115 100 102 103 104 106 107 108))
  '(aw-scope 'frame)
@@ -43,6 +41,7 @@
  '(browse-url-generic-program "~/local/bin/ck")
  '(browse-url-mailto-function 'browse-url-mail)
  '(browse-url-secondary-browser-function 'browse-url-chrome)
+ '(c-ts-mode-indent-style 'bsd)
  '(calendar-date-style 'iso)
  '(calendar-latitude 44.630294)
  '(calendar-location-name "Halifax, NS")
@@ -50,28 +49,18 @@
  '(calendar-mark-diary-entries-flag t)
  '(calendar-mark-holidays-flag t)
  '(calendar-time-display-form
-   '(24-hours ":" minutes
-              (if time-zone " (")
-              time-zone
-              (if time-zone ")")))
+   '(24-hours ":" minutes (if time-zone " (") time-zone (if time-zone ")")))
  '(calendar-today-visible-hook '(calendar-mark-today))
  '(calendar-week-start-day 1)
  '(column-number-mode t)
- '(company-abort-on-unique-match nil)
- '(company-backends
-   '(company-bbdb company-semantic company-clang company-cmake company-capf company-files
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-oddmuse company-dabbrev))
- '(company-idle-delay nil)
- '(company-minimum-prefix-length 1)
- '(company-show-quick-access ''t)
  '(compilation-window-height 6)
  '(counsel-mode t)
  '(counsel-yank-pop-preselect-last t)
  '(counsel-yank-pop-separator "\12---------------------------\12")
  '(custom-buffer-done-kill t)
  '(custom-safe-themes
-   '("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
+   '("fc1275617f9c8d1c8351df9667d750a8e3da2658077cfdda2ca281a2ebc914e0"
+     "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))
  '(delete-old-versions 'other)
  '(desktop-restore-forces-onscreen nil)
  '(diary-comment-end "*/")
@@ -90,25 +79,31 @@
  '(emoji-fontset-default-font-family "Apple Color Emoji")
  '(epg-pinentry-mode 'loopback)
  '(erc-autojoin-domain-only nil)
+ '(erc-buffer-display 'bury)
  '(erc-email-userid "jrm")
  '(erc-generate-log-file-name-function 'jrm/erc-generate-log-file-name-network)
- '(erc-hl-nicks-mode t)
+ '(erc-hl-nicks-mode t nil (erc-hl-nicks))
  '(erc-hl-nicks-skip-faces
-   '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face" "erc-current-nick-face" "erc-direct-msg-face"))
+   '("erc-notice-face" "erc-pal-face" "erc-fool-face" "erc-my-nick-face"
+     "erc-current-nick-face" "erc-direct-msg-face"))
  '(erc-hl-nicks-skip-nicks '("fbsdslack"))
  '(erc-image-inline-rescale 200)
+ '(erc-insert-away-timestamp-function 'erc-insert-timestamp-left)
  '(erc-insert-post-hook
    '(erc-make-read-only erc-save-buffer-in-logs erc-track-modified-channels))
  '(erc-insert-timestamp-function 'erc-insert-timestamp-left)
- '(erc-join-buffer 'bury)
  '(erc-log-channels-directory "~/.emacs.d/.erc/logs")
  '(erc-log-write-after-insert t)
  '(erc-log-write-after-send t)
  '(erc-match-exclude-server-buffer t)
  '(erc-mode-hook
-   '(erc-munge-invisibility-spec erc-move-to-prompt-setup pcomplete-erc-setup erc-button-setup erc-imenu-setup visual-line-mode))
+   '(pcomplete-erc-setup erc-stamp--recover-on-reconnect
+                         erc-munge-invisibility-spec erc-move-to-prompt-setup
+                         erc-imenu-setup visual-line-mode))
  '(erc-modules
-   '(autojoin button completion irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling hl-nicks image))
+   '(autojoin button completion imenu irccontrols list log match menu
+              move-to-prompt netsplit networks noncommands readonly ring
+              spelling stamp track hl-nicks image))
  '(erc-nick "jrm")
  '(erc-port 2222)
  '(erc-prompt-for-password nil)
@@ -117,20 +112,18 @@
  '(erc-server-reconnect-timeout 3)
  '(erc-text-matched-hook '(erc-log-matches jrm/erc-say-match-text))
  '(erc-timestamp-format "[%Y-%m-%d %k:%M] ")
- '(erc-track-exclude '("<fbsdslack> <jrm>"))
  '(erc-track-exclude-types
-   '("JOIN" "NICK" "PART" "QUIT" "MODE" "305" "306" "324" "329" "332" "333" "353" "477"))
+   '("JOIN" "NICK" "PART" "QUIT" "MODE" "305" "306" "324" "329" "332" "333" "353"
+     "477"))
  '(erc-track-faces-priority-list
-   '(erc-error-face
-     (erc-nick-default-face erc-current-nick-face)
-     erc-current-nick-face erc-keyword-face
-     (erc-nick-default-face erc-pal-face)
-     erc-pal-face erc-nick-msg-face erc-direct-msg-face
-     (erc-nick-default-face erc-dangerous-host-face)
-     erc-dangerous-host-face
-     (erc-nick-default-face erc-fool-face)
-     erc-fool-face erc-notice-face erc-input-face erc-prompt-face))
- '(erc-track-mode t)
+   '(erc-error-face (erc-nick-default-face erc-current-nick-face)
+                    erc-current-nick-face erc-keyword-face
+                    (erc-nick-default-face erc-pal-face) erc-pal-face
+                    erc-nick-msg-face erc-direct-msg-face
+                    (erc-nick-default-face erc-dangerous-host-face)
+                    erc-dangerous-host-face
+                    (erc-nick-default-face erc-fool-face) erc-fool-face
+                    erc-notice-face erc-input-face erc-prompt-face))
  '(erc-track-priority-faces-only 'all)
  '(erc-track-showcount t)
  '(erc-truncate-mode nil)
@@ -142,10 +135,8 @@
  '(eshell-cmpl-use-paring nil)
  '(eshell-command-completions-alist
    '(("CC" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
-     ("acc" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
-     ("acroread" . "\\.pdf\\'")
-     ("adb" . "\\`\\([^.]*\\|a\\.out\\)\\'")
-     ("ar" . "\\.[ao]\\'")
+     ("acc" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'") ("acroread" . "\\.pdf\\'")
+     ("adb" . "\\`\\([^.]*\\|a\\.out\\)\\'") ("ar" . "\\.[ao]\\'")
      ("bcc" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
      ("cc" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
      ("clang" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
@@ -153,13 +144,11 @@
      ("dbx" . "\\`\\([^.]*\\|a\\.out\\)\\'")
      ("g++" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
      ("gcc" . "\\.[Cc]\\([Cc]\\|[Pp][Pp]\\)?\\'")
-     ("gdb" . "\\`\\([^.]*\\|a\\.out\\)\\'")
-     ("gunzip" . "\\.gz\\'")
+     ("gdb" . "\\`\\([^.]*\\|a\\.out\\)\\'") ("gunzip" . "\\.gz\\'")
      ("nm" . "\\(\\`[^.]*\\|\\.\\([ao]\\|so\\)\\)\\'")
      ("objdump" . "\\(\\`[^.]*\\|\\.\\([ao]\\|so\\)\\)\\'")
      ("readelf" . "\\(\\`[^.]*\\|\\.\\([ao]\\|so\\)\\)\\'")
-     ("sdb" . "\\`\\([^.]*\\|a\\.out\\)\\'")
-     ("xpdf" . "\\.pdf\\'")))
+     ("sdb" . "\\`\\([^.]*\\|a\\.out\\)\\'") ("xpdf" . "\\.pdf\\'")))
  '(eshell-cp-interactive-query t)
  '(eshell-first-time-mode-hook '((lambda nil (setenv "PAGER" "cat"))))
  '(eshell-glob-include-dot-files nil)
@@ -170,19 +159,23 @@
  '(eshell-history-size 10000)
  '(eshell-last-dir-ring-file-name "~/.emacs.d/eshell/lastdir")
  '(eshell-modules-list
-   '(eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob eshell-hist eshell-ls eshell-pred eshell-prompt eshell-script eshell-term eshell-unix eshell-xtra))
+   '(eshell-alias eshell-banner eshell-basic eshell-cmpl eshell-dirs eshell-glob
+                  eshell-hist eshell-ls eshell-pred eshell-prompt eshell-script
+                  eshell-term eshell-unix eshell-xtra))
  '(eshell-mv-interactive-query t)
  '(eshell-mv-overwrite-files nil)
  '(eshell-named-command-hook '(jrm/eshell-visual-ports-make))
  '(eshell-output-filter-functions
-   '(eshell-handle-control-codes eshell-handle-ansi-color eshell-watch-for-password-prompt))
+   '(eshell-handle-control-codes eshell-handle-ansi-color
+                                 eshell-watch-for-password-prompt))
  '(eshell-prompt-function 'jrm/eshell-prompt)
  '(eshell-prompt-regexp "^[^%#]*@[^%#]*[#%] ")
  '(eshell-pwd-convert-function 'expand-file-name)
  '(eshell-review-quick-commands t)
  '(eshell-rm-interactive-query t)
  '(eshell-visual-commands
-   '("htop" "cdiff" "less" "links" "lynx" "more" "ncftp" "mplayer" "mpv" "portmaster" "top" "trn" "unison" "vi" "vipw" "ncdu"))
+   '("htop" "cdiff" "less" "links" "lynx" "more" "ncftp" "mplayer" "mpv"
+     "portmaster" "top" "trn" "unison" "vi" "vipw" "ncdu"))
  '(eshell-visual-options nil)
  '(eshell-visual-subcommands '(("git" "clog" "diff" "log" "show") ("make") ("config")))
  '(ess-ask-for-ess-directory nil)
@@ -193,19 +186,43 @@
  '(ess-transcript-mode-hook '(ess-S-mouse-me-menu-commands turn-on-font-lock))
  '(eval-expression-print-length 500)
  '(eyebrowse-close-window-config-prompt t)
- '(eyebrowse-keymap-prefix "^w")
+ '(eyebrowse-keymap-prefix "\3^w")
  '(eyebrowse-mode t)
  '(eyebrowse-mode-line-separator " ")
  '(eyebrowse-wrap-around t)
  '(fill-column 80)
  '(fill-flowed-display-column '(- (window-width) 5))
  '(flycheck-checkers
-   '(ada-gnat asciidoctor asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cwl d-dmd dockerfile-hadolint emacs-lisp emacs-lisp-checkdoc erlang-rebar3 erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-megacheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator vhdl-ghdl igor xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby))
+   '(ada-gnat asciidoctor asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine
+              chef-foodcritic coffee coffee-coffeelint coq css-csslint
+              css-stylelint cwl d-dmd dockerfile-hadolint emacs-lisp
+              emacs-lisp-checkdoc erlang-rebar3 erlang eruby-erubis
+              fortran-gfortran go-gofmt go-golint go-vet go-build go-test
+              go-errcheck go-unconvert go-megacheck groovy haml handlebars
+              haskell-stack-ghc haskell-ghc haskell-hlint html-tidy
+              javascript-eslint javascript-jshint javascript-standard
+              json-jsonlint json-python-json jsonnet less less-stylelint
+              llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl
+              nix perl perl-perlcritic php php-phpmd php-phpcs processing
+              proselint protobuf-protoc pug puppet-parser puppet-lint
+              python-flake8 python-pylint python-pycompile python-mypy r-lintr
+              racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-reek
+              ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala
+              scala-scalastyle scheme-chicken scss-lint scss-stylelint
+              sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash
+              sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze
+              tcl-nagelfar tex-chktex tex-lacheck texinfo typescript-tslint
+              verilog-verilator vhdl-ghdl igor xml-xmlstarlet xml-xmllint
+              yaml-jsyaml yaml-ruby))
  '(flycheck-xml-xmlstarlet-executable "/usr/local/bin/xml")
  '(flymake-log-level 3)
  '(gdb-many-windows t)
  '(git-commit-setup-hook
-   '(git-commit-save-message git-commit-setup-changelog-support git-commit-turn-on-auto-fill git-commit-turn-on-flyspell git-commit-propertize-diff with-editor-usage-message))
+   '(git-commit-save-message git-commit-setup-changelog-support
+                             git-commit-turn-on-auto-fill
+                             git-commit-turn-on-flyspell
+                             git-commit-propertize-diff
+                             with-editor-usage-message))
  '(git-gutter:modified-sign "*")
  '(global-auto-revert-mode t)
  '(global-company-mode t)
@@ -221,7 +238,8 @@
  '(gnus-check-new-newsgroups nil)
  '(gnus-cite-blank-line-after-header nil)
  '(gnus-cite-face-list
-   '(gnus-cite-1 gnus-cite-2 gnus-cite-3 gnus-cite-4 gnus-cite-5 gnus-cite-6 gnus-cite-7 gnus-cite-8 gnus-cite-9 gnus-cite-10))
+   '(gnus-cite-1 gnus-cite-2 gnus-cite-3 gnus-cite-4 gnus-cite-5 gnus-cite-6
+                 gnus-cite-7 gnus-cite-8 gnus-cite-9 gnus-cite-10))
  '(gnus-exit-gnus-hook '(mm-destroy-postponed-undisplay-list))
  '(gnus-group-catchup-group-hook '(gnus-topic-update-topic))
  '(gnus-group-mode-hook '(gnus-topic-mode gnus-agent-mode hl-line-mode))
@@ -231,16 +249,16 @@
  '(gnus-interactive-exit nil)
  '(gnus-message-archive-method '(nnml ""))
  '(gnus-message-setup-hook
-   '(message-remove-blank-cited-lines turn-off-auto-fill jrm/mml-secure-message-sign))
+   '(message-remove-blank-cited-lines turn-off-auto-fill
+                                      jrm/mml-secure-message-sign))
  '(gnus-read-newsrc-file nil)
  '(gnus-refer-thread-limit 5000)
+ '(gnus-save-duplicate-list t)
  '(gnus-save-newsrc-file nil)
  '(gnus-search-default-engines '((nnimap . imap) (nntp . gmane) (nnml . notmuch)))
  '(gnus-secondary-select-methods
-   '((nntp "news.gmane.io"
-           (nntp-open-connection-function nntp-open-plain-stream))
-     (nntp "news.freelists.org"
-           (nntp-port-number 563)
+   '((nntp "news.gmane.io" (nntp-open-connection-function nntp-open-plain-stream))
+     (nntp "news.freelists.org" (nntp-port-number 563)
            (nntp-open-connection-function nntp-open-tls-stream))))
  '(gnus-started-hook '((lambda nil (gnus-group-jump-to-group "mail.misc"))))
  '(gnus-startup-file "~/.emacs.d/newsrc")
@@ -255,34 +273,34 @@
  '(gnus-summary-line-format
    "%U%R %5N %6k %24&user-date; │ %~(max-right 75)~(pad-right 75)S │ %B %f\12")
  '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
+ '(gnus-suppress-duplicates t)
  '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-number))
  '(gnus-treat-display-smileys nil)
  '(gnus-treat-fill-long-lines nil)
+ '(gnus-user-agent '(gnus emacs))
  '(gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
  '(gnutls-min-prime-bits 1024)
  '(gnutls-verify-error t)
  '(google-translate-default-target-language "en")
- '(haskell-mode-hook '(intero-mode) t)
+ '(haskell-mode-hook
+   '(capitalized-words-mode flyspell-prog-mode haskell-decl-scan-mode
+                            haskell-indent-mode interactive-haskell-mode))
  '(haskell-stylish-on-save t)
  '(help-char 67)
  '(holiday-bahai-holidays nil)
  '(holiday-general-holidays
    '((holiday-fixed 1 1 "New Year's Day")
      (holiday-float 1 1 3 "Martin Luther King Day (US)")
-     (holiday-fixed 2 2 "Groundhog Day")
-     (holiday-fixed 2 14 "Valentine's Day")
+     (holiday-fixed 2 2 "Groundhog Day") (holiday-fixed 2 14 "Valentine's Day")
      (holiday-float 2 1 3 "President's Day (US)")
      (holiday-fixed 3 17 "St. Patrick's Day")
-     (holiday-fixed 4 1 "April Fools' Day")
-     (holiday-float 5 0 2 "Mother's Day")
+     (holiday-fixed 4 1 "April Fools' Day") (holiday-float 5 0 2 "Mother's Day")
      (holiday-float 5 1 -1 "Memorial Day (US)")
      (holiday-float 5 1 -1 "Victoria Day (CA)" 24)
-     (holiday-fixed 6 14 "Flag Day (US)")
-     (holiday-float 6 0 3 "Father's Day")
+     (holiday-fixed 6 14 "Flag Day (US)") (holiday-float 6 0 3 "Father's Day")
      (holiday-fixed 7 1 "Canada Day")
      (holiday-fixed 7 4 "Independence Day (US)")
-     (holiday-float 8 1 1 "Civic (CA)")
-     (holiday-float 9 1 1 "Labor Day")
+     (holiday-float 8 1 1 "Civic (CA)") (holiday-float 9 1 1 "Labor Day")
      (holiday-float 10 1 2 "Columbus Day (US) Thanksgiving (CA)")
      (holiday-fixed 10 31 "Halloween")
      (holiday-fixed 11 11 "Remeberance Day (CA) Veteran's Day (US)")
@@ -295,88 +313,43 @@
  '(ibuffer-default-sorting-mode 'alphabetic)
  '(ibuffer-maybe-show-predicates
    '("^\\*ESS\\*" "^\\*Compile"
-     (lambda
-       (buf)
-       (and
-        (string-match "^ "
-                      (buffer-name buf))
-        (null buffer-file-name)))))
+     (lambda (buf)
+       (and (string-match "^ " (buffer-name buf)) (null buffer-file-name)))))
  '(ibuffer-mode-hook
-   '((lambda nil
-       (ibuffer-switch-to-saved-filter-groups "default"))
+   '((lambda nil (ibuffer-switch-to-saved-filter-groups "default"))
      pdf-occur-ibuffer-minor-mode))
  '(ibuffer-saved-filter-groups
-   '(("default"
-      ("dired"
-       (mode . dired-mode))
+   '(("default" ("dired" (mode . dired-mode))
       ("emacs"
-       (or
-        (mode . Custom-mode)
-        (name . "^\\*scratch\\*$")
-        (name . "^\\*Messages\\*$")))
-      ("erc"
-       (mode . erc-mode))
-      ("eshell"
-       (mode . eshell-mode))
+       (or (mode . Custom-mode) (name . "^\\*scratch\\*$")
+           (name . "^\\*Messages\\*$")))
+      ("erc" (mode . erc-mode)) ("eshell" (mode . eshell-mode))
       ("gnus"
-       (or
-        (mode . message-mode)
-        (mode . bbdb-mode)
-        (mode . mail-mode)
-        (mode . gnus-group-mode)
-        (mode . gnus-summary-mode)
-        (mode . gnus-article-mode)
-        (name . "^\\.?bbdb$")
-        (name . "^\\.?newsrc-dribble")))
-      ("help"
-       (mode . help-mode))
-      ("LaTeX"
-       (or
-        (mode . latex-mode)
-        (name . "^.*\\.Rnw")))
+       (or (mode . message-mode) (mode . bbdb-mode) (mode . mail-mode)
+           (mode . gnus-group-mode) (mode . gnus-summary-mode)
+           (mode . gnus-article-mode) (name . "^\\.?bbdb$")
+           (name . "^\\.?newsrc-dribble")))
+      ("help" (mode . help-mode))
+      ("LaTeX" (or (mode . latex-mode) (name . "^.*\\.Rnw")))
       ("magit"
-       (or
-        (mode . magit-diff-mode)
-        (mode . magit-log-mode)
-        (mode . magit-process-mode)
-        (mode . magit-revision-mode)
-        (mode . magit-status-mode)))
+       (or (mode . magit-diff-mode) (mode . magit-log-mode)
+           (mode . magit-process-mode) (mode . magit-revision-mode)
+           (mode . magit-status-mode)))
       ("planning"
-       (or
-        (name . "^\\*Calendar\\*$")
-        (name . "^diary$")
-        (name . ".*\\.org")
-        (mode . org-agenda-mode)
-        (name . "^\\*\\Holidays\\*$")
-        (mode . muse-mode)))
+       (or (name . "^\\*Calendar\\*$") (name . "^diary$") (name . ".*\\.org")
+           (mode . org-agenda-mode) (name . "^\\*\\Holidays\\*$")
+           (mode . muse-mode)))
       ("programming"
-       (or
-        (mode . emacs-lisp-mode)
-        (mode . cperl-mode)
-        (mode . c-mode)
-        (mode . java-mode)
-        (mode . idl-mode)
-        (mode . lisp-mode)))
-      ("R"
-       (or
-        (mode . ess-mode)
-        (mode . inferior-ess-mode))))))
+       (or (mode . emacs-lisp-mode) (mode . cperl-mode) (mode . c-mode)
+           (mode . java-mode) (mode . idl-mode) (mode . lisp-mode)))
+      ("R" (or (mode . ess-mode) (mode . inferior-ess-mode))))))
  '(ibuffer-saved-filters
    '(("gnus"
-      ((or
-        (mode . message-mode)
-        (mode . mail-mode)
-        (mode . gnus-group-mode)
-        (mode . gnus-summary-mode)
-        (mode . gnus-article-mode))))
+      ((or (mode . message-mode) (mode . mail-mode) (mode . gnus-group-mode)
+           (mode . gnus-summary-mode) (mode . gnus-article-mode))))
      ("programming"
-      (or
-       (mode . emacs-lisp-mode)
-       (mode . cperl-mode)
-       (mode . c-mode)
-       (mode . java-mode)
-       (mode . idl-mode)
-       (mode . lisp-mode)))))
+      (or (mode . emacs-lisp-mode) (mode . cperl-mode) (mode . c-mode)
+          (mode . java-mode) (mode . idl-mode) (mode . lisp-mode)))))
  '(ido-default-buffer-method 'selected-window)
  '(ido-enable-flex-matching t)
  '(indent-tabs-mode nil)
@@ -399,7 +372,8 @@
  '(magit-repository-directories '(("/ssh:ser:/usr/ports" . 0)))
  '(mail-sources
    '((maildir :path "/home/jrm/mail/" :plugged t)
-     (maildir :path "/home/jrm/mail/noalert/" :plugged t)))
+     (maildir :path "/home/jrm/mail/noalert/" :plugged t)
+     (file :path "/var/mail/jrm" :plugged t)))
  '(mail-user-agent 'gnus-user-agent)
  '(major-mode 'text-mode)
  '(mastodon-instance-url "https://bsd.network")
@@ -409,14 +383,12 @@
  '(message-kill-buffer-on-exit t)
  '(message-log-max 16384)
  '(message-mode-hook
-   '((lambda nil
-       (local-set-key
-        (kbd "C-c C-f o")
-        'jrm/toggle-message-fields))
+   '((lambda nil (local-set-key (kbd "C-c C-f o") 'jrm/toggle-message-fields))
      flyspell-mode visual-line-mode))
  '(message-setup-hook '(message-check-recipients bbdb-insinuate-message))
  '(mm-attachment-override-types
-   '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
+   '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime"
+     "application/pkcs7-signature" "application/x-pkcs7-signature" "image/.*"))
  '(mm-discouraged-alternatives '("text/html" "text/richtext"))
  '(mm-inline-large-images 'resize)
  '(mm-verify-option 'known)
@@ -427,14 +399,11 @@
  '(mml-smime-passphrase-cache-expiry 604800)
  '(mml2015-passphrase-cache-expiry 604800)
  '(mode-line-format
-   '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
-     (vc-mode vc-mode)
+   '("%e" mode-line-front-space mode-line-mule-info mode-line-client
+     mode-line-modified mode-line-remote mode-line-frame-identification
+     mode-line-buffer-identification "   " mode-line-position (vc-mode vc-mode)
      "  " mode-line-modes mode-line-misc-info
-     (:eval
-      (car
-       (split-string system-name
-                     (rx "."))))
-     mode-line-end-spaces))
+     (:eval (car (split-string system-name (rx ".")))) mode-line-end-spaces))
  '(mode-require-final-newline nil)
  '(multi-eshell-name "*eshell*")
  '(multi-eshell-shell-function '(eshell))
@@ -443,52 +412,50 @@
  '(mweb-default-major-mode 'nxml-mode)
  '(mweb-filename-extensions '("php" "htm" "html" "problem"))
  '(mweb-tags
-   '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-     (js-mode "<script>" "</script>")
+   '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>") (js-mode "<script>" "</script>")
      (css-mode "<style[^>]*>" "</style>")
      (cperl-mode "<script type=\"loncapa/perl\">" "</script>")))
  '(nnir-method-default-engines '((nnimap . imap) (nntp . gmane) (nnml . notmuch)))
  '(nnmail-split-header-length-limit 4096)
+ '(nnmail-treat-duplicates 'delete)
  '(notmuch-saved-searches
-   '((:name "Dal" :query "folder:Dal" :key "d" :sort-order newest-first :search-type tree)
-     (:name "FreeBSD" :query "folder:FreeBSD" :key "f" :sort-order newest-first :search-type tree)
-     (:name "mail.misc" :query "folder:mail/misc" :key "m" :sort-order newest-first :search-type tree)
-     (:name "Month" :query "date:30days..today" :key "M" :sort-order newest-first :search-type tree)))
+   '((:name "Dal" :query "folder:Dal" :key "d" :sort-order newest-first
+            :search-type tree)
+     (:name "FreeBSD" :query "folder:FreeBSD" :key "f" :sort-order newest-first
+            :search-type tree)
+     (:name "mail.misc" :query "folder:mail/misc" :key "m" :sort-order
+            newest-first :search-type tree)
+     (:name "Month" :query "date:30days..today" :key "M" :sort-order
+            newest-first :search-type tree)))
+ '(notmuch-search-oldest-first nil)
  '(nxml-attribute-indent 2)
  '(org-agenda-files '("~/scm/org.git"))
  '(org-agenda-use-time-grid nil)
  '(org-babel-load-languages '((emacs-lisp . t) (R . t) (shell . t)))
  '(org-bbdb-anniversary-format-alist
-   '(("birthday" lambda
-      (name years suffix)
-      (concat "Birthday: [[bbdb:" name "][" name " ("
-              (format "%s" years)
-              suffix ")]]"))
-     ("death" lambda
-      (name years suffix)
-      (concat "Death: [[bbdb:" name "][" name " ("
-              (format "%s" years)
+   '(("birthday" lambda (name years suffix)
+      (concat "Birthday: [[bbdb:" name "][" name " (" (format "%s" years) suffix
               ")]]"))
-     ("wedding" lambda
-      (name years suffix)
-      (concat "[[bbdb:" name "][" name "'s "
-              (format "%s" years)
-              suffix " wedding anniversary]]"))) nil (bbdb))
+     ("death" lambda (name years suffix)
+      (concat "Death: [[bbdb:" name "][" name " (" (format "%s" years) ")]]"))
+     ("wedding" lambda (name years suffix)
+      (concat "[[bbdb:" name "][" name "'s " (format "%s" years) suffix
+              " wedding anniversary]]"))) nil (bbdb))
  '(org-capture-templates
-   '(("e" "Event" entry
-      (file+headline "~/scm/org.git/capture.org" "Events")
+   '(("e" "Event" entry (file+headline "~/scm/org.git/capture.org" "Events")
       "** %a\12   %^T\12   Location: %?" :jump-to-captured t :time-prompt t)
-     ("t" "TODO" entry
-      (file+headline "~/scm/org.git/capture.org" "Todos")
-      "** TODO %?\12   - State \"TODO\"       from              %u\12   %a" :jump-to-captured t :empty-lines-after 1 :table-line-pos t)
+     ("t" "TODO" entry (file+headline "~/scm/org.git/capture.org" "Todos")
+      "** TODO %?\12   - State \"TODO\"       from              %u\12   %a"
+      :jump-to-captured t :empty-lines-after 1 :table-line-pos t)
      ("w" "Web Link" item
-      (file+headline "~/scm/org.git/capture.org" "Web Links")
-      "- %u %a\12%i" :jump-to-captured t)))
+      (file+headline "~/scm/org.git/capture.org" "Web Links") "- %u %a\12%i"
+      :jump-to-captured t)))
  '(org-clock-persist 'history)
  '(org-confirm-babel-evaluate nil)
  '(org-default-notes-file "~/scm/org.git/capture.org")
  '(org-directory "~/scm/org.git")
  '(org-export-html-postamble nil)
+ '(org-export-with-sub-superscripts '{})
  '(org-latex-pdf-process '("latexmk -f -pdf %f"))
  '(org-mobile-directory "~/.org-mobile")
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
@@ -503,8 +470,17 @@
      ("org" . "https://orgmode.org/elpa/")))
  '(package-gnupghome-dir "~/.gnupg")
  '(package-selected-packages
-   '(zop-to-char oauth2 esup magit lsp-ui parinfer-rust-mode company-auctex lsp-mode auctex undo-tree auctex-latexmk ivy-emoji ace-link ace-window adoc-mode avy-zap bbdb buffer-move calfw calfw-cal calfw-org company company-bibtex counsel erc-hl-nicks erc-image erc-view-log ess eyebrowse fill-column-indicator flycheck hydra ivy ivy-bibtex ivy-hydra nginx-mode notmuch nov org-bullets poly-R poly-noweb polymode scpaste smart-mode-line transient w3m which-key yaml-mode yasnippet))
- '(parinfer-rust-library "/usr/local/lib/libparinfer_rust.so")
+   '(ace-link ace-window adoc-mode auctex auctex-latexmk avy-zap bbdb buffer-move
+              calfw calfw-cal calfw-gcal calfw-org chess company company-auctex
+              company-bibtex counsel embark erc-hl-nicks erc-image erc-view-log
+              ess esup eyebrowse fennel-mode fill-column-indicator flycheck
+              google-translate haskell-mode hydra ivy ivy-bibtex ivy-emoji
+              ivy-hydra languagetool lsp-haskell lsp-ivy lsp-mode lsp-treemacs
+              lsp-ui lua-mode magit marginalia nginx-mode notmuch nov oauth2
+              orderless org-bullets parinfer-rust-mode php-mode poly-R
+              poly-noweb polymode scpaste sly smart-mode-line swiper transient
+              undo-tree vertico w3m which-key yaml-mode yasnippet zop-to-char))
+ '(parinfer-rust-library "/usr/local/lib/libparinfer_rust.so" t)
  '(pdf-misc-print-program "/usr/local/bin/lpr" t)
  '(pdf-misc-print-program-args '("-o media=Letter -o fitplot"))
  '(pdf-view-continuous nil)
@@ -521,25 +497,27 @@
  '(ring-bell-function 'ignore)
  '(safe-local-variable-values
    '((eval hl-line-mode t)
-     (whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark)))
+     (whitespace-style face tabs spaces trailing lines space-before-tab::space
+                       newline indentation::space empty space-after-tab::space
+                       space-mark tab-mark newline-mark)))
  '(savehist-additional-variables
    '(kill-ring regexp-search-ring search-ring tablist-named-filter))
  '(savehist-autosave-interval 60)
  '(savehist-mode t)
+ '(sc-auto-fill-region-p nil)
+ '(sc-preferred-attribution-list
+   '("sc-lastchoice" "x-attribution" "initials" "firstname" "lastname"))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 10000)
  '(select-enable-clipboard t)
  '(send-mail-function 'mailclient-send-it)
- '(sh-basic-offset 2)
+ '(sh-basic-offset 8)
  '(sh-indentation 2)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
  '(shr-external-browser 'browse-url-conkeror)
- '(sml/replacer-regexp-list
-   '(("^~/scm/org\\.git" ":Org:")
-     ("^~/\\.emacs\\.d/" ":ED:")
-     ("^/sudo:.*:" ":SU:")
-     ("^/usr/home/jrm" "~")))
+ '(sml/extra-filler -3)
+ '(sml/replacer-regexp-list '(("^/usr/home/jrm" "~")))
  '(sml/theme 'dark)
  '(sunshine-location "Halifax, CA")
  '(sunshine-show-icons t)
@@ -568,70 +546,81 @@
  '(version-control t)
  '(web-mode-attr-indent-offset 2)
  '(webjump-sites
-   '(("aw" . "awarnach.mathstat.dal.ca")
-     ("about:blank" . "about:blank")
+   '(("aw" . "awarnach.mathstat.dal.ca") ("about:blank" . "about:blank")
      ("Brightspace" . "dal.ca/brightspace")
-     ("Cambridge Dictionaries Online" .
-      [simple-query "dictionary.cambridge.org" "dictionary.cambridge.org/cmd_search.asp?searchword=" ""])
-     ("Capa" . "capa.mathstat.dal.ca")
-     ("cbc" . "cbc.ca/news")
-     ("cbc/ns" . "cbc.ca/ns")
-     ("Coindesk" . "www.coindesk.com")
-     ("Dictionary.com" .
-      [simple-query "www.dictionary.com" "www.dictionary.com/browse/" ""])
-     ("DuckDuckGo" .
-      [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
+     ("Cambridge Dictionaries Online"
+      . [simple-query "dictionary.cambridge.org"
+                      "dictionary.cambridge.org/cmd_search.asp?searchword=" ""])
+     ("Capa" . "capa.mathstat.dal.ca") ("cbc" . "cbc.ca/news")
+     ("cbc/ns" . "cbc.ca/ns") ("Coindesk" . "www.coindesk.com")
+     ("Dictionary.com"
+      . [simple-query "www.dictionary.com" "www.dictionary.com/browse/" ""])
+     ("DuckDuckGo" . [simple-query "duckduckgo.com" "duckduckgo.com/?q=" ""])
      ("Electronic Frontier Foundation" . "www.eff.org")
      ("Emacs" . "www.gnu.org/software/emacs/emacs.html")
-     ("Emacs Wiki" .
-      [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
+     ("Emacs Wiki"
+      . [simple-query "www.emacswiki.org" "www.emacswiki.org/cgi-bin/wiki/" ""])
      ("FreeBSD Bugs" . "bugs.freebsd.org")
      ("FreeBSD Forums" . "https://forums.freebsd.org/find-new/5741072/posts")
      ("FreeBSD Handbook" . "freebsd.org/handbook")
-     ("FreeBSD Porters Handbook" . "www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/book.html")
-     ("Freshports" .
-      [simple-query "freshports.org" "http://freshports.org/search.php?search=go&num=100&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive&query=" ""])
+     ("FreeBSD Porters Handbook"
+      . "www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/book.html")
+     ("Freshports"
+      . [simple-query "freshports.org"
+                      "http://freshports.org/search.php?search=go&num=100&stype=name&method=match&deleted=excludedeleted&start=1&casesensitivity=caseinsensitive&query="
+                      ""])
      ("Github" . "github.com")
-     ("Google" .
-      [simple-query "www.google.com" "www.google.com/search?q=" ""])
+     ("Google" . [simple-query "www.google.com" "www.google.com/search?q=" ""])
      ("Google Drive" . "drive.google.com")
-     ("Google Images" .
-      [simple-query "images.google.com" "images.google.com/images?q=" ""])
-     ("Google Maps" .
-      [simple-query "maps.google.com" "maps.google.com/?force=tt&q=" ""])
+     ("Google Images"
+      . [simple-query "images.google.com" "images.google.com/images?q=" ""])
+     ("Google Maps"
+      . [simple-query "maps.google.com" "maps.google.com/?force=tt&q=" ""])
      ("Google Plus" . "plus.google.com")
-     ("Google Scholar" .
-      [simple-query "scholar.google.com" "scholar.google.com/scholar?q=" ""])
-     ("Hacker News" . "https://news.ycombinator.com")
-     ("Home" . "ftfl.ca")
-     ("Merriam-Webster Dictionary" .
-      [simple-query "www.m-w.com/dictionary" "www.m-w.com/cgi-bin/netdict?va=" ""])
+     ("Google Scholar"
+      . [simple-query "scholar.google.com" "scholar.google.com/scholar?q=" ""])
+     ("Hacker News" . "https://news.ycombinator.com") ("Home" . "ftfl.ca")
+     ("Merriam-Webster Dictionary"
+      . [simple-query "www.m-w.com/dictionary" "www.m-w.com/cgi-bin/netdict?va="
+                      ""])
      ("Nagio" . "awarnach.mathstat.dal.ca/nagios")
      ("Packages" . "pkg.awarnach.mathstat.dal.ca")
-     ("PC Financial" . "pcfinancial.ca")
-     ("RFC" . "www.ietf.org/rfc/rfc")
-     ("Stackoverflow" .
-      [simple-query "stackoverflow.com" "stackoverflow.com/search?q" ""])
-     ("PGP Key Server" .
-      [simple-query "pgp.mit.edu" "pgp.mit.edu:11371/pks/lookup?op=index&search=" ""])
+     ("PC Financial" . "pcfinancial.ca") ("RFC" . "www.ietf.org/rfc/rfc")
+     ("Stackoverflow"
+      . [simple-query "stackoverflow.com" "stackoverflow.com/search?q" ""])
+     ("PGP Key Server"
+      . [simple-query "pgp.mit.edu"
+                      "pgp.mit.edu:11371/pks/lookup?op=index&search=" ""])
      ("Portscout" . "https://portscout.freebsd.org/")
      ("Project Gutenberg" . webjump-to-gutenberg)
-     ("RBC" . "https://www1.royalbank.com/cgi-bin/rbaccess/rbunxcgi%3FF6=1%26F7=IB%26F21=IB%26F22=IB%26REQUEST=ClientSignin%26LANGUAGE=ENGLISH?_ga=1.223022555.1525730850.1448687611")
-     ("Thesaurus.com" .
-      [simple-query "www.thesaurus.com" "www.thesaurus.com/browse/" ""])
+     ("RBC"
+      . "https://www1.royalbank.com/cgi-bin/rbaccess/rbunxcgi%3FF6=1%26F7=IB%26F21=IB%26F22=IB%26REQUEST=ClientSignin%26LANGUAGE=ENGLISH?_ga=1.223022555.1525730850.1448687611")
+     ("Thesaurus.com"
+      . [simple-query "www.thesaurus.com" "www.thesaurus.com/browse/" ""])
      ("Savannah Emacs" . "savannah.gnu.org/projects/emacs")
-     ("Slashdot" .
-      [simple-query "slashdot.org" "slashdot.org/search.pl?query=" ""])
-     ("Twitter" . "twitter.com")
-     ("US Patents" .
-      [simple-query "www.uspto.gov/patft/"
-                    (\,
-                     (concat "appft1.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF" "&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=0&f=S&l=50" "&TERM1="))
-                    "&FIELD1=&co1=AND&TERM2=&FIELD2=&d=PG01"])
-     ("Wikipedia" .
-      [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
-     ("Youtube" .
-      [simple-query "www.youtube.com" "www.youtube.com/results?search_query=" ""])
+     ("Slashdot"
+      . [simple-query "slashdot.org" "slashdot.org/search.pl?query=" ""])
+     ("Twitter" . "twitter.com") ("US Patents" . [simple-query
+                                                  "www.uspto.gov/patft/" (\
+
+                                                                          (\
+
+                                                                           (\
+
+                                                                            (\
+
+                                                                             (\
+
+                                                                              (\,
+                                                                               (concat
+                                                                                "appft1.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF"
+                                                                                "&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=0&f=S&l=50"
+                                                                                "&TERM1=")))))))
+                                                  "&FIELD1=&co1=AND&TERM2=&FIELD2=&d=PG01"])
+     ("Wikipedia" . [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])
+     ("Youtube"
+      . [simple-query "www.youtube.com" "www.youtube.com/results?search_query="
+                      ""])
      ("ZNC" . "https://ftfl.ca:2222")))
  '(which-key-mode t)
  '(wttrin-default-accept-language '("Accept-Language" . "en-US,en;q=0.8"))
