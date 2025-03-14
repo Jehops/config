@@ -34,7 +34,12 @@ export $(dbus-launch --exit-with-session)
 #exec ssh-agent dwm
 #exec ssh-agent emacsclient -c
 #exec ssh-agent fluxbox
+#exec fswm alacritty
+#exec ssh-agent i3
 #exec ssh-agent sdorfehs
 #exec ssh-agent ratpoison
-exec ssh-agent stumpwm
+exec ssh-agent stumpwm 2>&1 > ~/local/var/log/stumpwm.log
+#exec ssh-agent /home/jrm/scm/nm/stumpwm.git/stumpwm 2>&1 > /home/jrm/stumpwm.log
+#exec ssh-agent /home/jrm/scm/nm/stumpwm.git/stumpwm
+#exec ssh-agent sbcl --load '/home/jrm/scm/nm/stumpwm.git/load-stumpwm.lisp' --eval '(stumpwm:stumpwm)'
 #exec ssh-agent twm
