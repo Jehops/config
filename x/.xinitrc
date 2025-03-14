@@ -5,6 +5,11 @@ export FREETYPE_PROPERTIES=truetype:interpreter-version=35 # Verdana Bold in Ff
 #export GTK_IM_MODULE=xim
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgreprc
 export VISUAL=$EDITOR
+export XDG_CACHE_HOME=${HOME}/.cache
+export XDG_CONFIG_HOME=${HOME}/.config
+export XDG_DATA_HOME=${HOME}/.local/share
+export XDG_RUNTIME_DIR=${HOME}/.cache/xdgr
+export XDG_STATE_HOME=${HOME}/.local/state
 
 . $HOME/.zshenv
 
