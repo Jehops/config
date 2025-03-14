@@ -178,7 +178,7 @@ if [ "$HOST" = 'storage2.mathstat.dal.ca' ]; then
 else
   alias t="tmux -2 "
 fi
-alias tb='nc termbin.com 9999'
+alias tb="nc termbin.com 9999 | xclip -selection c"
 alias ss='sudo sysctl hw.snd.default_unit=0'
 alias tvs='sudo sysctl hw.snd.default_unit=2'
 alias up="sudo pkg upgrade"
