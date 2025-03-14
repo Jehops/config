@@ -36,6 +36,7 @@ export CLUSTER=$HOME/.clusters/compute_nodes
 export GPG_TTY=$(tty)
 #export GTK_IM_MODULE=xim  # set in ~/.xinitrc
 export LESS='-iFRSX -#1 -P%f (%lt-%lb/%L %pb\%)$ -x4' # -r causes problems
+export LESSOPEN="|lesspipe.sh %s"
 export PAGER=less
 export REPORTTIME=60
 export SQUEUE_FORMAT='%.18i %.9P %.15j %.8u %.2t %.10M %.6D %R'
