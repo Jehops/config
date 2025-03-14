@@ -135,7 +135,7 @@ preexec () {
 }
 
 yt () {
-  yt-dlp --exec mpv -P "$HOME/tmp/" "$1"
+  yt-dlp -S res:1080 --exec mpv -P "$HOME/tmp/yt/" "$(xclip -o)"
 }
 
 zshexit () { pkill -t "${$(tty)##*/},-" xclip }
