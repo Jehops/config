@@ -1105,7 +1105,7 @@ _d_efinition _i_menu _p_op _r_eferences _s_ideline _q_uit"
 (defun jrm/notmuch-message-to-gnus-article ()
   "Open a summary buffer containing the current notmuch article."
   (interactive)
-  (autoload 'org-gnus-follow-link "org-gnus")
+  (autoload 'org-gnus-follow-link "ol-gnus")
   (let ((group
          (replace-regexp-in-string
           "/" "."
